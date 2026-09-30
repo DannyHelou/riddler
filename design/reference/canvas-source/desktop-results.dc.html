@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Results page, desktop</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0B1026}
+a{color:#E8ECFF}a:hover{color:#FFE45C}
+a:focus-visible,button:focus-visible{outline:4px dashed #FF5A4E;outline-offset:6px}
+</style>
+</helmet>
+<div style="width: 1280px; height: 1400px; display: flex; flex-direction: column; background: #0B1026; font-family: 'VT323', monospace; color: #E8ECFF">
+<header style="height: 72px; flex-shrink: 0; box-sizing: border-box; padding: 0 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 4px solid #16204C">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none">
+<div aria-hidden="true" style="position: relative; width: {{logo.size}}px; height: {{logo.size}}px"><div style="position: absolute; left: -{{logo.s}}px; top: -{{logo.s}}px; width: {{logo.s}}px; height: {{logo.s}}px; box-shadow: {{logo.shadow}}"></div></div>
+<span style="font-family: 'Press Start 2P', monospace; font-size: 18px; line-height: 1">Riddler</span>
+</a>
+<nav aria-label="Main" style="display: flex; gap: 36px; font-size: 26px">
+<a href="Main.dc.html" style="text-decoration: none; color: #FFE45C; border-bottom: 4px solid #FFE45C; padding-bottom: 2px">Today</a>
+<a href="Main.dc.html" style="text-decoration: none">How to play</a>
+<a href="Main.dc.html" style="text-decoration: none">Your stats</a>
+<a href="Main.dc.html" style="text-decoration: none">About</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 10px">
+<div aria-hidden="true" style="position: relative; width: {{flame.size}}px; height: {{flame.size}}px"><div style="position: absolute; left: -{{flame.s}}px; top: -{{flame.s}}px; width: {{flame.s}}px; height: {{flame.s}}px; box-shadow: {{flame.shadow}}"></div></div>
+<span style="font-size: 24px; line-height: 1">13-day streak</span>
+</div>
+</header>
+
+<main style="position: relative; height: 672px; flex-shrink: 0; box-sizing: border-box; padding: 40px 96px; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 64px">
+<div aria-hidden="true" style="position: absolute; left: 96px; top: 16px; width: 620px; height: 150px">
+<sc-for list="{{stars}}" as="st" hint-placeholder-count="30">
+<div style="position: absolute; left: {{st.x}}px; top: {{st.y}}px; width: {{st.s}}px; height: {{st.s}}px; background: {{st.c}}"></div>
+</sc-for>
+</div>
+
+<div style="position: relative; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 26px; line-height: 1; color: #9AA6D0">Puzzle 58. Your riddle quotient</div>
+<div style="font-family: 'Press Start 2P', monospace; font-size: 56px; line-height: 1.1; color: #FFE45C">RQ 118</div>
+<div style="font-size: 30px; line-height: 1">Higher than 88% of players today</div>
+</div>
+<div style="margin: 4px; background: #121A3A; box-shadow: 0 -4px 0 0 #121A3A, 0 4px 0 0 #121A3A, -4px 0 0 0 #121A3A, 4px 0 0 0 #121A3A; padding: 20px 24px 14px; display: flex; flex-direction: column; gap: 8px">
+<div role="img" aria-label="Bell curve of today's players with your position at RQ 118" style="height: 250px; display: flex; align-items: flex-end; gap: 3px; border-bottom: 4px solid #C9D3FF">
+<sc-for list="{{bell}}" as="b" hint-placeholder-count="40">
+<div style="flex-grow: 1; flex-basis: 0; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px">
+<sc-if value="{{b.you}}" hint-placeholder-val="{{ false }}">
+<div aria-hidden="true" style="position: relative; width: {{balloon.size}}px; height: {{balloon.size}}px; flex-shrink: 0"><div style="position: absolute; left: -{{balloon.s}}px; top: -{{balloon.s}}px; width: {{balloon.s}}px; height: {{balloon.s}}px; box-shadow: {{balloon.shadow}}"></div></div>
+</sc-if>
+<div style="width: 100%; height: {{b.h}}px; background: {{b.bg}}"></div>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; justify-content: space-between; font-size: 20px; line-height: 1; color: #9AA6D0"><span>55</span><span>70</span><span>85</span><span>100</span><span>115</span><span>130</span><span>145</span></div>
+</div>
+</div>
+
+<div style="position: relative; display: flex; flex-direction: column; gap: 22px; justify-content: center">
+<div style="margin: 4px; background: #121A3A; box-shadow: 0 -4px 0 0 #121A3A, 0 4px 0 0 #121A3A, -4px 0 0 0 #121A3A, 4px 0 0 0 #121A3A; padding: 18px 22px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<div style="font-size: 26px; line-height: 1">Score</div>
+<div style="font-family: 'Press Start 2P', monospace; font-size: 16px; line-height: 1">306 / 450</div>
+</div>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 14px; padding-top: 12px; border-top: 2px dashed #3B4F8F">
+<div aria-hidden="true" style="position: relative; width: {{r.g.size}}px; height: {{r.g.size}}px; flex-shrink: 0"><div style="position: absolute; left: -{{r.g.s}}px; top: -{{r.g.s}}px; width: {{r.g.s}}px; height: {{r.g.s}}px; box-shadow: {{r.g.shadow}}"></div></div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 24px; line-height: 1">{{r.tier}}</div>
+<div style="font-size: 20px; line-height: 1; color: #9AA6D0">{{r.detail}}</div>
+</div>
+<div style="font-family: 'Press Start 2P', monospace; font-size: 12px; line-height: 1">{{r.pts}}</div>
+</div>
+</sc-for>
+</div>
+<button style="margin: 4px 4px 12px; border: none; background: #FFE45C; box-shadow: 0 -4px 0 0 #FFE45C, 0 4px 0 0 #FFE45C, -4px 0 0 0 #FFE45C, 4px 0 0 0 #FFE45C, 0 10px 0 0 #B8961A; min-height: 64px; font-family: 'Press Start 2P', monospace; font-size: 14px; color: #0B1026; cursor: pointer">Share result</button>
+<div style="font-size: 24px; line-height: 1; color: #9AA6D0; text-align: center">Next climb in 07:12:44</div>
+</div>
+</main>
+
+<section aria-label="Riddle by riddle" style="flex-grow: 1; box-sizing: border-box; padding: 24px 96px 48px; display: flex; flex-direction: column; gap: 24px; border-top: 4px solid #16204C">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<h2 style="margin: 0; font-family: 'Press Start 2P', monospace; font-weight: 400; font-size: 16px; line-height: 1.4">Riddle by riddle</h2>
+<div style="font-size: 24px; line-height: 1; color: #9AA6D0">How everyone else answered, and why</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px">
+<sc-for list="{{debrief}}" as="d" hint-placeholder-count="3">
+<div style="margin: 4px; background: #121A3A; box-shadow: 0 -4px 0 0 #121A3A, 0 4px 0 0 #121A3A, -4px 0 0 0 #121A3A, 4px 0 0 0 #121A3A; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; gap: 10px">
+<div style="width: 16px; height: 8px; background: {{d.tierColor}}"></div>
+<div style="font-family: 'Press Start 2P', monospace; font-size: 10px; line-height: 1">{{d.tier}}</div>
+</div>
+<div style="font-size: 23px; line-height: 1.1">{{d.prompt}}</div>
+<div style="display: flex; flex-direction: column; gap: 4px; font-size: 23px; line-height: 1">
+<div>You: <span style="color: {{d.youColor}}">{{d.you}}</span></div>
+<div>Answer: <span style="color: #4FD18B">{{d.answer}}</span></div>
+</div>
+<div role="img" aria-label="{{d.aria}}" style="height: 80px; display: flex; align-items: flex-end; gap: 2px; border-bottom: 4px solid #C9D3FF">
+<sc-for list="{{d.bars}}" as="b" hint-placeholder-count="20">
+<div style="flex-grow: 1; flex-basis: 0; height: {{b.h}}px; background: {{b.bg}}"></div>
+</sc-for>
+</div>
+<div style="display: flex; gap: 12px; font-size: 18px; line-height: 1; color: #9AA6D0">
+<div style="display: flex; align-items: center; gap: 4px"><div style="width: 8px; height: 8px; background: #4FD18B"></div>Answer</div>
+<div style="display: flex; align-items: center; gap: 4px"><div style="width: 8px; height: 8px; background: #FFE45C"></div>You</div>
+<div style="display: flex; align-items: center; gap: 4px"><div style="width: 8px; height: 8px; background: #FF5A4E"></div>Trap</div>
+</div>
+<div style="font-size: 21px; line-height: 1; color: #FF5A4E">[XX]% of players fell for the trap</div>
+<div style="border-top: 2px dashed #3B4F8F; padding-top: 10px; display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 20px; line-height: 1; color: #9AA6D0">Why</div>
+<div style="font-size: 22px; line-height: 1.1">{{d.why}}</div>
+</div>
+</div>
+</sc-for>
+</div>
+</section>
+
+<footer style="height: 56px; flex-shrink: 0; box-sizing: border-box; padding: 0 48px; display: flex; align-items: center; justify-content: space-between; border-top: 4px solid #16204C; font-size: 21px; color: #9AA6D0">
+<span>Three riddles a day, same for everyone</span>
+<div style="display: flex; gap: 28px"><a href="Main.dc.html" style="color: #9AA6D0">About</a><a href="Main.dc.html" style="color: #9AA6D0">Privacy</a><a href="Main.dc.html" style="color: #9AA6D0">Contact</a></div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1400}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var C = {k:'#0B1026',l:'#C9D3FF',r:'#FF5A4E',y:'#FFE45C',g:'#4FD18B',w:'#FFFFFF',p:'#F29CB5',v:'#9B7BFF',o:'#F28C28',b:'#8A5A2B'};
+    function spr(rows, s) {
+      var out = [];
+      rows.forEach(function (row, y) { row.split('').forEach(function (ch, x) { if (C[ch]) out.push(((x + 1) * s) + 'px ' + ((y + 1) * s) + 'px 0 0 ' + C[ch]); }); });
+      return { shadow: out.join(', '), size: 8 * s, s: s };
+    }
+    function stars(n, x0, y0, w, h, seed) {
+      var out = [], v = seed;
+      function r() { v = (v * 9301 + 49297) % 233280; return v / 233280; }
+      for (var i = 0; i < n; i++) out.push({ x: x0 + Math.floor(r() * w / 4) * 4, y: y0 + Math.floor(r() * h / 4) * 4, s: r() > 0.8 ? 4 : 2, c: i % 7 === 0 ? '#FFE45C' : '#C9D3FF' });
+      return out;
+    }
+    var SP = {
+      flame: ['...r....','...rr...','..rrr.r.','.rryrrr.','.ryyyrr.','.ryyyyr.','..ryyr..','...rr...'],
+      check: ['........','.......g','......gg','g....gg.','gg..gg..','.gggg...','..gg....','........'],
+      quant: ['.......g','......g.','.....g..','..g.g...','.g.g....','g.......','l.......','llllllll'],
+      brain: ['.pppppp.','pppkpppp','pkpppkpp','ppppkppp','pkpppkpp','.pppppp.','...pp...','...pp...'],
+      balloon: ['..ryyr..','.rryyrr.','rrryyrrr','rrryyrrr','.rryyrr.','..w..w..','..bbbb..','..bbbb..']
+    };
+    var bell = [];
+    for (var i = 0; i < 40; i++) {
+      var z = -3 + (i + 0.5) * 6 / 40;
+      var blocks = Math.max(1, Math.round(Math.exp(-z * z / 2) * 45));
+      bell.push({ h: blocks * 4, you: i === 28, bg: i === 28 ? '#FFE45C' : '#3B4F8F' });
+    }
+    var rows = [
+      { g: spr(SP.check, 4), tier: 'Warm-up', detail: 'Correct, speed bonus', pts: '+140' },
+      { g: spr(SP.quant, 4), tier: 'The trap', detail: 'Quant, speed bonus', pts: '+102' },
+      { g: spr(SP.brain, 4), tier: 'Boss', detail: 'Genius, hint used', pts: '+64' }
+    ];
+
+    function bars(hs, a, y, t) { return hs.map(function (h, i) { return { h: h * 4, bg: i === a ? '#4FD18B' : i === y ? '#FFE45C' : i === t ? '#FF5A4E' : '#3B4F8F' }; }); }
+    var debrief = [
+      { tier: 'Warm-up', tierColor: '#4FD18B', prompt: '5 machines, 5 widgets, 5 minutes. 100 machines, 100 widgets?', you: '5 minutes', youColor: 'hsl(130, 85%, 64%)', answer: '5 minutes', bars: bars([2,4,12,18,6,3,2,2,1,1,2,3,4,6,9,14,11,6,3,2], 3, 3, 15), aria: 'Guesses split between 5 minutes and 100 minutes', why: 'Each machine makes one widget every 5 minutes. A hundred machines working at once make a hundred widgets in the same 5 minutes.' },
+      { tier: 'The trap', tierColor: '#FFE45C', prompt: 'A 99% accurate test, a 1-in-1,000 disease. You test positive. Chance you have it?', you: '21%', youColor: 'hsl(99, 85%, 64%)', answer: 'about 9%', bars: bars([2,10,6,4,5,3,2,2,2,3,4,5,3,2,2,3,4,6,11,19], 1, 4, 19), aria: 'A large spike of guesses near 99 percent and a smaller cluster near 9 percent', why: 'Test 1,000 people. About 1 is sick and tests positive. About 10 healthy people also test positive by mistake. So only about 1 in 11 positives is real.' },
+      { tier: 'Boss', tierColor: '#FF5A4E', prompt: 'Average flips of a fair coin to get two heads in a row?', you: '6.5 flips', youColor: 'hsl(121, 85%, 64%)', answer: '6 flips', bars: bars([1,3,8,14,9,7,5,3,2,2,1,1,1,1,1,1,1,1,1,1], 5, 6, 3), aria: 'Most guesses cluster around 4 flips, fewer around 6', why: 'A tail sends you back to the start, and a head followed by a tail does too. Averaging over those restarts gives exactly 6 flips.' }
+    ];
+    return { logo: spr(SP.balloon, 3), flame: spr(SP.flame, 3), balloon: spr(SP.balloon, 3), stars: stars(30, 360, 0, 260, 140, 29), bell: bell, rows: rows, debrief: debrief };
+  }
+}
+</script>
+</body>
+</html>

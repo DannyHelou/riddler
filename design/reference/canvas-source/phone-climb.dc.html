@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Play the climb, phone</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#060A18}
+a{color:#E8ECFF}a:hover{color:#FFE45C}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:4px dashed #FF5A4E;outline-offset:6px}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: {{skyBg}}; font-family: 'VT323', monospace; color: #E8ECFF">
+<sc-for list="{{stars}}" as="st" hint-placeholder-count="40">
+<div style="position: absolute; left: {{st.x}}px; top: {{st.y}}px; width: {{st.s}}px; height: {{st.s}}px; background: {{st.c}}; opacity: {{starOpacity}}"></div>
+</sc-for>
+
+<div style="position: absolute; left: 0; top: 0; width: 390px; height: 844px; transform: translate({{shakeX}}px, {{sceneY}}px)">
+<sc-for list="{{clouds}}" as="cl" hint-placeholder-count="2">
+<div aria-hidden="true" style="position: absolute; left: {{cl.x}}px; top: {{cl.y}}px; width: {{cl.g.size}}px; height: {{cl.g.size}}px; opacity: 0.55"><div style="position: absolute; left: -{{cl.g.s}}px; top: -{{cl.g.s}}px; width: {{cl.g.s}}px; height: {{cl.g.s}}px; box-shadow: {{cl.g.shadow}}"></div></div>
+</sc-for>
+<sc-for list="{{landmarks}}" as="lm" hint-placeholder-count="2">
+<div>
+<div style="position: absolute; left: 0; top: {{lm.y}}px; width: 390px; height: 0; border-top: 2px dashed #3B4F8F"></div>
+<div style="position: absolute; left: 12px; top: {{lm.label2Y}}px; display: flex; flex-direction: column; gap: 2px; font-size: 18px; line-height: 1; color: #9AA6D0; white-space: nowrap"><span>{{lm.name}}</span><span>{{lm.alt}}</span></div>
+</div>
+</sc-for>
+<sc-if value="{{seaVisible}}" hint-placeholder-val="{{ true }}">
+<div style="position: absolute; left: 0; top: {{seaTop}}px; width: 390px; height: 900px; background: #1B5873; border-top: 6px solid #2E7FA0"></div>
+</sc-if>
+<sc-for list="{{smoke}}" as="sm" hint-placeholder-count="0">
+<div style="position: absolute; left: {{sm.x}}px; top: {{sm.y}}px; width: 12px; height: 12px; background: #6B7599; opacity: {{sm.o}}"></div>
+</sc-for>
+<sc-for list="{{sparks}}" as="sp" hint-placeholder-count="0">
+<div style="position: absolute; left: {{sp.x}}px; top: {{sp.y}}px; width: 6px; height: 6px; background: {{sp.c}}; opacity: {{sp.o}}"></div>
+</sc-for>
+<div role="img" aria-label="{{balloonLabel}}" style="position: absolute; left: 147px; top: {{balloonTop}}px; width: 96px; height: 96px">
+<div style="position: absolute; left: -6px; top: -6px; width: 6px; height: 6px; box-shadow: {{balloonShadow}}"></div>
+<div style="position: absolute; left: -6px; top: -6px; width: 6px; height: 6px; box-shadow: {{flameShadow}}"></div>
+</div>
+
+<div style="position: absolute; left: 20px; top: -206px; width: 350px; height: 520px; box-sizing: border-box; opacity: {{signOpacity}}; background: rgba(8, 12, 30, 0.92); box-shadow: 0 -4px 0 0 #C9D3FF, 0 4px 0 0 #C9D3FF, -4px 0 0 0 #C9D3FF, 4px 0 0 0 #C9D3FF; padding: 22px 20px; display: flex; flex-direction: column; justify-content: center; gap: 16px">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<div style="display: flex; align-items: center; gap: 10px">
+<div style="width: 16px; height: 8px; background: {{tierColor}}"></div>
+<div style="font-family: 'Press Start 2P', monospace; font-size: 11px; line-height: 1">{{tierName}}</div>
+</div>
+<div style="font-size: 22px; line-height: 1; color: #9AA6D0">Riddle {{riddleNum}} of 3</div>
+</div>
+<div role="img" aria-label="Time left" style="display: grid; grid-template-columns: repeat(20, minmax(0, 1fr)); gap: 3px">
+<sc-for list="{{fuel}}" as="fu" hint-placeholder-count="20"><div style="height: 10px; background: {{fu.bg}}"></div></sc-for>
+</div>
+<div style="font-size: 28px; line-height: 1.12">{{prompt}}</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px">
+<label for="climb-guess-m" style="font-size: 24px; line-height: 1">Your answer</label>
+<input id="climb-guess-m" type="text" inputmode="decimal" autocomplete="off" value="{{guess}}" onChange="{{onGuess}}" onKeyDown="{{onKey}}" style="width: 130px; height: 48px; margin: 4px; border: none; background: #121A3A; box-shadow: 0 -4px 0 0 #C9D3FF, 0 4px 0 0 #C9D3FF, -4px 0 0 0 #C9D3FF, 4px 0 0 0 #C9D3FF; font-family: 'VT323', monospace; font-size: 30px; color: #E8ECFF; padding: 0 12px; box-sizing: border-box">
+<div style="font-size: 24px; line-height: 1; color: #9AA6D0">{{unit}}</div>
+<button onClick="{{fire}}" style="flex-basis: 100%; margin: 4px 4px 10px; padding: 0 22px; border: none; background: #FFE45C; box-shadow: 0 -4px 0 0 #FFE45C, 0 4px 0 0 #FFE45C, -4px 0 0 0 #FFE45C, 4px 0 0 0 #FFE45C, 0 8px 0 0 #B8961A; min-height: 56px; font-family: 'Press Start 2P', monospace; font-size: 12px; color: #0B1026; cursor: pointer">Fire the burner</button>
+</div>
+<sc-if value="{{hasErr}}" hint-placeholder-val="{{ false }}">
+<div style="font-size: 22px; line-height: 1; color: #FF5A4E">{{err}}</div>
+</sc-if>
+</div>
+</div>
+
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 390px; height: 844px; background: {{flashColor}}; opacity: {{flashOpacity}}; pointer-events: none"></div>
+
+<sc-if value="{{showCard}}" hint-placeholder-val="{{ false }}">
+<div aria-live="polite" style="position: absolute; left: 16px; top: 64px; width: 358px; box-sizing: border-box; background: rgba(8, 12, 30, 0.92); box-shadow: 0 -4px 0 0 {{cardFrame}}, 0 4px 0 0 {{cardFrame}}, -4px 0 0 0 {{cardFrame}}, 4px 0 0 0 {{cardFrame}}; padding: 20px 22px; display: flex; flex-direction: column; gap: 14px">
+<sc-if value="{{isReveal}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+<div style="font-family: 'Press Start 2P', monospace; font-size: 22px; line-height: 1; color: {{resultColor}}">{{levelName}}</div>
+<div style="font-family: 'Press Start 2P', monospace; font-size: 12px; line-height: 1">+{{pts}} points</div>
+</div>
+<div style="font-size: 24px; line-height: 1; color: #9AA6D0">Climbed {{gainText}}</div>
+<sc-if value="{{trapped}}" hint-placeholder-val="{{ false }}">
+<div style="align-self: flex-start; background: #FF5A4E; color: #0B1026; padding: 4px 8px; font-size: 22px; line-height: 1">You fell for the trap</div>
+</sc-if>
+<div style="font-size: 26px; line-height: 1.1">You said {{guessText}}. The answer is <span style="color: #4FD18B">{{answerText}}</span>.</div>
+<button onClick="{{next}}" style="align-self: stretch; margin: 4px 4px 10px; padding: 0 22px; border: none; background: #FFE45C; box-shadow: 0 -4px 0 0 #FFE45C, 0 4px 0 0 #FFE45C, -4px 0 0 0 #FFE45C, 4px 0 0 0 #FFE45C, 0 8px 0 0 #B8961A; min-height: 52px; font-family: 'Press Start 2P', monospace; font-size: 12px; color: #0B1026; cursor: pointer">{{nextLabel}}</button>
+</sc-if>
+<sc-if value="{{isDone}}" hint-placeholder-val="{{ false }}">
+<div style="font-family: 'Press Start 2P', monospace; font-size: 20px; line-height: 1.3; color: #FFE45C">Climb complete</div>
+<div style="font-size: 26px; line-height: 1.1">You reached {{altText}}. Explanations and today's stats are waiting.</div>
+<a href="Results.dc.html" style="align-self: stretch; margin: 4px 4px 10px; padding: 0 22px; background: #FFE45C; box-shadow: 0 -4px 0 0 #FFE45C, 0 4px 0 0 #FFE45C, -4px 0 0 0 #FFE45C, 4px 0 0 0 #FFE45C, 0 8px 0 0 #B8961A; min-height: 52px; display: flex; align-items: center; justify-content: center; font-family: 'Press Start 2P', monospace; font-size: 12px; color: #0B1026; text-decoration: none">See your results</a>
+<button onClick="{{restart}}" style="align-self: flex-start; border: none; background: transparent; font-family: 'VT323', monospace; font-size: 22px; color: #E8ECFF; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; min-height: 44px; padding: 0">Replay the prototype</button>
+</sc-if>
+</div>
+</sc-if>
+
+<a href="MobileHome.dc.html" style="position: absolute; left: 16px; top: 22px; text-decoration: none; font-family: 'Press Start 2P', monospace; font-size: 11px; line-height: 1">Riddler</a>
+<div role="img" aria-label="Riddle progress" style="position: absolute; right: 16px; top: 22px; display: flex; gap: 8px">
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="3"><div style="width: 14px; height: 14px; background: {{d.bg}}"></div></sc-for>
+</div>
+<div style="position: absolute; left: 16px; bottom: 16px; background: rgba(8, 12, 30, 0.85); padding: 10px 14px; display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 18px; line-height: 1; color: #9AA6D0">Altitude</div>
+<div style="font-family: 'Press Start 2P', monospace; font-size: 13px; line-height: 1">{{altText}}</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+var W = 390, H = 844, BX = 147, BT0 = 374, Q = 368, PAN = 650, BURN_START = 100, NSTARS = 30, CLOUDS = [[1500, 20], [2600, 250], [4200, 40], [6000, 230], [12500, 120]];
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = this.fresh();
+  }
+  fresh() { return { i: 0, guess: '', phase: 'ask', alt: 0, fromAlt: 0, toAlt: 0, t: 0, c: 0, pts: 0, trapped: false, err: '', res: [], lastGuess: 0 }; }
+  componentWillUnmount() { this.dead = true; if (this.raf) cancelAnimationFrame(this.raf); }
+  riddles() {
+    return [
+      { tier: 'Warm-up', color: '#4FD18B', fmt: 'quantity', ans: 5, trap: 100, cap: 2, unit: 'minutes', disp: '5 minutes', prompt: '5 machines make 5 widgets in 5 minutes. How many minutes would 100 machines take to make 100 widgets?' },
+      { tier: 'The trap', color: '#FFE45C', fmt: 'percent', ans: 9.02, trap: 99, cap: 50, unit: '%', disp: 'about 9%', prompt: 'A disease affects 1 in 1,000 people. A test for it is 99% accurate. You test positive. What\u2019s the chance you actually have it?' },
+      { tier: 'Boss', color: '#FF5A4E', fmt: 'quantity', ans: 6, trap: 4, cap: 0.5, unit: 'flips', disp: '6 flips', prompt: 'On average, how many flips of a fair coin does it take to get two heads in a row?' }
+    ];
+  }
+  closeness(fmt, ans, cap, g) {
+    if (fmt === 'percent') return 1 - Math.min(Math.abs(g - ans), cap) / cap;
+    if (g <= 0) return 0;
+    return 1 - Math.min(Math.abs(Math.log10(g / ans)), cap) / cap;
+  }
+  run(total, done) {
+    var self = this, start = null;
+    if (this.raf) cancelAnimationFrame(this.raf);
+    function step(n) {
+      if (self.dead) return;
+      if (start === null) start = n;
+      var t = n - start;
+      if (t >= total) { done(); return; }
+      self.setState({ t: t });
+      self.raf = requestAnimationFrame(step);
+    }
+    this.raf = requestAnimationFrame(step);
+  }
+  fire() {
+    var s = this.state;
+    if (s.phase !== 'ask') return;
+    var r = this.riddles()[s.i];
+    var g = parseFloat(String(s.guess).replace(/[,%\s]/g, ''));
+    if (!isFinite(g) || (r.fmt !== 'percent' && g <= 0)) { this.setState({ err: r.fmt === 'percent' ? 'Enter a number from 0 to 100' : 'Enter a number above 0' }); return; }
+    var c = this.closeness(r.fmt, r.ans, r.cap, g);
+    var ct = this.closeness(r.fmt, r.trap, r.cap, g);
+    var pts = Math.round(100 * c) + Math.round(50 * c * 0.5);
+    this.reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.setState({ phase: 'anim', c: c, pts: pts, trapped: ct >= 0.8 && ct > c, fromAlt: s.alt, toAlt: s.alt + pts * 250, t: 0, err: '', lastGuess: g, res: s.res.concat([{ c: c }]) });
+    var self = this;
+    this.run(this.reduce ? 1 : PAN + BURN_START + 2600, function () { self.setState({ t: 0, phase: 'reveal', alt: self.state.toAlt }); });
+  }
+  next() {
+    var self = this;
+    if (this.state.i >= 2) { this.setState({ phase: 'done' }); return; }
+    this.setState({ i: this.state.i + 1, phase: 'panup', guess: '', t: 0, err: '' });
+    this.run(this.reduce ? 1 : PAN, function () { self.setState({ phase: 'ask', t: 0 }); });
+  }
+  renderVals() {
+    var self = this, s = this.state, R = this.riddles(), r = R[Math.min(s.i, 2)], t = s.t;
+    var anim = s.phase === 'anim';
+    function clamp(x) { return Math.max(0, Math.min(1, x)); }
+    function inout(x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+    function U(a) { return 12 * Math.sqrt(Math.max(0, a)); }
+    function mix(a, b, k) {
+      var pa = [1, 3, 5].map(function (i) { return parseInt(a.substr(i, 2), 16); });
+      var pb = [1, 3, 5].map(function (i) { return parseInt(b.substr(i, 2), 16); });
+      return 'rgb(' + pa.map(function (v, i) { return Math.round(v + (pb[i] - v) * k); }).join(',') + ')';
+    }
+    var C = {k:'#0B1026',l:'#C9D3FF',r:'#FF5A4E',y:'#FFE45C',g:'#4FD18B',w:'#FFFFFF',p:'#F29CB5',v:'#9B7BFF',o:'#F28C28',b:'#8A5A2B',R:'#E0453A',D:'#A32A22',Y:'#FFD84D',Q:'#C9A227',B:'#5C3A1A',c:'#DDE4FF'};
+    function spr(rows, sc) {
+      var out = [];
+      rows.forEach(function (row, y) { row.split('').forEach(function (ch, x) { if (C[ch]) out.push(((x + 1) * sc) + 'px ' + ((y + 1) * sc) + 'px 0 0 ' + C[ch]); }); });
+      return { shadow: out.join(', '), size: rows[0].length * sc, s: sc };
+    }
+    var SP = {
+      balloon: ['.....RRYYRR.....','...RRRYYYYRRR...','..RRRRYYYYRRRR..','.RwRRRYYYYRRRRD.','.RwRRRYYYYRRRRD.','RRRRRRYYYYRRRRDD','RRRRRRYYYYRRRRDD','RRRRRRYYYYRRRRDD','.RRRRRYYYYRRRRD.','.DRRRRYYYYRRRDD.','..DDRRYYYYRRDD..','...DDDQQQQDDD...','....l......l....','....l......l....','.....bbbbbb.....','.....BBBBBB.....'],
+      tower: ['...l....','...l....','..lll...','..l.l...','.ll.ll..','.l...l..','ll...ll.','l.....l.'],
+      mountain: ['....w...','...wlw..','..llll..','..llll..','.llllll.','.llllll.','llllllll','llllllll'],
+      plane: ['........','...l....','...ll...','llllllll','...ll...','...l....','........','........'],
+      flag: ['l.......','lrrr....','lrrr....','l.......','l.......','l.......','l.......','l.......'],
+      star: ['...y....','...y....','.yyyyy..','..yyy...','..y.y...','........','........','........'],
+      cloud: ['...cccc.....','.cccccccc...','cccccccccccc','.cccccccccc.']
+    };
+    var panK = 1;
+    if (s.phase === 'ask') panK = 0;
+    else if (anim) panK = this.reduce ? 1 : inout(clamp(t / PAN));
+    else if (s.phase === 'panup') panK = this.reduce ? 0 : 1 - inout(clamp(t / PAN));
+    var cameraY = Math.round(Q * (1 - panK));
+    var bt = anim ? t - PAN - BURN_START : -1;
+    var burning = anim && bt >= 0;
+    var p = anim ? clamp((bt - 300) / 1800) : 1;
+    var ease = 1 - Math.pow(1 - p, 3);
+    var cur = anim ? s.fromAlt + (s.toAlt - s.fromAlt) * ease : s.alt;
+    var uc = U(cur), BASE = BT0 + 96;
+    var skyBg = mix('#24457A', '#060A18', clamp(uc / 2600));
+    var starOpacity = Math.round(clamp((uc - 700) / 1300) * 100) / 100;
+    var stars = [], v = 13;
+    function rnd() { v = (v * 9301 + 49297) % 233280; return v / 233280; }
+    for (var i = 0; i < NSTARS; i++) stars.push({ x: Math.floor(rnd() * W / 4) * 4, y: Math.floor(rnd() * H * 0.6 / 4) * 4, s: rnd() > 0.8 ? 4 : 2, c: i % 7 === 0 ? '#FFE45C' : '#C9D3FF' });
+    var LM = [[330, 'Eiffel Tower', '330 m', 'tower'], [828, 'Burj Khalifa', '828 m', 'tower'], [8849, 'Everest summit', '8,849 m', 'mountain'], [11000, 'Jets cruise', '11 km', 'plane'], [41400, 'Record skydive', '41 km', 'flag'], [100000, 'Edge of space', '100 km', 'star']];
+    var landmarks = LM.map(function (m) { var y = Math.round(BASE - (U(m[0]) - uc)); return { y: y, iconY: y - 36, labelY: y - 28, label2Y: y - 44, full: m[1] + ', ' + m[2], name: m[1], alt: m[2], g: spr(SP[m[3]], 4) }; }).filter(function (m) { return m.y > -400 && m.y < H + 400; });
+    var clouds = CLOUDS.map(function (m) { return { x: m[1], y: Math.round(BASE - (U(m[0]) - uc)), g: spr(SP.cloud, 8) }; }).filter(function (m) { return m.y > -500 && m.y < H + 500; });
+    var seaTop = Math.round(BASE + uc);
+    var dip = burning && s.c < 0.2 ? Math.round(14 * Math.sin(Math.PI * clamp((bt - 250) / 700))) : 0;
+    var balloonTop = BT0 + dip;
+    var I = 0;
+    if (burning) {
+      var peak = 0.15 + 0.85 * s.c, burnEnd = 300 + 1200 * s.c;
+      I = bt < 150 ? (bt / 150) * peak : bt < burnEnd ? peak : Math.max(0, peak * (1 - (bt - burnEnd) / 400));
+    }
+    var h = Math.round(1 + 10 * I), frame = Math.floor(Math.max(0, bt) / 70) % 2, fl = [];
+    var core = s.c >= 0.97 ? '#9FE8FF' : '#FFFFFF';
+    for (var rr = 0; rr < h; rr++) {
+      var f = h > 1 ? rr / (h - 1) : 0, y = 13 - rr;
+      var cols = I < 0.05 ? [7, 8] : f < 0.4 ? [6, 7, 8, 9] : f < 0.75 ? [7, 8] : [frame ? 8 : 7];
+      cols.forEach(function (x) {
+        var col = I < 0.05 ? '#6FB7FF' : f < 0.3 ? ((x === 7 || x === 8) ? core : '#FFE45C') : f < 0.6 ? '#FFE45C' : f < 0.85 ? '#F28C28' : '#FF5A4E';
+        fl.push(((x + 1) * 6) + 'px ' + ((y + 1) * 6) + 'px 0 0 ' + col);
+      });
+    }
+    var ext = Math.abs(2 * s.c - 1), A = 18 * ext * ext, D = 300 + 500 * ext, shakeX = 0, shakeY = 0;
+    if (burning && !this.reduce && bt > 300 && bt < 300 + D) {
+      var amp = A * Math.pow(1 - (bt - 300) / D, 2);
+      shakeX = Math.round(amp * Math.sin(bt / 11) / 2) * 2;
+      shakeY = Math.round(amp * Math.cos(bt / 17) / 2) * 2;
+    }
+    var hue = Math.round(130 * s.c);
+    var flashOpacity = burning && bt > 300 ? Math.round(0.38 * clamp(1 - (bt - 300) / 900) * 100) / 100 : 0;
+    var resultColor = 'hsl(' + hue + ', 85%, 64%)';
+    var smoke = [], sparks = [], cx = BX + 48, cy = balloonTop + 40;
+    if (burning && s.c < 0.2) for (var j = 0; j < 5; j++) { var tt = clamp((bt - 200 - j * 140) / 900); if (tt > 0 && tt < 1) smoke.push({ x: Math.round((cx - 6 + (j % 2 ? -1 : 1) * tt * 36) / 2) * 2, y: Math.round((balloonTop + 70 - tt * 150) / 2) * 2, o: Math.round((1 - tt) * 100) / 100 }); }
+    if (burning && s.c >= 0.8) for (var q = 0; q < 12; q++) { var ts = clamp((bt - 300) / 800); if (ts > 0 && ts < 1) { var ang = q * Math.PI / 6, dist = 30 + ts * 120; sparks.push({ x: Math.round((cx + Math.cos(ang) * dist) / 2) * 2, y: Math.round((cy + Math.sin(ang) * dist) / 2) * 2, c: q % 2 ? '#FFE45C' : '#FFFFFF', o: Math.round((1 - ts) * 100) / 100 }); } }
+    var names = ['Goldfish', 'Guesser', 'Analyst', 'Quant', 'Genius', 'Oracle'];
+    var lvl = s.c >= 0.97 ? 5 : Math.min(4, Math.floor(s.c * 5));
+    var dots = [0, 1, 2].map(function (k) { var rz = s.res[k]; return { bg: rz ? 'hsl(' + Math.round(130 * rz.c) + ', 85%, 55%)' : k === s.i && s.phase !== 'done' ? '#E8ECFF' : '#3B4F8F' }; });
+    var fuel = []; for (var z = 0; z < 20; z++) fuel.push({ bg: s.phase === 'ask' || s.phase === 'panup' ? '#E8ECFF' : '#1F2D63' });
+    function fmtAlt(a) { return a >= 10000 ? (Math.round(a / 100) / 10).toLocaleString('en-US') + ' km' : Math.round(a).toLocaleString('en-US') + ' m'; }
+    var guessText = r.fmt === 'percent' ? (Math.round(s.lastGuess * 10) / 10) + '%' : (Math.round(s.lastGuess * 100) / 100) + ' ' + r.unit;
+    return {
+      skyBg: skyBg, starOpacity: starOpacity, stars: stars, clouds: clouds, landmarks: landmarks,
+      seaVisible: seaTop < H + 400, seaTop: seaTop, sceneY: cameraY + shakeY, shakeX: shakeX,
+      balloonTop: balloonTop, balloonShadow: spr(SP.balloon, 6).shadow, flameShadow: fl.join(', '),
+      balloonLabel: 'Your balloon at ' + fmtAlt(cur), smoke: smoke, sparks: sparks,
+      signOpacity: Math.round((1 - panK) * 100) / 100,
+      flashColor: 'hsl(' + hue + ', 85%, 55%)', flashOpacity: flashOpacity,
+      tierColor: r.color, tierName: r.tier, riddleNum: Math.min(s.i, 2) + 1, prompt: r.prompt, unit: r.unit, fuel: fuel,
+      guess: s.guess, err: s.err, hasErr: !!s.err,
+      showCard: s.phase === 'reveal' || s.phase === 'done', isReveal: s.phase === 'reveal', isDone: s.phase === 'done',
+      cardFrame: s.phase === 'reveal' ? resultColor : '#FFE45C',
+      levelName: names[lvl], resultColor: resultColor, pts: s.pts, gainText: fmtAlt(s.pts * 250), trapped: s.trapped,
+      guessText: guessText, answerText: r.disp, nextLabel: s.i >= 2 ? 'Finish the climb' : 'Next riddle',
+      altText: fmtAlt(cur), dots: dots,
+      onGuess: function (e) { self.setState({ guess: e.target.value, err: '' }); },
+      onKey: function (e) { if (e.key === 'Enter') self.fire(); },
+      fire: function () { self.fire(); },
+      next: function () { self.next(); },
+      restart: function () { self.setState(self.fresh()); }
+    };
+  }
+}
+</script>
+</body>
+</html>

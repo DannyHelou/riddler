@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Riddler pixel kit</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0B1026}
+button:focus-visible{outline:4px dashed #FF5A4E;outline-offset:8px}
+</style>
+</helmet>
+<div style="width: 1040px; height: 800px; box-sizing: border-box; padding: 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; background: #0B1026; font-family: 'VT323', monospace; color: #E8ECFF; align-content: start">
+
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="font-family: 'Press Start 2P', monospace; font-size: 13px; line-height: 1.4">Palette</div>
+<sc-for list="{{colors}}" as="c" hint-placeholder-count="9">
+<div style="display: flex; align-items: center; gap: 12px">
+<div style="width: 36px; height: 36px; margin: 2px; background: {{c.hex}}; box-shadow: 0 0 0 2px #3B4F8F"></div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 21px; line-height: 1">{{c.name}}</div>
+<div style="font-size: 17px; line-height: 1; color: #9AA6D0">{{c.hex}}, {{c.use}}</div>
+</div>
+</div>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-family: 'Press Start 2P', monospace; font-size: 13px; line-height: 1.4">Type</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="font-family: 'Press Start 2P', monospace; font-size: 24px; line-height: 1.2; color: #FFE45C">RQ 118</div>
+<div style="font-size: 18px; line-height: 1; color: #9AA6D0">Press Start 2P: wordmark, levels, numbers, buttons</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 27px; line-height: 1.15">A rope hugs Earth's equator. Add 1 m and lift it evenly.</div>
+<div style="font-size: 18px; line-height: 1; color: #9AA6D0">VT323: prompts and body, 20–28px</div>
+</div>
+
+<div style="font-family: 'Press Start 2P', monospace; font-size: 13px; line-height: 1.4; padding-top: 4px">Frames</div>
+<div style="margin: 4px; background: #121A3A; box-shadow: 0 -4px 0 0 #121A3A, 0 4px 0 0 #121A3A, -4px 0 0 0 #121A3A, 4px 0 0 0 #121A3A; padding: 14px; font-size: 21px; line-height: 1.1">Panel: notched corners in its own color, no outline</div>
+<div style="margin: 4px; background: #121A3A; box-shadow: 0 -4px 0 0 #C9D3FF, 0 4px 0 0 #C9D3FF, -4px 0 0 0 #C9D3FF, 4px 0 0 0 #C9D3FF; padding: 14px; font-size: 21px; line-height: 1.1">Focus frame: light notched outline for inputs and the sky</div>
+<div style="display: flex; gap: 16px; align-items: center">
+<button style="flex-grow: 1; margin: 4px 4px 10px; border: none; background: #FFE45C; box-shadow: 0 -4px 0 0 #FFE45C, 0 4px 0 0 #FFE45C, -4px 0 0 0 #FFE45C, 4px 0 0 0 #FFE45C, 0 10px 0 0 #B8961A; min-height: 52px; font-family: 'Press Start 2P', monospace; font-size: 11px; color: #0B1026">Primary</button>
+<button style="flex-grow: 1; margin: 4px; border: none; background: #121A3A; box-shadow: 0 -4px 0 0 #C9D3FF, 0 4px 0 0 #C9D3FF, -4px 0 0 0 #C9D3FF, 4px 0 0 0 #C9D3FF; min-height: 52px; font-family: 'VT323', monospace; font-size: 22px; color: #E8ECFF">Secondary</button>
+</div>
+
+<div style="font-family: 'Press Start 2P', monospace; font-size: 13px; line-height: 1.4; padding-top: 4px">Verdicts</div>
+<div style="display: flex; gap: 24px">
+<sc-for list="{{verdicts}}" as="v" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px">
+<div aria-hidden="true" style="position: relative; width: {{v.g.size}}px; height: {{v.g.size}}px"><div style="position: absolute; left: -{{v.g.s}}px; top: -{{v.g.s}}px; width: {{v.g.s}}px; height: {{v.g.s}}px; box-shadow: {{v.g.shadow}}"></div></div>
+<div style="font-size: 20px; line-height: 1">{{v.name}}</div>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="font-family: 'Press Start 2P', monospace; font-size: 13px; line-height: 1.4">Altitude zones</div>
+<div style="display: flex; flex-direction: column">
+<sc-for list="{{zones}}" as="z" hint-placeholder-count="6">
+<div style="height: 60px; box-sizing: border-box; background: {{z.bg}}; padding: 0 12px; display: flex; align-items: center; gap: 12px">
+<div aria-hidden="true" style="position: relative; width: {{z.g.size}}px; height: {{z.g.size}}px; flex-shrink: 0"><div style="position: absolute; left: -{{z.g.s}}px; top: -{{z.g.s}}px; width: {{z.g.s}}px; height: {{z.g.s}}px; box-shadow: {{z.g.shadow}}"></div></div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px">
+<div style="font-family: 'Press Start 2P', monospace; font-size: 9px; line-height: 1">{{z.name}}</div>
+<div style="font-size: 17px; line-height: 1; color: #9AA6D0">{{z.alt}}</div>
+</div>
+<div style="font-size: 17px; line-height: 1; color: #9AA6D0">{{z.range}}</div>
+</div>
+</sc-for>
+</div>
+
+<div style="font-family: 'Press Start 2P', monospace; font-size: 13px; line-height: 1.4; padding-top: 6px">Mascot and timer</div>
+<div style="display: flex; align-items: center; gap: 16px">
+<div aria-hidden="true" style="position: relative; width: {{balloon.size}}px; height: {{balloon.size}}px; flex-shrink: 0"><div style="position: absolute; left: -{{balloon.s}}px; top: -{{balloon.s}}px; width: {{balloon.s}}px; height: {{balloon.s}}px; box-shadow: {{balloon.shadow}}"></div></div>
+<div style="font-size: 19px; line-height: 1.1; color: #9AA6D0">The balloon rises to your zone, leaving a dotted yellow trail.</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(20, minmax(0, 1fr)); gap: 3px">
+<sc-for list="{{timerA}}" as="t" hint-placeholder-count="20"><div style="height: 14px; background: {{t.bg}}"></div></sc-for>
+</div>
+<div style="display: grid; grid-template-columns: repeat(20, minmax(0, 1fr)); gap: 3px">
+<sc-for list="{{timerB}}" as="t" hint-placeholder-count="20"><div style="height: 14px; background: {{t.bg}}"></div></sc-for>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1040,"height":800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var C = {k:'#0B1026',l:'#C9D3FF',r:'#FF5A4E',y:'#FFE45C',g:'#4FD18B',w:'#FFFFFF',p:'#F29CB5',v:'#9B7BFF',o:'#F28C28',b:'#8A5A2B'};
+    function spr(rows, s) {
+      var out = [];
+      rows.forEach(function (row, y) { row.split('').forEach(function (ch, x) { if (C[ch]) out.push(((x + 1) * s) + 'px ' + ((y + 1) * s) + 'px 0 0 ' + C[ch]); }); });
+      return { shadow: out.join(', '), size: 8 * s, s: s };
+    }
+    var SP = {
+      goldfish: ['........','..ooo..o','.ooooooo','okooooo.','ooooooo.','.ooooooo','..ooo..o','........'],
+      dice: ['lllllll.','lwwwwwl.','lwkwwwl.','lwwkwwl.','lwwwkwl.','lwwwwwl.','lllllll.','........'],
+      bars: ['......ll','......ll','...ll.ll','...ll.ll','...ll.ll','ll.ll.ll','ll.ll.ll','ll.ll.ll'],
+      quant: ['.......g','......g.','.....g..','..g.g...','.g.g....','g.......','l.......','llllllll'],
+      brain: ['.pppppp.','pppkpppp','pkpppkpp','ppppkppp','pkpppkpp','.pppppp.','...pp...','...pp...'],
+      oracle: ['..vvvv..','.vwvvvv.','vwvvvvvv','vvvvvvvv','vvvvvvvv','.vvvvvv.','..llll..','.llllll.'],
+      check: ['........','.......g','......gg','g....gg.','gg..gg..','.gggg...','..gg....','........'],
+      trap: ['r......r','rr....rr','r.r..r.r','r..rr..r','llllllll','l......l','llllllll','........'],
+      wrong: ['r......r','.r....r.','..r..r..','...rr...','...rr...','..r..r..','.r....r.','r......r'],
+      balloon: ['..ryyr..','.rryyrr.','rrryyrrr','rrryyrrr','.rryyrr.','..w..w..','..bbbb..','..bbbb..']
+    };
+    var colors = [
+      { name: 'Night', hex: '#0B1026', use: 'page' },
+      { name: 'Panel', hex: '#121A3A', use: 'cards, inputs' },
+      { name: 'Divider', hex: '#3B4F8F', use: 'dashes, idle bars' },
+      { name: 'Moonlight', hex: '#E8ECFF', use: 'text' },
+      { name: 'Haze', hex: '#9AA6D0', use: 'secondary text' },
+      { name: 'Starlight', hex: '#FFE45C', use: 'primary, you, landed zone' },
+      { name: 'Ledge', hex: '#B8961A', use: 'button underside' },
+      { name: 'Flare', hex: '#FF5A4E', use: 'traps, timer end' },
+      { name: 'Signal', hex: '#4FD18B', use: 'correct answer' }
+    ];
+    var Z = [
+      ['oracle','Oracle','Orbit, 400 km','#070B1C','0.97+'],
+      ['brain','Genius','Stratosphere, 30 km','#0E1535','0.8–0.97'],
+      ['quant','Quant','Jets cruise, 11 km','#16204C','0.6–0.8'],
+      ['bars','Analyst','Everest, 8.8 km','#1F2D63','0.4–0.6'],
+      ['dice','Guesser','Eiffel Tower, 330 m','#2A3C78','0.2–0.4'],
+      ['goldfish','Goldfish','Sea level','#1B5873','under 0.2']
+    ];
+    var zones = Z.map(function (z) { return { g: spr(SP[z[0]], 4), name: z[1], alt: z[2], bg: z[3], range: z[4] }; });
+    var verdicts = [
+      { g: spr(SP.check, 5), name: 'Correct' },
+      { g: spr(SP.trap, 5), name: 'Trapped' },
+      { g: spr(SP.wrong, 5), name: 'Wrong' }
+    ];
+    var timerA = [], timerB = [];
+    for (var i = 0; i < 20; i++) {
+      timerA.push({ bg: i < 14 ? '#E8ECFF' : '#1F2D63' });
+      timerB.push({ bg: i < 3 ? '#FF5A4E' : '#1F2D63' });
+    }
+    return { colors: colors, zones: zones, verdicts: verdicts, balloon: spr(SP.balloon, 6), timerA: timerA, timerB: timerB };
+  }
+}
+</script>
+</body>
+</html>

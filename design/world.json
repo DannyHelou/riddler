@@ -1,0 +1,80 @@
+{
+  "checkpoints": [
+    {
+      "altitudeM": 828,
+      "name": "Burj Khalifa",
+      "label": "828 m",
+      "fact": "The top of the tallest building on Earth."
+    },
+    {
+      "altitudeM": 8849,
+      "name": "Everest",
+      "label": "8,849 m",
+      "fact": "The highest mountain. The air is a third as thick as at sea level."
+    },
+    {
+      "altitudeM": 19000,
+      "name": "Armstrong limit",
+      "label": "19 km",
+      "fact": "Air pressure is so low that water boils at body temperature."
+    },
+    {
+      "altitudeM": 41419,
+      "name": "Record skydive",
+      "label": "41.4 km",
+      "fact": "Alan Eustace jumped from here in 2014, the highest skydive ever."
+    },
+    {
+      "altitudeM": 80000,
+      "name": "Shooting stars",
+      "label": "80 km",
+      "fact": "Most meteors burn up around this height."
+    },
+    {
+      "altitudeM": 100000,
+      "name": "Edge of space",
+      "label": "100 km",
+      "fact": "The Kármán line: by international convention, space starts here."
+    }
+  ],
+  "beyond": [
+    {
+      "altitudeM": 408000,
+      "name": "Space station",
+      "label": "408 km",
+      "fact": "The International Space Station orbits here."
+    },
+    {
+      "altitudeM": 400171000,
+      "name": "Apollo 13",
+      "label": "400,171 km",
+      "fact": "The farthest humans have ever been from Earth, in 1970."
+    }
+  ],
+  "clouds": [
+    {
+      "altitudeM": 1500,
+      "xFraction": 0.12
+    },
+    {
+      "altitudeM": 2600,
+      "xFraction": 0.73
+    },
+    {
+      "altitudeM": 4200,
+      "xFraction": 0.19
+    },
+    {
+      "altitudeM": 6000,
+      "xFraction": 0.67
+    },
+    {
+      "altitudeM": 12500,
+      "xFraction": 0.33
+    }
+  ],
+  "starsFadeIn": {
+    "fromWorldY": 700,
+    "toWorldY": 2000
+  }
+}

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Burner reactions storyboard</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#060A18}
+</style>
+</helmet>
+<div style="width: 1280px; height: 800px; box-sizing: border-box; padding: 48px 56px; background: #060A18; font-family: 'VT323', monospace; color: #E8ECFF; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px">
+<sc-for list="{{frames}}" as="f" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<div style="font-family: 'Press Start 2P', monospace; font-size: 13px; line-height: 1.3; color: {{f.color}}">{{f.title}}</div>
+<div style="font-size: 22px; line-height: 1; color: #9AA6D0">{{f.cText}}</div>
+</div>
+<div role="img" aria-label="{{f.aria}}" style="position: relative; height: 420px; overflow: hidden; background: #16204C; box-shadow: 0 -4px 0 0 {{f.color}}, 0 4px 0 0 {{f.color}}, -4px 0 0 0 {{f.color}}, 4px 0 0 0 {{f.color}}; margin: 4px">
+<div style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; background: {{f.color}}; opacity: 0.22"></div>
+<sc-for list="{{f.lines}}" as="ln" hint-placeholder-count="0">
+<div style="position: absolute; left: {{ln.x}}px; top: {{ln.y}}px; width: {{ln.w}}px; height: 4px; background: #E8ECFF; opacity: 0.7"></div>
+</sc-for>
+<sc-for list="{{f.puffs}}" as="pf" hint-placeholder-count="0">
+<div style="position: absolute; left: {{pf.x}}px; top: {{pf.y}}px; width: 12px; height: 12px; background: #6B7599; opacity: {{pf.o}}"></div>
+</sc-for>
+<sc-for list="{{f.sparks}}" as="sp" hint-placeholder-count="0">
+<div style="position: absolute; left: {{sp.x}}px; top: {{sp.y}}px; width: 6px; height: 6px; background: {{sp.c}}"></div>
+</sc-for>
+<div style="position: absolute; left: 126px; top: {{f.top}}px; width: 112px; height: 112px">
+<div style="position: absolute; left: -7px; top: -7px; width: 7px; height: 7px; box-shadow: {{balloon}}"></div>
+<div style="position: absolute; left: -7px; top: -7px; width: 7px; height: 7px; box-shadow: {{f.flame}}"></div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<sc-for list="{{f.specs}}" as="sp" hint-placeholder-count="5">
+<div style="display: flex; justify-content: space-between; gap: 12px; font-size: 22px; line-height: 1.05; border-bottom: 2px dashed #1F2D63; padding-bottom: 6px">
+<span style="color: #9AA6D0">{{sp.k}}</span><span style="text-align: right">{{sp.v}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var C = {l:'#C9D3FF',w:'#FFFFFF',b:'#8A5A2B',R:'#E0453A',D:'#A32A22',Y:'#FFD84D',Q:'#C9A227',B:'#5C3A1A'};
+    var rows = ['.....RRYYRR.....','...RRRYYYYRRR...','..RRRRYYYYRRRR..','.RwRRRYYYYRRRRD.','.RwRRRYYYYRRRRD.','RRRRRRYYYYRRRRDD','RRRRRRYYYYRRRRDD','RRRRRRYYYYRRRRDD','.RRRRRYYYYRRRRD.','.DRRRRYYYYRRRDD.','..DDRRYYYYRRDD..','...DDDQQQQDDD...','....l......l....','....l......l....','.....bbbbbb.....','.....BBBBBB.....'];
+    var S = 7, out = [];
+    rows.forEach(function (row, y) { row.split('').forEach(function (ch, x) { if (C[ch]) out.push(((x + 1) * S) + 'px ' + ((y + 1) * S) + 'px 0 0 ' + C[ch]); }); });
+    function flame(I, core) {
+      var h = Math.round(1 + 10 * I), fl = [];
+      for (var r = 0; r < h; r++) {
+        var f = h > 1 ? r / (h - 1) : 0, y = 13 - r;
+        var cols = I < 0.05 ? [7, 8] : f < 0.4 ? [6, 7, 8, 9] : f < 0.75 ? [7, 8] : [8];
+        cols.forEach(function (x) {
+          var col = I < 0.05 ? '#6FB7FF' : f < 0.3 ? ((x === 7 || x === 8) ? core : '#FFE45C') : f < 0.6 ? '#FFE45C' : f < 0.85 ? '#F28C28' : '#FF5A4E';
+          fl.push(((x + 1) * S) + 'px ' + ((y + 1) * S) + 'px 0 0 ' + col);
+        });
+      }
+      return fl.join(', ');
+    }
+    var sparks = [];
+    for (var q = 0; q < 12; q++) { var a = q * Math.PI / 6; sparks.push({ x: Math.round(182 + Math.cos(a) * 96), y: Math.round(170 + Math.sin(a) * 96), c: q % 2 ? '#FFE45C' : '#FFFFFF' }); }
+    var frames = [
+      { title: 'Spot on', cText: 'c = 1', color: 'hsl(130, 85%, 58%)', top: 110, flame: flame(1, '#9FE8FF'), aria: 'Full blue-white flame, green flash, sparks and a strong shake',
+        lines: [{ x: 20, y: 60, w: 28 }, { x: 316, y: 90, w: 28 }, { x: 24, y: 300, w: 20 }, { x: 318, y: 330, w: 20 }], puffs: [], sparks: sparks,
+        specs: [{ k: 'Flame', v: 'Full height, blue-white core' }, { k: 'Burn', v: '1,500 ms' }, { k: 'Flash', v: 'Green, 38% peak' }, { k: 'Shake', v: '18 px, 800 ms, jolt up' }, { k: 'Extra', v: 'Spark burst' }, { k: 'Climb', v: '+25 to 37.5 km' }] },
+      { title: 'Halfway', cText: 'c = 0.5', color: 'hsl(65, 85%, 58%)', top: 170, flame: flame(0.575, '#FFFFFF'), aria: 'Medium flame, yellow flash, no shake',
+        lines: [], puffs: [], sparks: [],
+        specs: [{ k: 'Flame', v: 'Half height' }, { k: 'Burn', v: '900 ms' }, { k: 'Flash', v: 'Yellow, 38% peak' }, { k: 'Shake', v: 'None' }, { k: 'Extra', v: 'None' }, { k: 'Climb', v: '+12.5 to 18.8 km' }] },
+      { title: 'Way off', cText: 'c = 0', color: 'hsl(0, 85%, 58%)', top: 250, flame: flame(0.15, '#FFFFFF'), aria: 'Sputtering flame with smoke, red flash, balloon dips, strong shake',
+        lines: [{ x: 20, y: 250, w: 28 }, { x: 316, y: 280, w: 28 }, { x: 24, y: 360, w: 20 }, { x: 318, y: 380, w: 20 }],
+        puffs: [{ x: 170, y: 220, o: 0.9 }, { x: 196, y: 190, o: 0.7 }, { x: 160, y: 160, o: 0.5 }, { x: 188, y: 128, o: 0.3 }], sparks: [],
+        specs: [{ k: 'Flame', v: 'Sputter, 2 rows' }, { k: 'Burn', v: '300 ms' }, { k: 'Flash', v: 'Red, 38% peak' }, { k: 'Shake', v: '18 px, 800 ms, rattle' }, { k: 'Extra', v: 'Smoke puffs, 14 px dip' }, { k: 'Climb', v: '+0 m' }] }
+    ];
+    return { balloon: out.join(', '), frames: frames };
+  }
+}
+</script>
+</body>
+</html>

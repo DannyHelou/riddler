@@ -1,0 +1,891 @@
+@import 'tailwindcss';
+
+/*
+ * design/tokens.css is imported as-is from app/layout.tsx (it carries the
+ * Google Fonts @import, which must stay at the top of its own stylesheet).
+ * This file adds the light theme, page-level pieces, and Tailwind theme hooks.
+ */
+
+@theme inline {
+  --color-night: var(--night);
+  --color-panel: var(--panel);
+  --color-divider: var(--divider);
+  --color-moonlight: var(--moonlight);
+  --color-haze: var(--haze);
+  --color-line: var(--line);
+  --color-starlight: var(--starlight);
+  --color-ledge: var(--ledge);
+  --color-flare: var(--flare);
+  --color-signal: var(--signal);
+  --color-you: var(--you-text);
+  --color-rule: var(--rule);
+  --color-accent-text: var(--accent-text);
+  --color-flare-text: var(--flare-text);
+  --color-signal-text: var(--signal-text);
+}
+
+/* Theme-dependent roles (dark is the default "night climb"). */
+:root {
+  --rule: #1a2140;
+  --accent-text: #F27C9B;
+  --flare-text: var(--flare);
+  --signal-text: var(--signal);
+  --you-text: var(--you);
+  --result-l: 64%;
+  --card: var(--panel);
+  color-scheme: dark;
+}
+
+/* Light theme: website pages only. The climb and the sky illustrations stay at night. */
+:root[data-theme='light'] {
+  --night: #f3f0e8;
+  --panel: #fbf9f4;
+  --divider: #c3c0cf;
+  --moonlight: #1c2036;
+  --haze: #555b78;
+  --line: #9a9cb4;
+  --rule: #e2ded3;
+  --accent-text: #a3274c;
+  --you-text: #0b7a96;
+  --lvl-goldfish: #5d6275;
+  --lvl-guesser: #2a5bb0;
+  --lvl-analyst: #6b3fc8;
+  --lvl-quant: #a22c8e;
+  --lvl-genius: #b4501a;
+  --lvl-oracle: #c8102e;
+  --flare-text: #8a5a00;
+  --signal-text: #c8102e;
+  --result-l: 30%;
+  color-scheme: light;
+}
+
+/* The climb is always at night, whatever the site theme. */
+.night-scope {
+  --night: #0d1122;
+  --panel: #151b31;
+  --divider: #2c3558;
+  --moonlight: #ece6d6;
+  --haze: #9097b4;
+  --line: #3e4873;
+  --accent-text: #f27c9b;
+  --flare-text: #f0b45a;
+  --signal-text: #ff3448;
+  --you-text: #4cc6e6;
+  --lvl-goldfish: #6a6f86;
+  --lvl-guesser: #4f86e0;
+  --lvl-analyst: #9a6cf2;
+  --lvl-quant: #e05cc8;
+  --lvl-genius: #ff8040;
+  --lvl-oracle: #ff3448;
+  --result-l: 64%;
+  color-scheme: dark;
+  color: #ece6d6;
+}
+
+* {
+  border-radius: 0 !important;
+}
+
+html,
+body {
+  background: var(--night);
+  color: var(--moonlight);
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1.25;
+  -webkit-font-smoothing: none;
+}
+
+a {
+  color: inherit;
+}
+a:hover {
+  color: var(--accent-text);
+}
+
+/* calm-applied */
+:focus-visible {
+  outline: 2px dashed var(--you-text);
+  outline-offset: 6px;
+}
+/* Dialogs take focus themselves so the next Tab lands inside; the box itself needs no ring. */
+[role='dialog']:focus-visible {
+  outline: none;
+}
+
+.pixel {
+  font-family: var(--font-pixel);
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+/* Result color text: the closeness level's color (set --lvl on the element). */
+.result-color {
+  color: var(--lvl);
+}
+
+/*
+ * Panels (§6.3): every box on the site and in the climb. A flat dark ground with faint
+ * scanlines, a hairline edge, and square corners. Labels are small, spaced-out and pink;
+ * titles are large and softly lit; notes are dim and spaced.
+ */
+.panel,
+.card {
+  background-color: #0b1328;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='3'%3E%3Crect y='0' width='4' height='1' fill='%23a0b4ff' fill-opacity='.035'/%3E%3C/svg%3E");
+  box-shadow: inset 0 0 0 1px rgba(150, 175, 230, 0.12);
+}
+:root[data-theme='light'] .card,
+:root[data-theme='light'] .panel {
+  background-color: #fbf9f4;
+  background-image: none;
+  box-shadow: inset 0 0 0 1px #d8d4c8;
+}
+/* The climb stays at night in either theme. */
+:root[data-theme='light'] .night-scope .panel {
+  background-color: #0b1328;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='3'%3E%3Crect y='0' width='4' height='1' fill='%23a0b4ff' fill-opacity='.035'/%3E%3C/svg%3E");
+}
+:root[data-theme='light'] .panel-title {
+  color: var(--moonlight);
+  text-shadow: none;
+}
+:root[data-theme='light'] .night-scope .panel-title {
+  color: #f2f4ff;
+  text-shadow: 0 0 10px rgba(180, 205, 255, 0.35);
+}
+:root[data-theme='light'] .star-field {
+  display: none;
+}
+.eyebrow {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  line-height: 2;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #e0507a;
+}
+/* Long eyebrows keep to one line on phones. */
+@media (max-width: 767px) {
+  .eyebrow-fit {
+    letter-spacing: 0.2em;
+  }
+}
+:root[data-theme='light'] .eyebrow {
+  color: #b02a55;
+}
+.panel-title {
+  font-family: var(--font-body);
+  color: #f2f4ff;
+  text-shadow: 0 0 10px rgba(180, 205, 255, 0.35);
+}
+.panel-note {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  color: #6f7fa8;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4px 4px 12px;
+  font-size: 11px;
+  line-height: 1.3;
+  text-decoration: none;
+  text-align: center;
+  user-select: none;
+}
+.btn-primary:hover {
+  color: var(--night);
+}
+:root[data-theme='light'] .btn-primary,
+:root[data-theme='light'] .btn-primary:hover {
+  color: #0b1026;
+}
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.btn-secondary {
+  --frame: var(--line);
+  background: transparent;
+  color: var(--moonlight);
+  border: 0;
+  margin: 4px;
+  min-height: 40px;
+  padding: 0 14px;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  cursor: pointer;
+  box-shadow:
+    0 -4px 0 0 var(--frame),
+    0 4px 0 0 var(--frame),
+    -4px 0 0 0 var(--frame),
+    4px 0 0 0 var(--frame);
+}
+.btn-secondary:hover {
+  --frame: var(--haze);
+}
+
+.link-button {
+  border: 0;
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  padding: 0;
+  min-height: 44px;
+}
+
+.dash-top {
+  border-top: 2px dashed var(--divider);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Inputs on the pixel grid. */
+.pixel-input {
+  --frame: var(--line);
+  background: var(--panel);
+  color: var(--moonlight);
+  border: 0;
+  margin: 4px;
+  height: 44px;
+  padding: 0 12px;
+  font-family: var(--font-body);
+  font-size: 26px;
+  box-shadow:
+    0 -4px 0 0 var(--frame),
+    0 4px 0 0 var(--frame),
+    -4px 0 0 0 var(--frame),
+    4px 0 0 0 var(--frame);
+}
+
+/* The answer box is focused the whole time you think, so its focus is the frame warming, not a ring. */
+.pixel-input:focus-visible {
+  --frame: var(--you-text);
+  outline: none;
+}
+.pixel-input::placeholder {
+  color: var(--haze);
+  opacity: 0.7;
+}
+
+/* The climb's answer bar (§5.3): a cyan-framed answer box and a crimson fire button. 2 px notched frames. */
+.bar-input {
+  --frame: #2A7F99;
+  background: #0A1122;
+  color: #ece6d6;
+  border: 0;
+  margin: 2px;
+  height: 44px;
+  padding: 0 12px;
+  font-family: var(--font-body);
+  font-size: 24px;
+  box-shadow:
+    0 -2px 0 0 var(--frame),
+    0 2px 0 0 var(--frame),
+    -2px 0 0 0 var(--frame),
+    2px 0 0 0 var(--frame);
+}
+.bar-input:focus-visible {
+  --frame: #4cc6e6;
+  outline: none;
+}
+.bar-input::placeholder {
+  color: #5e6a8a;
+}
+@media (max-width: 767px) {
+  .bar-input {
+    font-size: 22px;
+    padding-left: 10px;
+  }
+}
+.btn-fire {
+  --frame: #f27c9b;
+  background: #c23c63;
+  color: #1b0b12;
+  border: 0;
+  margin: 2px;
+  height: 44px;
+  padding: 0 18px;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow:
+    0 -2px 0 0 var(--frame),
+    0 2px 0 0 var(--frame),
+    -2px 0 0 0 var(--frame),
+    2px 0 0 0 var(--frame);
+}
+.btn-fire:hover {
+  background: #d9466f;
+}
+.btn-fire:active {
+  transform: translateY(2px);
+}
+.btn-fire:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+/* Square slider thumb and track: no rounded corners anywhere. */
+.pixel-range {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  height: 28px;
+  margin: 0;
+  cursor: pointer;
+}
+.pixel-range::-webkit-slider-runnable-track {
+  height: 4px;
+  background: var(--divider);
+}
+.pixel-range::-moz-range-track {
+  height: 4px;
+  background: var(--divider);
+}
+.pixel-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 22px;
+  margin-top: -9px;
+  background: var(--starlight);
+  border: 0;
+  box-shadow: 0 4px 0 0 var(--ledge);
+}
+.pixel-range::-moz-range-thumb {
+  width: 14px;
+  height: 22px;
+  background: var(--starlight);
+  border: 0;
+  box-shadow: 0 4px 0 0 var(--ledge);
+}
+
+/* Stepped fade-in (no smooth tweening), skipped for reduced motion. */
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.fade-in {
+  animation: step-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fade-in {
+    animation: none;
+  }
+}
+
+/*
+ * Idle life and transitions. Motion is smooth and eased (changed from stepped motion at the
+ * owner's request, 2026-09-29); sprites stay pixel art. All of it stops under
+ * prefers-reduced-motion (§5.4.6).
+ */
+@keyframes bob-step {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.idle-bob {
+  animation: bob-step 3200ms ease-in-out infinite;
+  will-change: transform;
+}
+@keyframes blink-step {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.idle-twinkle {
+  animation: blink-step 4500ms ease-in-out infinite;
+}
+@keyframes pilot-step {
+  0%, 100% { background: #6fb7ff; }
+  50% { background: #9fd4ff; }
+}
+.idle-pilot {
+  animation: pilot-step 900ms ease-in-out infinite;
+}
+@keyframes drift-step {
+  from { transform: translateX(-120px); }
+  to { transform: translateX(460px); }
+}
+.idle-drift {
+  animation: drift-step 120s linear infinite;
+  will-change: transform;
+}
+@keyframes pop-step {
+  0% { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.pop-in {
+  animation: pop-step 360ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+/* Each step of the climb's tier ladder pops in (scale, so it composes with the positioning transform). */
+@keyframes tier-pop {
+  from { scale: 1.4; opacity: 0.3; }
+  to { scale: 1; opacity: 1; }
+}
+.tier-pop {
+  animation: tier-pop 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Homepage → climb handoff: the sky balloon rises along its path while the page steps to the climb's sea-level sky. */
+@keyframes launch-rise {
+  from { transform: translateY(0); }
+  to { transform: translateY(-240px); }
+}
+[data-launch] .sky-balloon {
+  animation: launch-rise 600ms cubic-bezier(0.55, 0, 0.3, 1) forwards;
+}
+@keyframes curtain-step {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.launch-curtain {
+  animation: curtain-step 600ms ease-in forwards;
+}
+
+/* Keyboard hints on buttons: hidden on touch screens. */
+.kbd-hint {
+  margin-left: 10px;
+  font-size: 7px;
+  opacity: 0.55;
+}
+@media (hover: none) {
+  .kbd-hint {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .idle-bob,
+  .idle-twinkle,
+  .idle-pilot,
+  .idle-drift,
+  .pop-in,
+  [data-launch] .sky-balloon,
+  .launch-curtain {
+    animation: none;
+  }
+}
+
+/* KaTeX in the debrief inherits the page color. */
+.katex {
+  font-size: 1em;
+}
+.math-block .katex-display {
+  margin: 8px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 0;
+}
+
+.md p {
+  margin: 0;
+}
+.md p + p {
+  margin-top: 8px;
+}
+
+/*
+ * Homepage (§5.2): one full-screen pixel scene. The horizon sits at --horizon; the sky,
+ * sea, balloon, ruler and text are all placed against it. Colors are fixed (the scene is
+ * the same in either site theme).
+ */
+.home {
+  --horizon: 70%;
+  --moon-x: calc(56% + 44px);
+  min-height: max(100dvh, 640px);
+  background: #070b1c;
+  color: #ece6d6;
+}
+@media (min-width: 768px) {
+  .home {
+    --horizon: 72%;
+    --moon-x: calc(78% + 66px);
+    min-height: max(100dvh, 620px);
+  }
+}
+.home-sky {
+  height: var(--horizon);
+}
+.home-ruler {
+  top: 30%;
+  height: calc(var(--horizon) - 30%);
+}
+.home-moon {
+  left: 56%;
+  top: 2%;
+}
+.home-cloud {
+  left: var(--px);
+  top: var(--py);
+}
+@media (min-width: 768px) {
+  .home-moon {
+    left: 78%;
+    top: 5%;
+  }
+  .home-cloud {
+    left: var(--x);
+    top: var(--y);
+  }
+}
+/* The balloon rests on the fairground's launch pad: its basket sits 2 art px into the pad
+   (pad top = horizon + 9 art px; an art px is 2 screen px on phones, 3 on desktop).
+   Balloon: 64 px on phones, 96 px on desktop. */
+.home-balloon {
+  top: calc(var(--horizon) + 22px - 64px);
+}
+@media (min-width: 768px) {
+  .home-balloon {
+    top: calc(var(--horizon) + 33px - 96px);
+  }
+}
+/* Results page landing strip (§5.5): the fairground along the bottom, the balloon back on its pad
+   (grass line 56/72 px above the bottom; pad top 9 art px below it; basket 2 art px into the pad). */
+.landed-strip {
+  height: 230px;
+}
+/* Room kept clear for the parked balloon (its top is 98 px up on phones); the fair behind can
+   tuck under the content. On phones the whole first screen fits, balloon included. */
+.landed-spacer {
+  height: 104px;
+}
+@media (min-width: 768px) {
+  .landed-spacer {
+    height: 200px;
+  }
+}
+/* Arriving from the climb's landing: fade up from the same dusk the climb faded out to. */
+@keyframes landed-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.landed-in {
+  animation: landed-in 450ms ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .landed-in {
+    animation: none;
+  }
+}
+/* Grass 56 px above the bottom; pad top 9 art px (18 px) below it; basket 2 art px (4 px) into the pad. */
+.landed-balloon {
+  bottom: 34px;
+}
+/* The results scene stays at dusk in either theme. */
+:root[data-theme='light'] .night-scope .card {
+  background-color: #0b1328;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='3'%3E%3Crect y='0' width='4' height='1' fill='%23a0b4ff' fill-opacity='.035'/%3E%3C/svg%3E");
+  box-shadow: inset 0 0 0 1px rgba(150, 175, 230, 0.12);
+}
+
+/* The balloon is the star: a soft warm glow around it. */
+.home-balloon,
+.landed-balloon,
+.balloon-glow {
+  filter: drop-shadow(0 0 14px rgba(255, 170, 100, 0.35));
+}
+.home-corner-left {
+  top: calc(env(safe-area-inset-top, 0px) + 14px);
+  left: 14px;
+}
+.home-corner-right {
+  top: calc(env(safe-area-inset-top, 0px) + 14px);
+  right: 14px;
+}
+@media (min-width: 768px) {
+  .home-corner-left {
+    top: 18px;
+    left: 18px;
+  }
+  .home-corner-right {
+    top: 18px;
+    right: 18px;
+  }
+}
+
+/* Small square corner buttons. */
+.home-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background: rgba(9, 14, 32, 0.78);
+  box-shadow: inset 0 0 0 2px #34467a;
+}
+.home-icon:hover {
+  box-shadow: inset 0 0 0 2px #6f86c0;
+}
+.home-menu {
+  box-shadow:
+    inset 0 0 0 1px rgba(150, 175, 230, 0.18),
+    0 0 18px rgba(76, 198, 230, 0.12);
+}
+:root[data-theme='light'] .home .home-menu {
+  background-color: #0b1328;
+  box-shadow: inset 0 0 0 1px rgba(150, 175, 230, 0.18);
+}
+.home-menu-item {
+  display: block;
+  border: 0;
+  background: none;
+  padding: 6px 0;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 22px;
+  line-height: 1.2;
+  color: #ece6d6;
+  text-decoration: none;
+  cursor: pointer;
+}
+.home-menu-item:hover {
+  color: #4cc6e6;
+}
+
+/* Title block, in the sky. */
+.home-titles {
+  top: 17%;
+  gap: 16px;
+}
+@media (min-width: 768px) {
+  .home-titles {
+    top: 24%;
+    gap: 20px;
+  }
+}
+.home-title {
+  position: relative;
+  font-family: var(--font-pixel);
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fbf9ff;
+  padding-left: 0.06em;
+}
+@media (min-width: 768px) {
+  .home-title {
+    font-size: 64px;
+  }
+}
+/* Solid letters with a crisp pink/cyan offset behind them (no outlines, no blur). */
+.home-title-ghost {
+  position: absolute;
+  inset: 0;
+  padding-left: inherit;
+  pointer-events: none;
+}
+.home-title-pink {
+  color: #f27c9b;
+  transform: translate(-2px, 2px);
+}
+.home-title-cyan {
+  color: #4cc6e6;
+  transform: translate(2px, -2px);
+}
+@media (min-width: 768px) {
+  .home-title-pink {
+    transform: translate(-4px, 4px);
+  }
+  .home-title-cyan {
+    transform: translate(4px, -4px);
+  }
+}
+.home-subtitle {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.5em;
+  padding-left: 0.5em;
+  text-transform: uppercase;
+  color: #4cc6e6;
+}
+@media (min-width: 768px) {
+  .home-subtitle {
+    font-size: 14px;
+    letter-spacing: 0.6em;
+    padding-left: 0.6em;
+  }
+}
+.home-tagline {
+  max-width: 28ch;
+  margin-top: 6px;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.25;
+  letter-spacing: 0.14em;
+  color: #6f7fa8;
+}
+@media (min-width: 768px) {
+  .home-tagline {
+    max-width: none;
+    letter-spacing: 0.22em;
+  }
+}
+
+/* Bottom block, on the sea. */
+.home-bottom {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 18px);
+}
+@media (min-width: 768px) {
+  .home-bottom {
+    padding-bottom: 26px;
+  }
+}
+.home-link {
+  align-self: flex-start;
+  border: 0;
+  background: none;
+  padding: 0;
+  min-height: 32px;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #7d8db3;
+  cursor: pointer;
+}
+.home-link:hover {
+  color: #4cc6e6;
+}
+.home-meta {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  line-height: 2;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #5f6f96;
+}
+.home-meta-link {
+  text-decoration: none;
+}
+.home-meta-link:hover {
+  color: #4cc6e6;
+}
+
+/*
+ * The start button: burner crimson like Fire, a pink notched frame and a warm glow, spaced caps.
+ * The link (.home-start-hit) stays put; only its face (.home-start) bobs, so clicks and focus
+ * rings stay steady.
+ */
+.home-start-hit {
+  display: block;
+  margin: 8px 4px 14px;
+  text-decoration: none;
+}
+.home-start {
+  --frame: #f27c9b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9em;
+  min-height: 60px;
+  padding: 0 16px;
+  background: #c23c63;
+  color: #fff4ec;
+  animation: start-bob 2600ms ease-in-out infinite;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  user-select: none;
+  box-shadow:
+    0 -4px 0 0 var(--frame),
+    0 4px 0 0 var(--frame),
+    -4px 0 0 0 var(--frame),
+    4px 0 0 0 var(--frame),
+    0 0 24px 2px rgba(242, 124, 155, 0.4);
+}
+@media (min-width: 768px) {
+  .home-start {
+    min-height: 74px;
+    font-size: 15px;
+    letter-spacing: 0.32em;
+  }
+}
+.home-start-hit:hover .home-start {
+  --frame: #ffb3c6;
+  background: #d9466f;
+  color: #ffffff;
+}
+.home-start-hit:active .home-start {
+  transform: translateY(2px);
+}
+@keyframes start-bob {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-start {
+    animation: none;
+  }
+}
+.home-unavailable {
+  background: #0a1328;
+  box-shadow: inset 0 0 0 1px rgba(240, 180, 90, 0.4);
+}
+
+/* Small outlined links in the bottom row. */
+.home-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  font-family: var(--font-body);
+  font-size: 18px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #93a3c9;
+  text-decoration: none;
+  box-shadow: inset 0 0 0 1px #34467a;
+}
+.home-chip:hover {
+  color: #eaf8ff;
+  box-shadow: inset 0 0 0 1px #6f86c0;
+}
+
+/* Idle life: clouds drift a little. Smooth and slow. */
+@keyframes home-drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(36px); }
+}
+.home-cloud {
+  animation: home-drift 90s ease-in-out infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-cloud {
+    animation: none;
+  }
+}

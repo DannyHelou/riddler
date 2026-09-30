@@ -1,0 +1,20 @@
+{
+  "id": "bayes-disease-test",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A disease affects 1 in 1,000 people. A test for it is 99% accurate. You test positive. What's the chance you actually have the disease?",
+  "prompt_short": "A 99% accurate test, a 1-in-1,000 disease. You test positive. Chance you have it?",
+  "answer_value": 9.02,
+  "trap_value": 99,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "about 9%",
+  "hint_md": "Imagine testing 1,000 people. How many positives are real?",
+  "explain_intuition_md": "Test 1,000 people. About 1 is sick and tests positive. About 10 healthy people also test positive by mistake. So only about 1 in 11 positives is real.",
+  "explain_math_md": "$$P(\\text{sick} \\mid +) = \\frac{0.99 \\times 0.001}{0.99 \\times 0.001 + 0.01 \\times 0.999} \\approx 0.0902$$\n\n\"99% accurate\" means both a 99% true-positive rate and a 99% true-negative rate.",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (base-rate fallacy)"
+}

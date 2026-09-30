@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Riddler homepage, desktop</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0B1026}
+a{color:#E8ECFF}a:hover{color:#FFE45C}
+a:focus-visible,button:focus-visible{outline:4px dashed #FF5A4E;outline-offset:6px}
+</style>
+</helmet>
+<div style="width: 1280px; height: 800px; display: flex; flex-direction: column; background: #0B1026; font-family: 'VT323', monospace; color: #E8ECFF">
+<header style="height: 72px; flex-shrink: 0; box-sizing: border-box; padding: 0 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 4px solid #16204C">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none">
+<div aria-hidden="true" style="position: relative; width: {{logo.size}}px; height: {{logo.size}}px"><div style="position: absolute; left: -{{logo.s}}px; top: -{{logo.s}}px; width: {{logo.s}}px; height: {{logo.s}}px; box-shadow: {{logo.shadow}}"></div></div>
+<span style="font-family: 'Press Start 2P', monospace; font-size: 18px; line-height: 1">Riddler</span>
+</a>
+<nav aria-label="Main" style="display: flex; gap: 36px; font-size: 26px">
+<a href="Main.dc.html" style="text-decoration: none; color: #FFE45C; border-bottom: 4px solid #FFE45C; padding-bottom: 2px">Today</a>
+<a href="Main.dc.html" style="text-decoration: none">How to play</a>
+<a href="Main.dc.html" style="text-decoration: none">Your stats</a>
+<a href="Main.dc.html" style="text-decoration: none">About</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 10px">
+<div aria-hidden="true" style="position: relative; width: {{flame.size}}px; height: {{flame.size}}px"><div style="position: absolute; left: -{{flame.s}}px; top: -{{flame.s}}px; width: {{flame.s}}px; height: {{flame.s}}px; box-shadow: {{flame.shadow}}"></div></div>
+<span style="font-size: 24px; line-height: 1">12-day streak</span>
+</div>
+</header>
+
+<main style="flex-grow: 1; box-sizing: border-box; padding: 40px 96px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 72px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 28px">
+<div style="font-size: 26px; line-height: 1; color: #9AA6D0">Puzzle 58. Saturday, September 26</div>
+<h1 style="margin: 0; font-family: 'Press Start 2P', monospace; font-weight: 400; font-size: 34px; line-height: 1.4; color: #FFE45C">How high can your guess climb?</h1>
+<p style="margin: 0; font-size: 30px; line-height: 1.15; max-width: 30ch">Three math riddles a day, same for everyone. Each one has a trap. The closer your answer, the higher you rise.</p>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; max-width: 480px">
+<div style="margin: 4px; background: #121A3A; box-shadow: 0 -4px 0 0 #121A3A, 0 4px 0 0 #121A3A, -4px 0 0 0 #121A3A, 4px 0 0 0 #121A3A; padding: 12px; display: flex; flex-direction: column; gap: 8px">
+<div style="width: 16px; height: 8px; background: #4FD18B"></div>
+<div style="font-family: 'Press Start 2P', monospace; font-size: 10px; line-height: 1.3">Warm-up</div>
+<div style="font-size: 22px; line-height: 1; color: #9AA6D0">30 sec</div>
+</div>
+<div style="margin: 4px; background: #121A3A; box-shadow: 0 -4px 0 0 #121A3A, 0 4px 0 0 #121A3A, -4px 0 0 0 #121A3A, 4px 0 0 0 #121A3A; padding: 12px; display: flex; flex-direction: column; gap: 8px">
+<div style="width: 16px; height: 8px; background: #FFE45C"></div>
+<div style="font-family: 'Press Start 2P', monospace; font-size: 10px; line-height: 1.3">Trap</div>
+<div style="font-size: 22px; line-height: 1; color: #9AA6D0">60 sec</div>
+</div>
+<div style="margin: 4px; background: #121A3A; box-shadow: 0 -4px 0 0 #121A3A, 0 4px 0 0 #121A3A, -4px 0 0 0 #121A3A, 4px 0 0 0 #121A3A; padding: 12px; display: flex; flex-direction: column; gap: 8px">
+<div style="width: 16px; height: 8px; background: #FF5A4E"></div>
+<div style="font-family: 'Press Start 2P', monospace; font-size: 10px; line-height: 1.3">Boss</div>
+<div style="font-size: 22px; line-height: 1; color: #9AA6D0">120 sec</div>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 28px">
+<a href="DesktopRiddle.dc.html" style="margin: 4px 4px 12px; padding: 0 40px; background: #FFE45C; box-shadow: 0 -4px 0 0 #FFE45C, 0 4px 0 0 #FFE45C, -4px 0 0 0 #FFE45C, 4px 0 0 0 #FFE45C, 0 10px 0 0 #B8961A; min-height: 64px; display: flex; align-items: center; font-family: 'Press Start 2P', monospace; font-size: 14px; color: #0B1026; text-decoration: none">Start the climb</a>
+<div style="font-size: 24px; line-height: 1.1; color: #9AA6D0">Next riddles in 07:12:44</div>
+</div>
+</div>
+
+<div role="img" aria-label="Six sky zones from sea level to orbit, with a pixel balloon waiting at sea level" style="position: relative; margin: 4px; height: 540px; display: flex; flex-direction: column; box-shadow: 0 -4px 0 0 #C9D3FF, 0 4px 0 0 #C9D3FF, -4px 0 0 0 #C9D3FF, 4px 0 0 0 #C9D3FF">
+<sc-for list="{{zones}}" as="z" hint-placeholder-count="6">
+<div style="flex-grow: 1; background: {{z.bg}}; border-top: 2px dashed {{z.line}}; padding: 0 16px; display: flex; align-items: center; justify-content: flex-end">
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px">
+<div style="font-family: 'Press Start 2P', monospace; font-size: 9px; line-height: 1">{{z.name}}</div>
+<div style="font-size: 18px; line-height: 1; color: #9AA6D0">{{z.alt}}</div>
+</div>
+</div>
+</sc-for>
+<div style="position: absolute; left: 0; top: 0; right: 0; bottom: 0">
+<sc-for list="{{stars}}" as="st" hint-placeholder-count="40">
+<div style="position: absolute; left: {{st.x}}px; top: {{st.y}}px; width: {{st.s}}px; height: {{st.s}}px; background: {{st.c}}"></div>
+</sc-for>
+<sc-for list="{{trail}}" as="t" hint-placeholder-count="30">
+<div style="position: absolute; left: 248px; top: {{t.y}}px; width: 4px; height: 4px; background: #9AA6D0"></div>
+</sc-for>
+<div style="position: absolute; left: 218px; top: 460px; width: {{balloon.size}}px; height: {{balloon.size}}px"><div style="position: absolute; left: -{{balloon.s}}px; top: -{{balloon.s}}px; width: {{balloon.s}}px; height: {{balloon.s}}px; box-shadow: {{balloon.shadow}}"></div></div>
+</div>
+</div>
+</main>
+
+<footer style="height: 56px; flex-shrink: 0; box-sizing: border-box; padding: 0 48px; display: flex; align-items: center; justify-content: space-between; border-top: 4px solid #16204C; font-size: 21px; color: #9AA6D0">
+<span>Three riddles a day, same for everyone</span>
+<div style="display: flex; gap: 28px"><a href="Main.dc.html" style="color: #9AA6D0">About</a><a href="Main.dc.html" style="color: #9AA6D0">Privacy</a><a href="Main.dc.html" style="color: #9AA6D0">Contact</a></div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var C = {k:'#0B1026',l:'#C9D3FF',r:'#FF5A4E',y:'#FFE45C',g:'#4FD18B',w:'#FFFFFF',p:'#F29CB5',v:'#9B7BFF',o:'#F28C28',b:'#8A5A2B'};
+    function spr(rows, s) {
+      var out = [];
+      rows.forEach(function (row, y) { row.split('').forEach(function (ch, x) { if (C[ch]) out.push(((x + 1) * s) + 'px ' + ((y + 1) * s) + 'px 0 0 ' + C[ch]); }); });
+      return { shadow: out.join(', '), size: 8 * s, s: s };
+    }
+    function stars(n, x0, y0, w, h, seed) {
+      var out = [], v = seed;
+      function r() { v = (v * 9301 + 49297) % 233280; return v / 233280; }
+      for (var i = 0; i < n; i++) out.push({ x: x0 + Math.floor(r() * w / 4) * 4, y: y0 + Math.floor(r() * h / 4) * 4, s: r() > 0.8 ? 4 : 2, c: i % 7 === 0 ? '#FFE45C' : '#C9D3FF' });
+      return out;
+    }
+    var SP = {
+      flame: ['...r....','...rr...','..rrr.r.','.rryrrr.','.ryyyrr.','.ryyyyr.','..ryyr..','...rr...'],
+      balloon: ['..ryyr..','.rryyrr.','rrryyrrr','rrryyrrr','.rryyrr.','..w..w..','..bbbb..','..bbbb..']
+    };
+    var Z = [['Oracle','Orbit, 400 km','#070B1C'],['Genius','Stratosphere, 30 km','#0E1535'],['Quant','Jets cruise, 11 km','#16204C'],['Analyst','Everest, 8.8 km','#1F2D63'],['Guesser','Eiffel Tower, 330 m','#2A3C78'],['Goldfish','Sea level','#1B5873']];
+    var zones = Z.map(function (z, i) { return { name: z[0], alt: z[1], bg: z[2], line: i === 0 ? z[2] : '#3B4F8F' }; });
+    var trail = [];
+    for (var y = 24; y < 450; y += 14) trail.push({ y: y });
+    return { logo: spr(SP.balloon, 3), flame: spr(SP.flame, 3), balloon: spr(SP.balloon, 8), zones: zones, stars: stars(40, 12, 8, 340, 250, 5), trail: trail };
+  }
+}
+</script>
+</body>
+</html>

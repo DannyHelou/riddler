@@ -1,0 +1,20 @@
+{
+  "id": "widget-machines",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "5 machines make 5 widgets in 5 minutes. How many minutes would 100 machines take to make 100 widgets?",
+  "prompt_short": "5 machines, 5 widgets, 5 minutes. 100 machines, 100 widgets?",
+  "answer_value": 5,
+  "trap_value": 100,
+  "closeness_cap": 2,
+  "unit_label": "minutes",
+  "answer_display": "5 minutes",
+  "hint_md": "How long does one machine take to make one widget?",
+  "explain_intuition_md": "Each machine makes one widget every 5 minutes. A hundred machines working at once make a hundred widgets in the same 5 minutes.",
+  "explain_math_md": "Rate per machine $= \\frac{1 \\text{ widget}}{5 \\text{ min}}$, so $100$ machines make $100$ widgets in $5$ minutes.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic (cognitive reflection test)"
+}

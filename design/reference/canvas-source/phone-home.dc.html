@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Riddler homepage, phone</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0B1026}
+a{color:#E8ECFF}a:hover{color:#FFE45C}
+a:focus-visible,button:focus-visible{outline:4px dashed #FF5A4E;outline-offset:6px}
+</style>
+</helmet>
+<div style="width: 390px; height: 1040px; display: flex; flex-direction: column; background: #0B1026; font-family: 'VT323', monospace; color: #E8ECFF">
+<header style="height: 64px; flex-shrink: 0; box-sizing: border-box; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 4px solid #16204C">
+<a href="MobileHome.dc.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none">
+<div aria-hidden="true" style="position: relative; width: {{logo.size}}px; height: {{logo.size}}px"><div style="position: absolute; left: -{{logo.s}}px; top: -{{logo.s}}px; width: {{logo.s}}px; height: {{logo.s}}px; box-shadow: {{logo.shadow}}"></div></div>
+<span style="font-family: 'Press Start 2P', monospace; font-size: 14px; line-height: 1">Riddler</span>
+</a>
+<div style="display: flex; align-items: center; gap: 14px">
+<div style="display: flex; align-items: center; gap: 6px">
+<div aria-hidden="true" style="position: relative; width: {{flame.size}}px; height: {{flame.size}}px"><div style="position: absolute; left: -{{flame.s}}px; top: -{{flame.s}}px; width: {{flame.s}}px; height: {{flame.s}}px; box-shadow: {{flame.shadow}}"></div></div>
+<span style="font-size: 22px; line-height: 1">12</span>
+</div>
+<button aria-label="Open menu" style="width: 44px; height: 44px; margin: 4px; border: none; background: #121A3A; box-shadow: 0 -4px 0 0 #121A3A, 0 4px 0 0 #121A3A, -4px 0 0 0 #121A3A, 4px 0 0 0 #121A3A; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer">
+<span style="width: 20px; height: 4px; background: #E8ECFF"></span><span style="width: 20px; height: 4px; background: #E8ECFF"></span><span style="width: 20px; height: 4px; background: #E8ECFF"></span>
+</button>
+</div>
+</header>
+
+<main style="flex-grow: 1; box-sizing: border-box; padding: 24px 16px 28px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 22px; line-height: 1; color: #9AA6D0">Puzzle 58. Saturday, September 26</div>
+<h1 style="margin: 0; font-family: 'Press Start 2P', monospace; font-weight: 400; font-size: 20px; line-height: 1.45; color: #FFE45C">How high can your guess climb?</h1>
+<p style="margin: 0; font-size: 25px; line-height: 1.12">Three math riddles a day, same for everyone. Each one has a trap. The closer your answer, the higher you rise.</p>
+</div>
+
+<div role="img" aria-label="Six sky zones from sea level to orbit, with a pixel balloon waiting at sea level" style="position: relative; margin: 4px; height: 330px; display: flex; flex-direction: column; box-shadow: 0 -4px 0 0 #C9D3FF, 0 4px 0 0 #C9D3FF, -4px 0 0 0 #C9D3FF, 4px 0 0 0 #C9D3FF">
+<sc-for list="{{zones}}" as="z" hint-placeholder-count="6">
+<div style="flex-grow: 1; background: {{z.bg}}; border-top: 2px dashed {{z.line}}; padding: 0 10px; display: flex; align-items: center; justify-content: flex-end">
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 3px">
+<div style="font-family: 'Press Start 2P', monospace; font-size: 8px; line-height: 1">{{z.name}}</div>
+<div style="font-size: 16px; line-height: 1; color: #9AA6D0">{{z.alt}}</div>
+</div>
+</div>
+</sc-for>
+<div style="position: absolute; left: 0; top: 0; right: 0; bottom: 0">
+<sc-for list="{{stars}}" as="st" hint-placeholder-count="24">
+<div style="position: absolute; left: {{st.x}}px; top: {{st.y}}px; width: {{st.s}}px; height: {{st.s}}px; background: {{st.c}}"></div>
+</sc-for>
+<sc-for list="{{trail}}" as="t" hint-placeholder-count="20">
+<div style="position: absolute; left: 173px; top: {{t.y}}px; width: 4px; height: 4px; background: #9AA6D0"></div>
+</sc-for>
+<div style="position: absolute; left: 151px; top: 276px; width: {{balloon.size}}px; height: {{balloon.size}}px"><div style="position: absolute; left: -{{balloon.s}}px; top: -{{balloon.s}}px; width: {{balloon.s}}px; height: {{balloon.s}}px; box-shadow: {{balloon.shadow}}"></div></div>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{tiers}}" as="tr" hint-placeholder-count="3">
+<div style="margin: 4px; background: #121A3A; box-shadow: 0 -4px 0 0 #121A3A, 0 4px 0 0 #121A3A, -4px 0 0 0 #121A3A, 4px 0 0 0 #121A3A; padding: 10px; display: flex; flex-direction: column; gap: 8px">
+<div style="width: 16px; height: 8px; background: {{tr.c}}"></div>
+<div style="font-family: 'Press Start 2P', monospace; font-size: 9px; line-height: 1.3">{{tr.n}}</div>
+<div style="font-size: 20px; line-height: 1; color: #9AA6D0">{{tr.t}}</div>
+</div>
+</sc-for>
+</div>
+
+<a href="Riddle.dc.html" style="margin: 4px 4px 12px; background: #FFE45C; box-shadow: 0 -4px 0 0 #FFE45C, 0 4px 0 0 #FFE45C, -4px 0 0 0 #FFE45C, 4px 0 0 0 #FFE45C, 0 10px 0 0 #B8961A; min-height: 60px; display: flex; align-items: center; justify-content: center; font-family: 'Press Start 2P', monospace; font-size: 13px; color: #0B1026; text-decoration: none">Start the climb</a>
+<div style="font-size: 22px; line-height: 1; color: #9AA6D0; text-align: center">Next riddles in 07:12:44</div>
+</main>
+
+<footer style="flex-shrink: 0; box-sizing: border-box; padding: 16px; display: flex; flex-direction: column; gap: 10px; border-top: 4px solid #16204C; font-size: 20px; color: #9AA6D0">
+<span>Three riddles a day, same for everyone</span>
+<div style="display: flex; gap: 24px"><a href="MobileHome.dc.html" style="color: #9AA6D0">About</a><a href="MobileHome.dc.html" style="color: #9AA6D0">Privacy</a><a href="MobileHome.dc.html" style="color: #9AA6D0">Contact</a></div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1040}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var C = {r:'#FF5A4E',y:'#FFE45C',w:'#FFFFFF',b:'#8A5A2B',l:'#C9D3FF',R:'#E0453A',D:'#A32A22',Y:'#FFD84D',Q:'#C9A227',B:'#5C3A1A'};
+    function spr(rows, s) {
+      var out = [];
+      rows.forEach(function (row, y) { row.split('').forEach(function (ch, x) { if (C[ch]) out.push(((x + 1) * s) + 'px ' + ((y + 1) * s) + 'px 0 0 ' + C[ch]); }); });
+      return { shadow: out.join(', '), size: rows[0].length * s, s: s };
+    }
+    function stars(n, x0, y0, w, h, seed) {
+      var out = [], v = seed;
+      function r() { v = (v * 9301 + 49297) % 233280; return v / 233280; }
+      for (var i = 0; i < n; i++) out.push({ x: x0 + Math.floor(r() * w / 4) * 4, y: y0 + Math.floor(r() * h / 4) * 4, s: r() > 0.8 ? 4 : 2, c: i % 7 === 0 ? '#FFE45C' : '#C9D3FF' });
+      return out;
+    }
+    var balloonRows = ['.....RRYYRR.....','...RRRYYYYRRR...','..RRRRYYYYRRRR..','.RwRRRYYYYRRRRD.','.RwRRRYYYYRRRRD.','RRRRRRYYYYRRRRDD','RRRRRRYYYYRRRRDD','RRRRRRYYYYRRRRDD','.RRRRRYYYYRRRRD.','.DRRRRYYYYRRRDD.','..DDRRYYYYRRDD..','...DDDQQQQDDD...','....l......l....','....l......l....','.....bbbbbb.....','.....BBBBBB.....'];
+    var flame = ['...r....','...rr...','..rrr.r.','.rryrrr.','.ryyyrr.','.ryyyyr.','..ryyr..','...rr...'];
+    var Z = [['Oracle','Orbit, 400 km','#070B1C'],['Genius','Stratosphere, 30 km','#0E1535'],['Quant','Jets cruise, 11 km','#16204C'],['Analyst','Everest, 8.8 km','#1F2D63'],['Guesser','Eiffel Tower, 330 m','#2A3C78'],['Goldfish','Sea level','#1B5873']];
+    var zones = Z.map(function (z, i) { return { name: z[0], alt: z[1], bg: z[2], line: i === 0 ? z[2] : '#3B4F8F' }; });
+    var trail = [];
+    for (var y = 18; y < 262; y += 14) trail.push({ y: y });
+    var tiers = [{ n: 'Warm-up', t: '30 sec', c: '#4FD18B' }, { n: 'Trap', t: '60 sec', c: '#FFE45C' }, { n: 'Boss', t: '120 sec', c: '#FF5A4E' }];
+    return { logo: spr(balloonRows, 2), flame: spr(flame, 3), balloon: spr(balloonRows, 3), zones: zones, stars: stars(24, 10, 6, 140, 150, 5), trail: trail, tiers: tiers };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Camera flow storyboard</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#060A18}
+</style>
+</helmet>
+<div style="width: 1200px; height: 780px; box-sizing: border-box; padding: 40px 48px; background: #060A18; font-family: 'VT323', monospace; color: #E8ECFF; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px">
+<sc-for list="{{frames}}" as="f" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; gap: 14px; align-items: center">
+<div style="align-self: stretch; display: flex; justify-content: space-between; align-items: baseline">
+<div style="font-family: 'Press Start 2P', monospace; font-size: 12px; line-height: 1.3">{{f.title}}</div>
+<div style="font-size: 20px; line-height: 1; color: #9AA6D0">{{f.time}}</div>
+</div>
+<div role="img" aria-label="{{f.aria}}" style="position: relative; width: 300px; height: 560px; overflow: hidden; background: #1E3563; box-shadow: 0 -4px 0 0 #C9D3FF, 0 4px 0 0 #C9D3FF, -4px 0 0 0 #C9D3FF, 4px 0 0 0 #C9D3FF">
+<div style="position: absolute; left: 0; top: 0; width: 300px; height: 560px; background: {{f.flash}}; opacity: {{f.flashO}}"></div>
+<div style="position: absolute; left: 0; top: {{f.lineY}}px; width: 300px; height: 0; border-top: 2px dashed #3B4F8F"></div>
+<div style="position: absolute; left: 10px; top: {{f.labelY}}px; font-size: 16px; line-height: 1; color: #9AA6D0">Everest, 8.8 km</div>
+<sc-if value="{{f.showSign}}" hint-placeholder-val="{{ true }}">
+<div style="position: absolute; left: 14px; top: {{f.signY}}px; width: 272px; height: 300px; box-sizing: border-box; opacity: {{f.signO}}; background: rgba(8, 12, 30, 0.92); box-shadow: 0 -4px 0 0 #C9D3FF, 0 4px 0 0 #C9D3FF, -4px 0 0 0 #C9D3FF, 4px 0 0 0 #C9D3FF; padding: 16px; display: flex; flex-direction: column; justify-content: center; gap: 12px">
+<div style="display: flex; align-items: center; gap: 8px"><div style="width: 12px; height: 6px; background: #FFE45C"></div><div style="font-family: 'Press Start 2P', monospace; font-size: 8px; line-height: 1">The trap</div></div>
+<div style="display: grid; grid-template-columns: repeat(20, minmax(0, 1fr)); gap: 2px"><sc-for list="{{fuel}}" as="fu" hint-placeholder-count="20"><div style="height: 6px; background: #E8ECFF"></div></sc-for></div>
+<div style="font-size: 20px; line-height: 1.1">A disease affects 1 in 1,000 people. A test is 99% accurate. You test positive. What's the chance you have it?</div>
+<div style="display: flex; gap: 8px; align-items: center"><div style="width: 80px; height: 32px; background: #121A3A; box-shadow: 0 0 0 3px #C9D3FF; font-size: 22px; line-height: 32px; padding-left: 8px; box-sizing: border-box">9</div><div style="font-size: 18px; color: #9AA6D0">%</div></div>
+<div style="background: #FFE45C; color: #0B1026; font-family: 'Press Start 2P', monospace; font-size: 8px; line-height: 1; padding: 12px; text-align: center">Fire the burner</div>
+</div>
+</sc-if>
+<sc-for list="{{f.sparks}}" as="sp" hint-placeholder-count="0"><div style="position: absolute; left: {{sp.x}}px; top: {{sp.y}}px; width: 5px; height: 5px; background: {{sp.c}}"></div></sc-for>
+<div style="position: absolute; left: 118px; top: {{f.balloonY}}px; width: 64px; height: 64px">
+<div style="position: absolute; left: -4px; top: -4px; width: 4px; height: 4px; box-shadow: {{balloon}}"></div>
+<div style="position: absolute; left: -4px; top: -4px; width: 4px; height: 4px; box-shadow: {{f.flame}}"></div>
+</div>
+<sc-if value="{{f.showArrow}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 236px; top: 150px; display: flex; flex-direction: column; align-items: center; gap: 4px">
+<div style="width: 8px; height: 120px; background: #FFE45C"></div>
+<div style="width: 24px; height: 8px; background: #FFE45C"></div>
+<div style="width: 16px; height: 8px; background: #FFE45C"></div>
+<div style="width: 8px; height: 8px; background: #FFE45C"></div>
+</div>
+</sc-if>
+<sc-if value="{{f.showCard}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 14px; top: 40px; width: 272px; box-sizing: border-box; background: rgba(8, 12, 30, 0.92); box-shadow: 0 -4px 0 0 #6CF28C, 0 4px 0 0 #6CF28C, -4px 0 0 0 #6CF28C, 4px 0 0 0 #6CF28C; padding: 14px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-family: 'Press Start 2P', monospace; font-size: 14px; line-height: 1; color: #6CF28C">Oracle</div>
+<div style="font-size: 19px; line-height: 1; color: #9AA6D0">+125 points, climbed 31.3 km</div>
+<div style="font-size: 20px; line-height: 1.1">You said 9%. The answer is <span style="color: #4FD18B">about 9%</span>.</div>
+<div style="align-self: flex-end; background: #FFE45C; color: #0B1026; font-family: 'Press Start 2P', monospace; font-size: 8px; line-height: 1; padding: 10px">Next riddle</div>
+</div>
+</sc-if>
+</div>
+<div style="align-self: stretch; font-size: 21px; line-height: 1.1">{{f.caption}}</div>
+</div>
+</sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1200,"height":780}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var C = {l:'#C9D3FF',w:'#FFFFFF',b:'#8A5A2B',R:'#E0453A',D:'#A32A22',Y:'#FFD84D',Q:'#C9A227',B:'#5C3A1A'};
+    var rows = ['.....RRYYRR.....','...RRRYYYYRRR...','..RRRRYYYYRRRR..','.RwRRRYYYYRRRRD.','.RwRRRYYYYRRRRD.','RRRRRRYYYYRRRRDD','RRRRRRYYYYRRRRDD','RRRRRRYYYYRRRRDD','.RRRRRYYYYRRRRD.','.DRRRRYYYYRRRDD.','..DDRRYYYYRRDD..','...DDDQQQQDDD...','....l......l....','....l......l....','.....bbbbbb.....','.....BBBBBB.....'];
+    var S = 4, out = [];
+    rows.forEach(function (row, y) { row.split('').forEach(function (ch, x) { if (C[ch]) out.push(((x + 1) * S) + 'px ' + ((y + 1) * S) + 'px 0 0 ' + C[ch]); }); });
+    function flame(I, core) {
+      var h = Math.round(1 + 10 * I), fl = [];
+      for (var r = 0; r < h; r++) {
+        var f = h > 1 ? r / (h - 1) : 0, y = 13 - r;
+        var cols = I < 0.05 ? [7, 8] : f < 0.4 ? [6, 7, 8, 9] : f < 0.75 ? [7, 8] : [8];
+        cols.forEach(function (x) { var col = I < 0.05 ? '#6FB7FF' : f < 0.3 ? ((x === 7 || x === 8) ? core : '#FFE45C') : f < 0.6 ? '#FFE45C' : f < 0.85 ? '#F28C28' : '#FF5A4E'; fl.push(((x + 1) * S) + 'px ' + ((y + 1) * S) + 'px 0 0 ' + col); });
+      }
+      return fl.join(', ');
+    }
+    var sparks = [];
+    for (var q = 0; q < 12; q++) { var a = q * Math.PI / 6; sparks.push({ x: Math.round(148 + Math.cos(a) * 70), y: Math.round(272 + Math.sin(a) * 70), c: q % 2 ? '#FFE45C' : '#FFFFFF' }); }
+    var fuel = []; for (var i = 0; i < 20; i++) fuel.push({});
+    var frames = [
+      { title: '1. Question in focus', time: 'ask', aria: 'The riddle sign fills the centre of the screen with the balloon peeking below', showSign: true, signY: 110, signO: 1, balloonY: 486, lineY: 70, labelY: 50, flame: flame(0, '#FFFFFF'), flash: '#000000', flashO: 0, sparks: [], showArrow: false, showCard: false,
+        caption: 'The riddle sign is centered and owns the screen. The balloon peeks in at the bottom with its pilot light on.' },
+      { title: '2. Camera pans down', time: '0 to 650 ms', aria: 'The sign slides up and fades while the balloon moves toward the centre', showSign: true, signY: -60, signO: 0.35, balloonY: 330, lineY: -10, labelY: -30, flame: flame(0, '#FFFFFF'), flash: '#000000', flashO: 0, sparks: [], showArrow: true, showCard: false,
+        caption: 'On Fire the burner, the camera eases down to the balloon (ease-in-out). The sign rises out of frame and fades.' },
+      { title: '3. The boost', time: 'from 750 ms', aria: 'The balloon is centred with a full flame, green flash, sparks, and a result card above', showSign: false, signY: 0, signO: 0, balloonY: 240, lineY: 470, labelY: 450, flame: flame(1, '#9FE8FF'), flash: 'hsl(130, 85%, 55%)', flashO: 0.25, sparks: sparks, showArrow: false, showCard: true,
+        caption: 'Balloon centered: flame, color flash, shake, and climb (§5.4). Then the result card appears. Next riddle pans back up.' }
+    ];
+    return { balloon: out.join(', '), frames: frames, fuel: fuel };
+  }
+}
+</script>
+</body>
+</html>

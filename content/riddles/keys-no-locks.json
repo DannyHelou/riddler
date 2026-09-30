@@ -1,0 +1,28 @@
+{
+  "id": "keys-no-locks",
+  "tier": "warmup",
+  "category": "wordplay",
+  "answer_type": "word",
+  "prompt_md": "What has keys but can't open a single lock?",
+  "prompt_short": "What has keys but can't open a single lock?",
+  "answer_display": "a piano",
+  "accepted_answers": [
+    "piano",
+    "keyboard",
+    "grand piano",
+    "upright piano",
+    "electric piano",
+    "map"
+  ],
+  "trap_answers": [
+    "key ring",
+    "keychain",
+    "locksmith"
+  ],
+  "hint_md": "Think music, not doors.",
+  "explain_intuition_md": "A piano has 88 keys, and none of them open anything.",
+  "explain_math_md": "No math here: the trick is the double meaning of \"keys.\"",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

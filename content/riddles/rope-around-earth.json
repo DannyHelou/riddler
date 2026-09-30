@@ -1,0 +1,20 @@
+{
+  "id": "rope-around-earth",
+  "tier": "boss",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A rope is wrapped tightly around Earth's equator. You add 1 metre to its length and lift it evenly all the way around. How many centimetres high is the gap?",
+  "prompt_short": "Add 1 m to a rope around the equator and lift it evenly. How high is the gap?",
+  "answer_value": 15.92,
+  "trap_value": 0.001,
+  "closeness_cap": 2,
+  "unit_label": "cm",
+  "answer_display": "about 16 cm",
+  "hint_md": "Earth's size cancels out. Try it with a tiny circle.",
+  "explain_intuition_md": "Adding length to any circle raises it by the same amount, whether it's a coin or a planet. One extra metre lifts the rope about 16 cm, enough for a cat to crawl under.",
+  "explain_math_md": "$C = 2\\pi r$, so $\\Delta r = \\frac{\\Delta C}{2\\pi} = \\frac{1}{2\\pi}\\ \\text{m} \\approx 15.92\\ \\text{cm}$.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

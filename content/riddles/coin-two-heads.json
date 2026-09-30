@@ -1,0 +1,20 @@
+{
+  "id": "coin-two-heads",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "On average, how many flips of a fair coin does it take to get two heads in a row?",
+  "prompt_short": "Average flips of a fair coin to get two heads in a row?",
+  "answer_value": 6,
+  "trap_value": 4,
+  "closeness_cap": 0.5,
+  "unit_label": "flips",
+  "answer_display": "6 flips",
+  "hint_md": "What happens to your progress after a tail?",
+  "explain_intuition_md": "A tail sends you back to the start, and a head followed by a tail does too. Averaging over those restarts gives exactly 6 flips.",
+  "explain_math_md": "Let $E$ be the expected flips from scratch and $E_H$ after one head. $E = 1 + \\tfrac12 E_H + \\tfrac12 E$ and $E_H = 1 + \\tfrac12 \\cdot 0 + \\tfrac12 E$, so $E = 6$.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,227 @@
+{
+  "_comment": "Pixel maps. Each string is one row; '.' is transparent; letters map to palette. Render each pixel as a square of `scale` px (box-shadow or canvas, no smoothing). Suggested scales: balloon 6 (96 px) in the climb, 2-8 elsewhere; 8x8 icons at 3-5.",
+  "palette": {
+    "k": "#0B1026",
+    "l": "#C9D3FF",
+    "r": "#FF5A4E",
+    "y": "#FFE45C",
+    "g": "#4FD18B",
+    "w": "#FFFFFF",
+    "p": "#F29CB5",
+    "v": "#9B7BFF",
+    "o": "#F28C28",
+    "b": "#8A5A2B",
+    "B": "#5C3A1A",
+    "R": "#E0453A",
+    "D": "#A32A22",
+    "Y": "#FFD84D",
+    "Q": "#C9A227",
+    "c": "#DDE4FF"
+  },
+  "balloon": {
+    "size": [
+      16,
+      16
+    ],
+    "burnerMouthRow": 13,
+    "flameColumns": [
+      6,
+      9
+    ],
+    "rows": [
+      ".....RRYYRR.....",
+      "...RRRYYYYRRR...",
+      "..RRRRYYYYRRRR..",
+      ".RwRRRYYYYRRRRD.",
+      ".RwRRRYYYYRRRRD.",
+      "RRRRRRYYYYRRRRDD",
+      "RRRRRRYYYYRRRRDD",
+      "RRRRRRYYYYRRRRDD",
+      ".RRRRRYYYYRRRRD.",
+      ".DRRRRYYYYRRRDD.",
+      "..DDRRYYYYRRDD..",
+      "...DDDQQQQDDD...",
+      "....l......l....",
+      "....l......l....",
+      ".....bbbbbb.....",
+      ".....BBBBBB....."
+    ]
+  },
+  "flame": {
+    "_comment": "Generated per frame from intensity; see lib/burner.ts flamePixels()."
+  },
+  "levels": {
+    "goldfish": [
+      "........",
+      "..ooo..o",
+      ".ooooooo",
+      "okooooo.",
+      "ooooooo.",
+      ".ooooooo",
+      "..ooo..o",
+      "........"
+    ],
+    "guesser_dice": [
+      "lllllll.",
+      "lwwwwwl.",
+      "lwkwwwl.",
+      "lwwkwwl.",
+      "lwwwkwl.",
+      "lwwwwwl.",
+      "lllllll.",
+      "........"
+    ],
+    "analyst_bars": [
+      "......ll",
+      "......ll",
+      "...ll.ll",
+      "...ll.ll",
+      "...ll.ll",
+      "ll.ll.ll",
+      "ll.ll.ll",
+      "ll.ll.ll"
+    ],
+    "quant_line": [
+      ".......g",
+      "......g.",
+      ".....g..",
+      "..g.g...",
+      ".g.g....",
+      "g.......",
+      "l.......",
+      "llllllll"
+    ],
+    "genius_brain": [
+      ".pppppp.",
+      "pppkpppp",
+      "pkpppkpp",
+      "ppppkppp",
+      "pkpppkpp",
+      ".pppppp.",
+      "...pp...",
+      "...pp..."
+    ],
+    "oracle_ball": [
+      "..vvvv..",
+      ".vwvvvv.",
+      "vwvvvvvv",
+      "vvvvvvvv",
+      "vvvvvvvv",
+      ".vvvvvv.",
+      "..llll..",
+      ".llllll."
+    ]
+  },
+  "landmarks": {
+    "tower": [
+      "...l....",
+      "...l....",
+      "..lll...",
+      "..l.l...",
+      ".ll.ll..",
+      ".l...l..",
+      "ll...ll.",
+      "l.....l."
+    ],
+    "mountain": [
+      "....w...",
+      "...wlw..",
+      "..llll..",
+      "..llll..",
+      ".llllll.",
+      ".llllll.",
+      "llllllll",
+      "llllllll"
+    ],
+    "plane": [
+      "........",
+      "...l....",
+      "...ll...",
+      "llllllll",
+      "...ll...",
+      "...l....",
+      "........",
+      "........"
+    ],
+    "flag": [
+      "l.......",
+      "lrrr....",
+      "lrrr....",
+      "l.......",
+      "l.......",
+      "l.......",
+      "l.......",
+      "l......."
+    ],
+    "star": [
+      "...y....",
+      "...y....",
+      ".yyyyy..",
+      "..yyy...",
+      "..y.y...",
+      "........",
+      "........",
+      "........"
+    ]
+  },
+  "cloud": [
+    "...cccc.....",
+    ".cccccccc...",
+    "cccccccccccc",
+    ".cccccccccc."
+  ],
+  "verdicts": {
+    "check": [
+      "........",
+      ".......g",
+      "......gg",
+      "g....gg.",
+      "gg..gg..",
+      ".gggg...",
+      "..gg....",
+      "........"
+    ],
+    "trap": [
+      "r......r",
+      "rr....rr",
+      "r.r..r.r",
+      "r..rr..r",
+      "llllllll",
+      "l......l",
+      "llllllll",
+      "........"
+    ],
+    "wrong": [
+      "r......r",
+      ".r....r.",
+      "..r..r..",
+      "...rr...",
+      "...rr...",
+      "..r..r..",
+      ".r....r.",
+      "r......r"
+    ]
+  },
+  "ui": {
+    "flame_streak": [
+      "...r....",
+      "...rr...",
+      "..rrr.r.",
+      ".rryrrr.",
+      ".ryyyrr.",
+      ".ryyyyr.",
+      "..ryyr..",
+      "...rr..."
+    ],
+    "arrow_down": [
+      "..rrrr..",
+      "..rrrr..",
+      "..rrrr..",
+      "rrrrrrrr",
+      ".rrrrrr.",
+      "..rrrr..",
+      "...rr...",
+      "........"
+    ]
+  }
+}

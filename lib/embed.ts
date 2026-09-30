@@ -1,0 +1,66 @@
+/**
+ * Embeddings behind one `embed()` interface (§7.5 step 4). Server only.
+ *
+ * - Voyage AI `voyage-3-lite` (512-d) when VOYAGE_API_KEY is set (production).
+ * - Otherwise a local, deterministic hashed character n-gram embedding (512-d),
+ *   so development and tests work offline. The judge thresholds are tuned for
+ *   Voyage; the local fallback is only a stand-in.
+ */
+
+export const EMBED_DIM = 512;
+export type EmbedFn = (texts: string[]) => Promise<number[][]>;
+
+export function cosine(a: number[], b: number[]): number {
+  let dot = 0;
+  let na = 0;
+  let nb = 0;
+  for (let i = 0; i < a.length; i++) {
+    dot += a[i] * b[i];
+    na += a[i] * a[i];
+    nb += b[i] * b[i];
+  }
+  return na && nb ? dot / Math.sqrt(na * nb) : 0;
+}
+
+function fnv1a(s: string): number {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return h >>> 0;
+}
+
+/** Offline stand-in: hashed character trigrams plus whole words, L2-normalized. */
+export function localEmbed(text: string): number[] {
+  const v = new Array<number>(EMBED_DIM).fill(0);
+  const s = ` ${text.toLowerCase().trim()} `;
+  for (let i = 0; i < s.length - 2; i++) {
+    const h = fnv1a(s.slice(i, i + 3));
+    v[h % EMBED_DIM] += h & 0x80000000 ? -1 : 1;
+  }
+  for (const w of text.toLowerCase().split(/\s+/).filter(Boolean)) {
+    const h = fnv1a(`w:${w}`);
+    v[h % EMBED_DIM] += 2 * (h & 0x80000000 ? -1 : 1);
+  }
+  const n = Math.sqrt(v.reduce((a, x) => a + x * x, 0)) || 1;
+  return v.map((x) => x / n);
+}
+
+export const localEmbedder: EmbedFn = async (texts) => texts.map(localEmbed);
+
+export const voyageEmbedder: EmbedFn = async (texts) => {
+  const res = await fetch('https://api.voyageai.com/v1/embeddings', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', authorization: `Bearer ${process.env.VOYAGE_API_KEY}` },
+    body: JSON.stringify({ model: 'voyage-3-lite', input: texts, input_type: 'document' }),
+    signal: AbortSignal.timeout(3000),
+  });
+  if (!res.ok) throw new Error(`Voyage embeddings failed: ${res.status}`);
+  const json = (await res.json()) as { data: { embedding: number[]; index: number }[] };
+  return json.data.sort((a, b) => a.index - b.index).map((d) => d.embedding);
+};
+
+export function defaultEmbedder(): { embed: EmbedFn; name: string } {
+  return process.env.VOYAGE_API_KEY ? { embed: voyageEmbedder, name: 'voyage-3-lite' } : { embed: localEmbedder, name: 'local-ngram' };
+}

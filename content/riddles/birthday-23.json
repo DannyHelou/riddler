@@ -1,0 +1,20 @@
+{
+  "id": "birthday-23",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "In a room of 23 people, what's the chance that at least two share a birthday? Assume 365 equally likely birthdays and no twins.",
+  "prompt_short": "23 people in a room. Chance at least two share a birthday?",
+  "answer_value": 50.73,
+  "trap_value": 6.3,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "about 51%",
+  "hint_md": "Count pairs of people, not people.",
+  "explain_intuition_md": "23 people form 253 different pairs, and every pair is a fresh chance for a match. That many chances adds up to about a coin flip.",
+  "explain_math_md": "$$P(\\text{match}) = 1 - \\prod_{k=0}^{22} \\frac{365-k}{365} \\approx 0.5073$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (birthday problem)"
+}

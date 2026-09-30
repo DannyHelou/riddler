@@ -1,0 +1,13 @@
+{
+  "_comment": "puzzle_date (America/Toronto) -> riddle ids per slot. Trap slot must be a number riddle; no repeats within 180 days.",
+  "2026-10-01": {
+    "warmup": "keys-no-locks",
+    "trap": "bayes-disease-test",
+    "boss": "coin-two-heads"
+  },
+  "2026-10-02": {
+    "warmup": "widget-machines",
+    "trap": "birthday-23",
+    "boss": "rope-around-earth"
+  }
+}

@@ -1,0 +1,84 @@
+/* Riddler design tokens (design brief §6). A calm night: soft contrast, warm text, one quiet accent. */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+:root {
+  /* Surfaces */
+  --night: #0D1122;        /* page background on website pages */
+  --panel: #151B31;        /* cards, inputs */
+  --divider: #2C3558;      /* dashed lines, idle chart bars */
+
+  /* Text */
+  --moonlight: #ECE6D6;    /* primary text: warm paper, not icy white */
+  --haze: #9097B4;         /* secondary text */
+  --line: #3E4873;         /* notched outlines: quiet, never the brightest thing */
+
+  /* Accents */
+  --starlight: #D9466F;    /* primary buttons (the fire): crimson */
+  --ledge: #7E2240;        /* primary button underside */
+  --flare: #F0B45A;        /* traps, errors, timer's last 10 s: amber */
+  --signal: #FF3448;       /* the correct answer: the same red as a spot-on guess */
+  --you: #4CC6E6;          /* you: your answer box, your marks, the timer: cyan */
+
+  /* Closeness levels (§4.5): grey (way off) through blue, violet, magenta and orange to red (spot on). Mirrors LEVEL_COLOR in lib/burner.ts. */
+  --lvl-goldfish: #6A6F86;
+  --lvl-guesser: #4F86E0;
+  --lvl-analyst: #9A6CF2;
+  --lvl-quant: #E05CC8;
+  --lvl-genius: #FF8040;
+  --lvl-oracle: #FF3448;
+  --pilot: #6FB7FF;        /* idle burner pilot light */
+  --blue-core: #9FE8FF;    /* Oracle flame core */
+  --smoke: #6B7599;
+
+  /* Sky (climb screen). Interpolate low -> high by clamp(12*sqrt(alt)/2600, 0, 1). */
+  --sky-low: #24457A;
+  --sky-high: #060A18;
+  --sea: #1B5873;
+  --sea-wave: #2E7FA0;
+
+  /* Altitude zone bands (homepage sky), top to bottom */
+  --zone-oracle: #070B1C;
+  --zone-genius: #0E1535;
+  --zone-quant: #16204C;
+  --zone-analyst: #1F2D63;
+  --zone-guesser: #2A3C78;
+  --zone-goldfish: #1B5873;
+
+  /* Type */
+  --font-pixel: 'Press Start 2P', ui-monospace, monospace; /* wordmark, levels, numbers, buttons: small and sparing */
+  --font-body: 'VT323', ui-monospace, monospace;           /* prompts, body, labels (never < 18px) */
+
+  /* Pixel grid */
+  --px: 2px;
+  --notch: 4px;
+}
+
+/* Notched frame: four hard shadows, corners left empty. Set --frame to the color. */
+.notched {
+  --frame: var(--line);
+  margin: var(--notch);
+  box-shadow:
+    0 calc(-1 * var(--notch)) 0 0 var(--frame),
+    0 var(--notch) 0 0 var(--frame),
+    calc(-1 * var(--notch)) 0 0 0 var(--frame),
+    var(--notch) 0 0 0 var(--frame);
+}
+
+/* Primary pixel button: notched in its own color with a short ledge underneath. */
+.btn-primary {
+  --frame: var(--starlight);
+  background: var(--starlight);
+  color: var(--night);
+  font-family: var(--font-pixel);
+  border: 0;
+  min-height: 44px;
+  padding: 0 20px;
+  box-shadow:
+    0 -4px 0 0 var(--frame), 0 4px 0 0 var(--frame),
+    -4px 0 0 0 var(--frame), 4px 0 0 0 var(--frame),
+    0 8px 0 0 var(--ledge);
+  cursor: pointer;
+}
+.btn-primary:active { transform: translateY(4px); box-shadow: 0 -4px 0 0 var(--frame), 0 4px 0 0 var(--frame), -4px 0 0 0 var(--frame), 4px 0 0 0 var(--frame); }
+
+:focus-visible { outline: 2px dashed var(--you); outline-offset: 6px; }
