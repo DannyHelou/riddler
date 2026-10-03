@@ -27,6 +27,7 @@ import {
 } from '@/lib/idle';
 import { sfx, unlockAudio } from '@/lib/sfx';
 import { prefetchResults } from '@/lib/resultsCache';
+import { CLIMB_READY } from '@/lib/launch';
 import { RiddleSign } from './RiddleSign';
 import { ResultReveal } from './ResultReveal';
 import { MuteButton } from './MuteButton';
@@ -389,6 +390,16 @@ export function Climb() {
       if (raf.current) cancelAnimationFrame(raf.current);
     };
   }, [frame]);
+
+  // Handoff (§5.2): draw the opening frame now (rAF is paused during a view transition), then tell
+  // the homepage the climb is on screen so its cross-fade lands on the real scene.
+  const announcedReady = useRef(false);
+  useEffect(() => {
+    if (!geo || announcedReady.current) return;
+    announcedReady.current = true;
+    frame(performance.now());
+    window.dispatchEvent(new Event(CLIMB_READY));
+  }, [geo, frame]);
 
   /* ---------- Server calls ---------- */
   const fail = (e: unknown) => {

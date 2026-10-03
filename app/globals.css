@@ -451,20 +451,40 @@ a:hover {
   animation: tier-pop 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Homepage → climb handoff: the sky balloon rises along its path while the page steps to the climb's sea-level sky. */
-@keyframes launch-rise {
-  from { transform: translateY(0); }
-  to { transform: translateY(-240px); }
+/*
+ * Homepage → climb handoff (§5.2): the text fades while the camera pans until the balloon, still on
+ * its pad, sits where the climb opens (--launch-shift, set by StartButton); then the browser
+ * cross-fades into the climb's first frame. The ground revealed below the fair matches its
+ * darkest (dimmed) band.
+ */
+.home-scene {
+  transition: transform 700ms cubic-bezier(0.65, 0, 0.35, 1);
 }
-[data-launch] .sky-balloon {
-  animation: launch-rise 600ms cubic-bezier(0.55, 0, 0.3, 1) forwards;
+[data-launch] .home {
+  background: #1b1110;
 }
-@keyframes curtain-step {
-  from { opacity: 0; }
-  to { opacity: 1; }
+[data-launch] .home-scene {
+  transform: translate3d(0, var(--launch-shift, 0px), 0);
 }
-.launch-curtain {
-  animation: curtain-step 600ms ease-in forwards;
+.home-titles,
+.home-bottom,
+.home-corner-left,
+.home-corner-right,
+.home-ruler {
+  transition: opacity 300ms ease-out;
+}
+[data-launch] .home-titles,
+[data-launch] .home-bottom,
+[data-launch] .home-corner-left,
+[data-launch] .home-corner-right,
+[data-launch] .home-ruler {
+  opacity: 0;
+  pointer-events: none;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 400ms;
+  animation-timing-function: ease-in-out;
 }
 
 /* Keyboard hints on buttons: hidden on touch screens. */
@@ -484,10 +504,16 @@ a:hover {
   .idle-twinkle,
   .idle-pilot,
   .idle-drift,
-  .pop-in,
-  [data-launch] .sky-balloon,
-  .launch-curtain {
+  .pop-in {
     animation: none;
+  }
+  .home-scene,
+  .home-titles,
+  .home-bottom,
+  .home-corner-left,
+  .home-corner-right,
+  .home-ruler {
+    transition: none;
   }
 }
 
