@@ -1,0 +1,20 @@
+{
+  "id": "nines-to-100",
+  "tier": "warmup",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You write out every whole number from 1 to 100. How many times do you write the digit 9?",
+  "prompt_short": "Writing 1 to 100, how many 9s do you write?",
+  "answer_value": 20,
+  "trap_value": 10,
+  "closeness_cap": 0.5,
+  "unit_label": "nines",
+  "answer_display": "20 nines",
+  "hint_md": "Don't forget the nineties.",
+  "explain_intuition_md": "There's a 9 in the ones place in 9, 19, 29 and so on up to 99: that's 10. The nineties add another 10 in the tens place, and 99 counts twice.",
+  "explain_math_md": "$10$ (ones digit) $+ 10$ (tens digit, $90$ to $99$) $= 20$.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

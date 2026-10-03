@@ -1,0 +1,20 @@
+{
+  "id": "clock-strikes-twelve",
+  "tier": "warmup",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "At 6 o'clock a clock strikes 6 times, and 5 seconds pass from the first strike to the last. At 12 o'clock, how many seconds from the first strike to the last?",
+  "prompt_short": "6 strikes take 5 s, first to last. How long for 12 strikes?",
+  "answer_value": 11,
+  "trap_value": 10,
+  "closeness_cap": 0.08,
+  "unit_label": "s",
+  "answer_display": "11 seconds",
+  "hint_md": "The time lives in the gaps between strikes.",
+  "explain_intuition_md": "Six strikes have only 5 gaps between them, so each gap is 1 second. Twelve strikes have 11 gaps. Doubling to 10 counts strikes instead of gaps.",
+  "explain_math_md": "$$\\frac{5}{6-1} \\times (12-1) = 11$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

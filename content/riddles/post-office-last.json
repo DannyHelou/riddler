@@ -1,0 +1,20 @@
+{
+  "id": "post-office-last",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "You enter a bank with two tellers, both busy, no one else waiting. Service times are random and memoryless, same average for all. Chance you're last of the 3 to leave?",
+  "prompt_short": "Two busy tellers, you next, memoryless service. Chance you leave last?",
+  "answer_value": 50,
+  "trap_value": 33.33,
+  "closeness_cap": 30,
+  "unit_label": "%",
+  "answer_display": "50%",
+  "hint_md": "When a teller frees up, how much head start does the other customer have?",
+  "explain_intuition_md": "You can't be first out, since you start after someone leaves. At that moment, memoryless service means the other customer's head start counts for nothing: you're both starting fresh. So it's a coin flip who finishes last. 'One of three' gives the tempting third.",
+  "explain_math_md": "You start when the first teller frees up. Both remaining service times are then exponential with the same rate, so $$P(\\text{you leave last}) = P(S_{\\text{you}} > S_{\\text{other}}) = \\tfrac12$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (memoryless post-office puzzle)"
+}

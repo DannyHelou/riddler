@@ -1,0 +1,20 @@
+{
+  "id": "fourth-from-left",
+  "tier": "warmup",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "In a straight line of people, you are 4th from the left and 6th from the right. How many people are in the line?",
+  "prompt_short": "4th from the left, 6th from the right. How many in the line?",
+  "answer_value": 9,
+  "trap_value": 10,
+  "closeness_cap": 0.08,
+  "unit_label": "people",
+  "answer_display": "9 people",
+  "hint_md": "Did you count yourself twice?",
+  "explain_intuition_md": "There are 3 people to your left and 5 to your right. Add yourself once and you get 9. Adding 4 and 6 counts you twice.",
+  "explain_math_md": "$$4 + 6 - 1 = 9$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

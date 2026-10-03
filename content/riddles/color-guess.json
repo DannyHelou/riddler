@@ -1,0 +1,20 @@
+{
+  "id": "color-guess",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "3 red and 3 black cards are shuffled and turned over one by one. Before each, you guess its color, playing as well as possible. On average, how many do you get right?",
+  "prompt_short": "3 red, 3 black. Guess each color with best play. Average right?",
+  "answer_value": 4.1,
+  "trap_value": 3,
+  "closeness_cap": 0.25,
+  "unit_label": "cards",
+  "answer_display": "4.1 cards",
+  "hint_md": "Always guess the color with more cards left. How often is there a tie?",
+  "explain_intuition_md": "Each card is a coin flip at first, so 3 right out of 6 is tempting. But you can count: guess the color with more cards left, and you're right more than half the time whenever the counts are uneven. The last card, for one, is always a sure thing.",
+  "explain_math_md": "With $E(r,b) = \\frac{\\max(r,b)}{r+b} + \\frac{r}{r+b}E(r-1,b) + \\frac{b}{r+b}E(r,b-1)$ and $E(r,0) = r$: $$E(3,3) = \\tfrac{41}{10} = 4.1$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

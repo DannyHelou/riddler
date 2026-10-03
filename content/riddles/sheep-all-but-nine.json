@@ -1,0 +1,27 @@
+{
+  "id": "sheep-all-but-nine",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "word",
+  "prompt_md": "A farmer has 17 sheep. All but 9 of them run away. How many sheep does the farmer have left?",
+  "prompt_short": "17 sheep, all but 9 run away. How many are left?",
+  "answer_display": "9 sheep",
+  "accepted_answers": [
+    "nine",
+    "9",
+    "9 sheep",
+    "nine sheep"
+  ],
+  "trap_answers": [
+    "eight",
+    "8",
+    "8 sheep",
+    "eight sheep"
+  ],
+  "hint_md": "Read \"all but 9\" slowly.",
+  "explain_intuition_md": "The numbers beg for a subtraction, and 17 minus 9 is 8. But \"all but 9 run away\" means 9 stay behind.",
+  "explain_math_md": "The trap is $17 - 9 = 8$; the answer is simply $9$.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

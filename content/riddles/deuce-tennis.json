@@ -1,0 +1,20 @@
+{
+  "id": "deuce-tennis",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A tennis game is at deuce: whoever first gets two points ahead wins. The server wins each point with chance 60%, independently. What's her chance of winning the game?",
+  "prompt_short": "Tennis from deuce, 60% per point. Server's chance to win?",
+  "answer_value": 69.23,
+  "trap_value": 60,
+  "closeness_cap": 25,
+  "unit_label": "%",
+  "answer_display": "about 69% (9 in 13)",
+  "hint_md": "Look at points in pairs: a split pair sends you back to deuce.",
+  "explain_intuition_md": "A 60% player feels like a 60% winner. But each pair of points either settles the game or resets it to deuce. She takes both points 36% of the time and loses both 16% of the time, so she wins 36 out of every 52 deciding pairs.",
+  "explain_math_md": "$$P = \\frac{0.6^2}{0.6^2+0.4^2} = \\frac{0.36}{0.52} = \\frac{9}{13} \\approx 69.2\\%$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

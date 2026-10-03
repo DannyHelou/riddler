@@ -1,0 +1,24 @@
+{
+  "id": "divide-by-half",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "word",
+  "prompt_md": "Take 30, divide it by one half, then add 10. What do you get?",
+  "prompt_short": "Take 30, divide it by one half, then add 10. What do you get?",
+  "answer_display": "70",
+  "accepted_answers": [
+    "70",
+    "seventy"
+  ],
+  "trap_answers": [
+    "25",
+    "twenty five",
+    "twentyfive"
+  ],
+  "hint_md": "Dividing by one half is not the same as halving.",
+  "explain_intuition_md": "Most people halve 30 to get 15 and land on 25. Dividing by one half asks how many halves fit in 30, which is 60, so the total is 70.",
+  "explain_math_md": "$$30 \\div \\tfrac{1}{2} + 10 = 60 + 10 = 70$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

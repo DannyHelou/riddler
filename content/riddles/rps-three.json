@@ -1,0 +1,20 @@
+{
+  "id": "rps-three",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Three friends play rock-paper-scissors, throwing at random. If exactly two kinds of throw show, the beaten drop out; otherwise replay. Average rounds until one is left?",
+  "prompt_short": "Three-way rock-paper-scissors. Average rounds to one winner?",
+  "answer_value": 2.25,
+  "trap_value": 1.5,
+  "closeness_cap": 0.35,
+  "unit_label": "rounds",
+  "answer_display": "2.25 rounds",
+  "hint_md": "After one round, are 3, 2 or 1 players left, and how likely is each?",
+  "explain_intuition_md": "With two players a round settles things 2 times in 3, so 1.5 rounds is tempting. But with three players a round often knocks out only one person, leaving a two-player game that needs 1.5 more rounds on average. One round leaves three, two or one players with equal chances.",
+  "explain_math_md": "Of 27 throws, 9 change nothing, 9 leave one winner and 9 leave two. With $E_2 = \\tfrac32$: $$E_3 = 1 + \\tfrac13E_3 + \\tfrac13E_2 \\;\\Rightarrow\\; E_3 = \\tfrac94 = 2.25$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

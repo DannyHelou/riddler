@@ -1,0 +1,20 @@
+{
+  "id": "late-friend-uniform",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Your friend will arrive at a uniformly random moment between 6:00 and 7:00. It's 6:40 and they're not here yet. Chance they arrive by 6:50?",
+  "prompt_short": "Arrival uniform 6:00–7:00, not here at 6:40. Chance they come by 6:50?",
+  "answer_value": 50,
+  "trap_value": 16.67,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "50%",
+  "hint_md": "Which arrival times are still possible?",
+  "explain_intuition_md": "Once 6:40 passes, only the last 20 minutes remain, and they are all equally likely. 6:40 to 6:50 is half of what is left. The tempting 1 in 6 (10 of 60 minutes) forgets that the first 40 minutes are ruled out.",
+  "explain_math_md": "$$P(T \\le 50 \\mid T > 40) = \\frac{10/60}{20/60} = \\tfrac12$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (conditional probability)"
+}

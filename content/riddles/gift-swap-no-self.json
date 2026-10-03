@@ -1,0 +1,20 @@
+{
+  "id": "gift-swap-no-self",
+  "tier": "boss",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Five friends each draw one name from a hat holding all five names. In how many ways can the names be shared out so that nobody draws their own?",
+  "prompt_short": "5 friends draw names; ways for nobody to get their own?",
+  "answer_value": 44,
+  "trap_value": 24,
+  "closeness_cap": 0.5,
+  "unit_label": "ways",
+  "answer_display": "44 ways",
+  "hint_md": "Count all 120 ways, then remove the ones where someone gets their own name.",
+  "explain_intuition_md": "Multiplying 4 x 3 x 2 x 1 assumes everyone's choices shrink neatly, but they don't: whether your own name is still in the hat changes how many options you have. Counting properly, 44 of the 120 ways to share out the names leave nobody with their own.",
+  "explain_math_md": "$$5!\\left(1 - 1 + \\tfrac{1}{2} - \\tfrac{1}{6} + \\tfrac{1}{24} - \\tfrac{1}{120}\\right) = 60 - 20 + 5 - 1 = 44$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (derangements)"
+}

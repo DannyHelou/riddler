@@ -1,0 +1,20 @@
+{
+  "id": "snake-eyes-boxcars",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Roll a pair of dice again and again. On average, how many rolls until you've seen both a double one and a double six?",
+  "prompt_short": "Two dice, repeated. Average rolls to see both 1-1 and 6-6?",
+  "answer_value": 54,
+  "trap_value": 72,
+  "closeness_cap": 0.25,
+  "unit_label": "rolls",
+  "answer_display": "54 rolls",
+  "hint_md": "First wait for either one. Then wait for the other.",
+  "explain_intuition_md": "Each double is a 1-in-36 shot, so 36 plus 36 is tempting. But you watch for both at once, so the first of the two shows up after only 18 rolls on average. Then you need 36 more, on average, for the other.",
+  "explain_math_md": "$$E = \\frac{1}{2/36} + \\frac{1}{1/36} = 18 + 36 = 54$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

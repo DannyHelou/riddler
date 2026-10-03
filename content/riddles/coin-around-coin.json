@@ -1,0 +1,20 @@
+{
+  "id": "coin-around-coin",
+  "tier": "trap",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You roll one coin around the rim of an identical coin held flat, without slipping, until it returns to where it started. How many full turns does it make?",
+  "prompt_short": "Roll a coin around an identical fixed coin. Full turns?",
+  "answer_value": 2,
+  "trap_value": 1,
+  "closeness_cap": 0.6,
+  "unit_label": "turns",
+  "answer_display": "2 turns",
+  "hint_md": "Try it with two real coins and watch the head on top.",
+  "explain_intuition_md": "The rims are equally long, which suggests one turn. But the coin also travels in a circle around its partner, and that loop adds a second turn.",
+  "explain_math_md": "Rolling outside a circle of radius $R$, a coin of radius $r$ turns $\\frac{R + r}{r} = \\frac{2r}{r} = 2$ times.",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (coin rotation paradox)"
+}

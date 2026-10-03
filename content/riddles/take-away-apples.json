@@ -1,0 +1,20 @@
+{
+  "id": "take-away-apples",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "There are 6 apples in a bowl. You take away 4. How many apples do you have?",
+  "prompt_short": "6 apples in a bowl, you take away 4. How many do you have?",
+  "answer_value": 4,
+  "trap_value": 2,
+  "closeness_cap": 0.5,
+  "unit_label": "apples",
+  "answer_display": "4 apples",
+  "hint_md": "Who's holding the apples you took?",
+  "explain_intuition_md": "The question asks what you have, not what's left in the bowl. You took 4, so you have 4.",
+  "explain_math_md": "You hold the $4$ you took; the bowl keeps $6 - 4 = 2$.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

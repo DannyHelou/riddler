@@ -1,0 +1,20 @@
+{
+  "id": "sheets-in-a-book",
+  "tier": "warmup",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A book's pages are numbered 1 to 100, printed on both sides of every sheet. How many sheets of paper are in the book?",
+  "prompt_short": "Pages 1 to 100, printed on both sides. How many sheets?",
+  "answer_value": 50,
+  "trap_value": 100,
+  "closeness_cap": 0.5,
+  "unit_label": "sheets",
+  "answer_display": "50 sheets",
+  "hint_md": "Every sheet has a front and a back.",
+  "explain_intuition_md": "Pages 1 and 2 are the two sides of one sheet, pages 3 and 4 the next, and so on. 100 pages fit on 50 sheets.",
+  "explain_math_md": "$$100 \\div 2 = 50$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

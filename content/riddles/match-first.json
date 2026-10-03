@@ -1,0 +1,33 @@
+{
+  "id": "match-first",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "word",
+  "prompt_md": "You walk into a dark cabin holding a match. Inside are a candle, an oil lamp and a fireplace. What do you light first?",
+  "prompt_short": "Dark cabin, one match, a candle, a lamp, a fireplace. Light what first?",
+  "answer_display": "the match",
+  "accepted_answers": [
+    "match",
+    "the match",
+    "matchstick",
+    "match stick",
+    "my match"
+  ],
+  "trap_answers": [
+    "candle",
+    "oil lamp",
+    "lamp",
+    "fireplace",
+    "fire",
+    "the candle",
+    "the lamp",
+    "kerosene lamp",
+    "stove"
+  ],
+  "hint_md": "Before anything else can burn...",
+  "explain_intuition_md": "You weigh candle against lamp against fireplace, but none of them can be lit until the match is.",
+  "explain_math_md": "No math here: the trick is in the wording.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

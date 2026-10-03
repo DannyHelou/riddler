@@ -1,0 +1,35 @@
+{
+  "id": "kilogram-feathers",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "word",
+  "prompt_md": "Which weighs more: a kilogram of feathers or a kilogram of bricks?",
+  "prompt_short": "Which weighs more: a kilogram of feathers or a kilogram of bricks?",
+  "answer_display": "neither: they weigh the same",
+  "accepted_answers": [
+    "neither",
+    "same",
+    "the same",
+    "they weigh the same",
+    "equal",
+    "both the same",
+    "both weigh the same",
+    "neither of them",
+    "they are equal",
+    "same weight",
+    "both"
+  ],
+  "trap_answers": [
+    "bricks",
+    "the bricks",
+    "kilogram of bricks",
+    "a kilogram of bricks",
+    "brick"
+  ],
+  "hint_md": "Read the amounts again.",
+  "explain_intuition_md": "Bricks feel heavier than feathers, so the brain answers before it reads. Both piles are one kilogram, so they weigh exactly the same.",
+  "explain_math_md": "$1\\ \\text{kg} = 1\\ \\text{kg}$.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

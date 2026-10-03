@@ -1,0 +1,20 @@
+{
+  "id": "sunrise-walkers",
+  "tier": "boss",
+  "category": "rates",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "At sunrise Ann leaves A for B and Bo leaves B for A, at steady speeds. They pass at noon. Ann reaches B at 4 pm, Bo reaches A at 9 pm. Hours from sunrise to noon?",
+  "prompt_short": "Walkers pass at noon; one arrives at 4 pm, the other at 9 pm. Sunrise to noon?",
+  "answer_value": 6,
+  "trap_value": 6.5,
+  "closeness_cap": 0.07,
+  "unit_label": "hours",
+  "answer_display": "6 hours (sunrise at 6 am)",
+  "hint_md": "After noon, Ann covers in 4 hours what Bo covered before noon.",
+  "explain_intuition_md": "The answer is the geometric mean of 4 and 9, not their average. Ann does in 4 hours what took Bo the whole morning, and Bo does in 9 hours what took Ann the morning, so the morning is 6 hours.",
+  "explain_math_md": "Morning $t$, speeds $a, b$: $4a = tb$ and $9b = ta$, so $\\frac{a}{b} = \\frac{t}{4} = \\frac{9}{t} \\Rightarrow t^2 = 36$, $t = 6$.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

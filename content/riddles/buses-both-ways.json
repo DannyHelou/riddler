@@ -1,0 +1,20 @@
+{
+  "id": "buses-both-ways",
+  "tier": "boss",
+  "category": "rates",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Walking a bus route, a bus overtakes you every 12 min and one going the other way passes every 4 min. Buses run evenly both ways at one speed. Minutes between buses?",
+  "prompt_short": "Overtaken by a bus every 12 min, meet one every 4 min. Bus interval?",
+  "answer_value": 6,
+  "trap_value": 8,
+  "closeness_cap": 0.25,
+  "unit_label": "minutes",
+  "answer_display": "every 6 minutes",
+  "hint_md": "Add the two rates at which you meet buses.",
+  "explain_intuition_md": "Averaging 12 and 4 is tempting, but your walking speed cancels only when you average the meeting rates, not the gaps. You meet a twelfth and a quarter of a bus each minute, which averages to a sixth.",
+  "explain_math_md": "Gap $g$, bus speed $u$, you $v$: $\\frac{u - v}{g} = \\frac{1}{12}$, $\\frac{u + v}{g} = \\frac{1}{4}$. Adding: $\\frac{u}{g} = \\frac{1}{6}$, so a bus every $6$ min.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

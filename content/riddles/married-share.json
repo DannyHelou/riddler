@@ -1,0 +1,20 @@
+{
+  "id": "married-share",
+  "tier": "boss",
+  "category": "percentages",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "In a village, 80% of the men and 40% of the women are married, each to someone of the other sex in the same village. What percent of the village's adults are married?",
+  "prompt_short": "80% of men and 40% of women are married to each other. Percent married?",
+  "answer_value": 53.33,
+  "trap_value": 60,
+  "closeness_cap": 15,
+  "unit_label": "%",
+  "answer_display": "about 53% (8 in 15)",
+  "hint_md": "Married men and married women come in equal numbers. So who outnumbers whom?",
+  "explain_intuition_md": "Averaging 80% and 40% assumes equal numbers of men and women. But every married man has a married wife, so 40% of the women equals 80% of the men: there are twice as many women.",
+  "explain_math_md": "$0.8M = 0.4F \\Rightarrow F = 2M$. Married: $1.6M$ of $3M$ adults $= \\tfrac{8}{15} \\approx 53.3\\%$.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

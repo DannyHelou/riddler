@@ -1,0 +1,20 @@
+{
+  "id": "north-south-trains",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Northbound trains leave at :00, :10, :20…; southbound ones at :01, :11, :21… You show up at a random moment and take the first train. Chance you go north?",
+  "prompt_short": "North at :00, :10…; south at :01, :11… Random arrival. Chance you go north?",
+  "answer_value": 90,
+  "trap_value": 50,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "90%",
+  "hint_md": "Which train ends the longer gap?",
+  "explain_intuition_md": "Each 10-minute cycle has a 9-minute gap that ends with a northbound train and a 1-minute gap that ends with a southbound one. Arrive at a random moment and you are 9 times as likely to land in the long gap. Both trains run equally often, which is why 50% feels right.",
+  "explain_math_md": "$$P(\\text{north}) = \\frac{9}{9 + 1} = 90\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (the two-girlfriends puzzle)"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "honest-politicians",
+  "tier": "trap",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "There are 100 politicians. At least one is honest, and of any two you pick, at least one is crooked. How many of them are honest?",
+  "prompt_short": "100 politicians, one honest, any pair has a crook. How many honest?",
+  "answer_value": 1,
+  "trap_value": 50,
+  "closeness_cap": 2.5,
+  "unit_label": "honest",
+  "answer_display": "1 honest politician",
+  "hint_md": "What would happen if two of them were honest?",
+  "explain_intuition_md": "If two were honest, you could pick exactly those two, and neither would be crooked. So there can't be two. With at least one, there's exactly one, not half of them.",
+  "explain_math_md": "$$k \\ge 1 \\text{ and } \\binom{k}{2} = 0 \\Rightarrow k = 1$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "cake-days",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "An office of 365 people has cake on every day that is someone's birthday. Birthdays are random over 365 days. On average, how many cake days are there a year?",
+  "prompt_short": "365 staff, cake on every birthday. Average cake days per year?",
+  "answer_value": 230.9,
+  "trap_value": 365,
+  "closeness_cap": 0.4,
+  "unit_label": "days",
+  "answer_display": "about 231 days",
+  "hint_md": "For one day, what's the chance it's nobody's birthday?",
+  "explain_intuition_md": "365 people and 365 days suggests a birthday for every day. But birthdays pile up: plenty of days get two or three people while others get none. Any given day has about a 37% chance of being nobody's birthday, so only about 63% of days get cake.",
+  "explain_math_md": "$$365\\left(1-\\left(\\tfrac{364}{365}\\right)^{365}\\right) \\approx 365\\,\\left(1-\\tfrac1e\\right) \\approx 230.9$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (birthday problem variant)"
+}

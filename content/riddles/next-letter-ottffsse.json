@@ -1,0 +1,30 @@
+{
+  "id": "next-letter-ottffsse",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "word",
+  "prompt_md": "What letter comes next: O, T, T, F, F, S, S, E, ...?",
+  "prompt_short": "What letter comes next: O, T, T, F, F, S, S, E, ...?",
+  "answer_display": "N (one, two, three, ... eight, nine)",
+  "accepted_answers": [
+    "n",
+    "letter n",
+    "the letter n",
+    "nine",
+    "n for nine",
+    "an n"
+  ],
+  "trap_answers": [
+    "e",
+    "letter e",
+    "the letter e",
+    "ee",
+    "an e"
+  ],
+  "hint_md": "Count out loud.",
+  "explain_intuition_md": "The letters seem to come in pairs (TT, FF, SS), so a second E looks natural. They are actually the first letters of one, two, three, ... eight, so next comes the N of nine.",
+  "explain_math_md": "No math here: the trick is in the wording.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

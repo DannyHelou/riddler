@@ -1,0 +1,20 @@
+{
+  "id": "fishing-bite-wait",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Bites come completely at random (no rhythm, no memory), one per 30 minutes on average. You've had none for 20 minutes. Average further wait for a bite, in minutes?",
+  "prompt_short": "Random bites, one per 30 min on average. None for 20 min. Further wait?",
+  "answer_value": 30,
+  "trap_value": 10,
+  "closeness_cap": 1,
+  "unit_label": "min",
+  "answer_display": "30 minutes",
+  "hint_md": "Do the fish know how long you have waited?",
+  "explain_intuition_md": "With truly random bites, the last 20 minutes tell the fish nothing; the clock effectively restarts. So the expected wait is still the full 30 minutes. Subtracting 20 from 30 treats bites like a timer that is due to go off.",
+  "explain_math_md": "Waits in a Poisson process are exponential and memoryless: $$P(T > 20 + s \\mid T > 20) = P(T > s) \\Rightarrow E[T - 20 \\mid T > 20] = E[T] = 30$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (memorylessness)"
+}

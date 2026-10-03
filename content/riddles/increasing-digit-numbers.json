@@ -1,0 +1,20 @@
+{
+  "id": "increasing-digit-numbers",
+  "tier": "boss",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "How many three-digit numbers have digits that strictly increase from left to right, like 147 or 389?",
+  "prompt_short": "Three-digit numbers with strictly increasing digits?",
+  "answer_value": 84,
+  "trap_value": 120,
+  "closeness_cap": 0.3,
+  "unit_label": "numbers",
+  "answer_display": "84 numbers",
+  "hint_md": "Once you pick three different digits, there's only one increasing order.",
+  "explain_intuition_md": "Choosing any 3 of the 10 digits gives 120 sets, each with exactly one increasing order. But any set containing 0 would have to start with 0, which isn't a three-digit number. So only the digits 1 to 9 are allowed.",
+  "explain_math_md": "$$\\binom{9}{3} = 84$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

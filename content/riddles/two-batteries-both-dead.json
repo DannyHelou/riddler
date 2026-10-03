@@ -1,0 +1,20 @@
+{
+  "id": "two-batteries-both-dead",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Two sensors run on separate batteries. Each battery dies at a random, memoryless moment and lasts 1,000 hours on average. Average time until both are dead, in hours?",
+  "prompt_short": "Two memoryless batteries, 1,000 h average each. Time until both die?",
+  "answer_value": 1500,
+  "trap_value": 1000,
+  "closeness_cap": 0.4,
+  "unit_label": "h",
+  "answer_display": "1,500 hours",
+  "hint_md": "First wait for one to die. Then what?",
+  "explain_intuition_md": "With two batteries running, the first death comes twice as fast: 500 hours on average. The survivor has no memory of its age, so it then lasts another 1,000 hours on average. 1,000 is the life of one battery, not of the last one standing.",
+  "explain_math_md": "$$E[\\max(T_1, T_2)] = E[\\min(T_1, T_2)] + E[T] = \\tfrac{1000}{2} + 1000 = 1500$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (memorylessness)"
+}

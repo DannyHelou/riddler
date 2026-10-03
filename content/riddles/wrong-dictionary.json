@@ -1,0 +1,30 @@
+{
+  "id": "wrong-dictionary",
+  "tier": "warmup",
+  "category": "wordplay",
+  "answer_type": "word",
+  "prompt_md": "Which word is spelled wrong in every dictionary?",
+  "prompt_short": "Which word is spelled wrong in every dictionary?",
+  "answer_display": "\"wrong\"",
+  "accepted_answers": [
+    "wrong",
+    "the word wrong",
+    "wrong itself",
+    "word wrong"
+  ],
+  "trap_answers": [
+    "incorrectly",
+    "misspelled",
+    "misspell",
+    "mispelled",
+    "dictionary",
+    "misspelling",
+    "incorrect"
+  ],
+  "hint_md": "Take the question literally.",
+  "explain_intuition_md": "You start hunting for a famously misspelled word, but the riddle already said it: the word \"wrong\" is spelled w-r-o-n-g in every dictionary.",
+  "explain_math_md": "No math here: the trick is in the wording.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

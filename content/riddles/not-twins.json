@@ -1,0 +1,40 @@
+{
+  "id": "not-twins",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "word",
+  "prompt_md": "Two girls were born to the same mother on the same day of the same year, but they aren't twins. How is that possible?",
+  "prompt_short": "Same mother, same birthday, not twins. How?",
+  "answer_display": "they are two of a set of triplets",
+  "accepted_answers": [
+    "triplets",
+    "they are triplets",
+    "theyre triplets",
+    "two of triplets",
+    "part of triplets",
+    "triplets or more",
+    "quadruplets",
+    "quintuplets",
+    "two of a set of triplets",
+    "set of triplets"
+  ],
+  "trap_answers": [
+    "adopted",
+    "one is adopted",
+    "one was adopted",
+    "surrogate",
+    "surrogacy",
+    "half sisters",
+    "step sisters",
+    "stepsisters",
+    "different time zones",
+    "born at different times",
+    "ivf"
+  ],
+  "hint_md": "Twins come in pairs. What comes in threes?",
+  "explain_intuition_md": "The riddle pushes you toward adoption or surrogacy, but the plain answer is a bigger multiple birth: two girls out of a set of triplets are not twins.",
+  "explain_math_md": "No math here: the trick is in the wording.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

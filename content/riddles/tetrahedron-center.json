@@ -1,0 +1,20 @@
+{
+  "id": "tetrahedron-center",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Four points are chosen uniformly at random on the surface of a sphere. What's the chance the tetrahedron they form contains the sphere's center?",
+  "prompt_short": "Four random points on a sphere. Chance their tetrahedron holds the center?",
+  "answer_value": 12.5,
+  "trap_value": 25,
+  "closeness_cap": 30,
+  "unit_label": "%",
+  "answer_display": "12.5% (1 in 8)",
+  "hint_md": "Pair each of the first three points with its opposite point.",
+  "explain_intuition_md": "Lines through the center for the first three points split the sphere into 8 triangles, one for each way of swapping points for their opposites. All 8 swaps are equally likely, and exactly one of them puts the center inside. So the chance is 1 in 8; the tempting 1 in 4 is the answer for three points on a circle.",
+  "explain_math_md": "Wendel's theorem for $n$ random points on a sphere in $d$ dimensions: $$P(\\text{center inside}) = 1 - \\frac{1}{2^{n-1}} \\sum_{k=0}^{d-1} \\binom{n-1}{k}$$ With $d = 3$, $n = 4$: $1 - \\tfrac{1 + 3 + 3}{8} = \\tfrac18$.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (Putnam 1992)"
+}

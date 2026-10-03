@@ -1,0 +1,20 @@
+{
+  "id": "pentagon-cover",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A bug on a corner of a pentagon crawls each minute to one of the two neighboring corners, at random. On average, how many minutes until it has visited all 5 corners?",
+  "prompt_short": "Random walk on a pentagon. Average minutes to visit all corners?",
+  "answer_value": 10,
+  "trap_value": 4,
+  "closeness_cap": 0.8,
+  "unit_label": "minutes",
+  "answer_display": "10 minutes",
+  "hint_md": "Once it has seen a stretch of k corners, how long until it steps off the stretch?",
+  "explain_intuition_md": "Four moves would do it if the bug walked straight around, but it keeps doubling back. When it has seen a stretch of k corners and stands at one end, escaping the stretch takes k minutes on average. So it's 1, then 2, then 3, then 4 minutes for the four new corners.",
+  "explain_math_md": "Escaping a stretch of $k$ seen corners from its end is gambler's ruin from 1 on $\\{0,\\dots,k+1\\}$, which takes $1\\cdot k$ steps: $$E = 1+2+3+4 = 10$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (random walk cover time)"
+}

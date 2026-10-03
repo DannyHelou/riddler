@@ -1,0 +1,20 @@
+{
+  "id": "knight-corner-step",
+  "tier": "boss",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A knight stands on a corner square of a chessboard. What's the fewest knight moves it needs to reach the square diagonally next to it?",
+  "prompt_short": "Knight in a corner. Fewest moves to the diagonally adjacent square?",
+  "answer_value": 4,
+  "trap_value": 2,
+  "closeness_cap": 0.6,
+  "unit_label": "moves",
+  "answer_display": "4 moves",
+  "hint_md": "From a corner, a knight has only two moves, and both lead away.",
+  "explain_intuition_md": "In the middle of the board, 2 moves can take a knight one square diagonally. From a corner, both of those 2-move routes step off the edge. A knight always needs an even number of moves to reach a square of its own color, so the next best is 4.",
+  "explain_math_md": "Searching every route from $a1$: $b2$ is first reached after $4$ moves (for example $a1 \\to c2 \\to e3 \\to c4 \\to b2$).",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

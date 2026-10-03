@@ -1,0 +1,42 @@
+{
+  "id": "nine-plus-five",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "word",
+  "prompt_md": "Which is correct: \"nine plus five is thirteen\" or \"nine plus five are thirteen\"?",
+  "prompt_short": "\"Nine plus five is thirteen\" or \"are thirteen\"?",
+  "answer_display": "neither: nine plus five is fourteen",
+  "accepted_answers": [
+    "neither",
+    "none",
+    "neither one",
+    "neither of them",
+    "14",
+    "fourteen",
+    "neither its 14",
+    "neither its fourteen",
+    "its fourteen",
+    "its 14",
+    "neither 14"
+  ],
+  "trap_answers": [
+    "is",
+    "are",
+    "is thirteen",
+    "are thirteen",
+    "first",
+    "second",
+    "first one",
+    "second one",
+    "the first one",
+    "the second one",
+    "nine plus five is thirteen",
+    "nine plus five are thirteen"
+  ],
+  "hint_md": "Check the sum before the grammar.",
+  "explain_intuition_md": "The question sets you up to argue grammar, so you never check the arithmetic. Nine plus five is fourteen, so both sentences are wrong.",
+  "explain_math_md": "$$9 + 5 = 14 \\neq 13$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

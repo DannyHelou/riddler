@@ -1,0 +1,20 @@
+{
+  "id": "knockout-meet",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "16 equally matched players are put in a knockout bracket at random, and every match is a coin flip. What's the chance that Ann and Ben play each other at some point?",
+  "prompt_short": "16-player random knockout, coin-flip matches. Do Ann and Ben meet?",
+  "answer_value": 12.5,
+  "trap_value": 6.67,
+  "closeness_cap": 10,
+  "unit_label": "%",
+  "answer_display": "12.5% (1 in 8)",
+  "hint_md": "Count all the matches played, and all the possible pairs of players.",
+  "explain_intuition_md": "It's tempting to look only at round one, where Ann draws Ben with chance 1 in 15. But they can also meet in later rounds. The neat shortcut: the tournament has 15 matches in all, and by symmetry each of the 120 possible pairs is equally likely to be one of them.",
+  "explain_math_md": "$$P = \\frac{15}{\\binom{16}{2}} = \\frac{15}{120} = 12.5\\%$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

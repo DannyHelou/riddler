@@ -1,0 +1,28 @@
+{
+  "id": "library-stories",
+  "tier": "warmup",
+  "category": "wordplay",
+  "answer_type": "word",
+  "prompt_md": "What building has the most stories?",
+  "prompt_short": "What building has the most stories?",
+  "answer_display": "a library",
+  "accepted_answers": [
+    "library",
+    "public library",
+    "bookstore",
+    "bookshop"
+  ],
+  "trap_answers": [
+    "skyscraper",
+    "burj khalifa",
+    "tower",
+    "empire state building",
+    "high rise"
+  ],
+  "hint_md": "Think books, not floors.",
+  "explain_intuition_md": "Stories as in tales, not floors: a library holds thousands of them.",
+  "explain_math_md": "No math here: the trick is in the wording.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic, via crawsome/riddles (Unlicense)"
+}

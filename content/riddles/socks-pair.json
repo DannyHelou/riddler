@@ -1,0 +1,20 @@
+{
+  "id": "socks-pair",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A drawer holds 10 black socks and 10 red socks, all loose. In the dark, how many socks must you take out to be sure you have a matching pair?",
+  "prompt_short": "10 black and 10 red socks, in the dark. Socks needed for a sure pair?",
+  "answer_value": 3,
+  "trap_value": 11,
+  "closeness_cap": 1,
+  "unit_label": "socks",
+  "answer_display": "3 socks",
+  "hint_md": "There are only two colours.",
+  "explain_intuition_md": "Two socks can be different colours, but a third has to match one of them. You'd need 11 only to be sure of getting one sock of each colour.",
+  "explain_math_md": "Pigeonhole: $3$ socks in $2$ colours put at least $\\lceil 3/2 \\rceil = 2$ socks in one colour.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic, via BrainStellar (MIT)"
+}

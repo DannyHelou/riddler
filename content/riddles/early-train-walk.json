@@ -1,0 +1,20 @@
+{
+  "id": "early-train-walk",
+  "tier": "boss",
+  "category": "rates",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A driver meets your 5 pm train daily. Today you arrive at 4 and walk home. The driver leaves as usual and picks you up en route; you're home 20 min early. Minutes walked?",
+  "prompt_short": "Arrive an hour early, walk, get picked up, home 20 min early. Minutes walked?",
+  "answer_value": 50,
+  "trap_value": 40,
+  "closeness_cap": 0.19,
+  "unit_label": "minutes",
+  "answer_display": "50 minutes",
+  "hint_md": "The 20 minutes saved is the driver's, split over two legs.",
+  "explain_intuition_md": "The driver saved 20 minutes by skipping the stretch between the pickup point and the station, 10 minutes each way. So the driver met you 10 minutes before 5, at 4:50.",
+  "explain_math_md": "Saved $20$ min $= 2 \\times$ (driving time from meeting point to station), so the pickup was at $5{:}00 - 10 = 4{:}50$: $50$ minutes of walking.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "north-then-east",
+  "tier": "warmup",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You walk 3 km due north, then 4 km due east, on flat ground. How far are you now from where you started, in a straight line, in km?",
+  "prompt_short": "3 km north, then 4 km east. Straight-line distance from the start?",
+  "answer_value": 5,
+  "trap_value": 7,
+  "closeness_cap": 0.3,
+  "unit_label": "km",
+  "answer_display": "5 km",
+  "hint_md": "Your path and the straight line back form a right triangle.",
+  "explain_intuition_md": "You walked 7 km, but not in a straight line. The two legs meet at a right angle, so the shortcut back is the long side of a 3-4-5 triangle.",
+  "explain_math_md": "$$\\sqrt{3^2 + 4^2} = \\sqrt{25} = 5 \\text{ km}$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

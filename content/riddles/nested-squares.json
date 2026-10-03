@@ -1,0 +1,20 @@
+{
+  "id": "nested-squares",
+  "tier": "trap",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A circle fits snugly inside a square, and a smaller square fits snugly inside that circle, corners touching it. What percent of the big square's area is the small one?",
+  "prompt_short": "Square in a circle in a square. Small square as a percent of the big one?",
+  "answer_value": 50,
+  "trap_value": 25,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "50%",
+  "hint_md": "Turn the small square 45°.",
+  "explain_intuition_md": "The small square's diagonal is the circle's width, which is the big square's side. Rotate it 45° and its corners touch the midpoints of the big square's sides, cutting it exactly in half.",
+  "explain_math_md": "Big side $s$; small diagonal $s$, so small side $\\frac{s}{\\sqrt 2}$ and area $\\frac{s^2}{2}$: $50\\%$.",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

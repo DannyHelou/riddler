@@ -1,0 +1,20 @@
+{
+  "id": "cheese-cube-cuts",
+  "tier": "boss",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A 3 by 3 by 3 block of cheese must be cut into 27 small cubes. You may rearrange and stack the pieces between straight cuts. What's the fewest cuts needed?",
+  "prompt_short": "Cut a 3x3x3 cheese block into 27 cubes, restacking allowed. Fewest cuts?",
+  "answer_value": 6,
+  "trap_value": 4,
+  "closeness_cap": 0.35,
+  "unit_label": "cuts",
+  "answer_display": "6 cuts",
+  "hint_md": "Think about the little cube in the very middle.",
+  "explain_intuition_md": "Being allowed to stack pieces makes it feel like you can beat 6 cuts. But the center cube has 6 faces, none of them on the outside of the block, and a straight cut can create at most one face of it. So 6 is the minimum, and 6 cuts work even without stacking.",
+  "explain_math_md": "Center cube: $6$ hidden faces, at most $1$ made per cut, so $\\ge 6$ cuts; $2$ cuts in each direction give exactly $6$.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

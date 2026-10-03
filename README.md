@@ -17,7 +17,8 @@ With no Supabase variables set, the app uses a local JSON store at `.data/burner
 | `npm run dev` | Local app |
 | `npm test` | Vitest: scoring, burner, parser, word judge, content validation, game service |
 | `npm run seed` | Validate `content/` (§8.3) and load riddles, schedule, embeddings into the configured store (`-- --check` validates only) |
-| `npm run verify` | Monte Carlo check of every probability riddle |
+| `npm run verify` | Monte Carlo check of every probability riddle (`-- --only id1,id2` for a subset) |
+| `npm run schedule` | Rebuild `content/schedule.json` from the riddle pool: each tier rotates, a riddle returns after 90+ days, published days are kept |
 | `npm run tune-judge` | Word-judge accuracy report per stage (needs `ANTHROPIC_API_KEY` for close calls) |
 | `npm run e2e` | Playwright happy path on desktop (1280×800) and phone (390×844) |
 | `npx tsx scripts/simulate-crowd.ts 40` | Dev only: 40 simulated players so Results shows RQ and crowd stats |
@@ -102,4 +103,4 @@ These are listed in brief §12. Decide them up front if you can, so the agent do
 - **Daily reset time zone.** Default America/Toronto.
 - **Launch date.** Sets puzzle #1.
 - **Providers.** Supabase, Vercel, Voyage AI (embeddings), Claude Haiku 4.5 (word judge), PostHog or Plausible.
-- **Content.** 24 more riddles (at least 5 word riddles) and a 10-day schedule.
+- **Content.** Done for year one: 272 riddles and a 365-day schedule (owner review pending).

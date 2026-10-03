@@ -1,0 +1,20 @@
+{
+  "id": "spinner-which-one",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Spinner A gives a uniformly random number from 0 to 1; spinner B, from 0 to 3. A friend picks one at random, spins it twice and gets 0.7 and 0.4. Chance it was A?",
+  "prompt_short": "Spinner on 0–1 or 0–3, picked at random. Spins 0.7 and 0.4. Chance of A?",
+  "answer_value": 90,
+  "trap_value": 50,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "90%",
+  "hint_md": "How likely is each spinner to land that close to 0.7 and 0.4?",
+  "explain_intuition_md": "Both spinners can produce 0.7 and 0.4, so it feels like a toss-up. But B spreads its results over three times the range, so each of its spins is only a third as likely to land near those values. Two such spins make A nine times as likely, so 9 in 10.",
+  "explain_math_md": "On $[0,1]$, A has density $1$ and B has density $\\tfrac13$: $$P(A \\mid \\text{spins}) = \\frac{1 \\cdot 1}{1 \\cdot 1 + \\tfrac13 \\cdot \\tfrac13} = \\frac{9}{10}$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (Bayes' rule with densities)"
+}

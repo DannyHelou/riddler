@@ -1,0 +1,20 @@
+{
+  "id": "four-different-digits",
+  "tier": "trap",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "How many four-digit whole numbers have four different digits?",
+  "prompt_short": "Four-digit numbers with all digits different?",
+  "answer_value": 4536,
+  "trap_value": 5040,
+  "closeness_cap": 0.1,
+  "unit_label": "numbers",
+  "answer_display": "4,536 numbers",
+  "hint_md": "A four-digit number can't start with 0.",
+  "explain_intuition_md": "10 x 9 x 8 x 7 = 5,040 includes strings like 0123, which aren't four-digit numbers. The first digit has only 9 choices, and then 0 is back in play for the remaining places.",
+  "explain_math_md": "$$9 \\times 9 \\times 8 \\times 7 = 4536$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

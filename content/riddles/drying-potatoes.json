@@ -1,0 +1,20 @@
+{
+  "id": "drying-potatoes",
+  "tier": "trap",
+  "category": "percentages",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A 100 kg sack of potatoes is 99% water. Left out to dry, the potatoes lose water until they're 98% water. How many kilograms do they weigh now?",
+  "prompt_short": "100 kg of potatoes, 99% water, dry to 98% water. New weight?",
+  "answer_value": 50,
+  "trap_value": 99,
+  "closeness_cap": 0.59,
+  "unit_label": "kg",
+  "answer_display": "50 kg",
+  "hint_md": "The dry part doesn't change. How much is there?",
+  "explain_intuition_md": "Only 1 kg of the sack is not water, and drying doesn't touch it. At 98% water, that same 1 kg has to be 2% of the total, so the sack must weigh 50 kg.",
+  "explain_math_md": "Dry matter $= 1$ kg $= 2\\%$ of the new weight $w$, so $w = \\frac{1}{0.02} = 50$ kg.",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (potato paradox)"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "regression-retake",
+  "tier": "boss",
+  "category": "statistics",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A test score is talent plus luck: independent, same bell-shaped spread, both averaging 0. A student scores 20 above average. Expected points above average on a retake?",
+  "prompt_short": "Score = talent + luck, equal spreads. 20 above average. Expected retake?",
+  "answer_value": 10,
+  "trap_value": 20,
+  "closeness_cap": 0.6,
+  "unit_label": "points",
+  "answer_display": "10 points",
+  "hint_md": "How much of the 20 was talent, and how much was luck?",
+  "explain_intuition_md": "Talent and luck vary equally, so a 20-point surplus is, on average, half of each. On the retake the talent stays but the luck is redrawn and averages zero. So expect about 10 points above average: regression to the mean.",
+  "explain_math_md": "With $T$ and $L$ independent and identically distributed, and $S = T + L$, symmetry gives $E[T \\mid S] = E[L \\mid S] = \\tfrac{S}{2}$. With fresh luck $L'$: $$E[T + L' \\mid S = 20] = 10 + 0 = 10$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (regression to the mean)"
+}

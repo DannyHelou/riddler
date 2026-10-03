@@ -1,0 +1,20 @@
+{
+  "id": "pirate-gold",
+  "tier": "boss",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "5 ranked pirates split 100 coins. The senior proposes; with at least half voting yes (proposer included) it passes, else the plank and the next proposes. All are logical, greedy, and vote no when indifferent. Senior's share?",
+  "prompt_short": "5 ranked pirates, 100 coins, majority vote or overboard. Senior pirate's share?",
+  "answer_value": 98,
+  "trap_value": 20,
+  "closeness_cap": 1,
+  "unit_label": "coins",
+  "answer_display": "98 coins",
+  "hint_md": "Work backwards from two pirates.",
+  "explain_intuition_md": "With two pirates, the senior keeps everything: their own vote is half. With three, the senior buys the most junior with 1 coin. Working up the same way, the senior of five needs two votes besides their own and buys them for 1 coin each from the two pirates who would get nothing otherwise. That leaves 98.",
+  "explain_math_md": "Splits, senior first, for $2, 3, 4, 5$ pirates: $(100, 0)$, $(99, 0, 1)$, $(99, 0, 1, 0)$, $(98, 0, 1, 0, 1)$.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic, via BrainStellar (MIT)"
+}

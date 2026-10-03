@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit",
     "seed": "tsx scripts/seed.ts",
     "verify": "tsx scripts/verify.ts",
+    "schedule": "tsx scripts/build-schedule.ts",
     "tune-judge": "tsx scripts/tune-judge.ts",
     "e2e": "playwright test"
   },

@@ -1,0 +1,20 @@
+{
+  "id": "divisible-by-3-5-or-7",
+  "tier": "boss",
+  "category": "number theory",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "How many whole numbers from 1 to 1,000 are divisible by 3, by 5 or by 7 (by at least one of them)?",
+  "prompt_short": "Numbers 1 to 1,000 divisible by 3, 5 or 7?",
+  "answer_value": 543,
+  "trap_value": 675,
+  "closeness_cap": 0.2,
+  "unit_label": "numbers",
+  "answer_display": "543 numbers",
+  "hint_md": "Numbers divisible by two of them got counted twice.",
+  "explain_intuition_md": "Adding 333 + 200 + 142 = 675 counts every multiple of 15, 21 or 35 twice. Subtracting those takes away too much from the multiples of 105, which have to be added back.",
+  "explain_math_md": "$$333 + 200 + 142 - 66 - 47 - 28 + 9 = 543$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (inclusion-exclusion)"
+}

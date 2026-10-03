@@ -1,0 +1,20 @@
+{
+  "id": "witches-coffee",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Two friends each arrive at a café at a random moment between 9:00 and 10:00, independently, and stay exactly 30 minutes. What's the chance they're there at the same time?",
+  "prompt_short": "Two friends arrive at random within an hour and stay 30 min. Chance they meet?",
+  "answer_value": 75,
+  "trap_value": 50,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "75%",
+  "hint_md": "When do they miss each other?",
+  "explain_intuition_md": "Picture the two arrival times as a point in a square. They only miss each other when the arrivals are more than half an hour apart, which is two corner triangles covering a quarter of the square. The other three quarters are meetings.",
+  "explain_math_md": "$$P\\left(|X - Y| < \\tfrac12\\right) = 1 - \\left(\\tfrac12\\right)^2 = \\tfrac34$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic, via BrainStellar (MIT)"
+}

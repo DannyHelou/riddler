@@ -1,0 +1,20 @@
+{
+  "id": "noon-arrangements",
+  "tier": "warmup",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "How many different ways can you arrange the four letters of the word NOON, counting NOON itself?",
+  "prompt_short": "Arrangements of the letters of NOON?",
+  "answer_value": 6,
+  "trap_value": 24,
+  "closeness_cap": 1,
+  "unit_label": "ways",
+  "answer_display": "6 ways",
+  "hint_md": "Swapping the two Os changes nothing.",
+  "explain_intuition_md": "24 would be right if all four letters were different. But swapping the two Ns, or the two Os, gives the same word, so you divide by 2 twice.",
+  "explain_math_md": "$$\\frac{4!}{2!\\,2!} = \\frac{24}{4} = 6$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

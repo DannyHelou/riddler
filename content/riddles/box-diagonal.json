@@ -1,0 +1,20 @@
+{
+  "id": "box-diagonal",
+  "tier": "trap",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "What is the longest straight, thin rod that fits inside a closed box measuring 30 cm by 40 cm by 120 cm, in cm?",
+  "prompt_short": "Longest rod that fits in a 30 × 40 × 120 cm box?",
+  "answer_value": 130,
+  "trap_value": 120,
+  "closeness_cap": 0.07,
+  "unit_label": "cm",
+  "answer_display": "130 cm",
+  "hint_md": "Go from one corner to the far opposite corner.",
+  "explain_intuition_md": "The box's longest side is 120 cm, but a rod can run corner to corner through the middle. The 30 and 40 make a 50 cm diagonal across the end, and that stretches the rod past 120.",
+  "explain_math_md": "$$\\sqrt{30^2 + 40^2 + 120^2} = \\sqrt{16900} = 130 \\text{ cm}$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "thirteen-hearts",
+  "tier": "warmup",
+  "category": "wordplay",
+  "answer_type": "word",
+  "prompt_md": "What has 13 hearts, yet not a single one of them beats?",
+  "prompt_short": "What has 13 hearts, yet not a single one of them beats?",
+  "answer_display": "a deck of cards",
+  "accepted_answers": [
+    "deck of cards",
+    "deck",
+    "cards",
+    "playing cards",
+    "pack of cards",
+    "card deck",
+    "deck of playing cards",
+    "pack of playing cards"
+  ],
+  "trap_answers": [
+    "artichoke",
+    "lettuce",
+    "cabbage",
+    "valentine",
+    "valentine card",
+    "box of chocolates"
+  ],
+  "hint_md": "Count the suits.",
+  "explain_intuition_md": "Hearts that grow make you think of artichokes and lettuce, but the count gives it away: a deck of cards has exactly 13 hearts, and none of them has a pulse.",
+  "explain_math_md": "A deck has 4 suits of 13 cards, so $52 / 4 = 13$ hearts.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic, via crawsome/riddles (Unlicense)"
+}

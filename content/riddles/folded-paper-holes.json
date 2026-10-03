@@ -1,0 +1,20 @@
+{
+  "id": "folded-paper-holes",
+  "tier": "warmup",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You fold a sheet of paper in half three times, then punch one hole through all the layers, away from any fold. How many holes do you see when you unfold it?",
+  "prompt_short": "Fold paper in half 3 times, punch one hole. Holes when unfolded?",
+  "answer_value": 8,
+  "trap_value": 6,
+  "closeness_cap": 0.25,
+  "unit_label": "holes",
+  "answer_display": "8 holes",
+  "hint_md": "How many layers does each fold make?",
+  "explain_intuition_md": "Each fold doubles the layers: 2, then 4, then 8. One punch goes through all 8 layers. Three folds multiply, they don't add.",
+  "explain_math_md": "$$2^3 = 8$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

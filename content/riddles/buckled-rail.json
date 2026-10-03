@@ -1,0 +1,20 @@
+{
+  "id": "buckled-rail",
+  "tier": "boss",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A 100 m rail is pinned at both ends. On a hot day it grows 2 cm and buckles up into a sharp peak at its middle, as two straight halves. How high is the peak, in cm?",
+  "prompt_short": "100 m rail grows 2 cm and buckles into a peak. Height of the peak?",
+  "answer_value": 100,
+  "trap_value": 1,
+  "closeness_cap": 3,
+  "unit_label": "cm",
+  "answer_display": "about 1 m",
+  "hint_md": "Each half is a 50.01 m hypotenuse over a 50 m base.",
+  "explain_intuition_md": "Two centimetres of extra length feels like it should lift the rail by a centimetre or so. But a slightly longer hypotenuse over a long base stands surprisingly tall: the height grows with the square root of the stretch.",
+  "explain_math_md": "$$h = \\sqrt{50.01^2 - 50^2} = \\sqrt{1.0001} \\approx 1.00 \\text{ m} = 100 \\text{ cm}$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

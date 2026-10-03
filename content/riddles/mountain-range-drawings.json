@@ -1,0 +1,20 @@
+{
+  "id": "mountain-range-drawings",
+  "tier": "boss",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Draw a mountain range with 5 up-strokes and 5 down-strokes that never dips below its starting level and ends back on it. How many different ranges are possible?",
+  "prompt_short": "Mountain ranges from 5 ups and 5 downs, never below the start?",
+  "answer_value": 42,
+  "trap_value": 252,
+  "closeness_cap": 1.4,
+  "unit_label": "ranges",
+  "answer_display": "42 ranges",
+  "hint_md": "Count the drawings that do dip below, and subtract them.",
+  "explain_intuition_md": "252 counts every order of 5 ups and 5 downs, including the ones that tunnel underground. Each tunneling drawing can be reflected into a drawing with 6 downs and 4 ups, and there are 210 of those. That leaves 42.",
+  "explain_math_md": "$$\\binom{10}{5} - \\binom{10}{4} = 252 - 210 = 42$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (Catalan numbers)"
+}

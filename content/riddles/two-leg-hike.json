@@ -1,0 +1,20 @@
+{
+  "id": "two-leg-hike",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "You walk 1 km in a random direction, then 1 km in a new, independent random direction. What is the chance you end up more than 1 km from where you started?",
+  "prompt_short": "Two 1 km legs in random directions. Chance you end over 1 km from start?",
+  "answer_value": 66.67,
+  "trap_value": 50,
+  "closeness_cap": 40,
+  "unit_label": "%",
+  "answer_display": "about 67% (2 in 3)",
+  "hint_md": "Only the turn between the two legs matters.",
+  "explain_intuition_md": "Only the turn between the legs matters, and it's equally likely to be anything from straight ahead to a U-turn. You end up within 1 km only after a sharp turn of more than 120 degrees, a third of the range. A 90-degree turn already leaves you 1.41 km away, so 'more than 1 km' is the usual case.",
+  "explain_math_md": "With angle $\\phi$ between the legs uniform on $[0^\\circ, 180^\\circ]$, the distance is $2\\cos(\\phi/2)$: $$2\\cos(\\phi/2) > 1 \\iff \\phi < 120^\\circ, \\quad P = \\frac{120}{180} = \\tfrac23$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (random walk)"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "rounding-sum",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Two lengths are each uniformly random between 0 and 10 m. Rounding each to the nearest meter then adding, or adding then rounding: chance both give the same number?",
+  "prompt_short": "Round then add, or add then round. Chance they agree?",
+  "answer_value": 75,
+  "trap_value": 100,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "75%",
+  "hint_md": "Look at the two rounding errors.",
+  "explain_intuition_md": "Each rounding error is anywhere from minus half a meter to plus half a meter. The two methods agree only when the errors do not add up to more than half a meter in either direction, and they do so a quarter of the time. Rounding feels harmless, so 100% is tempting.",
+  "explain_math_md": "With errors $e_1, e_2$ uniform on $[-\\tfrac12, \\tfrac12]$, the results agree iff $|e_1 + e_2| < \\tfrac12$: $$P = 1 - 2 \\cdot \\tfrac12 \\left(\\tfrac12\\right)^2 = \\tfrac34$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

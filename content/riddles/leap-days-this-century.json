@@ -1,0 +1,20 @@
+{
+  "id": "leap-days-this-century",
+  "tier": "warmup",
+  "category": "calendar",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Using the usual leap-year rules, how many February 29ths are there from the start of 2001 to the end of 2099?",
+  "prompt_short": "February 29ths from 2001 through 2099?",
+  "answer_value": 24,
+  "trap_value": 25,
+  "closeness_cap": 0.04,
+  "unit_label": "days",
+  "answer_display": "24",
+  "hint_md": "The first leap year in that span is 2004.",
+  "explain_intuition_md": "Dividing 99 years by 4 and rounding up gives 25. But the leap years run 2004, 2008, and so on up to 2096, which is only 24 of them. 2000 and 2100 both fall outside the range.",
+  "explain_math_md": "$$\\frac{2096 - 2004}{4} + 1 = 24$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

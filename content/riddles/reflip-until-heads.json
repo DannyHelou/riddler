@@ -1,0 +1,20 @@
+{
+  "id": "reflip-until-heads",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Ten friends each flip a coin. Anyone with tails flips again next round; anyone with heads is done. On average, how many rounds until everyone has heads?",
+  "prompt_short": "10 coins, reflip the tails each round. Average rounds to all heads?",
+  "answer_value": 4.726,
+  "trap_value": 2,
+  "closeness_cap": 0.6,
+  "unit_label": "rounds",
+  "answer_display": "about 4.73 rounds",
+  "hint_md": "The game lasts as long as the slowest of the ten coins.",
+  "explain_intuition_md": "Each coin needs 2 flips on average, so 2 rounds sounds right. But the game waits for the unluckiest of the ten. About half the coins are left after one round, a quarter after two, an eighth after three, so it takes several rounds to whittle ten down to none.",
+  "explain_math_md": "$$E = \\sum_{k\\ge 0}\\left(1-\\left(1-2^{-k}\\right)^{10}\\right) \\approx 4.73$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

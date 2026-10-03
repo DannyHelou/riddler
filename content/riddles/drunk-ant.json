@@ -1,0 +1,20 @@
+{
+  "id": "drunk-ant",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "An ant on a cube's corner walks the edges, picking one of the 3 at random at each corner (it may turn back). On average, how many edges until it reaches the opposite corner?",
+  "prompt_short": "Random walk on a cube's edges. Average edges to the opposite corner?",
+  "answer_value": 10,
+  "trap_value": 3,
+  "closeness_cap": 1,
+  "unit_label": "edges",
+  "answer_display": "10 edges",
+  "hint_md": "Group the corners by how far they are from the target.",
+  "explain_intuition_md": "The ant is always 3, 2 or 1 edges from the target. Even one edge away, it finishes only 1 time in 3 and steps back 2 times in 3. All that wandering adds up to 10 edges on average, not 3.",
+  "explain_math_md": "With $E_k$ the expected edges from distance $k$: $E_3 = 1 + E_2$, $E_2 = 1 + \\tfrac13 E_3 + \\tfrac23 E_1$, $E_1 = 1 + \\tfrac23 E_2$, so $E_3 = 10$.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic, via BrainStellar (MIT)"
+}

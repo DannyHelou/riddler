@@ -1,0 +1,20 @@
+{
+  "id": "crossed-wires",
+  "tier": "boss",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Poles 6 m and 3 m tall stand apart on flat ground. A wire runs from the top of each pole to the foot of the other. How high do the wires cross, in m?",
+  "prompt_short": "Poles 6 m and 3 m, wires top to opposite foot. Height of the crossing?",
+  "answer_value": 2,
+  "trap_value": 4.5,
+  "closeness_cap": 0.7,
+  "unit_label": "m",
+  "answer_display": "2 m",
+  "hint_md": "The distance between the poles doesn't matter. Pick a handy one.",
+  "explain_intuition_md": "The crossing is lower than the short pole, so the average of 4.5 m is impossible. The poles' heights combine like resistors in parallel, and the gap between them cancels out.",
+  "explain_math_md": "$$\\frac{1}{h} = \\frac{1}{6} + \\frac{1}{3} = \\frac{1}{2} \\Rightarrow h = 2 \\text{ m}$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (crossed ladders)"
+}

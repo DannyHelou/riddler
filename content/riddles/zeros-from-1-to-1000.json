@@ -1,0 +1,20 @@
+{
+  "id": "zeros-from-1-to-1000",
+  "tier": "boss",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You write out every whole number from 1 to 1,000. How many times do you write the digit 0?",
+  "prompt_short": "Writing 1 to 1,000, how many 0s do you write?",
+  "answer_value": 192,
+  "trap_value": 300,
+  "closeness_cap": 0.4,
+  "unit_label": "zeros",
+  "answer_display": "192 zeros",
+  "hint_md": "Nobody writes 7 as 007.",
+  "explain_intuition_md": "Writing every number as 000 to 999 would use each digit exactly 300 times, which is where 300 comes from. But real numbers never start with 0, which wipes out most of those zeros. Counting only the zeros you actually write gives 9 for 1 to 99, 180 for 100 to 999, and 3 in 1,000.",
+  "explain_math_md": "$$\\underbrace{9}_{10,\\dots,90} + \\underbrace{9 \\times 20}_{100\\text{s to }900\\text{s}} + \\underbrace{3}_{1000} = 192$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

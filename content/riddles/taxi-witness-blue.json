@@ -1,0 +1,20 @@
+{
+  "id": "taxi-witness-blue",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "85% of a city's cabs are green, 15% blue. A witness who's right 80% of the time says the cab that dented a car was blue. Chance it really was blue?",
+  "prompt_short": "15% of cabs are blue; an 80%-reliable witness says blue. Chance it was?",
+  "answer_value": 41.38,
+  "trap_value": 80,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "about 41% (12 in 29)",
+  "hint_md": "Picture 100 cabs. How many get called blue?",
+  "explain_intuition_md": "Out of 100 cabs, the witness correctly calls 12 of the 15 blue ones blue, but also wrongly calls 17 of the 85 green ones blue. So of the 29 'blue' calls, only 12 are right. The 80% feels decisive, but green cabs are so common that the witness's mistakes outnumber the true sightings.",
+  "explain_math_md": "$$P(B \\mid \\text{says blue}) = \\frac{0.15 \\cdot 0.8}{0.15 \\cdot 0.8 + 0.85 \\cdot 0.2} = \\frac{0.12}{0.29} \\approx 41.4\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (Kahneman and Tversky's cab problem)"
+}

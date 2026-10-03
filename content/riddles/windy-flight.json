@@ -1,0 +1,20 @@
+{
+  "id": "windy-flight",
+  "tier": "trap",
+  "category": "rates",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A plane flies 1,200 km to a city and straight back at 400 km/h airspeed. A steady 100 km/h wind blows from the city all day. How many hours is the round trip?",
+  "prompt_short": "1,200 km out and back at 400 km/h with a 100 km/h wind. Hours?",
+  "answer_value": 6.4,
+  "trap_value": 6,
+  "closeness_cap": 0.056,
+  "unit_label": "hours",
+  "answer_display": "6.4 hours (6 h 24 min)",
+  "hint_md": "Time each leg separately.",
+  "explain_intuition_md": "The tailwind seems to give back what the headwind took, but you spend longer fighting the headwind than enjoying the tailwind. Wind always makes a round trip slower.",
+  "explain_math_md": "$\\frac{1200}{300} + \\frac{1200}{500} = 4 + 2.4 = 6.4$ h (vs $\\frac{2400}{400} = 6$ h with no wind).",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "ruin-sixty",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "You start with 1 dollar against a bank with endless money. Each 1-dollar bet wins with chance 60%, and you keep betting unless you're broke. Chance you ever go broke?",
+  "prompt_short": "1 dollar, 60% bets, play forever. Chance of going broke?",
+  "answer_value": 66.67,
+  "trap_value": 40,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "about 67% (2 in 3)",
+  "hint_md": "Let q be the chance of ever dropping one dollar below where you are now.",
+  "explain_intuition_md": "Losing the very first bet, a 40% chance, looks like the main danger. But even after a win you can slide back, and early on you're never more than a few bad bets from zero. The chance of ever losing one dollar overall turns out to be 2 in 3.",
+  "explain_math_md": "Going broke from 2 dollars means losing a net dollar twice: $$q = 0.4 + 0.6\\,q^2 \\;\\Rightarrow\\; q = \\tfrac23$$ (the root below 1).",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (gambler's ruin)"
+}

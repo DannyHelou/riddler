@@ -1,0 +1,20 @@
+{
+  "id": "aces-before-kings",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "You shuffle a standard 52-card deck. What's the chance that all four aces come before the first king?",
+  "prompt_short": "Shuffled deck. All four aces before the first king?",
+  "answer_value": 1.43,
+  "trap_value": 6.25,
+  "closeness_cap": 10,
+  "unit_label": "%",
+  "answer_display": "about 1.4% (1 in 70)",
+  "hint_md": "Ignore every card that isn't an ace or a king.",
+  "explain_intuition_md": "Each ace seems to have an even chance against the kings, and multiplying four of those gives about 6%. But those events aren't independent. Look only at the 8 aces and kings: their order is random, and all four aces first is just one of 70 equally likely ace-king patterns.",
+  "explain_math_md": "$$P = \\frac{1}{\\binom{8}{4}} = \\frac{1}{70} \\approx 1.43\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

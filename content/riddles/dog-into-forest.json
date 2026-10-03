@@ -1,0 +1,31 @@
+{
+  "id": "dog-into-forest",
+  "tier": "warmup",
+  "category": "wordplay",
+  "answer_type": "word",
+  "prompt_md": "How far can a dog run into a forest?",
+  "prompt_short": "How far can a dog run into a forest?",
+  "answer_display": "halfway",
+  "accepted_answers": [
+    "halfway",
+    "half way",
+    "half",
+    "to the middle",
+    "the middle",
+    "halfway in",
+    "half the way"
+  ],
+  "trap_answers": [
+    "all the way",
+    "until it gets tired",
+    "as far as it wants",
+    "forever",
+    "until it hits a tree"
+  ],
+  "hint_md": "What is it doing after the middle?",
+  "explain_intuition_md": "Once the dog is past the middle, it's running out of the forest, not into it.",
+  "explain_math_md": "No math here: the trick is in the wording.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic, via crawsome/riddles (Unlicense)"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "keypad-product",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "word",
+  "prompt_md": "Multiply together all ten digits on a phone keypad. What do you get?",
+  "prompt_short": "Multiply together all ten digits on a phone keypad. What do you get?",
+  "answer_display": "0 (one of the digits is 0)",
+  "accepted_answers": [
+    "0",
+    "zero",
+    "nothing",
+    "nil",
+    "zero because of the 0"
+  ],
+  "trap_answers": [
+    "362880",
+    "362 880",
+    "3628800",
+    "3 628 800",
+    "9 factorial",
+    "10 factorial",
+    "a huge number"
+  ],
+  "hint_md": "Check every key, including the bottom row.",
+  "explain_intuition_md": "You start multiplying 1 times 2 times 3 and brace for a huge number, but the keypad also has a 0, and anything times zero is zero.",
+  "explain_math_md": "$$0 \\times 1 \\times 2 \\times \\cdots \\times 9 = 0$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

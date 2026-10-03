@@ -1,0 +1,20 @@
+{
+  "id": "knockout-128",
+  "tier": "warmup",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "128 players enter a knockout tennis tournament. Every match has a winner, and the loser is out. How many matches are played to crown a champion?",
+  "prompt_short": "Knockout tennis, 128 players. How many matches in total?",
+  "answer_value": 127,
+  "trap_value": 64,
+  "closeness_cap": 0.5,
+  "unit_label": "matches",
+  "answer_display": "127 matches",
+  "hint_md": "Every match knocks out exactly one player.",
+  "explain_intuition_md": "64 is only the first round. Every match sends exactly one player home, and 127 players have to go home to leave one champion. So it's 127 matches, whatever the bracket looks like.",
+  "explain_math_md": "$$64 + 32 + 16 + 8 + 4 + 2 + 1 = 128 - 1 = 127$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "polya-urn",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A jar starts with 1 red and 1 blue marble. Draw one at random, put it back plus one more of its color, and repeat until there are 100. Chance exactly 50 are red?",
+  "prompt_short": "Pólya urn from 1 red, 1 blue to 100 marbles. Exactly 50 red?",
+  "answer_value": 1.01,
+  "trap_value": 8.04,
+  "closeness_cap": 10,
+  "unit_label": "%",
+  "answer_display": "about 1% (1 in 99)",
+  "hint_md": "Try it with just 3 or 4 marbles in the end and look for a pattern.",
+  "explain_intuition_md": "Treating each draw like a coin flip makes 50 red about 8% likely. But early luck snowballs: a jar that gets ahead in red keeps drawing more red. In fact every final count of red, from 1 to 99, is exactly equally likely.",
+  "explain_math_md": "A sequence with $k$ extra reds in $98$ draws has probability $\\frac{k!\\,(98-k)!}{99!}$, so $$P(k=49) = \\binom{98}{49}\\frac{49!\\,49!}{99!} = \\frac{1}{99} \\approx 1.01\\%$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (Pólya's urn)"
+}

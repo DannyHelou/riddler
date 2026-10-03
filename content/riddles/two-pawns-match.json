@@ -1,0 +1,20 @@
+{
+  "id": "two-pawns-match",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A bag holds 2 black and 2 white pawns. Without looking, you take out two. What's the chance they're the same color?",
+  "prompt_short": "2 black, 2 white pawns. Draw two. Same color?",
+  "answer_value": 33.33,
+  "trap_value": 50,
+  "closeness_cap": 40,
+  "unit_label": "%",
+  "answer_display": "about 33% (1 in 3)",
+  "hint_md": "After the first pawn, what's left in the bag?",
+  "explain_intuition_md": "Same color or not sounds like a coin flip. But once you've taken the first pawn, only one of the three left in the bag matches it.",
+  "explain_math_md": "$$P = \\tfrac13 \\approx 33.3\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

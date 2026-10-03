@@ -1,0 +1,20 @@
+{
+  "id": "folded-sheet",
+  "tier": "boss",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You fold a 30 cm by 40 cm sheet of paper so that two opposite corners meet exactly. How long is the fold line, in cm?",
+  "prompt_short": "Fold a 30 × 40 cm sheet so opposite corners meet. Crease length?",
+  "answer_value": 37.5,
+  "trap_value": 50,
+  "closeness_cap": 0.25,
+  "unit_label": "cm",
+  "answer_display": "37.5 cm",
+  "hint_md": "The crease is the perpendicular bisector of the diagonal.",
+  "explain_intuition_md": "The crease isn't the diagonal: it crosses it at right angles through the centre. Its slope is steep, so it hits the long edges before reaching the corners.",
+  "explain_math_md": "Diagonal $50$; crease length $= 50 \\times \\frac{30}{40} = 37.5$ cm (similar triangles).",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

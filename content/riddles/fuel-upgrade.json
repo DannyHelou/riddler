@@ -1,0 +1,20 @@
+{
+  "id": "fuel-upgrade",
+  "tier": "trap",
+  "category": "rates",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Car A goes from 10 to 15 km per litre. Car B now does 20 km per litre. To save as much fuel per km as car A did, what must car B's new km per litre be?",
+  "prompt_short": "A goes from 10 to 15 km/L. B at 20 km/L must reach what to save as much?",
+  "answer_value": 60,
+  "trap_value": 30,
+  "closeness_cap": 0.6,
+  "unit_label": "km/L",
+  "answer_display": "60 km per litre",
+  "hint_md": "Compare litres per km, not km per litre.",
+  "explain_intuition_md": "Fuel used is litres per km, the flip of km per litre. Car A drops from 1/10 to 1/15 of a litre per km, and matching that saving takes car B much further than a 50% boost.",
+  "explain_math_md": "$\\frac{1}{10} - \\frac{1}{15} = \\frac{1}{30}$. Need $\\frac{1}{20} - \\frac{1}{x} = \\frac{1}{30}$, so $\\frac{1}{x} = \\frac{1}{60}$, $x = 60$.",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (the MPG illusion)"
+}

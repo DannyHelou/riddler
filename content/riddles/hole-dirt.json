@@ -1,0 +1,34 @@
+{
+  "id": "hole-dirt",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "word",
+  "prompt_md": "How much dirt is in a hole that is 3 feet deep, 2 feet wide and 2 feet long?",
+  "prompt_short": "How much dirt is in a hole 3 ft deep, 2 ft wide, 2 ft long?",
+  "answer_display": "none: a hole is empty",
+  "accepted_answers": [
+    "none",
+    "no dirt",
+    "nothing",
+    "zero",
+    "0",
+    "there is no dirt",
+    "empty",
+    "it is empty",
+    "none at all"
+  ],
+  "trap_answers": [
+    "12",
+    "twelve",
+    "12 cubic feet",
+    "twelve cubic feet",
+    "12 feet",
+    "12 ft"
+  ],
+  "hint_md": "What makes a hole a hole?",
+  "explain_intuition_md": "The numbers invite you to multiply, and 3 times 2 times 2 is 12. But a hole is the space where the dirt used to be, so there is none in it.",
+  "explain_math_md": "The trap: $3 \\times 2 \\times 2 = 12$ cubic feet, which is how much dirt was taken out.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

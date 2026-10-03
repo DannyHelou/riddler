@@ -1,0 +1,20 @@
+{
+  "id": "twelve-coins-one-fake",
+  "tier": "boss",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Of 12 identical-looking coins, one is fake and either heavier or lighter. With just a balance scale, how many weighings guarantee finding it and which way it's off?",
+  "prompt_short": "12 coins, one fake (heavy or light), balance scale. Weighings needed?",
+  "answer_value": 3,
+  "trap_value": 4,
+  "closeness_cap": 0.25,
+  "unit_label": "weighings",
+  "answer_display": "3 weighings",
+  "hint_md": "There are 24 possible answers, and 3 weighings have 27 possible outcomes.",
+  "explain_intuition_md": "Most people find a 4-weighing plan and stop. Each weighing has three outcomes, so 3 weighings can tell apart up to 27 cases, and there are only 24: 12 coins, each possibly heavy or light. A careful plan that shuffles coins between pans from one weighing to the next does it in 3.",
+  "explain_math_md": "$$3^2 = 9 < 24 \\le 27 = 3^3$$ For example, give each coin a left/right/off pattern over the 3 weighings so that no two patterns are equal or mirror images, with 4 coins on each pan every time.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (twelve-coin problem)"
+}

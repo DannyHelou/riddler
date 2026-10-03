@@ -1,0 +1,20 @@
+{
+  "id": "stick-triangle",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "You break a stick at two points chosen at random along its length (independently, uniformly), giving three pieces. What's the chance the three pieces can form a triangle?",
+  "prompt_short": "Break a stick at two random points. Chance the 3 pieces make a triangle?",
+  "answer_value": 25,
+  "trap_value": 50,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "25%",
+  "hint_md": "No piece can be half the stick or longer.",
+  "explain_intuition_md": "Three pieces make a triangle only if none is half the stick or longer. Each piece has a 1-in-4 chance of being that long, and only one piece can be. So 3 times in 4 something is too long, leaving 1 in 4.",
+  "explain_math_md": "$$P = 1 - 3 \\cdot \\tfrac14 = \\tfrac14$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic, via BrainStellar (MIT)"
+}

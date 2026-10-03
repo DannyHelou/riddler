@@ -1,0 +1,20 @@
+{
+  "id": "second-half-speed",
+  "tier": "trap",
+  "category": "rates",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You cycle the first half of a route at 10 km/h. How fast must you ride the second half, in km/h, to average 15 km/h over the whole route?",
+  "prompt_short": "First half of a ride at 10 km/h. Second-half speed to average 15?",
+  "answer_value": 30,
+  "trap_value": 20,
+  "closeness_cap": 0.35,
+  "unit_label": "km/h",
+  "answer_display": "30 km/h",
+  "hint_md": "Say the route is 30 km. How long can the whole ride take?",
+  "explain_intuition_md": "Speeds average over time, not distance, and the slow half has already eaten most of your time. On a 30 km route you may take 2 hours, but the first 15 km took 1.5 of them.",
+  "explain_math_md": "Route $30$ km: total time $\\frac{30}{15} = 2$ h, first half $\\frac{15}{10} = 1.5$ h, so the second half needs $\\frac{15}{0.5} = 30$ km/h.",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "random-square-area",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You cut a square tile whose side is a uniformly random length between 0 and 10 cm. On average, what is the tile's area, in square cm?",
+  "prompt_short": "Square with a random side from 0 to 10 cm. Average area?",
+  "answer_value": 33.33,
+  "trap_value": 25,
+  "closeness_cap": 0.3,
+  "unit_label": "cm²",
+  "answer_display": "about 33.3 cm² (100/3)",
+  "hint_md": "Squaring rewards big sides more than it punishes small ones.",
+  "explain_intuition_md": "The average side is 5 cm, and a 5 cm square has area 25. But squaring rewards big sides more than it punishes small ones: a 9 cm tile has area 81, a 1 cm tile only 1. So the average area beats the area of the average side.",
+  "explain_math_md": "$$E[S^2] = \\frac{1}{10} \\int_0^{10} s^2 \\, ds = \\frac{100}{3} \\approx 33.3 > 5^2$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (Jensen's inequality)"
+}

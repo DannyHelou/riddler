@@ -1,0 +1,20 @@
+{
+  "id": "ribbon-on-a-pole",
+  "tier": "boss",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A ribbon winds evenly around a pole exactly 4 times, from the bottom to the top. The pole is 16 m tall and 3 m around. How long is the ribbon, in metres?",
+  "prompt_short": "Ribbon winds 4 times up a 16 m pole, 3 m around. Ribbon length?",
+  "answer_value": 20,
+  "trap_value": 12,
+  "closeness_cap": 0.44,
+  "unit_label": "m",
+  "answer_display": "20 m",
+  "hint_md": "Unroll the pole into a flat rectangle.",
+  "explain_intuition_md": "Four times round a 3 m pole is 12 m, but the ribbon is also climbing. Unrolled, each turn is the slanted side of a 3 by 4 triangle, which is 5 m.",
+  "explain_math_md": "Each turn rises $4$ m over $3$ m: $\\sqrt{3^2 + 4^2} = 5$, $\\times 4 = 20$ m.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "mirror-height",
+  "tier": "warmup",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You're 180 cm tall. What's the shortest flat wall mirror, hung at the best height, in which you can see your whole body standing up?",
+  "prompt_short": "You're 180 cm tall. Shortest wall mirror to see your whole body?",
+  "answer_value": 90,
+  "trap_value": 180,
+  "closeness_cap": 0.6,
+  "unit_label": "cm",
+  "answer_display": "90 cm",
+  "hint_md": "Light from your feet hits the mirror halfway between your feet and your eyes.",
+  "explain_intuition_md": "Your reflection looks as far behind the mirror as you are in front, so the mirror only needs half your height. It works at any distance, which is why stepping back never shows you more.",
+  "explain_math_md": "From eye to top of head and eye to feet, each ray hits the mirror at half height: $\\tfrac{180}{2} = 90$ cm.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "spider-and-fly",
+  "tier": "boss",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A hall is 30 m long, 12 m wide, 12 m high. A spider is centred on one end wall, 1 m below the ceiling; a fly is centred on the other, 1 m above the floor. Shortest crawl?",
+  "prompt_short": "Spider and fly in a 30 × 12 × 12 m hall. Shortest crawl between them?",
+  "answer_value": 40,
+  "trap_value": 42,
+  "closeness_cap": 0.04,
+  "unit_label": "m",
+  "answer_display": "40 m",
+  "hint_md": "Unfold the walls flat in more than one way. The best path touches five faces.",
+  "explain_intuition_md": "The obvious route goes up 1 m, along the ceiling 30 m and down 11 m: 42 m. Unfolding the room differently lets the spider cut diagonally across the ceiling, a side wall and the floor, and that straight line on the flat net is only 40 m.",
+  "explain_math_md": "On the net through end wall, ceiling, side wall, floor and end wall, the points are $1 + 30 + 1 = 32$ apart one way and $6 + 12 + 6 = 24$ the other: $\\sqrt{32^2 + 24^2} = 40$.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (Dudeney's spider and fly)"
+}

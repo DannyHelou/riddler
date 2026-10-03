@@ -1,0 +1,36 @@
+{
+  "id": "months-28-days",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "word",
+  "prompt_md": "Some months have 31 days and some have 30. How many months have 28 days?",
+  "prompt_short": "Some months have 31 days and some have 30. How many months have 28 days?",
+  "answer_display": "all 12 of them",
+  "accepted_answers": [
+    "all",
+    "all of them",
+    "12",
+    "twelve",
+    "every month",
+    "all 12",
+    "all twelve",
+    "every one",
+    "all months",
+    "every single one"
+  ],
+  "trap_answers": [
+    "one",
+    "1",
+    "february",
+    "just february",
+    "only february",
+    "one month",
+    "only one"
+  ],
+  "hint_md": "Having 28 days is not the same as having exactly 28 days.",
+  "explain_intuition_md": "February jumps to mind because it is the short one, but every month gets at least as far as day 28.",
+  "explain_math_md": "Every month has at least 28 days, so the count is $12$.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

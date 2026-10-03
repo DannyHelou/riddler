@@ -1,0 +1,20 @@
+{
+  "id": "discount-then-tax",
+  "tier": "warmup",
+  "category": "percentages",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A 100 dollar jacket is 10% off. Then 10% sales tax is added to the sale price. How many dollars do you pay?",
+  "prompt_short": "100 dollars, 10% off, then 10% tax on the sale price. You pay?",
+  "answer_value": 99,
+  "trap_value": 100,
+  "closeness_cap": 0.008,
+  "unit_label": "dollars",
+  "answer_display": "99 dollars",
+  "hint_md": "The tax is 10% of a smaller number.",
+  "explain_intuition_md": "Ten percent off and ten percent on feel like they cancel. But the tax is charged on 90 dollars, so it only adds 9 back.",
+  "explain_math_md": "$100 \\times 0.9 \\times 1.1 = 99$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

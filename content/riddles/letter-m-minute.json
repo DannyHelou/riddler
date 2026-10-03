@@ -1,0 +1,30 @@
+{
+  "id": "letter-m-minute",
+  "tier": "warmup",
+  "category": "wordplay",
+  "answer_type": "word",
+  "prompt_md": "What shows up once in a minute, twice in a moment, but never in a thousand years?",
+  "prompt_short": "Once in a minute, twice in a moment, never in a thousand years?",
+  "answer_display": "the letter M",
+  "accepted_answers": [
+    "m",
+    "letter m",
+    "the letter m",
+    "an m"
+  ],
+  "trap_answers": [
+    "second",
+    "a second",
+    "blink",
+    "heartbeat",
+    "tick",
+    "time",
+    "breath"
+  ],
+  "hint_md": "Look at the words themselves, not the clock.",
+  "explain_intuition_md": "It sounds like a question about time, so \"a second\" or \"a blink\" jumps out. Count letters instead: minute has one M, moment has two, and \"a thousand years\" has none.",
+  "explain_math_md": "No math here: the trick is in the wording.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

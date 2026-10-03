@@ -1,0 +1,20 @@
+{
+  "id": "traffic-light-wait",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A traffic light cycles 40 seconds green, then 20 seconds red. You arrive at a random moment. On average, how many seconds do you wait (0 if it is green)?",
+  "prompt_short": "40 s green, 20 s red, random arrival. Average wait?",
+  "answer_value": 3.333,
+  "trap_value": 10,
+  "closeness_cap": 1,
+  "unit_label": "s",
+  "answer_display": "about 3.3 seconds",
+  "hint_md": "How often do you wait at all?",
+  "explain_intuition_md": "Two times out of three the light is green and you wait nothing. When it is red, you wait 10 seconds on average. 10 seconds is the average red-light wait, but you only hit red a third of the time.",
+  "explain_math_md": "$$E[W] = \\tfrac{40}{60} \\cdot 0 + \\tfrac{20}{60} \\cdot \\tfrac{20}{2} = \\tfrac{10}{3} \\approx 3.33$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

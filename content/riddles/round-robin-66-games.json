@@ -1,0 +1,20 @@
+{
+  "id": "round-robin-66-games",
+  "tier": "trap",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "In a chess tournament, every player plays every other player exactly once, and 66 games are played in all. How many players are there?",
+  "prompt_short": "Everyone plays everyone once, 66 games. How many players?",
+  "answer_value": 12,
+  "trap_value": 11,
+  "closeness_cap": 0.08,
+  "unit_label": "players",
+  "answer_display": "12 players",
+  "hint_md": "Each player meets everyone except themselves.",
+  "explain_intuition_md": "11 is tempting because 1 + 2 + ... + 11 = 66. But with n players, each meets n - 1 others, so the total is 1 + 2 + ... + (n - 1). That reaches 66 when n is 12.",
+  "explain_math_md": "$$\\binom{n}{2} = \\frac{n(n-1)}{2} = 66 \\Rightarrow n = 12$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "ton-backward",
+  "tier": "warmup",
+  "category": "wordplay",
+  "answer_type": "word",
+  "prompt_md": "Forward I'm heavy, but backward I'm not. What am I?",
+  "prompt_short": "Forward I'm heavy, but backward I'm not. What am I?",
+  "answer_display": "ton (backward it spells \"not\")",
+  "accepted_answers": [
+    "ton",
+    "tonne",
+    "a ton",
+    "metric ton"
+  ],
+  "trap_answers": [
+    "elephant",
+    "rock",
+    "weight",
+    "boulder",
+    "anvil",
+    "lead",
+    "brick"
+  ],
+  "hint_md": "Read the last two words of the riddle backward.",
+  "explain_intuition_md": "You picture something heavy, but the riddle is about spelling: \"ton\" written backward is \"not\", exactly as the riddle says.",
+  "explain_math_md": "No math here: the trick is in the wording.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic, via crawsome/riddles (Unlicense)"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "hanoi-neighbor-moves",
+  "tier": "boss",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Move a 4-disc tower from the left peg to the right peg of 3 pegs in a row: one disc at a time, never big on small, and only to a neighboring peg. Fewest moves?",
+  "prompt_short": "Tower of Hanoi, 4 discs, moves only to a neighboring peg. Fewest moves?",
+  "answer_value": 80,
+  "trap_value": 15,
+  "closeness_cap": 1.2,
+  "unit_label": "moves",
+  "answer_display": "80 moves",
+  "hint_md": "Every disc has to stop on the middle peg on its way across.",
+  "explain_intuition_md": "Without the restriction, 4 discs take the familiar 15 moves. Now the biggest disc needs two hops, and around each hop the smaller tower has to be shuttled all the way across and back. Each extra disc roughly triples the work.",
+  "explain_math_md": "$$M_n = 3M_{n-1} + 2,\\ M_1 = 2 \\Rightarrow M_n = 3^n - 1,\\ M_4 = 80$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (Tower of Hanoi variant)"
+}

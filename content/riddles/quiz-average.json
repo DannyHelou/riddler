@@ -1,0 +1,20 @@
+{
+  "id": "quiz-average",
+  "tier": "warmup",
+  "category": "statistics",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Your first three quiz scores average 70. What score do you need on the fourth quiz to bring your average up to 75?",
+  "prompt_short": "Three quizzes average 70. Fourth score needed to average 75?",
+  "answer_value": 90,
+  "trap_value": 80,
+  "closeness_cap": 0.1,
+  "unit_label": "points",
+  "answer_display": "90 points",
+  "hint_md": "How many total points do you need after four quizzes?",
+  "explain_intuition_md": "Lifting the average by 5 means lifting all four scores by 5 each, a 20-point gap. The fourth quiz has to cover it alone: 70 plus 20.",
+  "explain_math_md": "$4 \\times 75 - 3 \\times 70 = 300 - 210 = 90$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

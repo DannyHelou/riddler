@@ -1,0 +1,20 @@
+{
+  "id": "sum-past-one",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A button gives a random number between 0 and 1, any value equally likely. You press until your total passes 1. On average, how many presses does it take?",
+  "prompt_short": "Add random numbers from 0 to 1 until the total passes 1. Average presses?",
+  "answer_value": 2.718,
+  "trap_value": 2,
+  "closeness_cap": 0.3,
+  "unit_label": "presses",
+  "answer_display": "e, about 2.718 presses",
+  "hint_md": "What's the chance that a few numbers still add up to less than 1?",
+  "explain_intuition_md": "Two numbers averaging a half sound like enough, but they fall short half the time. The chance that the first few numbers still total under 1 shrinks fast: a half for two, a sixth for three, a twenty-fourth for four. Adding up those chances gives the famous constant e.",
+  "explain_math_md": "$P(N > n) = \\frac{1}{n!}$, so $$E[N] = \\sum_{n \\ge 0} \\frac{1}{n!} = e \\approx 2.718$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic, via BrainStellar (MIT)"
+}

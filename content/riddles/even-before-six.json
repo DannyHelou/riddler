@@ -1,0 +1,20 @@
+{
+  "id": "even-before-six",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You roll a fair die until the first six. Given that you never rolled an odd number along the way, what's the average number of rolls, counting the six?",
+  "prompt_short": "Roll until a six, given no odd rolls. Average number of rolls?",
+  "answer_value": 1.5,
+  "trap_value": 3,
+  "closeness_cap": 0.5,
+  "unit_label": "rolls",
+  "answer_display": "1.5 rolls",
+  "hint_md": "Long games are far less likely to dodge every odd number than short ones.",
+  "explain_intuition_md": "It's tempting to cross out the odd faces and treat the die as 2, 4, 6, which gives 3 rolls. But the condition throws away long games much more often than short ones, since each extra roll is another chance to roll odd. What survives is like waiting for any of 1, 3, 5 or 6 and finding it's the six, and that wait is only 1.5 rolls.",
+  "explain_math_md": "The game stops at the first roll in $\\{1,3,5,6\\}$; when that roll is a 6, no odd came before. Which face it is doesn't affect when it comes, so $$E = \\frac{1}{4/6} = 1.5$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (Elchanan Mossel's dice paradox)"
+}

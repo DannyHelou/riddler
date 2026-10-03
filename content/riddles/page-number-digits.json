@@ -1,0 +1,20 @@
+{
+  "id": "page-number-digits",
+  "tier": "trap",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Numbering the pages of a book, starting from page 1, takes exactly 1,002 digits in total. How many pages does the book have?",
+  "prompt_short": "Page numbers from 1 use 1,002 digits. How many pages?",
+  "answer_value": 370,
+  "trap_value": 334,
+  "closeness_cap": 0.1,
+  "unit_label": "pages",
+  "answer_display": "370 pages",
+  "hint_md": "Pages 1 to 99 don't use three digits each.",
+  "explain_intuition_md": "Dividing 1,002 by 3 assumes every page number has three digits. Pages 1 to 9 use 9 digits and pages 10 to 99 use 180, which leaves 813 digits for three-digit pages: 271 of them. So the last page is 99 + 271 = 370.",
+  "explain_math_md": "$$9 + 2 \\cdot 90 + 3(n - 99) = 1002 \\Rightarrow n = 370$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

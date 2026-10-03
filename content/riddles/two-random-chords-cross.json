@@ -1,0 +1,20 @@
+{
+  "id": "two-random-chords-cross",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Ana draws a chord between two random points on a circle. Ben draws another chord between two new random points. What is the chance the two chords cross?",
+  "prompt_short": "Two chords, each between two random points on a circle. Chance they cross?",
+  "answer_value": 33.33,
+  "trap_value": 50,
+  "closeness_cap": 40,
+  "unit_label": "%",
+  "answer_display": "about 33% (1 in 3)",
+  "hint_md": "Only the order of the four points around the circle matters.",
+  "explain_intuition_md": "Only the order of the four points around the circle matters. Going around from one of Ana's points, her other point is equally likely to be first, second or third in line, and the chords cross only when it is second. So it is 1 in 3, not a coin flip.",
+  "explain_math_md": "Ana's second point is equally likely to sit in any of the 3 other positions in circular order, and the chords cross only when it falls between Ben's two points: $$P = \\tfrac13$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "pizza-olive-slice",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A round pizza gets two cuts through its center at independent, uniformly random angles. Your olive sits off-center. On average, what share of the pizza is its slice?",
+  "prompt_short": "Two random cuts through the center. Average size of the slice with your olive?",
+  "answer_value": 33.33,
+  "trap_value": 25,
+  "closeness_cap": 20,
+  "unit_label": "%",
+  "answer_display": "about 33% (a third)",
+  "hint_md": "Big slices are more likely to catch the olive.",
+  "explain_intuition_md": "The four slices average a quarter each, but the olive is more likely to land in a big slice than in a small one. That bias pushes the olive's slice up to a third of the pizza on average. It's the same reason a random moment tends to fall in a long gap between buses.",
+  "explain_math_md": "Let the angle between the cuts be $\\pi x$ with $x$ uniform on $[0,1]$. The slices are $\\tfrac{x}{2}, \\tfrac{1-x}{2}, \\tfrac{x}{2}, \\tfrac{1-x}{2}$, and the olive is in an $\\tfrac{x}{2}$ slice with chance $x$: $$E = \\int_0^1 \\left(x \\cdot \\tfrac{x}{2} + (1-x) \\cdot \\tfrac{1-x}{2}\\right) dx = \\tfrac13$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (size-biased sampling)"
+}

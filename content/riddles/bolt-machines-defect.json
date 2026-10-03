@@ -1,0 +1,20 @@
+{
+  "id": "bolt-machines-defect",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Machine A makes 80% of the bolts and 1% of its bolts are faulty. Machine B makes the other 20%, and 4% of its are faulty. A random faulty bolt: chance it came from B?",
+  "prompt_short": "A: 80% of bolts, 1% faulty. B: 20%, 4% faulty. Faulty bolt from B?",
+  "answer_value": 50,
+  "trap_value": 80,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "50%",
+  "hint_md": "Count the faulty bolts in a batch of 1,000.",
+  "explain_intuition_md": "In 1,000 bolts, A makes 800 and 8 of them are faulty; B makes 200 and 8 of them are faulty. So the faulty bolts are split evenly. B is four times sloppier, which suggests 80%, but A makes four times as many bolts.",
+  "explain_math_md": "$$P(B \\mid \\text{faulty}) = \\frac{0.2 \\cdot 0.04}{0.2 \\cdot 0.04 + 0.8 \\cdot 0.01} = \\frac{0.008}{0.016} = \\tfrac12$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (Bayes' rule)"
+}

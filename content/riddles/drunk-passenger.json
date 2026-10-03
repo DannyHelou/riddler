@@ -1,0 +1,20 @@
+{
+  "id": "drunk-passenger",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "100 people board a 100-seat plane in turn. The first sits at random; the rest take their own seat if free, else a random free one. What's the chance the last gets their own?",
+  "prompt_short": "100 seats, first passenger sits at random. Chance the last gets their own seat?",
+  "answer_value": 50,
+  "trap_value": 1,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "50%",
+  "hint_md": "Which seats can be the last one left?",
+  "explain_intuition_md": "Whenever someone is displaced, they're as likely to take the first passenger's seat as the last passenger's, and once either is taken the outcome is settled. So the last free seat is always one of those two, each equally likely. It's a coin flip.",
+  "explain_math_md": "By symmetry, seat $1$ is taken before seat $100$ with probability $\\tfrac12$, and then everyone else, including the last passenger, sits in their own seat.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (lost boarding pass), via BrainStellar (MIT)"
+}

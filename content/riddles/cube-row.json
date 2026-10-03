@@ -1,0 +1,20 @@
+{
+  "id": "cube-row",
+  "tier": "warmup",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A solid cube 1 m on each side is cut into 1 cm cubes. All the small cubes are lined up in a single row. How long is the row, in km?",
+  "prompt_short": "1 m cube cut into 1 cm cubes, laid in one row. Length in km?",
+  "answer_value": 10,
+  "trap_value": 0.1,
+  "closeness_cap": 3,
+  "unit_label": "km",
+  "answer_display": "10 km",
+  "hint_md": "How many 1 cm cubes fit in a 1 m cube?",
+  "explain_intuition_md": "A 1 m cube holds 100 by 100 by 100 small cubes, a million of them. A million centimetres is 10 km, far more than the 100 m you get if you forget a dimension.",
+  "explain_math_md": "$100^3 = 10^6$ cubes $\\times$ 1 cm $= 10^6$ cm $= 10$ km.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

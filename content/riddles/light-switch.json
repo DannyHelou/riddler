@@ -1,0 +1,20 @@
+{
+  "id": "light-switch",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Three switches outside a closed room; one works an old-fashioned bulb inside. Flip them all you like. How few times must you enter the room to know which switch it is?",
+  "prompt_short": "3 switches, 1 bulb in a closed room. Fewest visits to know which switch?",
+  "answer_value": 1,
+  "trap_value": 2,
+  "closeness_cap": 0.5,
+  "unit_label": "visits",
+  "answer_display": "1 visit",
+  "hint_md": "A bulb gives off more than light.",
+  "explain_intuition_md": "Turn switch 1 on for a few minutes, turn it off, then turn switch 2 on and walk in. Lit means switch 2. Dark but warm means switch 1. Dark and cold means switch 3.",
+  "explain_math_md": "No math: each switch leaves a different trace (light, heat, or neither), so $1$ visit tells all $3$ apart.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic, via BrainStellar (MIT)"
+}

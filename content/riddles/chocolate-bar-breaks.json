@@ -1,0 +1,20 @@
+{
+  "id": "chocolate-bar-breaks",
+  "tier": "warmup",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A chocolate bar is a 4 by 6 grid of squares. Each break snaps one piece into two along a groove. How many breaks does it take to get 24 single squares?",
+  "prompt_short": "4 by 6 chocolate bar, one piece per break. Breaks to get 24 squares?",
+  "answer_value": 23,
+  "trap_value": 8,
+  "closeness_cap": 0.9,
+  "unit_label": "breaks",
+  "answer_display": "23 breaks",
+  "hint_md": "What does every single break do to the number of pieces?",
+  "explain_intuition_md": "Each break turns one piece into two, so it adds exactly one piece. Going from 1 piece to 24 takes 23 breaks, in any order. Counting 3 + 5 grooves would only work if one snap could split every piece at once.",
+  "explain_math_md": "$$24 - 1 = 23$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

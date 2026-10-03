@@ -1,0 +1,20 @@
+{
+  "id": "snapped-pole",
+  "tier": "trap",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A 20 m pole snaps partway up. The top part folds over, still attached, and its tip touches the ground 10 m from the base. How many metres up is the break?",
+  "prompt_short": "20 m pole snaps, tip lands 10 m from the base. Height of the break?",
+  "answer_value": 7.5,
+  "trap_value": 10,
+  "closeness_cap": 0.25,
+  "unit_label": "m",
+  "answer_display": "7.5 m",
+  "hint_md": "The standing part, the ground and the fallen part form a right triangle.",
+  "explain_intuition_md": "Halfway is the hurried guess, but then the fallen 10 m piece couldn't reach 10 m out from a 10 m stump. The fallen part is the slanted side, so it must be longer than the stump.",
+  "explain_math_md": "$h^2 + 10^2 = (20 - h)^2 \\Rightarrow 100 = 400 - 40h \\Rightarrow h = 7.5$ m.",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (broken bamboo, The Nine Chapters)"
+}

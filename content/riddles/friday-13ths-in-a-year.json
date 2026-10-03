@@ -1,0 +1,20 @@
+{
+  "id": "friday-13ths-in-a-year",
+  "tier": "boss",
+  "category": "calendar",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "What's the greatest number of Friday the 13ths that can fall in a single calendar year?",
+  "prompt_short": "Most Friday the 13ths possible in one year?",
+  "answer_value": 3,
+  "trap_value": 2,
+  "closeness_cap": 0.35,
+  "unit_label": "Fridays",
+  "answer_display": "3",
+  "hint_md": "Months whose 13ths share a weekday must start on the same weekday.",
+  "explain_intuition_md": "A month's 13th is a Friday exactly when the month starts on a Sunday. In an ordinary year, February, March and November all start on the same weekday, so a year beginning on a Thursday gets three. No weekday is shared by the starts of four months, in leap years either.",
+  "explain_math_md": "Weekday shift of each month's first day (common year, mod $7$): $0,3,3,6,1,4,6,2,5,0,3,5$. The most repeated value, $3$, appears $3$ times; in leap years the max is also $3$.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

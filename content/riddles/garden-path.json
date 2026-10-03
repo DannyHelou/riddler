@@ -1,0 +1,20 @@
+{
+  "id": "garden-path",
+  "tier": "warmup",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A square lawn is 10 m on each side. A path 1 m wide runs all the way around the outside of it. What's the area of the path, in square metres?",
+  "prompt_short": "10 m square lawn with a 1 m path around it. Path area?",
+  "answer_value": 44,
+  "trap_value": 40,
+  "closeness_cap": 0.083,
+  "unit_label": "m²",
+  "answer_display": "44 m²",
+  "hint_md": "Don't forget the four corners.",
+  "explain_intuition_md": "Four 10 m strips give 40, but the path also has a 1 m square at each corner. The outer square is 12 m on a side.",
+  "explain_math_md": "$12^2 - 10^2 = 144 - 100 = 44$ m²",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

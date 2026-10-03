@@ -1,0 +1,20 @@
+{
+  "id": "three-share-weekday",
+  "tier": "warmup",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "How many people must be in a room to be certain that at least three of them were born on the same day of the week?",
+  "prompt_short": "People needed to be sure 3 share a birth weekday?",
+  "answer_value": 15,
+  "trap_value": 21,
+  "closeness_cap": 0.3,
+  "unit_label": "people",
+  "answer_display": "15 people",
+  "hint_md": "How many people can you have with no three sharing a weekday?",
+  "explain_intuition_md": "You can fit 14 people with exactly two per weekday and still have no three matching. The 15th person has to make a third somewhere. 21 would be three on every day, far more than you need.",
+  "explain_math_md": "$$2 \\times 7 + 1 = 15$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic (pigeonhole principle)"
+}

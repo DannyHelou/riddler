@@ -1,0 +1,20 @@
+{
+  "id": "friendship-paradox-club",
+  "tier": "trap",
+  "category": "statistics",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "In a club of 10, Ana is friends with the other 9, who are friends only with her. Pick a random member, then a random friend of theirs. That friend's average friend count?",
+  "prompt_short": "Ana knows all 9 others; they know only her. A random member's friend's friends?",
+  "answer_value": 8.2,
+  "trap_value": 1.8,
+  "closeness_cap": 1.2,
+  "unit_label": "friends",
+  "answer_display": "8.2 friends",
+  "hint_md": "Who usually gets picked as 'a friend'?",
+  "explain_intuition_md": "The average member has just 1.8 friends, but nine times out of ten the friend you land on is Ana, who has 9. Popular people turn up as somebody's friend far more often than loners do. That's why your friends tend to have more friends than you.",
+  "explain_math_md": "With chance $\\tfrac{9}{10}$ you pick one of the nine, whose only friend is Ana (9 friends); otherwise you pick Ana, whose friend has 1: $$E = \\tfrac{9}{10} \\cdot 9 + \\tfrac{1}{10} \\cdot 1 = 8.2$$ The club average is only $\\tfrac{9 + 9 \\cdot 1}{10} = 1.8$.",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (friendship paradox, Feld 1991)"
+}

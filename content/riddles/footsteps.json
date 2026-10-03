@@ -1,0 +1,30 @@
+{
+  "id": "footsteps",
+  "tier": "warmup",
+  "category": "wordplay",
+  "answer_type": "word",
+  "prompt_md": "The more you take, the more you leave behind. What are they?",
+  "prompt_short": "The more you take, the more you leave behind. What are they?",
+  "answer_display": "footsteps",
+  "accepted_answers": [
+    "footsteps",
+    "steps",
+    "footprints",
+    "footprint",
+    "foot prints",
+    "foot steps"
+  ],
+  "trap_answers": [
+    "time",
+    "memories",
+    "photos",
+    "pictures",
+    "breaths"
+  ],
+  "hint_md": "Think about walking.",
+  "explain_intuition_md": "Every step you take leaves a footprint behind you.",
+  "explain_math_md": "No math here: the trick is in the wording.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic, via crawsome/riddles (Unlicense)"
+}

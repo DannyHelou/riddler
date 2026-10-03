@@ -1,0 +1,20 @@
+{
+  "id": "egg-basket-remainders",
+  "tier": "trap",
+  "category": "number theory",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Counting a basket of eggs by 2s, 3s, 4s, 5s or 6s always leaves 1 egg over, but counting by 7s leaves none. What's the fewest eggs it could hold?",
+  "prompt_short": "Eggs: 1 left over by 2s to 6s, none by 7s. Fewest eggs?",
+  "answer_value": 301,
+  "trap_value": 61,
+  "closeness_cap": 1.2,
+  "unit_label": "eggs",
+  "answer_display": "301 eggs",
+  "hint_md": "One less than the count is a multiple of 60.",
+  "explain_intuition_md": "61 fits the first five conditions but isn't a multiple of 7. The count must be 1 more than a multiple of 60: 61, 121, 181, 241, 301. The first of those that 7 divides is 301.",
+  "explain_math_md": "$$n = 60k + 1,\\ 7 \\mid n \\Rightarrow k = 5,\\ n = 301$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

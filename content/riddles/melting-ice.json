@@ -1,0 +1,20 @@
+{
+  "id": "melting-ice",
+  "tier": "warmup",
+  "category": "percentages",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Water expands by 10% when it freezes. By what percent does a block of ice shrink when it melts back into water?",
+  "prompt_short": "Water grows 10% when it freezes. Percent ice shrinks when it melts?",
+  "answer_value": 9.09,
+  "trap_value": 10,
+  "closeness_cap": 2,
+  "unit_label": "%",
+  "answer_display": "about 9.1% (1 in 11)",
+  "hint_md": "Start with 100 L of water.",
+  "explain_intuition_md": "100 L of water freezes into 110 L of ice. Melting takes away 10 L, but now that 10 L is measured against 110, not 100.",
+  "explain_math_md": "$$\\frac{110 - 100}{110} = \\frac{1}{11} \\approx 9.09\\%$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

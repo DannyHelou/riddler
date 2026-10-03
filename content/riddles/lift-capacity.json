@@ -1,0 +1,20 @@
+{
+  "id": "lift-capacity",
+  "tier": "warmup",
+  "category": "arithmetic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A lift can carry either 10 adults or 20 children. If 6 adults are already in it, how many children can still get in?",
+  "prompt_short": "A lift takes 10 adults or 20 children. 6 adults in. Children who fit?",
+  "answer_value": 8,
+  "trap_value": 4,
+  "closeness_cap": 0.6,
+  "unit_label": "children",
+  "answer_display": "8 children",
+  "hint_md": "How many children take up the room of one adult?",
+  "explain_intuition_md": "There's room for 4 more adults, and every adult's space fits two children. So 4 adult places make room for 8 children.",
+  "explain_math_md": "One adult $= 2$ children: $20 - 2 \\times 6 = 8$.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

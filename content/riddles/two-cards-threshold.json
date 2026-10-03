@@ -1,0 +1,20 @@
+{
+  "id": "two-cards-threshold",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Two cards each hide a uniformly random number from 0 to 1. You see the first, then keep it or switch to the unseen second. With best play, chance you get the larger?",
+  "prompt_short": "See one random number, keep it or switch. Best chance of the larger?",
+  "answer_value": 75,
+  "trap_value": 50,
+  "closeness_cap": 40,
+  "unit_label": "%",
+  "answer_display": "75%",
+  "hint_md": "Keep big numbers, switch small ones. Where's the cutoff?",
+  "explain_intuition_md": "Without looking it is a coin flip, so 50% is tempting. But seeing the first number helps: keep it if it is above one half, otherwise switch. A high first number usually beats the hidden card and a low one usually loses to it, which lifts your chance to 3 in 4.",
+  "explain_math_md": "Keep the first card when $x > t$: $$P(t) = \\int_t^1 x \\, dx + \\int_0^t (1 - x) \\, dx = \\tfrac12 + t - t^2,$$ which peaks at $t = \\tfrac12$ with $P = \\tfrac34$.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

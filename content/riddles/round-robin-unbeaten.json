@@ -1,0 +1,20 @@
+{
+  "id": "round-robin-unbeaten",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Four teams play a round robin: each pair meets once, and every game is a coin flip with no ties. What's the chance some team wins all three of its games?",
+  "prompt_short": "4-team round robin of coin flips. Chance some team goes 3-0?",
+  "answer_value": 50,
+  "trap_value": 41.38,
+  "closeness_cap": 20,
+  "unit_label": "%",
+  "answer_display": "50%",
+  "hint_md": "Can two teams both win all their games?",
+  "explain_intuition_md": "Each team goes 3-0 with chance 1 in 8, and treating the four teams as independent gives about 41%. But two teams can never both go unbeaten, since they play each other. The four cases never overlap, so you can simply add them up.",
+  "explain_math_md": "$$4\\cdot\\left(\\tfrac12\\right)^3 = \\tfrac12 = 50\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

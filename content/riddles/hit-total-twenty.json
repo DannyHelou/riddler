@@ -1,0 +1,20 @@
+{
+  "id": "hit-total-twenty",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Roll a fair die over and over, keeping a running total. What's the chance the total ever equals exactly 20?",
+  "prompt_short": "Running total of die rolls. Chance it ever hits exactly 20?",
+  "answer_value": 28.56,
+  "trap_value": 16.67,
+  "closeness_cap": 20,
+  "unit_label": "%",
+  "answer_display": "about 28.6% (close to 2 in 7)",
+  "hint_md": "On average, how far does the total jump with each roll?",
+  "explain_intuition_md": "One in six sounds natural for a die. But the total climbs by 3.5 per roll on average, so it lands on roughly one number in every 3.5 along the way. For a target as far out as 20, that's within a hair of 2 in 7.",
+  "explain_math_md": "$$p_n = \\tfrac16\\sum_{k=1}^{6}p_{n-k},\\quad p_0 = 1 \\;\\Rightarrow\\; p_{20} \\approx 0.2856 \\approx \\tfrac{2}{7}$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

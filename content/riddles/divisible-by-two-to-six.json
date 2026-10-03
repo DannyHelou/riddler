@@ -1,0 +1,19 @@
+{
+  "id": "divisible-by-two-to-six",
+  "tier": "warmup",
+  "category": "number theory",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "What's the smallest positive whole number that divides evenly by 2, by 3, by 4, by 5 and by 6?",
+  "prompt_short": "Smallest number divisible by 2, 3, 4, 5 and 6?",
+  "answer_value": 60,
+  "trap_value": 720,
+  "closeness_cap": 1.8,
+  "answer_display": "60",
+  "hint_md": "4 already contains a 2, and 6 is just 2 times 3.",
+  "explain_intuition_md": "Multiplying all five numbers gives 720, but that's overkill because they share factors. Anything divisible by 4, 3 and 5 is automatically divisible by 2 and 6, and the smallest such number is 60.",
+  "explain_math_md": "$$\\operatorname{lcm}(2,3,4,5,6) = 2^2 \\cdot 3 \\cdot 5 = 60$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

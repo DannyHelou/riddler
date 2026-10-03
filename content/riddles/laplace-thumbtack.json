@@ -1,0 +1,20 @@
+{
+  "id": "laplace-thumbtack",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A tack lands point-up with an unknown chance; beforehand, every value from 0% to 100% is equally likely. It lands point-up 3 times in a row. Chance the next one does?",
+  "prompt_short": "Unknown bias, uniform prior. Three point-ups in a row. Chance of a fourth?",
+  "answer_value": 80,
+  "trap_value": 50,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "80% (4 in 5)",
+  "hint_md": "Let the three results update your belief about the tack.",
+  "explain_intuition_md": "Three ups in a row is evidence that this tack favors landing up, so your estimate should rise. Averaging over every possible bias, weighted by how well it explains three ups, gives 4 in 5. Treating the tosses as unrelated coin flips gives 50%, but the shared unknown bias links them.",
+  "explain_math_md": "With a uniform prior on $p$: $$P(\\text{up} \\mid 3 \\text{ ups}) = \\frac{\\int_0^1 p^4 \\, dp}{\\int_0^1 p^3 \\, dp} = \\frac{1/5}{1/4} = \\tfrac45$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (Laplace's rule of succession)"
+}

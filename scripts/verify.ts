@@ -2,6 +2,7 @@
  * npm run verify: Monte Carlo check of every probability riddle (§8.4).
  * Port of content/sims/run-all.ts that discovers sims automatically.
  * 10^6 kept trials each; ±0.5 percentage points (probability) or ±1% relative (expectation).
+ * `--only id1,id2` restricts the run to those riddles.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -18,7 +19,13 @@ const MAX_ATTEMPTS = 200_000_000;
 
 async function main() {
   const dir = path.resolve('content/sims');
-  const files = fs.readdirSync(dir).filter((f) => f.endsWith('.ts') && f !== 'run-all.ts').sort();
+  // `npm run verify -- --only a,b` checks just those riddle ids.
+  const i = process.argv.indexOf('--only');
+  const only = i >= 0 ? new Set(process.argv[i + 1].split(',')) : null;
+  const files = fs
+    .readdirSync(dir)
+    .filter((f) => f.endsWith('.ts') && f !== 'run-all.ts' && (!only || only.has(f.replace(/\.ts$/, ''))))
+    .sort();
   const riddleDir = path.resolve('content/riddles');
   let failed = false;
 

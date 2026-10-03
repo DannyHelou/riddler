@@ -1,0 +1,20 @@
+{
+  "id": "head-start-race",
+  "tier": "boss",
+  "category": "rates",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Ann beats Bo by 10 m in a 100 m race. In a rematch at the same speeds, how many metres behind the start line must Ann begin so that they finish exactly together?",
+  "prompt_short": "Ann beats Bo by 10 m over 100 m. Handicap for a dead heat?",
+  "answer_value": 11.11,
+  "trap_value": 10,
+  "closeness_cap": 0.09,
+  "unit_label": "m",
+  "answer_display": "about 11.1 m (100/9)",
+  "hint_md": "While Bo runs 100 m, how far does Ann run?",
+  "explain_intuition_md": "Starting 10 m back would tie them at the 90 m point of Bo's old race, but Ann is faster, so she'd still win the last stretch. She needs a little more than 10 m of handicap.",
+  "explain_math_md": "Speed ratio $\\frac{100}{90}$. While Bo runs $100$, Ann runs $\\frac{1000}{9} \\approx 111.1$, so the handicap is $\\frac{100}{9} \\approx 11.11$ m.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

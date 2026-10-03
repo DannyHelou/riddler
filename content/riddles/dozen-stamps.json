@@ -1,0 +1,31 @@
+{
+  "id": "dozen-stamps",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "word",
+  "prompt_md": "How many 2-cent stamps are there in a dozen?",
+  "prompt_short": "How many 2-cent stamps are there in a dozen?",
+  "answer_display": "12",
+  "accepted_answers": [
+    "12",
+    "twelve",
+    "12 stamps",
+    "twelve stamps"
+  ],
+  "trap_answers": [
+    "6",
+    "six",
+    "24",
+    "twenty four",
+    "twentyfour",
+    "6 stamps",
+    "24 stamps",
+    "six stamps"
+  ],
+  "hint_md": "What does \"a dozen\" always mean?",
+  "explain_intuition_md": "The 2 cents tempt you to divide or multiply, but a dozen of anything is 12, whatever each one costs.",
+  "explain_math_md": "A dozen is $12$; the price does not enter into it.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

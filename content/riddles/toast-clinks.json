@@ -1,0 +1,20 @@
+{
+  "id": "toast-clinks",
+  "tier": "warmup",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Six friends raise their glasses, and every pair of them clinks glasses exactly once. How many clinks are there?",
+  "prompt_short": "Six friends, every pair clinks glasses once. How many clinks?",
+  "answer_value": 15,
+  "trap_value": 30,
+  "closeness_cap": 0.5,
+  "unit_label": "clinks",
+  "answer_display": "15 clinks",
+  "hint_md": "When Ana clinks with Ben, that's the same clink as Ben clinking with Ana.",
+  "explain_intuition_md": "Each of the 6 clinks with 5 others, which gives 30. But that counts every clink twice, once from each side. Halve it to get 15.",
+  "explain_math_md": "$$\\binom{6}{2} = \\frac{6 \\times 5}{2} = 15$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic (handshake problem)"
+}

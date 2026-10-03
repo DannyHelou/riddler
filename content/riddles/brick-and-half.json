@@ -1,0 +1,20 @@
+{
+  "id": "brick-and-half",
+  "tier": "warmup",
+  "category": "arithmetic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A brick weighs 1 kg plus half a brick. How many kilograms does the brick weigh?",
+  "prompt_short": "A brick weighs 1 kg plus half a brick. Its weight?",
+  "answer_value": 2,
+  "trap_value": 1.5,
+  "closeness_cap": 0.25,
+  "unit_label": "kg",
+  "answer_display": "2 kg",
+  "hint_md": "The other half of the brick weighs what?",
+  "explain_intuition_md": "If the brick is 1 kg plus half a brick, then the 1 kg must be the other half. Two halves of 1 kg make 2 kg.",
+  "explain_math_md": "$b = 1 + \\tfrac{b}{2} \\Rightarrow \\tfrac{b}{2} = 1 \\Rightarrow b = 2$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

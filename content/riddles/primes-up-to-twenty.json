@@ -1,0 +1,20 @@
+{
+  "id": "primes-up-to-twenty",
+  "tier": "warmup",
+  "category": "number theory",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "How many prime numbers are there between 1 and 20?",
+  "prompt_short": "How many primes between 1 and 20?",
+  "answer_value": 8,
+  "trap_value": 9,
+  "closeness_cap": 0.1,
+  "unit_label": "primes",
+  "answer_display": "8 primes",
+  "hint_md": "Is 1 prime? Is 2?",
+  "explain_intuition_md": "The primes up to 20 are 2, 3, 5, 7, 11, 13, 17 and 19. It's tempting to include 1, but a prime needs exactly two divisors and 1 has only one. And 2 is prime even though it's even.",
+  "explain_math_md": "$$\\{2, 3, 5, 7, 11, 13, 17, 19\\} \\Rightarrow 8$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

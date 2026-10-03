@@ -1,0 +1,20 @@
+{
+  "id": "wine-and-water",
+  "tier": "trap",
+  "category": "arithmetic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Glass A has 100 mL of wine, glass B 100 mL of water. Pour 10 mL from A into B and stir. Then pour 10 mL from B back into A. How many mL of water are in A now?",
+  "prompt_short": "100 mL wine, 100 mL water, swap 10 mL each way. Water now in A?",
+  "answer_value": 9.09,
+  "trap_value": 10,
+  "closeness_cap": 0.08,
+  "unit_label": "mL",
+  "answer_display": "about 9.1 mL (100/11)",
+  "hint_md": "The 10 mL you pour back is a mix of water and wine.",
+  "explain_intuition_md": "The spoonful going back isn't pure water: some of it is the wine you just added. Only 100 of B's 110 mL is water, so 10/11 of the pour is water.",
+  "explain_math_md": "$$10 \\times \\frac{100}{110} = \\frac{100}{11} \\approx 9.09 \\text{ mL}$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (wine and water)"
+}

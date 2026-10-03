@@ -1,0 +1,20 @@
+{
+  "id": "two-digit-numbers",
+  "tier": "warmup",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "How many whole numbers have exactly two digits?",
+  "prompt_short": "How many whole numbers have exactly two digits?",
+  "answer_value": 90,
+  "trap_value": 99,
+  "closeness_cap": 0.08,
+  "unit_label": "numbers",
+  "answer_display": "90 numbers",
+  "hint_md": "Where do two-digit numbers start?",
+  "explain_intuition_md": "Two-digit numbers run from 10 to 99, not from 1 to 99. Take away the nine one-digit numbers and 90 are left.",
+  "explain_math_md": "$$99 - 10 + 1 = 90$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

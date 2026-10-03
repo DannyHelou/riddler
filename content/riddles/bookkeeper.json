@@ -1,0 +1,31 @@
+{
+  "id": "bookkeeper",
+  "tier": "warmup",
+  "category": "wordplay",
+  "answer_type": "word",
+  "prompt_md": "Name a common English word with three double letters in a row, each pair right after the last.",
+  "prompt_short": "A common word with three double letters in a row?",
+  "answer_display": "bookkeeper (oo-kk-ee)",
+  "accepted_answers": [
+    "bookkeeper",
+    "bookkeeping",
+    "bookkeepers",
+    "bookkeep"
+  ],
+  "trap_answers": [
+    "committee",
+    "mississippi",
+    "coffee",
+    "balloon",
+    "address",
+    "succeed",
+    "tennessee",
+    "assess"
+  ],
+  "hint_md": "Someone who keeps the books.",
+  "explain_intuition_md": "Committee and Mississippi feel full of doubles, but their pairs are split up by other letters. Bookkeeper runs oo, kk, ee back to back.",
+  "explain_math_md": "No math here: the trick is in the wording.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

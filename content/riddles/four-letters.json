@@ -1,0 +1,29 @@
+{
+  "id": "four-letters",
+  "tier": "warmup",
+  "category": "wordplay",
+  "answer_type": "word",
+  "prompt_md": "Which number, spelled out in English, has exactly as many letters as its value?",
+  "prompt_short": "Which number has as many letters as its value?",
+  "answer_display": "four (4 letters)",
+  "accepted_answers": [
+    "four",
+    "4",
+    "number four",
+    "number 4"
+  ],
+  "trap_answers": [
+    "five",
+    "5",
+    "three",
+    "3",
+    "number five",
+    "number three"
+  ],
+  "hint_md": "Count on your fingers: one, two, three...",
+  "explain_intuition_md": "Five has four letters and three has five, so they feel close, but only four matches itself: f-o-u-r is exactly 4 letters.",
+  "explain_math_md": "Letter counts: one 3, two 3, three 5, four 4, five 4, six 3. Past four the value outruns the letters for good.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

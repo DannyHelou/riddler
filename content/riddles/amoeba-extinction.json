@@ -1,0 +1,20 @@
+{
+  "id": "amoeba-extinction",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "An amoeba lives one minute, then becomes 0, 1, 2 or 3 amoebas, each with chance 1 in 4. Every new one does the same. Chance the family started by one eventually dies out?",
+  "prompt_short": "Amoeba becomes 0-3 amoebas each minute. Chance the line dies out?",
+  "answer_value": 41.42,
+  "trap_value": 25,
+  "closeness_cap": 30,
+  "unit_label": "%",
+  "answer_display": "about 41% (√2 − 1)",
+  "hint_md": "Each child starts its own family, which dies out with the same chance as the whole.",
+  "explain_intuition_md": "Dying in the very first minute is only one way to die out: a family of two or three can still fade away later. Each child starts its own family with exactly the same chance of dying out, and that self-similarity gives an equation whose answer is about 41%.",
+  "explain_math_md": "$$p = \\tfrac14\\left(1+p+p^2+p^3\\right) \\;\\Rightarrow\\; (p-1)(p^2+2p-1) = 0 \\;\\Rightarrow\\; p = \\sqrt2-1 \\approx 41.4\\%$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic, via BrainStellar (MIT)"
+}

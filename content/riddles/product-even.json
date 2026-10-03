@@ -1,0 +1,20 @@
+{
+  "id": "product-even",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Roll three fair dice and multiply the three numbers together. What's the chance the product is even?",
+  "prompt_short": "Multiply three dice. Chance the product is even?",
+  "answer_value": 87.5,
+  "trap_value": 50,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "87.5% (7 in 8)",
+  "hint_md": "When is a product odd?",
+  "explain_intuition_md": "Even and odd feel equally likely, so 50% is tempting. But a product is odd only if every factor is odd, and one even die is enough to make the whole product even.",
+  "explain_math_md": "$$1-\\left(\\tfrac12\\right)^3 = \\tfrac78 = 87.5\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

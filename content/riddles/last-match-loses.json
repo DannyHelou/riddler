@@ -1,0 +1,20 @@
+{
+  "id": "last-match-loses",
+  "tier": "trap",
+  "category": "strategy",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "31 matches lie on a table. You and a friend take turns removing 1, 2 or 3; whoever takes the last match loses. You go first. How many should you take to be sure to win?",
+  "prompt_short": "31 matches, take 1 to 3, last match loses. How many to take first?",
+  "answer_value": 2,
+  "trap_value": 3,
+  "closeness_cap": 0.35,
+  "unit_label": "matches",
+  "answer_display": "2 matches",
+  "hint_md": "You want your friend to face exactly 1 match at the end.",
+  "explain_intuition_md": "In the version where taking the last match wins, you'd leave a multiple of 4 and take 3 here. But here you want your friend stuck with the last match, so leave them 1, 5, 9, ... or 29. Take 2, then always make each round add up to 4.",
+  "explain_math_md": "$$31 - 2 = 29 \\equiv 1 \\pmod 4$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (Nim-style take-away game)"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "saw-off-a-corner",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You saw a small triangle off one corner of a square table with one straight cut. How many corners does the table have now?",
+  "prompt_short": "Saw one corner off a square table. How many corners now?",
+  "answer_value": 5,
+  "trap_value": 3,
+  "closeness_cap": 0.45,
+  "unit_label": "corners",
+  "answer_display": "5 corners",
+  "hint_md": "Look at where the cut meets the two edges.",
+  "explain_intuition_md": "Removing one corner creates two new ones, where the cut meets each edge. So you lose 1 and gain 2. Four minus one forgets the new corners.",
+  "explain_math_md": "$$4 - 1 + 2 = 5$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "rate-hike",
+  "tier": "warmup",
+  "category": "percentages",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A loan's interest rate rises from 4% to 5% a year. By what percent did the interest rate itself go up?",
+  "prompt_short": "Interest rate rises from 4% to 5%. Percent increase in the rate?",
+  "answer_value": 25,
+  "trap_value": 1,
+  "closeness_cap": 40,
+  "unit_label": "%",
+  "answer_display": "25%",
+  "hint_md": "Percentage points are not percent.",
+  "explain_intuition_md": "The rate went up by 1 percentage point, but that point is a quarter of the old 4%. So you now pay 25% more interest than before.",
+  "explain_math_md": "$$\\frac{5 - 4}{4} = 0.25 = 25\\%$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

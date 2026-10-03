@@ -1,0 +1,20 @@
+{
+  "id": "patio-raindrop-edge",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A raindrop lands at a uniformly random spot on a 10 m by 10 m square patio. On average, how far is it from the nearest edge, in meters?",
+  "prompt_short": "Random spot on a 10 m square. Average distance to the nearest edge?",
+  "answer_value": 1.667,
+  "trap_value": 2.5,
+  "closeness_cap": 0.4,
+  "unit_label": "m",
+  "answer_display": "about 1.67 m (5/3 m)",
+  "hint_md": "Most of the area is close to the edges.",
+  "explain_intuition_md": "Halfway to the center (2.5 m) would be right if spots were spread evenly by distance, but area is not. A band along the edges holds far more area than a band of the same width near the center, so drops crowd toward the edges. The average works out to just 5/3 m.",
+  "explain_math_md": "$$P(D > t) = \\left(\\frac{10 - 2t}{10}\\right)^2, \\quad E[D] = \\int_0^5 \\left(1 - \\tfrac{t}{5}\\right)^2 dt = \\tfrac53$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (geometric probability)"
+}

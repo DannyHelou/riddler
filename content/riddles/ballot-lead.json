@@ -1,0 +1,20 @@
+{
+  "id": "ballot-lead",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A hockey game ends 6–4, and every order of the 10 goals is equally likely. What's the chance the winners were ahead the whole game, from the first goal on?",
+  "prompt_short": "Game ends 6-4. Chance the winners led from the first goal on?",
+  "answer_value": 20,
+  "trap_value": 60,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "20% (1 in 5)",
+  "hint_md": "Count the orders where the score is tied at some point.",
+  "explain_intuition_md": "The winners score first 60% of the time, so that's a tempting answer. But even after scoring first, the score is often tied up later. The ballot theorem gives a clean answer: the chance of leading all the way is the winning margin divided by the total number of goals.",
+  "explain_math_md": "$$P = \\frac{a-b}{a+b} = \\frac{6-4}{6+4} = 20\\%$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (Bertrand's ballot theorem)"
+}

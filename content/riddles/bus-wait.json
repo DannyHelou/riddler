@@ -1,0 +1,20 @@
+{
+  "id": "bus-wait",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Buses come completely at random, one every 10 minutes on average, with no timetable. You turn up at a random time. On average, how many minutes do you wait?",
+  "prompt_short": "Random buses, one every 10 min on average. Your average wait?",
+  "answer_value": 10,
+  "trap_value": 5,
+  "closeness_cap": 0.5,
+  "unit_label": "minutes",
+  "answer_display": "10 minutes",
+  "hint_md": "The buses don't remember when the last one came.",
+  "explain_intuition_md": "Random arrivals have no memory: however long it's been since the last bus, the next is still 10 minutes away on average. Halving to 5 only works for a perfectly regular timetable. With random gaps, you're also more likely to arrive during a long gap than a short one.",
+  "explain_math_md": "Gaps are exponential with mean $10$, which is memoryless, so $E[\\text{wait}] = 10$.",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (waiting-time paradox), via BrainStellar (MIT)"
+}

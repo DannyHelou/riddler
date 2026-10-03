@@ -1,0 +1,20 @@
+{
+  "id": "class-size-paradox",
+  "tier": "trap",
+  "category": "statistics",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A college's 1,000 students each take one class: nine seminars of 10 and one lecture of 910, so classes average 100. Average class size for a random student?",
+  "prompt_short": "9 seminars of 10, 1 lecture of 910. Class size a random student sits in?",
+  "answer_value": 829,
+  "trap_value": 100,
+  "closeness_cap": 1.5,
+  "unit_label": "students",
+  "answer_display": "829 students",
+  "hint_md": "Ask the students, not the timetable.",
+  "explain_intuition_md": "The average of 100 counts each class once. But 910 of the 1,000 students sit in the giant lecture, so a typical student experiences a class of 910. Weighting by students instead of by classes pulls the average way up.",
+  "explain_math_md": "$$E = \\frac{90}{1000} \\cdot 10 + \\frac{910}{1000} \\cdot 910 = 0.9 + 828.1 = 829$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (class-size paradox)"
+}

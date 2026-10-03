@@ -1,0 +1,20 @@
+{
+  "id": "log-cuts",
+  "tier": "warmup",
+  "category": "arithmetic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A 10 m log is sawn into 1 m pieces. Each cut takes exactly 1 minute. How many minutes does the whole job take?",
+  "prompt_short": "10 m log into 1 m pieces, 1 minute per cut. Total minutes?",
+  "answer_value": 9,
+  "trap_value": 10,
+  "closeness_cap": 0.1,
+  "unit_label": "minutes",
+  "answer_display": "9 minutes",
+  "hint_md": "How many cuts make 2 pieces?",
+  "explain_intuition_md": "Ten pieces need only nine cuts: the last cut leaves two pieces at once. So the job takes 9 minutes, not 10.",
+  "explain_math_md": "$n$ pieces need $n - 1$ cuts: $10 - 1 = 9$ cuts $\\times$ 1 min $= 9$ min.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

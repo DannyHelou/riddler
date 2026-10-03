@@ -1,0 +1,20 @@
+{
+  "id": "shadow-tip",
+  "tier": "trap",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You're 2 m tall and walk straight away from a 6 m street lamp at 1 m/s on flat ground. How fast, in m/s, does the tip of your shadow move?",
+  "prompt_short": "2 m tall, walking at 1 m/s away from a 6 m lamp. Speed of shadow tip?",
+  "answer_value": 1.5,
+  "trap_value": 1,
+  "closeness_cap": 0.35,
+  "unit_label": "m/s",
+  "answer_display": "1.5 m/s",
+  "hint_md": "Similar triangles: where is the tip when you're 6 m from the lamp?",
+  "explain_intuition_md": "Your shadow grows longer as you walk, so its tip outruns you. The tip is always 1.5 times as far from the lamp as you are, so it moves 1.5 times as fast.",
+  "explain_math_md": "Tip at $x$, you at $d$: $\\frac{x}{6} = \\frac{x - d}{2} \\Rightarrow x = 1.5\\,d$, so speed $= 1.5$ m/s.",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

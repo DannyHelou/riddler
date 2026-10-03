@@ -1,0 +1,20 @@
+{
+  "id": "half-full-cone",
+  "tier": "boss",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A cone-shaped glass, point down, holds exactly half as much drink as it can. How high does the drink reach, as a percent of the glass's height?",
+  "prompt_short": "Cone glass, point down, half full by volume. Drink height as % of glass?",
+  "answer_value": 79.37,
+  "trap_value": 50,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "about 79%",
+  "hint_md": "A cone of drink is a smaller copy of the glass. Volume scales with height cubed.",
+  "explain_intuition_md": "Halfway up a cone glass looks half full but holds only an eighth, because the wide top is where the volume is. To hold half, the drink must reach almost four-fifths of the way up.",
+  "explain_math_md": "$$\\left(\\frac{h}{H}\\right)^3 = \\frac{1}{2} \\Rightarrow \\frac{h}{H} = 2^{-1/3} \\approx 0.7937$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

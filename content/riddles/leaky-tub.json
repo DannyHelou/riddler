@@ -1,0 +1,20 @@
+{
+  "id": "leaky-tub",
+  "tier": "trap",
+  "category": "rates",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "With the plug in, the tap fills a bathtub in 6 minutes. A full tub drains in 9 minutes. With the tap on and the plug out, how many minutes to fill the empty tub?",
+  "prompt_short": "Tap fills a tub in 6 min, drain empties it in 9. Both on: minutes to fill?",
+  "answer_value": 18,
+  "trap_value": 3,
+  "closeness_cap": 1.6,
+  "unit_label": "minutes",
+  "answer_display": "18 minutes",
+  "hint_md": "What fraction of the tub fills in one minute?",
+  "explain_intuition_md": "Subtracting the times makes no sense: the tub fills, just slowly. Each minute the tap adds a sixth and the drain takes a ninth, leaving an eighteenth.",
+  "explain_math_md": "$$\\tfrac{1}{6} - \\tfrac{1}{9} = \\tfrac{1}{18} \\text{ tub per minute} \\Rightarrow 18 \\text{ minutes}$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

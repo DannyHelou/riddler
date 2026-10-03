@@ -1,0 +1,20 @@
+{
+  "id": "holiday-cards",
+  "tier": "warmup",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Five friends each mail a holiday card to every one of the other four. How many cards are mailed in total?",
+  "prompt_short": "Five friends each mail a card to each of the others. How many cards?",
+  "answer_value": 20,
+  "trap_value": 10,
+  "closeness_cap": 0.5,
+  "unit_label": "cards",
+  "answer_display": "20 cards",
+  "hint_md": "A card from Ana to Ben is not the same card as one from Ben to Ana.",
+  "explain_intuition_md": "This isn't a handshake count: every pair swaps two cards, one each way. Five people each send four cards, which makes 20.",
+  "explain_math_md": "$$5 \\times 4 = 20 = 2 \\times \\binom{5}{2}$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

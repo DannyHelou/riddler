@@ -1,0 +1,20 @@
+{
+  "id": "sphere-points-60",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Two points are picked uniformly at random on a sphere. What's the chance that the angle between them, seen from the sphere's center, is less than 60 degrees?",
+  "prompt_short": "Two random points on a sphere. Chance they are within 60° of each other?",
+  "answer_value": 25,
+  "trap_value": 33.33,
+  "closeness_cap": 25,
+  "unit_label": "%",
+  "answer_display": "25%",
+  "hint_md": "Fix one point at the north pole. How much of the globe lies within 60 degrees?",
+  "explain_intuition_md": "Fix the first point at the north pole; the second must land in a cap reaching 60 degrees down. The bands near the pole are small, so that cap holds only a quarter of the surface. Treating the angle as evenly spread from 0 to 180 degrees gives the tempting third.",
+  "explain_math_md": "A cap of angular radius $\\theta$ covers a fraction $\\tfrac{1 - \\cos\\theta}{2}$ of the sphere: $$\\frac{1 - \\cos 60^\\circ}{2} = \\frac{1 - \\tfrac12}{2} = \\tfrac14$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (Archimedes' hat-box theorem)"
+}

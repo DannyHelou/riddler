@@ -1,0 +1,20 @@
+{
+  "id": "column-runner",
+  "tier": "boss",
+  "category": "rates",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A 1 km column of marchers walks steadily. A runner goes from its back to its front and straight back at a steady speed, as the column advances 1 km. How far did he run?",
+  "prompt_short": "1 km column advances 1 km while a runner goes back to front and back. Distance?",
+  "answer_value": 2.414,
+  "trap_value": 2,
+  "closeness_cap": 0.16,
+  "unit_label": "km",
+  "answer_display": "about 2.41 km (1 + √2)",
+  "hint_md": "Call the column's speed 1. Write the two legs' times using the runner's speed relative to the column.",
+  "explain_intuition_md": "Out and back along a 1 km column sounds like 2 km, but the column keeps moving. Running forward the runner must chase the front, and that costs more than the ride back saves.",
+  "explain_math_md": "Column speed $1$, runner $u$: $\\frac{1}{u-1} + \\frac{1}{u+1} = 1 \\Rightarrow u^2 - 2u - 1 = 0 \\Rightarrow u = 1 + \\sqrt 2$. In time $1$: $1 + \\sqrt 2 \\approx 2.414$ km.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (the army and the courier)"
+}

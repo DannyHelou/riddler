@@ -1,0 +1,20 @@
+{
+  "id": "nine-coins-one-heavy",
+  "tier": "trap",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Nine identical-looking coins include one that's slightly heavier. Using only a balance scale, how many weighings do you need to be sure of finding it?",
+  "prompt_short": "9 coins, one heavier, balance scale. Weighings needed?",
+  "answer_value": 2,
+  "trap_value": 3,
+  "closeness_cap": 0.35,
+  "unit_label": "weighings",
+  "answer_display": "2 weighings",
+  "hint_md": "A weighing has three outcomes, not two.",
+  "explain_intuition_md": "Splitting in halves goes 9, 4, 2, 1 and needs three weighings. But a weighing splits the coins three ways: left pan, right pan, and the pile you left off. Weigh 3 against 3: the heavy coin is in the pan that drops, or among the 3 left off if they balance, and weighing 1 against 1 finishes it.",
+  "explain_math_md": "$$3^1 < 9 \\le 3^2 \\Rightarrow 2 \\text{ weighings}$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

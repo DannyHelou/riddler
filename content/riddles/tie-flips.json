@@ -1,0 +1,20 @@
+{
+  "id": "tie-flips",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Ann and Ben each flip a fair coin 10 times. What's the chance they get the same number of heads?",
+  "prompt_short": "Two people, 10 flips each. Same number of heads?",
+  "answer_value": 17.62,
+  "trap_value": 9.09,
+  "closeness_cap": 20,
+  "unit_label": "%",
+  "answer_display": "about 17.6%",
+  "hint_md": "Look at Ann's heads plus Ben's tails.",
+  "explain_intuition_md": "There are 11 possible head counts, so 1 in 11 is tempting, but counts near 5 are far more likely than extreme ones. A neat trick: Ann's heads equal Ben's heads exactly when Ann's heads plus Ben's tails make 10. That's the same as getting exactly 10 heads in 20 flips.",
+  "explain_math_md": "$$\\sum_{k=0}^{10}\\binom{10}{k}^2\\Big/4^{10} = \\binom{20}{10}\\Big/2^{20} \\approx 17.6\\%$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

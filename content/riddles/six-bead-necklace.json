@@ -1,0 +1,20 @@
+{
+  "id": "six-bead-necklace",
+  "tier": "boss",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A necklace has 6 beads: 3 red and 3 blue. Two necklaces are the same if one can be turned or flipped into the other. How many different necklaces are there?",
+  "prompt_short": "Necklaces of 3 red and 3 blue beads, turning and flipping allowed?",
+  "answer_value": 3,
+  "trap_value": 20,
+  "closeness_cap": 1.5,
+  "unit_label": "necklaces",
+  "answer_display": "3 necklaces",
+  "hint_md": "Look at how the reds group: all together, two together, or none together.",
+  "explain_intuition_md": "20 counts the ways to color 6 fixed spots, but on a necklace most of those are turns or flips of each other. The three reds can be all together, exactly two together, or all apart. Each of those is just one necklace.",
+  "explain_math_md": "By Burnside's lemma over the $12$ turns and flips: $$\\frac{20 + 2 + 2 + 4 + 4 + 4}{12} = \\frac{36}{12} = 3$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

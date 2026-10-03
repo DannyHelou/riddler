@@ -1,0 +1,20 @@
+{
+  "id": "fifty-percent-more",
+  "tier": "warmup",
+  "category": "percentages",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "30 is 50% more than what number?",
+  "prompt_short": "30 is 50% more than what number?",
+  "answer_value": 20,
+  "trap_value": 15,
+  "closeness_cap": 0.25,
+  "unit_label": "",
+  "answer_display": "20",
+  "hint_md": "50% more than x means 1.5 times x.",
+  "explain_intuition_md": "Taking 50% off 30 gives 15, but 50% more than 15 is only 22.5. The 50% has to be measured from the smaller number, and 20 plus half of 20 is 30.",
+  "explain_math_md": "$1.5x = 30 \\Rightarrow x = 20$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

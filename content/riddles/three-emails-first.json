@@ -1,0 +1,20 @@
+{
+  "id": "three-emails-first",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Emails arrive at random moments with no pattern. Exactly 3 arrived between 9:00 and 10:00. On average, how many minutes after 9:00 did the first one arrive?",
+  "prompt_short": "Exactly 3 random emails in an hour. Average minutes until the first?",
+  "answer_value": 15,
+  "trap_value": 20,
+  "closeness_cap": 0.3,
+  "unit_label": "min",
+  "answer_display": "15 minutes",
+  "hint_md": "Given the count, each email's time is uniform over the hour.",
+  "explain_intuition_md": "One email per 20 minutes makes 9:20 feel right for the first. But given that exactly 3 arrived, their times are just 3 random points in the hour, which cut it into 4 pieces of 15 minutes on average. The first arrival ends the first piece.",
+  "explain_math_md": "Given 3 arrivals of a Poisson process, the times are independent and uniform on $[0, 60]$: $$E[\\min] = \\frac{60}{3 + 1} = 15$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (Poisson process)"
+}

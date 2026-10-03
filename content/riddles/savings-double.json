@@ -1,0 +1,20 @@
+{
+  "id": "savings-double",
+  "tier": "trap",
+  "category": "percentages",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You put money in an account paying 7% interest a year, added once at the end of each year. After how many full years has your money at least doubled?",
+  "prompt_short": "7% a year, compounded yearly. Full years until the money doubles?",
+  "answer_value": 11,
+  "trap_value": 14,
+  "closeness_cap": 0.21,
+  "unit_label": "years",
+  "answer_display": "11 years",
+  "hint_md": "The interest earns interest too.",
+  "explain_intuition_md": "Dividing 100% by 7% gives about 14 years, but that ignores interest on the interest. Compounding gets you to double in about 10.2 years, so the first full year that does it is year 11.",
+  "explain_math_md": "$1.07^{10} \\approx 1.967 < 2 < 1.07^{11} \\approx 2.105$, so $11$ years.",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

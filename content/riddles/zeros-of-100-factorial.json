@@ -1,0 +1,20 @@
+{
+  "id": "zeros-of-100-factorial",
+  "tier": "trap",
+  "category": "number theory",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Multiply together every whole number from 1 to 100. How many zeros are at the end of the result?",
+  "prompt_short": "How many zeros end 1 x 2 x 3 x ... x 100?",
+  "answer_value": 24,
+  "trap_value": 20,
+  "closeness_cap": 0.15,
+  "unit_label": "zeros",
+  "answer_display": "24 zeros",
+  "hint_md": "Every zero needs a 5, and some numbers carry two.",
+  "explain_intuition_md": "Each zero at the end comes from a 2 times a 5, and there are far more 2s than 5s, so count the 5s. The 20 multiples of 5 give one each, but 25, 50, 75 and 100 each hide a second 5. That makes 24, not 20.",
+  "explain_math_md": "$$\\left\\lfloor \\tfrac{100}{5} \\right\\rfloor + \\left\\lfloor \\tfrac{100}{25} \\right\\rfloor = 20 + 4 = 24$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

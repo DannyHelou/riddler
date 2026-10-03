@@ -1,0 +1,20 @@
+{
+  "id": "bridge-and-torch",
+  "tier": "trap",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Four people cross a bridge at night, at most two at a time, carrying their one torch. They take 1, 2, 5 and 10 minutes; pairs walk at the slower pace. Fewest minutes?",
+  "prompt_short": "Bridge, one torch, crossing times 1, 2, 5, 10 min. Fewest minutes?",
+  "answer_value": 17,
+  "trap_value": 19,
+  "closeness_cap": 0.1,
+  "unit_label": "min",
+  "answer_display": "17 minutes",
+  "hint_md": "Let the two slowest cross together.",
+  "explain_intuition_md": "The obvious plan has the fastest person escort everyone and run the torch back, which takes 19 minutes. The trick is to send the 5 and the 10 across together so their slow times overlap, with the 1 and 2 doing the torch runs.",
+  "explain_math_md": "1 and 2 cross ($2$), 1 returns ($1$), 5 and 10 cross ($10$), 2 returns ($2$), 1 and 2 cross ($2$): $$2 + 1 + 10 + 2 + 2 = 17$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (bridge and torch)"
+}

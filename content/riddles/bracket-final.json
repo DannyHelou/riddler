@@ -1,0 +1,20 @@
+{
+  "id": "bracket-final",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "8 players are placed in a knockout bracket at random, and the better player always wins a match. What's the chance the two best players meet in the final?",
+  "prompt_short": "Random 8-player bracket. Chance the top two meet in the final?",
+  "answer_value": 57.14,
+  "trap_value": 50,
+  "closeness_cap": 20,
+  "unit_label": "%",
+  "answer_display": "about 57% (4 in 7)",
+  "hint_md": "Put the best player somewhere. Where can the second best go?",
+  "explain_intuition_md": "Two halves of the bracket suggests a 50-50 chance the top two are split up. But once the best player takes a spot, only 7 spots are left, and 4 of them are in the other half.",
+  "explain_math_md": "$$P = \\tfrac47 \\approx 57.1\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

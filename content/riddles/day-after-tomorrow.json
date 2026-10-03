@@ -1,0 +1,26 @@
+{
+  "id": "day-after-tomorrow",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "word",
+  "prompt_md": "If the day before yesterday was Friday, what day of the week will the day after tomorrow be?",
+  "prompt_short": "Day before yesterday was Friday. What day is the day after tomorrow?",
+  "answer_display": "Tuesday",
+  "accepted_answers": [
+    "tuesday",
+    "tue",
+    "tues"
+  ],
+  "trap_answers": [
+    "sunday",
+    "monday",
+    "sun",
+    "mon"
+  ],
+  "hint_md": "First work out what day it is today.",
+  "explain_intuition_md": "Friday was two days ago, so today is Sunday. It is easy to stop at today or step only one day forward; two days on from Sunday is Tuesday.",
+  "explain_math_md": "Today $=$ Friday $+ 2 =$ Sunday, and Sunday $+ 2 =$ Tuesday.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

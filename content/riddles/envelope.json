@@ -1,0 +1,26 @@
+{
+  "id": "envelope",
+  "tier": "warmup",
+  "category": "wordplay",
+  "answer_type": "word",
+  "prompt_md": "What word starts with E, ends with E, and contains only one letter? (It isn't the letter E.)",
+  "prompt_short": "What word starts with E, ends with E, and contains only one letter? (It isn't the letter E.)",
+  "answer_display": "envelope",
+  "accepted_answers": [
+    "envelope",
+    "an envelope"
+  ],
+  "trap_answers": [
+    "eye",
+    "eve",
+    "ewe",
+    "e",
+    "letter e"
+  ],
+  "hint_md": "Contains, as in holds.",
+  "explain_intuition_md": "An envelope starts and ends with E, and it holds a single letter: the kind you post.",
+  "explain_math_md": "No math here: the trick is in the wording.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic, via crawsome/riddles (Unlicense)"
+}

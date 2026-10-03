@@ -1,0 +1,20 @@
+{
+  "id": "painted-cube-27",
+  "tier": "warmup",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A wooden cube is painted on the outside, then cut into 27 equal small cubes. How many of the small cubes have paint on at least one face?",
+  "prompt_short": "Painted cube cut into 27. How many small cubes have any paint?",
+  "answer_value": 26,
+  "trap_value": 54,
+  "closeness_cap": 0.6,
+  "unit_label": "cubes",
+  "answer_display": "26 cubes",
+  "hint_md": "Which small cube never touches the outside?",
+  "explain_intuition_md": "Only the single cube in the very center is hidden from every face. The other 26 all touch the outside. 54 counts painted faces, and most painted cubes have more than one.",
+  "explain_math_md": "$$27 - 1^3 = 26$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

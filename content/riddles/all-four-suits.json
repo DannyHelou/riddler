@@ -1,0 +1,20 @@
+{
+  "id": "all-four-suits",
+  "tier": "trap",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You draw cards one at a time from a standard 52-card deck without looking. How many must you draw to be certain you hold all four suits?",
+  "prompt_short": "Cards to draw to be certain of holding all four suits?",
+  "answer_value": 40,
+  "trap_value": 4,
+  "closeness_cap": 1.5,
+  "unit_label": "cards",
+  "answer_display": "40 cards",
+  "hint_md": "Imagine the worst luck possible.",
+  "explain_intuition_md": "Four cards could be one of each suit, but nothing forces that. In the worst case you draw all 13 cards of three suits first, which is 39 cards. Only the 40th is guaranteed to bring the missing suit.",
+  "explain_math_md": "$$3 \\times 13 + 1 = 40$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (pigeonhole principle)"
+}

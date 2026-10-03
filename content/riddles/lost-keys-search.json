@@ -1,0 +1,20 @@
+{
+  "id": "lost-keys-search",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Your keys are in the kitchen or the car, 50/50. A kitchen search finds them 70% of the time if they're there. Two such searches fail. Chance they're in the kitchen?",
+  "prompt_short": "Keys: kitchen or car, 50/50. Two 70%-searches of the kitchen fail. Kitchen?",
+  "answer_value": 8.26,
+  "trap_value": 4.5,
+  "closeness_cap": 10,
+  "unit_label": "%",
+  "answer_display": "about 8.3% (9 in 109)",
+  "hint_md": "Among all the ways both searches fail, how many have the keys in the kitchen?",
+  "explain_intuition_md": "Multiplying 50% by two 30% misses gives 4.5%, but that's the chance of 'kitchen and missed twice', not the chance given what you now know. The car scenario also survives both failed searches, and it's far more common. Among the scenarios still possible, the kitchen accounts for 9 in 109.",
+  "explain_math_md": "$$P(K \\mid \\text{two misses}) = \\frac{0.5 \\cdot 0.3^2}{0.5 \\cdot 0.3^2 + 0.5 \\cdot 1} = \\frac{0.045}{0.545} \\approx 8.26\\%$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (Bayesian search)"
+}

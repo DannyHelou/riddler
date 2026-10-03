@@ -1,0 +1,20 @@
+{
+  "id": "chessboard-rectangles",
+  "tier": "boss",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "How many rectangles of any size, squares included, can you find on an 8 by 8 chessboard, with sides along the grid lines?",
+  "prompt_short": "Rectangles of every size on a chessboard, squares included?",
+  "answer_value": 1296,
+  "trap_value": 204,
+  "closeness_cap": 1.6,
+  "unit_label": "rectangles",
+  "answer_display": "1,296 rectangles",
+  "hint_md": "A rectangle is fixed by choosing 2 of the 9 vertical lines and 2 of the 9 horizontal lines.",
+  "explain_intuition_md": "204 is the famous count of squares, and it's only a small part of the answer. Any rectangle is pinned down by picking two of the 9 vertical grid lines and two of the 9 horizontal ones. That's 36 choices times 36 choices.",
+  "explain_math_md": "$$\\binom{9}{2}^2 = 36^2 = 1296$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

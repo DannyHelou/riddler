@@ -1,0 +1,20 @@
+{
+  "id": "dart-duel",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Two players take turns throwing darts that land uniformly at random on a round board. First to land within half the radius of the center wins. Chance the starter wins?",
+  "prompt_short": "Alternate random darts; first within half the radius wins. First thrower?",
+  "answer_value": 57.14,
+  "trap_value": 50,
+  "closeness_cap": 20,
+  "unit_label": "%",
+  "answer_display": "about 57% (4 in 7)",
+  "hint_md": "What's the chance a single dart hits?",
+  "explain_intuition_md": "The inner zone has half the radius but only a quarter of the area, so each dart hits with chance 1 in 4. Going first gives you the first shot in every round, and with such a low hit rate that edge adds up to 4 in 7. It looks like a fair game, which is why 50% tempts.",
+  "explain_math_md": "Each dart hits with $p = \\left(\\tfrac12\\right)^2 = \\tfrac14$: $$P(\\text{first wins}) = \\frac{p}{1 - (1-p)^2} = \\frac{1/4}{7/16} = \\frac47 \\approx 57.1\\%$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

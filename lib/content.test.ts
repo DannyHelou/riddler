@@ -64,7 +64,8 @@ describe('seed validation (§8.3)', () => {
     expect(validateSchedule({ '2026-10-01': { ...ok, trap: 'rope-around-earth' } }, riddles).join()).toMatch(/boss riddle in the trap slot/);
     expect(validateSchedule({ '2026-10-01': { ...ok, warmup: 'bayes-disease-test' } }, riddles).join()).toMatch(/trap riddle in the warmup slot/);
     expect(validateSchedule({ '2026-10-01': { ...ok, trap: 'keys-no-locks' } }, riddles).join()).toMatch(/trap slot must be a number riddle/);
-    expect(validateSchedule({ '2026-10-01': ok, '2026-12-01': ok }, riddles).join()).toMatch(/repeats within 180 days/);
+    expect(validateSchedule({ '2026-10-01': ok, '2026-12-01': ok }, riddles).join()).toMatch(/repeats within 90 days/);
+    expect(validateSchedule({ '2026-10-01': ok, '2026-12-30': ok }, riddles)).toEqual([]);
     expect(validateSchedule({ '2026-10-01': ok, '2027-06-01': ok }, riddles)).toEqual([]);
     expect(validateSchedule({ '2026-10-01': { warmup: 'keys-no-locks', trap: 'bayes-disease-test' } as never }, riddles).join()).toMatch(/missing boss/);
   });

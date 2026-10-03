@@ -1,0 +1,20 @@
+{
+  "id": "first-ace",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You shuffle a standard 52-card deck and turn the cards over one at a time. On average, how many cards do you turn over to reach the first ace (counting the ace)?",
+  "prompt_short": "Shuffled deck, flip one by one. Average cards to reach the first ace?",
+  "answer_value": 10.6,
+  "trap_value": 13,
+  "closeness_cap": 0.3,
+  "unit_label": "cards",
+  "answer_display": "10.6 cards",
+  "hint_md": "The four aces split the other 48 cards into five groups.",
+  "explain_intuition_md": "The four aces cut the other 48 cards into five groups, and by symmetry each group holds 9.6 cards on average. You turn over the first group, then the ace. That's 10.6 cards, not 13.",
+  "explain_math_md": "$$E = \\frac{48}{5} + 1 = \\frac{53}{5} = 10.6$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic, via BrainStellar (MIT)"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "half-hour-accident",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A road has a 75% chance of at least one accident in any hour, with accidents at random at a steady rate. What's the chance of at least one in any half hour?",
+  "prompt_short": "75% chance of an accident per hour. Chance per half hour?",
+  "answer_value": 50,
+  "trap_value": 37.5,
+  "closeness_cap": 40,
+  "unit_label": "%",
+  "answer_display": "50%",
+  "hint_md": "Think about the chance of a quiet hour.",
+  "explain_intuition_md": "A quiet hour is two quiet half hours in a row. Quiet hours happen 25% of the time, so quiet half hours must happen 50% of the time, since half of a half is a quarter. That leaves a 50% chance of an accident.",
+  "explain_math_md": "$$1 - \\sqrt{1 - 0.75} = 1 - 0.5 = 0.5$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic, via BrainStellar (MIT)"
+}

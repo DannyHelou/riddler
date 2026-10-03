@@ -1,0 +1,20 @@
+{
+  "id": "weights-on-both-pans",
+  "tier": "trap",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You want to weigh any whole number of kilograms from 1 to 40 on a balance scale, and weights may go on either pan. What's the fewest weights you need?",
+  "prompt_short": "Weigh any whole kg from 1 to 40, weights on either pan. Fewest weights?",
+  "answer_value": 4,
+  "trap_value": 6,
+  "closeness_cap": 0.35,
+  "unit_label": "weights",
+  "answer_display": "4 weights (1, 3, 9 and 27 kg)",
+  "hint_md": "A weight can help, get in the way, or sit out.",
+  "explain_intuition_md": "Weights of 1, 2, 4, 8, 16 and 32 work if they all go on one pan, which is the binary answer of 6. But a weight placed next to the object subtracts, so every weight has three states instead of two. Weights of 1, 3, 9 and 27 cover everything from 1 to 40.",
+  "explain_math_md": "$$1 + 3 + 9 + 27 = 40 = \\frac{3^4 - 1}{2},\\quad \\frac{3^3 - 1}{2} = 13 < 40$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (Bachet's weights)"
+}

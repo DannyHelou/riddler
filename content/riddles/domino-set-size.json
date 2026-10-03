@@ -1,0 +1,20 @@
+{
+  "id": "domino-set-size",
+  "tier": "warmup",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A domino set has exactly one tile for every pair of numbers from 0 to 6, doubles like 3-3 included. How many tiles are in the set?",
+  "prompt_short": "One domino per pair of numbers 0 to 6, doubles included. How many tiles?",
+  "answer_value": 28,
+  "trap_value": 49,
+  "closeness_cap": 0.5,
+  "unit_label": "tiles",
+  "answer_display": "28 tiles",
+  "hint_md": "A 2-5 tile is the same tile as a 5-2.",
+  "explain_intuition_md": "7 times 7 counts every non-double tile twice, because 2-5 and 5-2 are the same tile. There are 21 different non-double pairs, plus 7 doubles.",
+  "explain_math_md": "$$\\binom{7}{2} + 7 = 21 + 7 = 28$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

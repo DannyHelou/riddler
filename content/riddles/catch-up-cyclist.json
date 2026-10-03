@@ -1,0 +1,20 @@
+{
+  "id": "catch-up-cyclist",
+  "tier": "warmup",
+  "category": "rates",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Your friend sets off walking at 4 km/h. An hour later you follow on a bike at 12 km/h along the same road. How many minutes until you catch up?",
+  "prompt_short": "Friend walks at 4 km/h with an hour's head start. You cycle at 12. Minutes?",
+  "answer_value": 30,
+  "trap_value": 20,
+  "closeness_cap": 0.35,
+  "unit_label": "minutes",
+  "answer_display": "30 minutes",
+  "hint_md": "Your friend keeps walking while you chase.",
+  "explain_intuition_md": "Covering the 4 km head start at 12 km/h takes 20 minutes, but your friend doesn't wait. You only gain 8 km/h on them, so closing 4 km takes half an hour.",
+  "explain_math_md": "Gap $4$ km, closing speed $12 - 4 = 8$ km/h: $\\frac{4}{8} = 0.5$ h $= 30$ min.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

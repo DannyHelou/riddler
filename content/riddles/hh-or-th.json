@@ -1,0 +1,20 @@
+{
+  "id": "hh-or-th",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Flip a fair coin until heads-heads or tails-heads shows up on two flips in a row. Ann wins on heads-heads, Ben on tails-heads. What's Ann's chance?",
+  "prompt_short": "Flip till HH or TH. Ann wins on HH. Her chance?",
+  "answer_value": 25,
+  "trap_value": 50,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "25% (1 in 4)",
+  "hint_md": "Once a tail appears, can Ann still win?",
+  "explain_intuition_md": "Both patterns are equally common in a long run of flips, so 50-50 feels right. But Ann can only win if the first two flips are both heads. As soon as any tail appears, the next head completes tails-heads before heads-heads can.",
+  "explain_math_md": "Any tail means TH comes first, so $$P(\\text{Ann}) = \\left(\\tfrac12\\right)^2 = \\tfrac14$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (Penney's game)"
+}

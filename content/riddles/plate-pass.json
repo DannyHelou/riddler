@@ -1,0 +1,20 @@
+{
+  "id": "plate-pass",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "10 friends sit around a round table. Each passes their plate to the left or right neighbor, by coin flip. On average, what percent of them end up with no plate?",
+  "prompt_short": "Pass plates left or right at random. Share left with no plate?",
+  "answer_value": 25,
+  "trap_value": 0,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "25%",
+  "hint_md": "Focus on one person. Who could pass them a plate?",
+  "explain_intuition_md": "Everyone gives away one plate, so it's tempting to think everyone gets one back. But plates pile up: you end up with nothing exactly when your left neighbor passes left and your right neighbor passes right. That's two coin flips going the wrong way.",
+  "explain_math_md": "For each person, $$P(\\text{no plate}) = \\tfrac12\\cdot\\tfrac12 = 25\\%$$ and averages add up person by person.",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

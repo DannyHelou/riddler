@@ -1,0 +1,20 @@
+{
+  "id": "double-discount",
+  "tier": "warmup",
+  "category": "percentages",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A coat is marked 20% off. At the till, you get another 20% off the sale price. What's your total discount off the original price, in percent?",
+  "prompt_short": "20% off, then another 20% off the sale price. Total discount?",
+  "answer_value": 36,
+  "trap_value": 40,
+  "closeness_cap": 8,
+  "unit_label": "%",
+  "answer_display": "36%",
+  "hint_md": "The second 20% comes off a smaller price.",
+  "explain_intuition_md": "The second discount is taken from a price that has already shrunk, so it saves less than the first. You pay 80% of 80%, which is 64% of the original.",
+  "explain_math_md": "$$1 - 0.8 \\times 0.8 = 1 - 0.64 = 0.36 = 36\\%$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

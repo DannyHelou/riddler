@@ -1,0 +1,20 @@
+{
+  "id": "hundred-flips-fifty",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "100 people each flip a fair coin. What's the chance that exactly 50 of them get heads?",
+  "prompt_short": "100 coin flips. Chance of exactly 50 heads?",
+  "answer_value": 7.96,
+  "trap_value": 50,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "about 8%",
+  "hint_md": "50 is the most likely count, but how many other counts are nearly as likely?",
+  "explain_intuition_md": "50 heads is the single most likely result, so it feels like it should happen a lot. But 48, 49, 51, 52 and many other counts are almost as likely, and they all share the probability. Exactly 50 happens only about 8% of the time.",
+  "explain_math_md": "$$\\binom{100}{50}\\Big/2^{100} \\approx \\frac{1}{\\sqrt{50\\pi}} \\approx 7.96\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

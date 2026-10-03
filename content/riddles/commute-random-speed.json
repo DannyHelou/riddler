@@ -1,0 +1,20 @@
+{
+  "id": "commute-random-speed",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Every day you drive 30 km at a constant speed picked uniformly at random between 30 and 90 km/h. On average, how many minutes does the drive take?",
+  "prompt_short": "30 km at a random speed from 30 to 90 km/h. Average minutes?",
+  "answer_value": 32.96,
+  "trap_value": 30,
+  "closeness_cap": 0.1,
+  "unit_label": "min",
+  "answer_display": "about 33 minutes (30 ln 3)",
+  "hint_md": "Average the time, not the speed.",
+  "explain_intuition_md": "The average speed is 60 km/h, which would make it 30 minutes. But slow days cost more extra time than fast days save: at 30 km/h the drive takes 60 minutes, at 90 km/h only 20. Averaging the times instead of the speeds gives about 33 minutes.",
+  "explain_math_md": "$$E[t] = \\frac{1}{60} \\int_{30}^{90} \\frac{30}{v} \\, dv = \\frac{\\ln 3}{2} \\text{ h} = 30 \\ln 3 \\text{ min} \\approx 32.96 \\text{ min}$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (Jensen's inequality)"
+}

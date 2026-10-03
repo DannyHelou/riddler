@@ -1,0 +1,20 @@
+{
+  "id": "sum-to-multiple-of-ten",
+  "tier": "boss",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You pick different whole numbers from 1 to 100. How many must you pick to be sure that two of them add up to a multiple of 10?",
+  "prompt_short": "Picks from 1 to 100 needed to force a pair summing to a multiple of 10?",
+  "answer_value": 43,
+  "trap_value": 11,
+  "closeness_cap": 1,
+  "unit_label": "numbers",
+  "answer_display": "43 numbers",
+  "hint_md": "Sort by last digit: which last digits clash with which?",
+  "explain_intuition_md": "Eleven feels right from the 10 possible last digits, but two numbers only clash when their last digits add to 10, or both are 0, or both are 5. You can safely take all 40 numbers ending in 1, 2, 3 or 4, plus one ending in 5 and one ending in 0. That's 42 with no clash, so the 43rd forces one.",
+  "explain_math_md": "$$4 \\times 10 + 1 + 1 + 1 = 43$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (pigeonhole principle)"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "lily-pad",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A patch of lily pads doubles in size every day. It takes 48 days to cover the whole lake. How many days does it take to cover half the lake?",
+  "prompt_short": "Lily pads double daily and cover a lake in 48 days. Days to cover half?",
+  "answer_value": 47,
+  "trap_value": 24,
+  "closeness_cap": 0.5,
+  "unit_label": "days",
+  "answer_display": "47 days",
+  "hint_md": "Think about the day before the lake is covered.",
+  "explain_intuition_md": "The patch doubles overnight, so the day before the lake is full, it's half full. That's day 47, not day 24.",
+  "explain_math_md": "Area on day $d$ is $2^{d-48}$ of the lake, so half the lake is day $47$.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic (cognitive reflection test)"
+}

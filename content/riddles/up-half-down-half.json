@@ -1,0 +1,20 @@
+{
+  "id": "up-half-down-half",
+  "tier": "warmup",
+  "category": "percentages",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A share price jumps 50% on Monday, then drops 50% on Tuesday. What percent of its starting price is it worth now?",
+  "prompt_short": "Up 50%, then down 50%. Percent of the starting price?",
+  "answer_value": 75,
+  "trap_value": 100,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "75%",
+  "hint_md": "Start at 100 dollars and follow it day by day.",
+  "explain_intuition_md": "The 50% drop is taken from the bigger, post-jump price, so it wipes out more than the jump added. 100 becomes 150, and half of 150 is 75.",
+  "explain_math_md": "$$1.5 \\times 0.5 = 0.75 = 75\\%$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "higher-spin-average",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Two players each spin a wheel that lands on a uniformly random number from 0 to 100 (decimals allowed). On average, what is the higher of the two numbers?",
+  "prompt_short": "Two random numbers from 0 to 100. Average of the higher one?",
+  "answer_value": 66.67,
+  "trap_value": 50,
+  "closeness_cap": 0.3,
+  "unit_label": "points",
+  "answer_display": "about 66.7 (two-thirds of 100)",
+  "hint_md": "Two random marks split 0 to 100 into three pieces.",
+  "explain_intuition_md": "Two random marks split the range into three pieces that are the same size on average, about 33 each. The higher mark sits on top of two of those pieces, at about 67. Saying 50 answers the average of a single spin, not the better of two.",
+  "explain_math_md": "$$P(\\max \\le x) = \\left(\\tfrac{x}{100}\\right)^2, \\quad E[\\max] = \\int_0^{100} \\left(1 - \\tfrac{x^2}{100^2}\\right) dx = \\tfrac{200}{3} \\approx 66.7$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (order statistics)"
+}

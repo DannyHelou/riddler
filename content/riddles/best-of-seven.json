@@ -1,0 +1,20 @@
+{
+  "id": "best-of-seven",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Team A beats team B in any one game with chance 60%, independently. What's the chance A wins a best-of-seven series (first to 4 wins)?",
+  "prompt_short": "60% per game. Chance to win a best-of-seven?",
+  "answer_value": 71.02,
+  "trap_value": 60,
+  "closeness_cap": 30,
+  "unit_label": "%",
+  "answer_display": "about 71%",
+  "hint_md": "A longer series gives the better team more chances to show it.",
+  "explain_intuition_md": "It's tempting to think a 60% team wins 60% of series. But a series amplifies small edges: A only loses if it drops 4 of 7 games, and that happens just 29% of the time.",
+  "explain_math_md": "Imagine all 7 games played (it doesn't change the winner): $$\\sum_{k=4}^{7}\\binom{7}{k}0.6^k\\,0.4^{7-k} \\approx 71.0\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

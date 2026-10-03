@@ -1,0 +1,20 @@
+{
+  "id": "tea-and-coffee",
+  "tier": "trap",
+  "category": "percentages",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "In an office, 60% of the staff drink tea and 70% drink coffee. What is the smallest possible percent of the staff who drink both?",
+  "prompt_short": "60% drink tea, 70% coffee. Smallest possible percent who drink both?",
+  "answer_value": 30,
+  "trap_value": 42,
+  "closeness_cap": 25,
+  "unit_label": "%",
+  "answer_display": "30%",
+  "hint_md": "Try to keep the two groups apart. How much do they spill over 100%?",
+  "explain_intuition_md": "Multiplying to get 42% assumes tea and coffee habits are independent, but nothing says so. Squeeze the groups apart and 60% plus 70% still overshoots everyone by 30%.",
+  "explain_math_md": "$|T \\cap C| \\ge |T| + |C| - 100\\% = 60\\% + 70\\% - 100\\% = 30\\%$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

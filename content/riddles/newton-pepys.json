@@ -1,0 +1,20 @@
+{
+  "id": "newton-pepys",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Rolling 6 fair dice, the chance of at least one six is about 67%. If you roll 12 fair dice, what's the chance of at least two sixes?",
+  "prompt_short": "12 dice. Chance of at least two sixes?",
+  "answer_value": 61.87,
+  "trap_value": 66.51,
+  "closeness_cap": 10,
+  "unit_label": "%",
+  "answer_display": "about 61.9%",
+  "hint_md": "Subtract the chances of no sixes and of exactly one six.",
+  "explain_intuition_md": "Twice the dice for twice the sixes sounds like the same odds. But the more dice you roll, the more tightly the number of sixes bunches around its average, and the chance of reaching at least the average slides down toward one half. Samuel Pepys asked Isaac Newton exactly this.",
+  "explain_math_md": "$$1-\\left(\\tfrac56\\right)^{12}-12\\cdot\\tfrac16\\left(\\tfrac56\\right)^{11} \\approx 1-0.112-0.269 \\approx 61.9\\%$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (Newton–Pepys problem)"
+}

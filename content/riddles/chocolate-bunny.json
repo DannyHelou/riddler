@@ -1,0 +1,20 @@
+{
+  "id": "chocolate-bunny",
+  "tier": "warmup",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A solid chocolate bunny is 10 cm tall. A solid bunny of exactly the same shape stands 20 cm tall. How many times as much chocolate does it take?",
+  "prompt_short": "Solid chocolate bunny, same shape, twice as tall. Times the chocolate?",
+  "answer_value": 8,
+  "trap_value": 2,
+  "closeness_cap": 1,
+  "unit_label": "times",
+  "answer_display": "8 times",
+  "hint_md": "It's twice as tall, but also twice as wide and twice as deep.",
+  "explain_intuition_md": "Scaling a solid shape doubles every direction: height, width and depth. That multiplies the volume by 2 three times over.",
+  "explain_math_md": "Volume scales with the cube of size: $2^3 = 8$.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

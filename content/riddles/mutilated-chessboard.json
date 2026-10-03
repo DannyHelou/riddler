@@ -1,0 +1,20 @@
+{
+  "id": "mutilated-chessboard",
+  "tier": "boss",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Cut two opposite corner squares off an 8 by 8 chessboard. What's the most 1 by 2 dominoes you can lay on it, each covering exactly two squares, with no overlaps?",
+  "prompt_short": "Chessboard minus two opposite corners. Most dominoes that fit?",
+  "answer_value": 30,
+  "trap_value": 31,
+  "closeness_cap": 0.03,
+  "unit_label": "dominoes",
+  "answer_display": "30 dominoes",
+  "hint_md": "What color are the two squares you removed?",
+  "explain_intuition_md": "62 squares left suggests 31 dominoes. But opposite corners are the same color, so 32 squares of one color remain and only 30 of the other. Every domino covers one square of each color, so 30 is the most, and 30 is easy to place.",
+  "explain_math_md": "$$\\#\\text{dominoes} \\le \\min(30, 32) = 30$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (mutilated chessboard)"
+}

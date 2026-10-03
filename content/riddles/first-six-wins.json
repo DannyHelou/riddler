@@ -1,0 +1,20 @@
+{
+  "id": "first-six-wins",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Two players take turns rolling a fair die, and the first to roll a six wins. What's the chance the player who rolls first wins?",
+  "prompt_short": "Take turns rolling, first six wins. First roller's chance?",
+  "answer_value": 54.55,
+  "trap_value": 50,
+  "closeness_cap": 10,
+  "unit_label": "%",
+  "answer_display": "about 54.5% (6 in 11)",
+  "hint_md": "If the first player misses, the second player is in the first player's shoes.",
+  "explain_intuition_md": "A fair die feels like a fair game. But the first player gets the first shot; if they miss, the second player then has exactly the first player's chances. So the first player's chance is 6/5 of the second's: 6 in 11.",
+  "explain_math_md": "$$p = \\tfrac16 + \\tfrac56\\cdot\\tfrac56\\,p \\;\\Rightarrow\\; p = \\tfrac{6}{11} \\approx 54.5\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

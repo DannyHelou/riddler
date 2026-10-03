@@ -1,0 +1,20 @@
+{
+  "id": "one-and-one",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "In basketball's one-and-one, a player takes one free throw and gets a second only if the first goes in. A 60% shooter scores how many points on average?",
+  "prompt_short": "One-and-one free throws, 60% shooter. Average points?",
+  "answer_value": 0.96,
+  "trap_value": 1.2,
+  "closeness_cap": 0.2,
+  "unit_label": "points",
+  "answer_display": "0.96 points",
+  "hint_md": "The second shot only happens 60% of the time.",
+  "explain_intuition_md": "Two shots at 60% each sounds like 1.2 points. But the second shot only exists when the first one goes in, so 40% of the time the trip ends with nothing.",
+  "explain_math_md": "$$E = 0.6 + 0.6\\cdot 0.6 = 0.96$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

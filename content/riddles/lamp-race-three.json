@@ -1,0 +1,20 @@
+{
+  "id": "lamp-race-three",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Three lamps burn out at random, memoryless moments; on average they last 1, 2 and 3 years. What is the chance the 3-year lamp is the last one still lit?",
+  "prompt_short": "Memoryless lamps lasting 1, 2, 3 years on average. Chance the 3 lasts longest?",
+  "answer_value": 53.18,
+  "trap_value": 45,
+  "closeness_cap": 20,
+  "unit_label": "%",
+  "answer_display": "about 53% (117 in 220)",
+  "hint_md": "'Outlasts both' is not 'outlasts lamp 1' times 'outlasts lamp 2'.",
+  "explain_intuition_md": "The 3-year lamp outlasts the 1-year lamp with chance 3/4 and the 2-year lamp with chance 3/5, and multiplying gives 45%. But those two races aren't independent: if the 3-year lamp happens to last long, it tends to win both. Counting the overlap properly gives about 53%.",
+  "explain_math_md": "Failure rates are $1, \\tfrac12, \\tfrac13$. $P(X_3 < X_1) = \\tfrac{1/3}{4/3} = \\tfrac14$, $P(X_3 < X_2) = \\tfrac{1/3}{5/6} = \\tfrac25$, $P(X_3 < \\min) = \\tfrac{1/3}{11/6} = \\tfrac{2}{11}$: $$P = 1 - \\tfrac14 - \\tfrac25 + \\tfrac{2}{11} = \\tfrac{117}{220} \\approx 53.2\\%$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (exponential races)"
+}

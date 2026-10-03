@@ -1,0 +1,20 @@
+{
+  "id": "round-table-five",
+  "tier": "trap",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Five friends sit around a round table. Two seatings count as the same if everyone has the same person on their left. How many different seatings are there?",
+  "prompt_short": "Five people around a round table. Different seatings?",
+  "answer_value": 24,
+  "trap_value": 120,
+  "closeness_cap": 1.2,
+  "unit_label": "seatings",
+  "answer_display": "24 seatings",
+  "hint_md": "Seat one person first. Only where the others sit relative to them matters.",
+  "explain_intuition_md": "120 counts the ways to fill five numbered chairs. But shifting everyone one seat around changes nobody's neighbors, so each real seating shows up 5 times. Fix one person and arrange the other 4.",
+  "explain_math_md": "$$\\frac{5!}{5} = 4! = 24$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

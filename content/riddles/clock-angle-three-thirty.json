@@ -1,0 +1,20 @@
+{
+  "id": "clock-angle-three-thirty",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "What is the angle, in degrees, between the hour hand and the minute hand of a clock at exactly 3:30?",
+  "prompt_short": "Angle between the clock hands at 3:30?",
+  "answer_value": 75,
+  "trap_value": 90,
+  "closeness_cap": 0.15,
+  "unit_label": "°",
+  "answer_display": "75°",
+  "hint_md": "At 3:30, where exactly is the hour hand?",
+  "explain_intuition_md": "The minute hand points straight at the 6, but by 3:30 the hour hand has moved halfway from the 3 to the 4. Hour marks are 30 degrees apart, so the hands are two and a half marks apart, not three.",
+  "explain_math_md": "Hour hand: $3.5 \\times 30^\\circ = 105^\\circ$. Minute hand: $180^\\circ$. $$180^\\circ - 105^\\circ = 75^\\circ$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

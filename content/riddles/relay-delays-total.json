@@ -1,0 +1,20 @@
+{
+  "id": "relay-delays-total",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A message passes through 3 relays. Each adds a random, memoryless delay averaging 1 second, independently. What is the chance the total delay is under 3 seconds?",
+  "prompt_short": "Three memoryless delays averaging 1 s each. Chance the total is under 3 s?",
+  "answer_value": 57.68,
+  "trap_value": 50,
+  "closeness_cap": 20,
+  "unit_label": "%",
+  "answer_display": "about 58%",
+  "hint_md": "Count how many delays a Poisson clock would tick in 3 seconds.",
+  "explain_intuition_md": "The total averages exactly 3 seconds, so 'half above, half below' feels right. But memoryless delays are lopsided: most are short, a few are long, and the rare long ones drag the average up. So the total lands below its average more often than not, about 58% of the time.",
+  "explain_math_md": "The total is under 3 iff a rate-1 Poisson process has at least 3 events by time 3: $$P = 1 - e^{-3}\\left(1 + 3 + \\tfrac{9}{2}\\right) = 1 - 8.5\\,e^{-3} \\approx 57.7\\%$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (sums of exponentials)"
+}

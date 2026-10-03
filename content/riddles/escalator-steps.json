@@ -1,0 +1,20 @@
+{
+  "id": "escalator-steps",
+  "tier": "boss",
+  "category": "rates",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Walking up a moving up-escalator, you take 30 steps to reach the top. Walking down the same up-escalator at the same pace, you take 90 steps. How many steps does it show?",
+  "prompt_short": "Up a moving escalator in 30 steps, down it in 90. Visible steps?",
+  "answer_value": 45,
+  "trap_value": 60,
+  "closeness_cap": 0.25,
+  "unit_label": "steps",
+  "answer_display": "45 steps",
+  "hint_md": "Going down takes 3 times as many steps, so 3 times as long. How far does the escalator move in each case?",
+  "explain_intuition_md": "Averaging 30 and 90 to cancel out the escalator doesn't work, because you spend three times as long on it going down. Going up, it carries you 15 steps for your 30; going down, it pushes you back 45 for your 90.",
+  "explain_math_md": "Escalator speed $e$ per your step: $N = 30 + 30e = 90 - 90e \\Rightarrow e = \\tfrac{1}{2}$, $N = 45$.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

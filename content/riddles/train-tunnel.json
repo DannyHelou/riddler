@@ -1,0 +1,20 @@
+{
+  "id": "train-tunnel",
+  "tier": "warmup",
+  "category": "rates",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A 200 m train travels at 20 m/s into a 400 m tunnel. How many seconds pass from the front entering to the last car leaving the tunnel?",
+  "prompt_short": "200 m train at 20 m/s, 400 m tunnel. Seconds from entering to fully out?",
+  "answer_value": 30,
+  "trap_value": 20,
+  "closeness_cap": 0.35,
+  "unit_label": "seconds",
+  "answer_display": "30 seconds",
+  "hint_md": "Follow the very back of the train.",
+  "explain_intuition_md": "The front only needs to cover the tunnel, but the back of the train starts 200 m behind it. It has to travel 600 m before it leaves the tunnel.",
+  "explain_math_md": "$\\frac{400 + 200}{20} = 30$ s",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

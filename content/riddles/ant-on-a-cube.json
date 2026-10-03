@@ -1,0 +1,20 @@
+{
+  "id": "ant-on-a-cube",
+  "tier": "trap",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "An ant walks on the surface of a 10 cm cube, from one corner to the opposite corner. What's the length of its shortest possible path, in cm?",
+  "prompt_short": "Ant on a 10 cm cube, corner to opposite corner. Shortest path?",
+  "answer_value": 22.36,
+  "trap_value": 30,
+  "closeness_cap": 0.26,
+  "unit_label": "cm",
+  "answer_display": "about 22.4 cm",
+  "hint_md": "Unfold two faces flat.",
+  "explain_intuition_md": "Walking the edges takes 30 cm, but the ant can cut across faces. Unfold two neighbouring faces into a 10 by 20 rectangle and the best path is its diagonal.",
+  "explain_math_md": "$$\\sqrt{20^2 + 10^2} = \\sqrt{500} \\approx 22.36 \\text{ cm}$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

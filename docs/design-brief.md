@@ -303,7 +303,7 @@ One full-screen pixel scene, after Krillion's front page but mirrored: Krillion 
 - **Idle motion,** smooth and eased, stopped under reduced motion: the balloon bob and pilot light, one star in five twinkling, clouds drifting a little, fish nosing back and forth, the wave line rolling, the moonlight glints blinking.
 - The scene looks the same in either site theme. No comparative stats on the homepage.
 - **Phones:** the same pieces in the same order, smaller; the tagline wraps.
-- **Handoff:** **Start the climb** creates the play in the background and plays a 600 ms eased handoff (the balloon rises while the page fades to the climb's sea-level sky), then opens the climb. No loading text: the climb opens in the Balloon shot and pans up to the first sign.
+- **Handoff:** **Start the climb** creates the play in the background and plays a 700 ms eased handoff (the text fades and the camera pans until the balloon, still on its launch pad, sits where the climb's Balloon shot puts it), then cross-fades (400 ms, View Transitions where supported) into the climb's first frame. No solid-color curtain, and the balloon never leaves the pad before the first answer. No loading text: the climb opens in the Balloon shot and pans up to the first sign.
 
 ### 5.3 The climb (one immersive screen, two camera shots)
 
@@ -844,7 +844,7 @@ $$
 
 - **Word riddles:** at least 1 accepted and 1 trap answer; no overlap between the lists after normalization.
 - Probability riddles must have a matching `/content/sims/<id>.ts` and `verified: true`.
-- `schedule.json`: 3 existing riddles per date with correct tiers; the Trap slot must be a number riddle; no repeats within 180 days.
+- `schedule.json`: 3 existing riddles per date with correct tiers; the Trap slot must be a number riddle; no repeats within 90 days (owner decision 2026-10-03, was 180; `REPEAT_GAP_DAYS` in `lib/content.ts`). `npm run schedule` builds the calendar by rotating each tier's pool on its own cycle, so with pools of slightly different sizes every day's trio is a new mix.
 - All Markdown + LaTeX renders without KaTeX errors.
 - After validating, compute and upsert embeddings for all accepted and trap answers.
 

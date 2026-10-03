@@ -1,0 +1,20 @@
+{
+  "id": "knights-round-table",
+  "tier": "boss",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Twelve people sit around a round table, each a knight (always truthful) or a liar. Each one says \"both my neighbors are liars\". What's the fewest knights possible?",
+  "prompt_short": "12 at a round table each say \"both my neighbors lie\". Fewest knights?",
+  "answer_value": 4,
+  "trap_value": 6,
+  "closeness_cap": 0.35,
+  "unit_label": "knights",
+  "answer_display": "4 knights",
+  "hint_md": "A liar only needs one knight beside them for their claim to be false.",
+  "explain_intuition_md": "Alternating knight, liar gives 6 knights and works, so 6 is the tempting answer. But a liar only needs one knight neighbor to be lying, and two liars can sit together. Repeating knight, liar, liar around the table works with just 4.",
+  "explain_math_md": "Knights sit apart, and each knight can be the needed neighbor for at most $2$ liars: $$2K \\ge 12 - K \\Rightarrow K \\ge 4$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (knights and knaves)"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "chuck-a-luck",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Bet 1 dollar on a number, then roll 3 dice. You win 1 dollar for each die showing it; if none does, you lose the dollar. On average you lose what % of your bet?",
+  "prompt_short": "Chuck-a-luck: 1 dollar per matching die. Average loss as % of bet?",
+  "answer_value": 7.87,
+  "trap_value": 0,
+  "closeness_cap": 15,
+  "unit_label": "%",
+  "answer_display": "about 7.9% (17 in 216)",
+  "hint_md": "Find the chances of zero, one, two and three matches.",
+  "explain_intuition_md": "Three dice, each a 1-in-6 shot, looks like an even chance to win, so the game feels fair. But the dice often double up, and when two or three match you still win only one dollar per die. Your number misses all three dice about 58% of the time, and that tips the game to the house.",
+  "explain_math_md": "$$E = \\tfrac{-125 + 1\\cdot 75 + 2\\cdot 15 + 3\\cdot 1}{216} = -\\tfrac{17}{216} \\approx -7.87\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (chuck-a-luck)"
+}

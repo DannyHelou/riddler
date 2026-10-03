@@ -1,0 +1,20 @@
+{
+  "id": "your-birthday",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You meet strangers one at a time, each with a birthday equally likely on any of 365 days. On average, how many do you meet until one shares your birthday?",
+  "prompt_short": "Meeting strangers one by one. Average count until one shares your birthday?",
+  "answer_value": 365,
+  "trap_value": 183,
+  "closeness_cap": 0.5,
+  "unit_label": "strangers",
+  "answer_display": "365 strangers",
+  "hint_md": "Each stranger is a fresh 1-in-365 chance.",
+  "explain_intuition_md": "Every stranger has the same 1-in-365 chance, however many you've already met. A 1-in-365 chance takes 365 tries on average. Half a year, 183, sounds right but would only work if no birthday could come up twice.",
+  "explain_math_md": "The wait is geometric with $p = \\frac{1}{365}$, so $E = \\frac{1}{p} = 365$.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (birthday problem)"
+}

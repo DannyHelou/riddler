@@ -1,0 +1,20 @@
+{
+  "id": "class-averages",
+  "tier": "warmup",
+  "category": "statistics",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Class A has 10 students who averaged 80 on a test. Class B has 30 students who averaged 60. What's the average score of all 40 students?",
+  "prompt_short": "10 students averaged 80, 30 averaged 60. Overall average?",
+  "answer_value": 65,
+  "trap_value": 70,
+  "closeness_cap": 0.06,
+  "unit_label": "points",
+  "answer_display": "65 points",
+  "hint_md": "Add up all the points first.",
+  "explain_intuition_md": "Class B has three times as many students, so its 60 pulls the overall average much harder. Averaging the two class averages to get 70 ignores the class sizes.",
+  "explain_math_md": "$$\\frac{10 \\cdot 80 + 30 \\cdot 60}{40} = \\frac{2600}{40} = 65$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

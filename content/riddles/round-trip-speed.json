@@ -1,0 +1,20 @@
+{
+  "id": "round-trip-speed",
+  "tier": "warmup",
+  "category": "rates",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You drive to the next town at 30 km/h and come straight back along the same road at 60 km/h. What was your average speed for the round trip, in km/h?",
+  "prompt_short": "Out at 30 km/h, back at 60 km/h. Average speed for the round trip?",
+  "answer_value": 40,
+  "trap_value": 45,
+  "closeness_cap": 0.1,
+  "unit_label": "km/h",
+  "answer_display": "40 km/h",
+  "hint_md": "Pick a distance, say 60 km, and add up the hours.",
+  "explain_intuition_md": "You spend twice as long on the slow leg as on the fast one, so the slow speed counts double. Averaging 30 and 60 to get 45 treats both legs as equally long in time, and they aren't.",
+  "explain_math_md": "For 60 km each way: time $= \\frac{60}{30} + \\frac{60}{60} = 3$ h, so average $= \\frac{120}{3} = 40$ km/h.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

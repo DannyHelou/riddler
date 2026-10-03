@@ -1,0 +1,20 @@
+{
+  "id": "mislabeled-fruit-boxes",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Three boxes are labeled apples, oranges and mixed, and every label is wrong. How few fruits must you take out, without looking in, to fix all the labels?",
+  "prompt_short": "3 fruit boxes, every label wrong. Fewest fruits to draw to fix them?",
+  "answer_value": 1,
+  "trap_value": 3,
+  "closeness_cap": 0.8,
+  "unit_label": "fruits",
+  "answer_display": "1 fruit",
+  "hint_md": "Which box can't possibly hold the mix?",
+  "explain_intuition_md": "Draw one fruit from the box labeled mixed: its label is wrong, so it holds only one kind. Say you pull an apple, so that's the apples box. The box labeled oranges can't be oranges and can't be apples, so it's mixed, and the last box is oranges.",
+  "explain_math_md": "The wrong labels allow only $2$ arrangements, and one draw from the box labeled mixed tells them apart.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

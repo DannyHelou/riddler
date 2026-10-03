@@ -1,0 +1,20 @@
+{
+  "id": "chessboard-squares",
+  "tier": "trap",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "How many squares of any size, from single cells up to the whole board, can you find on an 8 by 8 chessboard?",
+  "prompt_short": "Squares of every size on an 8 by 8 chessboard?",
+  "answer_value": 204,
+  "trap_value": 64,
+  "closeness_cap": 1,
+  "unit_label": "squares",
+  "answer_display": "204 squares",
+  "hint_md": "How many 2 by 2 squares fit? How many 7 by 7?",
+  "explain_intuition_md": "64 counts only the single cells. There are also 49 two-by-two squares, 36 three-by-threes, and so on down to the one full board. The counts are the square numbers from 64 down to 1.",
+  "explain_math_md": "$$\\sum_{k=1}^{8} k^2 = 64 + 49 + 36 + 25 + 16 + 9 + 4 + 1 = 204$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

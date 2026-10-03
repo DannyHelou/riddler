@@ -1,0 +1,33 @@
+{
+  "id": "overtake-second",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "word",
+  "prompt_md": "In a race, you overtake the runner in second place. What place are you in now?",
+  "prompt_short": "You overtake the runner in second place. What place are you in?",
+  "answer_display": "second place",
+  "accepted_answers": [
+    "second",
+    "2nd",
+    "second place",
+    "2",
+    "2nd place",
+    "in second",
+    "in second place"
+  ],
+  "trap_answers": [
+    "first",
+    "1st",
+    "first place",
+    "1",
+    "1st place",
+    "in first",
+    "in first place"
+  ],
+  "hint_md": "Who is still ahead of you?",
+  "explain_intuition_md": "Passing the runner in second feels like moving up to the lead, but you only took their spot. Whoever was first is still in front.",
+  "explain_math_md": "No math here: the trick is in the wording.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

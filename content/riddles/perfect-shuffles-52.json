@@ -1,0 +1,20 @@
+{
+  "id": "perfect-shuffles-52",
+  "tier": "boss",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A perfect shuffle cuts 52 cards into two halves of 26 and interleaves them exactly, the top card staying on top. How many in a row put the deck back in order?",
+  "prompt_short": "Perfect riffle shuffles until a 52-card deck is back in order?",
+  "answer_value": 8,
+  "trap_value": 52,
+  "closeness_cap": 1.4,
+  "unit_label": "shuffles",
+  "answer_display": "8 shuffles",
+  "hint_md": "Follow one card: the card 1 place below the top moves to 2 places, then 4.",
+  "explain_intuition_md": "It feels like a shuffle should need dozens of repeats, maybe 52, to cycle back. But counting the top card as position 0, each shuffle sends the card at position p to position 2p, wrapping around at 51. Since 2 to the 8th is 256, which is 5 times 51 plus 1, eight shuffles bring every card home.",
+  "explain_math_md": "$$p \\mapsto 2p \\pmod{51},\\qquad 2^8 = 256 \\equiv 1 \\pmod{51}$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (perfect out-shuffle)"
+}

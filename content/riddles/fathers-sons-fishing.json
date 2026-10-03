@@ -1,0 +1,29 @@
+{
+  "id": "fathers-sons-fishing",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "word",
+  "prompt_md": "Two fathers and two sons go fishing. Each catches exactly one fish, and they catch three fish in total. How many people went fishing?",
+  "prompt_short": "Two fathers, two sons, three fish, one each. How many people?",
+  "answer_display": "3 (grandfather, father and son)",
+  "accepted_answers": [
+    "three",
+    "3",
+    "3 people",
+    "three people",
+    "grandfather father and son",
+    "grandpa dad and son"
+  ],
+  "trap_answers": [
+    "four",
+    "4",
+    "4 people",
+    "four people"
+  ],
+  "hint_md": "Can one person be both a father and a son?",
+  "explain_intuition_md": "Two plus two says four, but the middle person is both a father and a son. A grandfather, his son and his grandson make two fathers and two sons with only three people.",
+  "explain_math_md": "Fathers: grandfather and father. Sons: father and grandson. People: $3$.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

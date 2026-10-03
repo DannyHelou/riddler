@@ -1,0 +1,20 @@
+{
+  "id": "jug-dilution",
+  "tier": "trap",
+  "category": "percentages",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A 10 litre jug is full of juice. You pour out 1 litre, top it up with water and stir. You do this 3 times in all. What percent of the jug is juice now?",
+  "prompt_short": "10 L of juice: swap 1 L for water, 3 times. Percent juice left?",
+  "answer_value": 72.9,
+  "trap_value": 70,
+  "closeness_cap": 6,
+  "unit_label": "%",
+  "answer_display": "72.9%",
+  "hint_md": "The second litre you pour out isn't pure juice.",
+  "explain_intuition_md": "Only the first litre poured out is pure juice. Each later pour takes some water with it, so you lose less than a litre of juice each time.",
+  "explain_math_md": "Each round keeps $90\\%$ of the juice: $0.9^3 = 0.729 = 72.9\\%$.",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

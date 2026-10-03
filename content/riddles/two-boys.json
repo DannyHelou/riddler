@@ -1,0 +1,20 @@
+{
+  "id": "two-boys",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Among all families with exactly two children and at least one boy, what share have two boys? Each child is a boy or a girl with equal chance, independently.",
+  "prompt_short": "Two-child families with at least one boy. Share with two boys?",
+  "answer_value": 33.33,
+  "trap_value": 50,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "about 33% (1 in 3)",
+  "hint_md": "List the possible families in birth order.",
+  "explain_intuition_md": "Two-child families come in four equally likely orders: boy-boy, boy-girl, girl-boy, girl-girl. Knowing there's at least one boy only rules out girl-girl. Of the three that are left, just one is boy-boy.",
+  "explain_math_md": "$$P(BB \\mid \\text{at least one } B) = \\frac{1/4}{3/4} = \\tfrac13$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (two-child problem), via BrainStellar (MIT)"
+}

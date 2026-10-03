@@ -1,0 +1,20 @@
+{
+  "id": "two-eggs",
+  "tier": "boss",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Two eggs, 100 floors. Some highest floor is safe to drop from (maybe none, maybe all); broken eggs are gone. With the best plan, how many drops find it for sure, worst case?",
+  "prompt_short": "2 eggs, 100 floors. Worst-case drops with the best strategy?",
+  "answer_value": 14,
+  "trap_value": 10,
+  "closeness_cap": 0.5,
+  "unit_label": "drops",
+  "answer_display": "14 drops",
+  "hint_md": "If the first egg breaks, the second has to go floor by floor.",
+  "explain_intuition_md": "Once the first egg breaks, the second has to check floors one at a time. So drop the first egg from floor 14, then 27, then 39, each jump one shorter, keeping the worst case at 14 drops. Jumps of 14, 13, 12 and so on cover 105 floors, enough for 100.",
+  "explain_math_md": "The smallest $n$ with $\\frac{n(n+1)}{2} \\ge 100$ is $n = 14$, since $\\frac{14 \\cdot 15}{2} = 105$.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic, via BrainStellar (MIT)"
+}

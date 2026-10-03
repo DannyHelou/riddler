@@ -1,0 +1,20 @@
+{
+  "id": "repeated-ribbon-cuts",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Start with a 1 m ribbon. Cut it at a uniformly random point and keep the left piece; repeat. On average, how many cuts until your piece is shorter than 1 cm?",
+  "prompt_short": "Keep cutting a 1 m ribbon at random. Average cuts to get under 1 cm?",
+  "answer_value": 5.605,
+  "trap_value": 7,
+  "closeness_cap": 0.2,
+  "unit_label": "cuts",
+  "answer_display": "about 5.6 cuts (1 + ln 100)",
+  "hint_md": "Track the logarithm of the length.",
+  "explain_intuition_md": "Each cut keeps half the ribbon on average, so counting halvings suggests 7 cuts to get from 100 cm under 1 cm. But a random cut often keeps much less than half, and repeated shrinking follows the typical factor, not the average one: in log terms each cut shrinks the ribbon by a factor of e. Shrinking by a factor of 100 then takes about 1 + ln 100, roughly 5.6 cuts.",
+  "explain_math_md": "Each $-\\ln U_i$ is exponential with mean 1, so the log-shrinkages form a rate-1 Poisson process. The number of cuts needed to pass $\\ln 100$ is one more than a Poisson count with mean $\\ln 100$: $$E[N] = 1 + \\ln 100 \\approx 5.61$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (stick breaking)"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "two-painters",
+  "tier": "warmup",
+  "category": "rates",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Ana can paint a fence alone in 3 hours. Ben can paint it alone in 6 hours. Working together at those paces, how many hours does it take them?",
+  "prompt_short": "Ana paints a fence in 3 h, Ben in 6 h. Together?",
+  "answer_value": 2,
+  "trap_value": 4.5,
+  "closeness_cap": 0.7,
+  "unit_label": "hours",
+  "answer_display": "2 hours",
+  "hint_md": "How much of the fence does each paint in one hour?",
+  "explain_intuition_md": "Together they must be faster than Ana alone, so anything over 3 hours is out. In an hour Ana does a third and Ben a sixth, which is half the fence.",
+  "explain_math_md": "$$\\tfrac{1}{3} + \\tfrac{1}{6} = \\tfrac{1}{2} \\text{ fence per hour} \\Rightarrow 2 \\text{ hours}$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

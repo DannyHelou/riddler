@@ -1,0 +1,20 @@
+{
+  "id": "exactly-k-liars",
+  "tier": "trap",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Ten islanders each always lie or always tell the truth. Islander number k says \"exactly k of us are liars\", for k = 1 to 10. How many liars are there?",
+  "prompt_short": "Islander k says \"exactly k of us 10 are liars\". How many liars?",
+  "answer_value": 9,
+  "trap_value": 10,
+  "closeness_cap": 0.1,
+  "unit_label": "liars",
+  "answer_display": "9 liars",
+  "hint_md": "Can two of the claims be true at once?",
+  "explain_intuition_md": "The claims contradict each other, so at most one islander tells the truth. If none did, all 10 would be liars and the 10th would be right, which can't happen. So exactly one tells the truth and 9 lie, and the 9th islander is that truth-teller.",
+  "explain_math_md": "At most one claim is true, and zero true claims is self-contradictory, so $$L = 10 - 1 = 9$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (knights and knaves)"
+}

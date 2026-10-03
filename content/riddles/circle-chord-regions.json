@@ -1,0 +1,20 @@
+{
+  "id": "circle-chord-regions",
+  "tier": "boss",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Mark 6 points on a circle and draw every chord between them, with no three chords crossing at one point. How many regions is the disc cut into?",
+  "prompt_short": "6 points on a circle, all chords drawn. How many regions?",
+  "answer_value": 31,
+  "trap_value": 32,
+  "closeness_cap": 0.03,
+  "unit_label": "regions",
+  "answer_display": "31 regions",
+  "hint_md": "Don't trust the pattern 1, 2, 4, 8, 16.",
+  "explain_intuition_md": "With 1 to 5 points you get 1, 2, 4, 8 and 16 regions, so 32 looks certain. But the count really comes from the chords and their crossing points, and the doubling was a coincidence. With 6 points it's 31.",
+  "explain_math_md": "Each chord adds a region, and so does each crossing (one per 4 points): $$1 + \\binom{6}{2} + \\binom{6}{4} = 1 + 15 + 15 = 31$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (Moser's circle problem)"
+}

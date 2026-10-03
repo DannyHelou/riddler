@@ -1,0 +1,20 @@
+{
+  "id": "hat-in-the-river",
+  "tier": "boss",
+  "category": "rates",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Rowing upstream, you drop your hat. 10 min later you notice, turn at once and row back at the same effort, catching it 1 km below where it fell. River speed, in km/h?",
+  "prompt_short": "Hat dropped rowing upstream, caught 1 km down after a 10 min delay. River speed?",
+  "answer_value": 3,
+  "trap_value": 6,
+  "closeness_cap": 0.6,
+  "unit_label": "km/h",
+  "answer_display": "3 km/h",
+  "hint_md": "Watch it from the hat's point of view: the water is still.",
+  "explain_intuition_md": "Relative to the water, the hat sits still and you row away from it and back at the same speed. So the return trip also takes 10 minutes, and the hat drifted 1 km in 20 minutes.",
+  "explain_math_md": "Hat floats $20$ min $= \\tfrac{1}{3}$ h for $1$ km: speed $= 3$ km/h.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

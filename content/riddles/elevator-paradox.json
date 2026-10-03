@@ -1,0 +1,20 @@
+{
+  "id": "elevator-paradox",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "One elevator runs nonstop up and down between floors 1 and 10 at constant speed. You're on floor 2 at a random moment. Chance it first reaches you going down?",
+  "prompt_short": "Elevator shuttles between floors 1 and 10. On floor 2: chance it comes down?",
+  "answer_value": 88.89,
+  "trap_value": 50,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "about 89% (8 in 9)",
+  "hint_md": "Where is the elevator most of the time?",
+  "explain_intuition_md": "Floor 2 is near the bottom, so the elevator spends most of its loop above you, and from anywhere above you its next visit is on the way down. Only from the short stretch below you does it come up first. It passes floor 2 going up and going down equally often, which makes 50% tempting.",
+  "explain_math_md": "A round trip covers 18 floor-lengths. It next reaches floor 2 going up only from the 2 floor-lengths below you: $$P(\\text{down}) = \\frac{16}{18} = \\frac89$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (Gamow and Stern elevator paradox)"
+}

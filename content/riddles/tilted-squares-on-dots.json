@@ -1,0 +1,20 @@
+{
+  "id": "tilted-squares-on-dots",
+  "tier": "boss",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "On a 5 by 5 grid of dots, how many squares have all four corners on dots? Tilted squares count too.",
+  "prompt_short": "Squares with corners on a 5 by 5 dot grid, tilted ones included?",
+  "answer_value": 50,
+  "trap_value": 30,
+  "closeness_cap": 0.45,
+  "unit_label": "squares",
+  "answer_display": "50 squares",
+  "hint_md": "A tilted square fits snugly inside a bigger upright one.",
+  "explain_intuition_md": "The 30 upright squares are the easy part. Every upright square of side k also has k - 1 tilted squares inscribed in it, with corners on its edges. Adding those brings the total to 50.",
+  "explain_math_md": "$$\\sum_{k=1}^{4} k\\,(5-k)^2 = 16 + 18 + 12 + 4 = 50$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

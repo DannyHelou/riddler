@@ -1,0 +1,20 @@
+{
+  "id": "orange-peel",
+  "tier": "trap",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A round orange is 10 cm across, including peel that is 1 cm thick all round. What percent of the orange's volume is peel?",
+  "prompt_short": "10 cm orange with 1 cm thick peel. Percent of the volume that is peel?",
+  "answer_value": 48.8,
+  "trap_value": 20,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "about 49%",
+  "hint_md": "The fruit inside is a ball 8 cm across.",
+  "explain_intuition_md": "The peel is only a fifth of the radius, but it's the outer layer, where most of a ball's volume lives. The inside fruit is 0.8 times as wide, so it has only about half the volume.",
+  "explain_math_md": "$$1 - \\left(\\frac{4}{5}\\right)^3 = 1 - \\frac{64}{125} = 0.488 = 48.8\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "three-cards-colors",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A bag holds 3 cards: one red on both sides, one white on both sides, one red on one side and white on the other. You draw one and see red. Chance the back is red?",
+  "prompt_short": "Red-red, white-white, red-white cards. You see red. Back red too?",
+  "answer_value": 66.67,
+  "trap_value": 50,
+  "closeness_cap": 40,
+  "unit_label": "%",
+  "answer_display": "about 67% (2 in 3)",
+  "hint_md": "Count red faces, not cards.",
+  "explain_intuition_md": "It's either the red-red card or the red-white card, so 50% is tempting. But there are three red faces you could be looking at, all equally likely, and two of them belong to the red-red card.",
+  "explain_math_md": "Of the 3 equally likely red faces, 2 are on the red-red card: $$P = \\tfrac23 \\approx 66.7\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (Bertrand's box paradox)"
+}

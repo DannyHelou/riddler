@@ -1,0 +1,20 @@
+{
+  "id": "bulb-outlives-average",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Bulbs fail at random with no aging: a working bulb always has the same chance of failing in the next hour. Average life is 1,000 hours. Share that outlive 1,000 hours?",
+  "prompt_short": "Memoryless bulbs, 1,000-hour average life. Share that outlive the average?",
+  "answer_value": 36.79,
+  "trap_value": 50,
+  "closeness_cap": 30,
+  "unit_label": "%",
+  "answer_display": "about 37% (1 in e)",
+  "hint_md": "A few bulbs last a very long time and pull the average up.",
+  "explain_intuition_md": "Lifetimes like this are lopsided: lots of bulbs fail early, while a few last for ages and drag the average up. So the average sits above the typical bulb, and fewer than half make it that far. Assuming the average is the middle gives the tempting 50%.",
+  "explain_math_md": "With no aging, lifetime is exponential with mean $1000$: $$P(T > 1000) = e^{-1000/1000} = e^{-1} \\approx 36.8\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (exponential lifetimes)"
+}

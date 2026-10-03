@@ -1,0 +1,20 @@
+{
+  "id": "fake-coin-bag",
+  "tier": "trap",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Ten bags hold plenty of coins. Real coins weigh 10 g, but one bag is all fakes at 9 g each. With an exact digital scale, how few weighings find the fake bag?",
+  "prompt_short": "10 bags, one all 9 g fakes, digital scale. Fewest weighings?",
+  "answer_value": 1,
+  "trap_value": 4,
+  "closeness_cap": 1,
+  "unit_label": "weighings",
+  "answer_display": "1 weighing",
+  "hint_md": "Take a different number of coins from each bag.",
+  "explain_intuition_md": "Splitting the bags in halves takes about four weighings. Instead, take 1 coin from bag 1, 2 from bag 2, and so on up to 10 from bag 10, and weigh them all together. The total falls short of 550 g by exactly the number of the fake bag.",
+  "explain_math_md": "$$550 - W = k \\Rightarrow \\text{bag } k \\text{ is fake}$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "markup-markdown",
+  "tier": "trap",
+  "category": "percentages",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A shop raises a jacket's price by 25%. What percent discount off the new price brings it back to exactly the original price?",
+  "prompt_short": "Price raised 25%. Discount that brings it back to the original?",
+  "answer_value": 20,
+  "trap_value": 25,
+  "closeness_cap": 10,
+  "unit_label": "%",
+  "answer_display": "20%",
+  "hint_md": "Start at 100 dollars.",
+  "explain_intuition_md": "The discount is taken from the bigger, raised price, so a smaller percentage does the job. 100 rises to 125, and 25 is a fifth of 125.",
+  "explain_math_md": "$$\\frac{125 - 100}{125} = \\frac{25}{125} = 20\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

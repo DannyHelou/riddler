@@ -1,0 +1,20 @@
+{
+  "id": "bat-and-ball",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A bat and a ball cost 1 dollar 10 cents together. The bat costs 1 dollar more than the ball. How many cents does the ball cost?",
+  "prompt_short": "Bat and ball cost 1.10 together; the bat costs 1.00 more. The ball, in cents?",
+  "answer_value": 5,
+  "trap_value": 10,
+  "closeness_cap": 0.5,
+  "unit_label": "cents",
+  "answer_display": "5 cents",
+  "hint_md": "Check your answer: is the bat really a dollar more?",
+  "explain_intuition_md": "If the ball cost 10 cents, the bat would cost 1.10 and the pair 1.20. With a 5-cent ball, the bat is 1.05 and the pair is exactly 1.10.",
+  "explain_math_md": "$b + (b + 100) = 110$, so $2b = 10$ and $b = 5$ cents.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic (cognitive reflection test)"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "bike-flip",
+  "tier": "warmup",
+  "category": "arithmetic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You buy a bike for 60 dollars and sell it for 70. Then you buy it back for 80 and sell it again for 90. What's your total profit, in dollars?",
+  "prompt_short": "Buy at 60, sell at 70, buy at 80, sell at 90. Profit?",
+  "answer_value": 20,
+  "trap_value": 10,
+  "closeness_cap": 0.6,
+  "unit_label": "dollars",
+  "answer_display": "20 dollars",
+  "hint_md": "Treat it as two separate deals.",
+  "explain_intuition_md": "Each deal makes 10 dollars on its own: 60 to 70, then 80 to 90. Buying back at 80 feels like losing 10, but that money was never yours to lose.",
+  "explain_math_md": "$-60 + 70 - 80 + 90 = 20$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic (horse-trading puzzle)"
+}

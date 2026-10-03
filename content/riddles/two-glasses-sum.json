@@ -1,0 +1,20 @@
+{
+  "id": "two-glasses-sum",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Two glasses are each filled to a uniformly random level between empty and full, independently. You pour both into a big jug. Chance it holds more than 1.5 glasses?",
+  "prompt_short": "Two glasses, each randomly filled. Chance the total tops 1.5 glasses?",
+  "answer_value": 12.5,
+  "trap_value": 25,
+  "closeness_cap": 30,
+  "unit_label": "%",
+  "answer_display": "12.5% (1 in 8)",
+  "hint_md": "Totals near 1 are common; totals near 2 are rare.",
+  "explain_intuition_md": "The total runs from 0 to 2 glasses, and 1.5 is three-quarters of the way up, so 25% seems natural. But big totals need both glasses nearly full, which is rare. The chance thins out toward the top, leaving just 1 in 8.",
+  "explain_math_md": "The region $x + y > 1.5$ in the unit square is a triangle with legs $\\tfrac12$: $$P = \\tfrac12 \\left(\\tfrac12\\right)^2 = \\tfrac18$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "light-bulbs-100",
+  "tier": "trap",
+  "category": "number theory",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "100 bulbs, all off. Person 1 flips every bulb, person 2 every 2nd, person 3 every 3rd, and so on up to person 100. How many bulbs end up on?",
+  "prompt_short": "100 bulbs; person k flips every k-th bulb, k = 1 to 100. How many end up on?",
+  "answer_value": 10,
+  "trap_value": 50,
+  "closeness_cap": 1,
+  "unit_label": "bulbs",
+  "answer_display": "10 bulbs",
+  "hint_md": "A bulb is flipped once for each number that divides it.",
+  "explain_intuition_md": "Bulb n is flipped once for every number that divides it. Divisors come in pairs, so most bulbs are flipped an even number of times and end up off. Only perfect squares have an unpaired divisor: 1, 4, 9 and so on up to 100, which is 10 bulbs.",
+  "explain_math_md": "Bulb $n$ ends on iff it has an odd number of divisors iff $n$ is a perfect square: $1^2, 2^2, \\dots, 10^2$.",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic, via BrainStellar (MIT)"
+}

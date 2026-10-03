@@ -1,0 +1,20 @@
+{
+  "id": "problem-of-points",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Ann and Ben play for 100 dollars: each point is a coin flip, first to 5 points wins. They must stop at 4–2 to Ann. Split by chances to win, what's Ann's share?",
+  "prompt_short": "First to 5 for 100 dollars, stopped at 4-2. Leader's fair share?",
+  "answer_value": 87.5,
+  "trap_value": 66.67,
+  "closeness_cap": 0.25,
+  "unit_label": "dollars",
+  "answer_display": "87.50 dollars",
+  "hint_md": "How could Ben still win from here?",
+  "explain_intuition_md": "Splitting by points so far, 4 to 2, gives Ann two-thirds of the pot, about 67 dollars. But what matters is the future: Ben can only win by taking the next 3 points in a row, a 1-in-8 chance.",
+  "explain_math_md": "$$100\\cdot\\left(1-\\left(\\tfrac12\\right)^3\\right) = 87.5$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (Pascal and Fermat's problem of points)"
+}

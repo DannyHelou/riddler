@@ -1,0 +1,20 @@
+{
+  "id": "adults-and-children-boat",
+  "tier": "boss",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Four adults and two children must cross a river in a boat that holds either one adult or up to two children. What's the fewest one-way crossings to get everyone across?",
+  "prompt_short": "4 adults, 2 kids, boat for 1 adult or 2 kids. Fewest crossings?",
+  "answer_value": 17,
+  "trap_value": 9,
+  "closeness_cap": 0.5,
+  "unit_label": "crossings",
+  "answer_display": "17 crossings",
+  "hint_md": "A child has to bring the boat back every time, and then a child has to be over there again.",
+  "explain_intuition_md": "It's tempting to count an adult over and a child back, about 2 crossings per adult. But that strands a child on the far side with no way to repeat the trick. Each adult really costs 4 crossings: both children over, one back, the adult over, the other child back. Four adults make 16, plus one last trip for the children.",
+  "explain_math_md": "$$4 \\times 4 + 1 = 17$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (soldiers and boys)"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "triples-turns",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "In a board game you roll three dice each turn. On average, how many turns does it take to roll triples (all three dice showing the same number)?",
+  "prompt_short": "Three dice per turn. Average turns until triples?",
+  "answer_value": 36,
+  "trap_value": 216,
+  "closeness_cap": 1.5,
+  "unit_label": "turns",
+  "answer_display": "36 turns",
+  "hint_md": "The first die can show anything.",
+  "explain_intuition_md": "Three sixes is a 1-in-216 shot, so 216 turns is tempting. But triples can be any number: whatever the first die shows, the other two just have to match it, a 1-in-36 chance.",
+  "explain_math_md": "$$P = 6\\cdot\\tfrac{1}{216} = \\tfrac{1}{36} \\;\\Rightarrow\\; E = 36$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "monty-hall",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A car is behind one of three doors, goats behind the others. You pick one; the host, who knows, always opens another to show a goat. If you switch, what's your chance of winning?",
+  "prompt_short": "Three doors, one car. Host shows a goat. Chance of winning if you switch?",
+  "answer_value": 66.67,
+  "trap_value": 50,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "about 67% (2 in 3)",
+  "hint_md": "How often is your first pick wrong?",
+  "explain_intuition_md": "Your first pick is wrong 2 times out of 3. Whenever it's wrong, the host has to leave the car behind the one door he didn't open, so switching wins. Switching only loses in the 1-in-3 case where you picked the car at the start.",
+  "explain_math_md": "$$P(\\text{win by switching}) = P(\\text{first pick wrong}) = \\tfrac{2}{3}$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (Monty Hall), via BrainStellar (MIT)"
+}

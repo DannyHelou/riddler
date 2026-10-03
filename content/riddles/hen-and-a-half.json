@@ -1,0 +1,20 @@
+{
+  "id": "hen-and-a-half",
+  "tier": "trap",
+  "category": "rates",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A hen and a half lays an egg and a half in a day and a half. At that rate, how many eggs does one hen lay in 3 days?",
+  "prompt_short": "A hen and a half, an egg and a half, a day and a half. One hen, 3 days?",
+  "answer_value": 2,
+  "trap_value": 3,
+  "closeness_cap": 0.35,
+  "unit_label": "eggs",
+  "answer_display": "2 eggs",
+  "hint_md": "First find how long one hen takes for one egg.",
+  "explain_intuition_md": "Fewer hens means fewer eggs in the same time: one hen lays one egg in a day and a half. Three days is two of those stretches, so two eggs.",
+  "explain_math_md": "$\\frac{1.5 \\text{ eggs}}{1.5 \\text{ hens} \\times 1.5 \\text{ days}} = \\frac{2}{3}$ egg per hen-day, $\\times 3 = 2$.",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

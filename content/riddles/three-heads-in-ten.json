@@ -1,0 +1,20 @@
+{
+  "id": "three-heads-in-ten",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Flip a fair coin 10 times. What's the chance you see three or more heads in a row somewhere?",
+  "prompt_short": "10 coin flips. Chance of three heads in a row somewhere?",
+  "answer_value": 50.78,
+  "trap_value": 65.64,
+  "closeness_cap": 30,
+  "unit_label": "%",
+  "answer_display": "about 50.8% (520 in 1,024)",
+  "hint_md": "Count the sequences with no three heads in a row, by how they end.",
+  "explain_intuition_md": "A run of three could start in 8 places, each a 1-in-8 shot, and treating them as independent gives about 66%. But overlapping windows rise and fall together, so runs come in clumps and the chance of seeing at least one is lower. An exact count gives just over a coin flip.",
+  "explain_math_md": "Sequences with no HHH satisfy $a_n = a_{n-1}+a_{n-2}+a_{n-3}$ with $a_0, a_1, a_2 = 1, 2, 4$, so $a_{10} = 504$ and $$1-\\tfrac{504}{1024} = \\tfrac{520}{1024} \\approx 50.8\\%$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

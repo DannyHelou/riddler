@@ -1,0 +1,20 @@
+{
+  "id": "dice-all-faces",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You roll a fair six-sided die over and over. On average, how many rolls does it take until you've seen every face at least once?",
+  "prompt_short": "Average rolls of a die to see all six faces?",
+  "answer_value": 14.7,
+  "trap_value": 6,
+  "closeness_cap": 1,
+  "unit_label": "rolls",
+  "answer_display": "14.7 rolls",
+  "hint_md": "How long does each new face take, once you've seen some?",
+  "explain_intuition_md": "The first roll is always new, but new faces get harder to find. With five seen, only 1 roll in 6 brings the last one, and that alone takes 6 rolls on average. Adding up the wait for each new face gives 14.7.",
+  "explain_math_md": "$$6\\left(1 + \\tfrac12 + \\tfrac13 + \\tfrac14 + \\tfrac15 + \\tfrac16\\right) = 14.7$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (coupon collector), via BrainStellar (MIT)"
+}

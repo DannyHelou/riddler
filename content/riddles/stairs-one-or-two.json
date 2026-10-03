@@ -1,0 +1,20 @@
+{
+  "id": "stairs-one-or-two",
+  "tier": "trap",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You climb a 10-step staircase, taking either 1 or 2 steps at a time. How many different ways can you get to the top?",
+  "prompt_short": "10 steps, 1 or 2 at a time. How many ways to the top?",
+  "answer_value": 89,
+  "trap_value": 55,
+  "closeness_cap": 0.4,
+  "unit_label": "ways",
+  "answer_display": "89 ways",
+  "hint_md": "Your last move to step 10 came from step 9 or step 8.",
+  "explain_intuition_md": "The ways to reach each step are the ways to reach the step below plus the two below, so the counts run 1, 2, 3, 5, 8, 13 and so on: Fibonacci numbers. The trap is an off-by-one: 55 is the 10th Fibonacci number, but here step 1 has 1 way and step 2 already has 2.",
+  "explain_math_md": "$$W_n = W_{n-1} + W_{n-2},\\ W_1 = 1,\\ W_2 = 2 \\Rightarrow W_{10} = 89$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

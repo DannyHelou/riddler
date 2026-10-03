@@ -1,0 +1,20 @@
+{
+  "id": "tic-tac-toe-openings",
+  "tier": "warmup",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "In tic-tac-toe, treat first moves that match after rotating or flipping the board as the same move. How many truly different first moves are there?",
+  "prompt_short": "Tic-tac-toe first moves, up to rotations and flips?",
+  "answer_value": 3,
+  "trap_value": 9,
+  "closeness_cap": 0.8,
+  "unit_label": "moves",
+  "answer_display": "3 moves",
+  "hint_md": "Sort the 9 squares into types.",
+  "explain_intuition_md": "Any corner turns into any other corner when you rotate the board, and the same goes for the edges. That leaves only three kinds of move: corner, edge and center.",
+  "explain_math_md": "$$\\{4 \\text{ corners}\\},\\ \\{4 \\text{ edges}\\},\\ \\{\\text{center}\\} \\Rightarrow 3$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

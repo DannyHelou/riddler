@@ -1,0 +1,20 @@
+{
+  "id": "poison-bottle",
+  "tier": "boss",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "1 of 1,000 bottles is poisoned. One sip kills, exactly 24 hours later, and you have 24 hours. Tasters may sip from any number of bottles. Fewest tasters to find the poison?",
+  "prompt_short": "1,000 bottles, 1 poisoned, 24 hours, poison takes 24 hours. Fewest tasters?",
+  "answer_value": 10,
+  "trap_value": 999,
+  "closeness_cap": 2,
+  "unit_label": "tasters",
+  "answer_display": "10 tasters",
+  "hint_md": "Write each bottle's number in binary.",
+  "explain_intuition_md": "Number the bottles in binary: 10 binary digits cover 1,024 bottles. Taster k sips from every bottle whose k-th digit is a 1. The next day, the pattern of who has died spells out the poisoned bottle's number.",
+  "explain_math_md": "$2^9 = 512 < 1000 \\le 1024 = 2^{10}$, so $10$ tasters suffice and $9$ cannot.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic, via BrainStellar (MIT)"
+}

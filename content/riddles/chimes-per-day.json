@@ -1,0 +1,20 @@
+{
+  "id": "chimes-per-day",
+  "tier": "warmup",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A clock chimes once at 1 o'clock, twice at 2, and so on up to 12 times at 12, day and night. How many times does it chime in one full day?",
+  "prompt_short": "Chimes the hour, 1 to 12, day and night. Chimes per day?",
+  "answer_value": 156,
+  "trap_value": 78,
+  "closeness_cap": 0.5,
+  "unit_label": "chimes",
+  "answer_display": "156 chimes",
+  "hint_md": "How many times does the hour hand go around in a day?",
+  "explain_intuition_md": "One trip around the dial is 1 + 2 + ... + 12 = 78 chimes. But the hour hand goes around twice a day, so the clock does it all twice.",
+  "explain_math_md": "$$2 \\times \\sum_{k=1}^{12} k = 2 \\times 78 = 156$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

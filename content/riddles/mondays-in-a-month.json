@@ -1,0 +1,20 @@
+{
+  "id": "mondays-in-a-month",
+  "tier": "warmup",
+  "category": "calendar",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A 30-day month begins on a Monday. How many Mondays are in that month?",
+  "prompt_short": "A 30-day month starts on a Monday. How many Mondays?",
+  "answer_value": 5,
+  "trap_value": 4,
+  "closeness_cap": 0.2,
+  "unit_label": "Mondays",
+  "answer_display": "5 Mondays",
+  "hint_md": "List them: the 1st, the 8th...",
+  "explain_intuition_md": "The Mondays fall on the 1st, 8th, 15th, 22nd and 29th. Four is the usual count, but a month that starts on a Monday squeezes in a fifth.",
+  "explain_math_md": "$$1,\\ 8,\\ 15,\\ 22,\\ 29 \\Rightarrow 5$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "six-eight-before-seven",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Roll two dice again and again. What's the chance you roll both a total of 6 and a total of 8 (in either order) before you ever roll a total of 7?",
+  "prompt_short": "Two dice, repeated. Both a 6 and an 8 before any 7?",
+  "answer_value": 28.41,
+  "trap_value": 20.66,
+  "closeness_cap": 20,
+  "unit_label": "%",
+  "answer_display": "about 28.4% (25 in 88)",
+  "hint_md": "Ignore every roll that isn't a 6, 7 or 8.",
+  "explain_intuition_md": "A 6 beats a 7 with chance 5 in 11, and so does an 8, so multiplying gives about 21%. But the two races aren't independent: they're both against the same 7. First a 6 or an 8 must beat the 7, which is easier because either one will do; then the other number must beat the 7 too.",
+  "explain_math_md": "Totals 6, 7, 8 come up in 5, 6, 5 ways out of 36: $$\\tfrac{10}{16}\\cdot\\tfrac{5}{11} = \\tfrac{25}{88} \\approx 28.4\\%$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (craps)"
+}

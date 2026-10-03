@@ -1,0 +1,20 @@
+{
+  "id": "square-field-posts",
+  "tier": "warmup",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A square field has 40 m sides. You put a fence post at every corner and every 10 m along the edges. How many posts do you need?",
+  "prompt_short": "Square field, 40 m sides, a post every 10 m. How many posts?",
+  "answer_value": 16,
+  "trap_value": 20,
+  "closeness_cap": 0.2,
+  "unit_label": "posts",
+  "answer_display": "16 posts",
+  "hint_md": "Walk around once: does a corner belong to one side or to two?",
+  "explain_intuition_md": "Each side gets 5 posts if you count its ends, but every corner post is shared by two sides. Around a closed loop there are exactly as many posts as gaps: 160 m of fence, one gap per 10 m.",
+  "explain_math_md": "$$\\frac{4 \\times 40}{10} = 16 \\qquad (5 \\times 4 - 4 \\text{ shared corners} = 16)$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic (fence-post problem)"
+}

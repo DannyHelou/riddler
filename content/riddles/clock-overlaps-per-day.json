@@ -1,0 +1,20 @@
+{
+  "id": "clock-overlaps-per-day",
+  "tier": "trap",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "From midnight up to (but not including) the next midnight, how many times do a clock's hour and minute hands point exactly the same way?",
+  "prompt_short": "How many times a day do a clock's hands overlap?",
+  "answer_value": 22,
+  "trap_value": 24,
+  "closeness_cap": 0.08,
+  "unit_label": "times",
+  "answer_display": "22 times",
+  "hint_md": "Do the hands meet at all between 11 and 1, other than at 12?",
+  "explain_intuition_md": "The hour hand keeps moving, so each lap of the minute hand takes a little over an hour to catch it: about 65.5 minutes. That gives 11 meetings every 12 hours, not 12, because the 11 o'clock meeting and the 12 o'clock one are the same. Twice around the clock makes 22.",
+  "explain_math_md": "The hands meet every $\\tfrac{720}{11}$ minutes, so $$\\frac{1440}{720/11} = 22$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

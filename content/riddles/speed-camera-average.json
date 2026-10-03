@@ -1,0 +1,20 @@
+{
+  "id": "speed-camera-average",
+  "tier": "boss",
+  "category": "statistics",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "On a long road, at any moment half the vehicles are bikes at 20 km/h and half are cars at 100 km/h. A camera logs every vehicle that passes it. Average logged speed?",
+  "prompt_short": "Road: half bikes at 20, half cars at 100. Average speed past a camera?",
+  "answer_value": 86.67,
+  "trap_value": 60,
+  "closeness_cap": 0.35,
+  "unit_label": "km/h",
+  "answer_display": "about 86.7 km/h",
+  "hint_md": "Fast vehicles pass the camera more often.",
+  "explain_intuition_md": "A snapshot of the road shows equal numbers of bikes and cars, averaging 60 km/h. But cars cover five times the distance, so five cars pass the camera for every bike. The camera's log is mostly cars, which pulls its average up to about 87.",
+  "explain_math_md": "Passing rate is proportional to speed, so each speed is weighted by itself: $$\\frac{20 \\cdot 20 + 100 \\cdot 100}{20 + 100} = \\frac{10400}{120} \\approx 86.7$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (size-biased sampling)"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "five-directors-locks",
+  "tier": "boss",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A vault has several locks that must all be opened, and each of 5 directors holds keys to some of them. Any 3 directors together can open it, but no 2 can. Fewest locks?",
+  "prompt_short": "5 directors, any 3 open the vault, no 2 can. Fewest locks?",
+  "answer_value": 10,
+  "trap_value": 5,
+  "closeness_cap": 0.6,
+  "unit_label": "locks",
+  "answer_display": "10 locks",
+  "hint_md": "Every pair of directors needs a lock that neither of them can open.",
+  "explain_intuition_md": "One lock per director feels natural, but it doesn't work. Each pair of directors must be stopped by a lock they both lack, and if one lock stopped two different pairs, those pairs together make 3 or more people who still couldn't open it. So each of the 10 pairs needs its own lock, with keys going to the other 3 directors.",
+  "explain_math_md": "$$\\#\\text{locks} \\ge \\binom{5}{2} = 10$$ and $10$ locks suffice.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

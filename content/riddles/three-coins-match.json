@@ -1,0 +1,20 @@
+{
+  "id": "three-coins-match",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Toss three fair coins. What's the chance that all three land the same way up (all heads or all tails)?",
+  "prompt_short": "Three coins. Chance all three land the same way?",
+  "answer_value": 25,
+  "trap_value": 50,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "25% (1 in 4)",
+  "hint_md": "List the 8 equally likely outcomes.",
+  "explain_intuition_md": "Two of the three coins always match, so it feels like everything rides on the last coin: 50%. But which two match isn't fixed in advance, and that sneaks in a bias. Of the 8 equally likely outcomes, only all heads and all tails work.",
+  "explain_math_md": "$$\\tfrac{2}{2^3} = \\tfrac14 = 25\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (Galton's coin paradox)"
+}

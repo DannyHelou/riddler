@@ -1,0 +1,20 @@
+{
+  "id": "prisoner-hats",
+  "tier": "boss",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "100 prisoners in a line wear red or blue hats, each seeing only the hats ahead. From the back, each calls a colour; right guesses go free. With a shared plan, how many surely go free?",
+  "prompt_short": "100 prisoners in a line, red or blue hats, guessing from the back. Sure to free?",
+  "answer_value": 99,
+  "trap_value": 50,
+  "closeness_cap": 0.5,
+  "unit_label": "prisoners",
+  "answer_display": "99 prisoners",
+  "hint_md": "The first prisoner to speak can pass on one piece of information.",
+  "explain_intuition_md": "The prisoner at the back says \"red\" if they see an even number of red hats and \"blue\" if odd. That's a gamble for them, but everyone after can now work out their own colour from the hats they see and the answers they've heard. So 99 are certain to go free.",
+  "explain_math_md": "The back prisoner announces the parity of red hats ahead. Each later prisoner knows that parity, sees the hats ahead and has heard the hats behind, so exactly one colour makes the count match.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic, via BrainStellar (MIT)"
+}

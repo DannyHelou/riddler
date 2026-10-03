@@ -1,0 +1,20 @@
+{
+  "id": "second-chance",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Roll a die and win its value in dollars. Seeing it, you may reroll once, but must keep the reroll. Playing as well as possible, what do you win on average, in dollars?",
+  "prompt_short": "Win a die roll in dollars, one optional reroll. Average win with best play?",
+  "answer_value": 4.25,
+  "trap_value": 3.5,
+  "closeness_cap": 0.2,
+  "unit_label": "dollars",
+  "answer_display": "4.25 dollars",
+  "hint_md": "A reroll is worth 3.5 on average. When is that better than what you have?",
+  "explain_intuition_md": "A reroll is worth 3.5 on average, so keep a 4, 5 or 6 and reroll a 1, 2 or 3. Half the time you keep a roll worth 5 on average, and half the time you get a reroll worth 3.5. That averages to 4.25.",
+  "explain_math_md": "$$\\tfrac12 \\cdot 5 + \\tfrac12 \\cdot 3.5 = 4.25$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic, via BrainStellar (MIT)"
+}

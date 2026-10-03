@@ -1,0 +1,20 @@
+{
+  "id": "three-flats",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "You'll view 3 flats in random order, saying yes or no to each on the spot. You pass on the first, then take the first one better than all before. Chance you get the best?",
+  "prompt_short": "3 flats, skip the first, take the next record. Chance of the best?",
+  "answer_value": 50,
+  "trap_value": 33.33,
+  "closeness_cap": 40,
+  "unit_label": "%",
+  "answer_display": "50%",
+  "hint_md": "List the 6 possible orders.",
+  "explain_intuition_md": "With 3 flats and no peeking ahead, a 1-in-3 shot at the best feels unavoidable. But passing on the first flat teaches you something. Of the 6 equally likely orders, the rule lands the best flat in 3: both orders with the best flat second, plus middle-worst-best.",
+  "explain_math_md": "Writing 1 for the best flat, the rule wins on 213, 312 and 231: $$P = \\tfrac36 = 50\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (secretary problem)"
+}

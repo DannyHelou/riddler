@@ -1,0 +1,20 @@
+{
+  "id": "de-mere-four-dice",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A gambler bets he'll roll at least one six in four rolls of a fair die. What's his chance of winning?",
+  "prompt_short": "At least one six in four rolls of a die?",
+  "answer_value": 51.77,
+  "trap_value": 66.67,
+  "closeness_cap": 30,
+  "unit_label": "%",
+  "answer_display": "about 51.8%",
+  "hint_md": "Find the chance of no six at all.",
+  "explain_intuition_md": "Adding one in six four times gives 4 in 6, but that double-counts the games with more than one six. It's easier to find the chance of no six at all: a bit under 50%. So the gambler wins just under 52% of the time, barely better than even.",
+  "explain_math_md": "$$1-\\left(\\tfrac56\\right)^4 = 1-\\tfrac{625}{1296} = \\tfrac{671}{1296} \\approx 51.8\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (Chevalier de Méré's problem)"
+}

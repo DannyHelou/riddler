@@ -1,0 +1,20 @@
+{
+  "id": "sliding-ladder",
+  "tier": "trap",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A 25 m ladder leans against a wall with its foot 7 m out. The foot slips another 8 m away from the wall. How many metres does the top slide down?",
+  "prompt_short": "25 m ladder, foot 7 m out, slips 8 m more. How far does the top drop?",
+  "answer_value": 4,
+  "trap_value": 8,
+  "closeness_cap": 0.6,
+  "unit_label": "m",
+  "answer_display": "4 m",
+  "hint_md": "Use Pythagoras before and after.",
+  "explain_intuition_md": "The foot and the top don't move by the same amount. Near the ground the top barely moves at first; here it goes from 24 m up to 20 m.",
+  "explain_math_md": "Before: $\\sqrt{25^2 - 7^2} = 24$. After: $\\sqrt{25^2 - 15^2} = 20$. Drop $= 4$ m.",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

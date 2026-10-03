@@ -1,0 +1,20 @@
+{
+  "id": "square-metre-cm",
+  "tier": "warmup",
+  "category": "geometry",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "How many square centimetres are there in one square metre?",
+  "prompt_short": "Square centimetres in a square metre?",
+  "answer_value": 10000,
+  "trap_value": 100,
+  "closeness_cap": 3,
+  "unit_label": "cm²",
+  "answer_display": "10,000 cm²",
+  "hint_md": "A square metre is 100 cm on each side.",
+  "explain_intuition_md": "A metre is 100 cm, but a square metre is 100 cm by 100 cm. That's a grid of 100 rows of 100 little squares.",
+  "explain_math_md": "$1\\ \\text{m}^2 = 100 \\times 100\\ \\text{cm}^2 = 10{,}000\\ \\text{cm}^2$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "blindfold-coin-piles",
+  "tier": "boss",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "100 coins lie on a table, 10 of them heads up. Blindfolded, you must split them into two piles with equal heads; you may flip coins. How many go in the smaller pile?",
+  "prompt_short": "100 coins, 10 heads, blindfolded: equal-heads piles. Smaller pile size?",
+  "answer_value": 10,
+  "trap_value": 50,
+  "closeness_cap": 1.2,
+  "unit_label": "coins",
+  "answer_display": "10 coins",
+  "hint_md": "Slide some coins aside, then flip every one of them.",
+  "explain_intuition_md": "Two piles of 50 have no reason to match. Instead, slide any 10 coins aside and flip every one of them. If h of those 10 were heads, the big pile has 10 - h heads, and after flipping, the small pile has exactly 10 - h heads too.",
+  "explain_math_md": "Small pile: $h$ heads before flipping, $10 - h$ after. Big pile: $10 - h$ heads. A pile of size $k$ works only when $k - h = 10 - h$, so $k = 10$.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

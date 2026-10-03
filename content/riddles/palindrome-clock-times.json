@@ -1,0 +1,20 @@
+{
+  "id": "palindrome-clock-times",
+  "tier": "boss",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A 12-hour digital clock shows times like 1:21 or 12:21. Over 12 hours, how many different times read the same forwards and backwards (ignoring the colon)?",
+  "prompt_short": "Palindromic times on a 12-hour clock over 12 hours?",
+  "answer_value": 57,
+  "trap_value": 54,
+  "closeness_cap": 0.05,
+  "unit_label": "times",
+  "answer_display": "57 times",
+  "hint_md": "Don't forget the two-digit hours.",
+  "explain_intuition_md": "Each one-digit hour h gives palindromes h:0h through h:5h, which is 6 apiece and 54 for hours 1 to 9. It's easy to stop there. The two-digit hours add 10:01, 11:11 and 12:21.",
+  "explain_math_md": "$$9 \\times 6 + 3 = 57$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

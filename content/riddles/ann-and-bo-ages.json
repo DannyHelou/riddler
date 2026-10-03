@@ -1,0 +1,20 @@
+{
+  "id": "ann-and-bo-ages",
+  "tier": "boss",
+  "category": "arithmetic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Ann is 24. She is twice as old as Bo was when Ann was as old as Bo is now. How old is Bo now?",
+  "prompt_short": "Ann, 24, is twice as old as Bo was when Ann was Bo's age. Bo's age?",
+  "answer_value": 18,
+  "trap_value": 12,
+  "closeness_cap": 0.35,
+  "unit_label": "years",
+  "answer_display": "18",
+  "hint_md": "The age gap between them never changes. Call it g.",
+  "explain_intuition_md": "Half of 24 is 12, but 12 is Bo's age back then, not now. The gap between them is 6 years: Ann was 18 when Bo was 12.",
+  "explain_math_md": "Gap $g = 24 - b$. Then Bo was $b - g$, and $24 = 2(b - g) = 2(2b - 24) \\Rightarrow b = 18$.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (age puzzle)"
+}

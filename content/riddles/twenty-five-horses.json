@@ -1,0 +1,20 @@
+{
+  "id": "twenty-five-horses",
+  "tier": "boss",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "You have 25 horses and a track that races 5 at a time. Races show only finishing order, and each horse's speed never changes. Fewest races to find the 3 fastest?",
+  "prompt_short": "25 horses, races of 5, no clock. Fewest races to find the top 3?",
+  "answer_value": 7,
+  "trap_value": 6,
+  "closeness_cap": 0.13,
+  "unit_label": "races",
+  "answer_display": "7 races",
+  "hint_md": "After 5 heats and a race of the winners, only a few horses are still in the running.",
+  "explain_intuition_md": "Five heats plus a race of the five winners makes 6, and it's tempting to stop there. But the 2nd and 3rd fastest might be stuck behind the overall winner in its own heat. After those 6 races exactly 5 horses are still in contention for 2nd and 3rd, and a 7th race settles it.",
+  "explain_math_md": "$$5 \\text{ heats} + 1 \\text{ race of winners} + 1 \\text{ final} = 7$$ Six races can't do it: some horse could never be compared with a contender.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic"
+}

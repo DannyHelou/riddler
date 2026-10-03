@@ -1,0 +1,20 @@
+{
+  "id": "pawn-track",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A token starts on square 5 of a track numbered 0 to 10. Each turn a coin flip moves it one square left or right. On average, how many turns until it hits 0 or 10?",
+  "prompt_short": "Random walk from 5 on a 0-10 track. Average turns to an end?",
+  "answer_value": 25,
+  "trap_value": 5,
+  "closeness_cap": 1.2,
+  "unit_label": "turns",
+  "answer_display": "25 turns",
+  "hint_md": "Try a short track first: start on 1 of a track from 0 to 2.",
+  "explain_intuition_md": "It's only 5 squares to either end, so 5 turns feels right. But a random walk wastes most of its moves going back and forth. Its typical distance from the start grows like the square root of the number of moves, so getting 5 squares away takes about 5 times 5 turns.",
+  "explain_math_md": "From square $k$, $E_k = k(10-k)$ solves $E_k = 1 + \\tfrac12E_{k-1} + \\tfrac12E_{k+1}$ with $E_0 = E_{10} = 0$, so $E_5 = 25$.",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (gambler's ruin)"
+}

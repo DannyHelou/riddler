@@ -1,0 +1,20 @@
+{
+  "id": "parked-cars-distance",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Two friends park at uniformly random, independent spots along a straight 1 km street. On average, how far apart are their cars, in meters?",
+  "prompt_short": "Two cars park at random along a 1 km street. Average distance apart?",
+  "answer_value": 333.33,
+  "trap_value": 500,
+  "closeness_cap": 0.4,
+  "unit_label": "m",
+  "answer_display": "about 333 m (a third of a km)",
+  "hint_md": "Two random spots cut the street into three pieces.",
+  "explain_intuition_md": "Two random spots cut the street into three pieces, each a third of a kilometer on average. The gap between the cars is the middle piece. 500 m is what you would get if one car always parked at an end.",
+  "explain_math_md": "$$E|X - Y| = \\int_0^1 \\!\\! \\int_0^1 |x - y| \\, dx \\, dy = \\tfrac13 \\text{ km}$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

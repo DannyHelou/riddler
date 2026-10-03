@@ -1,0 +1,20 @@
+{
+  "id": "wolf-goat-cabbage",
+  "tier": "trap",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A farmer must row a wolf, a goat and a cabbage across a river. The boat fits him and one of them, and the goat can't be left alone with either. Fewest one-way crossings?",
+  "prompt_short": "Wolf, goat, cabbage, boat for one. Fewest one-way crossings?",
+  "answer_value": 7,
+  "trap_value": 5,
+  "closeness_cap": 0.3,
+  "unit_label": "crossings",
+  "answer_display": "7 crossings",
+  "hint_md": "Something has to ride back the wrong way.",
+  "explain_intuition_md": "Five crossings would mean three trips over with two empty trips back. But every second trip leaves the goat alone with the wolf or the cabbage. The fix is to bring the goat back with you once, which costs two extra crossings.",
+  "explain_math_md": "Goat over, return, wolf over, goat back, cabbage over, return, goat over: $7$ crossings.",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

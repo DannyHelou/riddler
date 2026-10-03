@@ -1,0 +1,27 @@
+{
+  "id": "marys-father",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "word",
+  "prompt_md": "Mary's father has five daughters: Nana, Nene, Nini and Nono. What is the fifth daughter's name?",
+  "prompt_short": "Mary's father has daughters Nana, Nene, Nini, Nono. The fifth?",
+  "answer_display": "Mary",
+  "accepted_answers": [
+    "mary",
+    "its mary",
+    "mary herself",
+    "mary of course"
+  ],
+  "trap_answers": [
+    "nunu",
+    "nyny",
+    "nanu",
+    "nuna"
+  ],
+  "hint_md": "Read the first two words again.",
+  "explain_intuition_md": "The vowel pattern a, e, i, o practically shouts \"Nunu\", but the riddle told you the answer at the start: these are Mary's father's daughters, so Mary is the fifth.",
+  "explain_math_md": "No math here: the trick is in the wording.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

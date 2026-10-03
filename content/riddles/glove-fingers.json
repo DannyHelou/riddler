@@ -1,0 +1,35 @@
+{
+  "id": "glove-fingers",
+  "tier": "warmup",
+  "category": "wordplay",
+  "answer_type": "word",
+  "prompt_md": "What has a thumb and four fingers but isn't alive?",
+  "prompt_short": "What has a thumb and four fingers but isn't alive?",
+  "answer_display": "a glove",
+  "accepted_answers": [
+    "glove",
+    "gloves",
+    "a glove",
+    "rubber glove",
+    "work glove",
+    "leather glove",
+    "winter glove",
+    "pair of gloves",
+    "oven glove"
+  ],
+  "trap_answers": [
+    "hand",
+    "a hand",
+    "human hand",
+    "your hand",
+    "fingers",
+    "my hand",
+    "dead hand"
+  ],
+  "hint_md": "You wear it in winter.",
+  "explain_intuition_md": "A thumb and four fingers is a description of a hand, but a hand is alive. A glove has the same shape with nothing living inside.",
+  "explain_math_md": "Fingers: $1 + 4 = 5$, the same count as a hand.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic, via crawsome/riddles (Unlicense)"
+}

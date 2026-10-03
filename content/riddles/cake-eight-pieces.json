@@ -1,0 +1,20 @@
+{
+  "id": "cake-eight-pieces",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "What's the fewest straight cuts that divide a round cake into 8 equal pieces? You can't move or stack the pieces between cuts.",
+  "prompt_short": "Fewest straight cuts to split a round cake into 8 equal pieces?",
+  "answer_value": 3,
+  "trap_value": 4,
+  "closeness_cap": 0.25,
+  "unit_label": "cuts",
+  "answer_display": "3 cuts",
+  "hint_md": "Who says every cut has to go straight down?",
+  "explain_intuition_md": "Two cuts straight down through the center make 4 equal wedges. One flat cut through the middle of the cake's height then splits all 4 into 8. Slicing it like a pizza needs 4 cuts.",
+  "explain_math_md": "Two planes make at most $4$ pieces, so $3$ cuts is the minimum; $2$ vertical $+\\,1$ horizontal gives $2^3 = 8$.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

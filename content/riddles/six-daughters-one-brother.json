@@ -1,0 +1,20 @@
+{
+  "id": "six-daughters-one-brother",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A couple has 6 daughters, and each daughter has exactly one brother. How many children does the couple have?",
+  "prompt_short": "6 daughters, each with one brother. How many children?",
+  "answer_value": 7,
+  "trap_value": 12,
+  "closeness_cap": 0.45,
+  "unit_label": "children",
+  "answer_display": "7 children",
+  "hint_md": "Could the daughters all share the same brother?",
+  "explain_intuition_md": "All six daughters share one and the same brother. That's 6 girls plus 1 boy, not a brother each.",
+  "explain_math_md": "$$6 \\text{ daughters} + 1 \\text{ son} = 7$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

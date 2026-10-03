@@ -1,0 +1,20 @@
+{
+  "id": "buffon-needle",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A floor has parallel lines 10 cm apart. You drop a 10 cm needle so it lands at a random spot and a random angle. What is the chance it crosses a line?",
+  "prompt_short": "Needle as long as the line spacing, dropped at random. Chance it crosses?",
+  "answer_value": 63.66,
+  "trap_value": 50,
+  "closeness_cap": 30,
+  "unit_label": "%",
+  "answer_display": "about 64% (2/π)",
+  "hint_md": "Average the crossing chance over all angles.",
+  "explain_intuition_md": "At angle θ to the lines, the needle spans 10·sin θ across them, so it crosses with chance sin θ. Averaged over all angles that comes to 2/π, about 64%. Guessing 50% assumes the span averages half the needle, but tilted needles still cover most of the gap.",
+  "explain_math_md": "$$P = \\frac{1}{\\pi} \\int_0^\\pi \\frac{10 \\sin\\theta}{10} \\, d\\theta = \\frac{2}{\\pi} \\approx 63.7\\%$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (Buffon's needle)"
+}

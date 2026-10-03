@@ -1,0 +1,20 @@
+{
+  "id": "median-of-three",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "Three friends each pick a uniformly random number from 0 to 100. What is the chance that the middle one of the three numbers lies between 25 and 75?",
+  "prompt_short": "Three random numbers from 0 to 100. Chance the middle one is in 25–75?",
+  "answer_value": 68.75,
+  "trap_value": 50,
+  "closeness_cap": 40,
+  "unit_label": "%",
+  "answer_display": "68.75% (11 in 16)",
+  "hint_md": "The middle number is below 25 only if two picks are.",
+  "explain_intuition_md": "A single pick lands between 25 and 75 half the time, which is where 50% comes from. The middle of three escapes that range only if at least two picks land in the same outer quarter, which is fairly rare. Middles huddle toward the center, so it is 11 in 16.",
+  "explain_math_md": "The median is below 25 iff at least two picks are: $$3\\left(\\tfrac14\\right)^2 \\tfrac34 + \\left(\\tfrac14\\right)^3 = \\tfrac{10}{64}$$ The same holds above 75, so $P = 1 - \\tfrac{20}{64} = \\tfrac{11}{16}$.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (order statistics)"
+}

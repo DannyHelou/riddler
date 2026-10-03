@@ -1,0 +1,20 @@
+{
+  "id": "knight-return",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A knight starts in a corner of an empty chessboard and keeps making random legal moves, each equally likely. On average, how many moves until it's back in that corner?",
+  "prompt_short": "Random knight from a corner. Average moves to return?",
+  "answer_value": 168,
+  "trap_value": 64,
+  "closeness_cap": 0.8,
+  "unit_label": "moves",
+  "answer_display": "168 moves",
+  "hint_md": "In the long run, how much of its time does the knight spend in the corner?",
+  "explain_intuition_md": "With 64 squares, coming back every 64 moves sounds right. But the knight isn't equally likely to be on every square: in the long run it visits each square in proportion to the number of moves from it. The corner has just 2 of the board's 336 move-ends, so it's visited once every 168 moves.",
+  "explain_math_md": "A random walk on a graph spends a share $\\frac{\\deg v}{2|E|}$ of its time at $v$. The knight graph has $|E| = 168$ and the corner has degree 2, so the mean return time is $$\\frac{2\\cdot 168}{2} = 168$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (random walk return times)"
+}

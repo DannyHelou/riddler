@@ -1,0 +1,20 @@
+{
+  "id": "carnival-coin-grid",
+  "tier": "trap",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "At a fair, you toss a coin 2 cm across onto a grid of 5 cm squares (thin lines). It lands at a random spot. Chance it lies fully inside a square, touching no line?",
+  "prompt_short": "2 cm coin on a 5 cm grid. Chance it touches no line?",
+  "answer_value": 36,
+  "trap_value": 60,
+  "closeness_cap": 50,
+  "unit_label": "%",
+  "answer_display": "36%",
+  "hint_md": "Where can the coin's center land?",
+  "explain_intuition_md": "The coin's center must stay 1 cm from every line, so it has to land in a 3 cm by 3 cm patch in the middle of a 5 cm square. That's 9 out of 25 square centimeters. Thinking in one direction (3 of 5) gives 60%, but both directions must work.",
+  "explain_math_md": "$$P = \\left(\\frac{5 - 2}{5}\\right)^2 = \\frac{9}{25} = 36\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic (carnival coin toss)"
+}

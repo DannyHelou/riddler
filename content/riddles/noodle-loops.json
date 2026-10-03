@@ -1,0 +1,20 @@
+{
+  "id": "noodle-loops",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "100 noodles in a bowl. You tie random pairs of loose ends together until none are left. On average, how many loops do you end up with?",
+  "prompt_short": "100 noodles; tie random pairs of ends until none are loose. Average loops?",
+  "answer_value": 3.284,
+  "trap_value": 1,
+  "closeness_cap": 1,
+  "unit_label": "loops",
+  "answer_display": "about 3.28 loops",
+  "hint_md": "Each tie either closes a loop or makes one longer noodle.",
+  "explain_intuition_md": "Each tie either closes a noodle into a loop or joins two noodles into one longer one. With k noodles left, only 1 tie in 2k − 1 closes a loop, so loops are rare until the very end. Adding up those small chances from 100 noodles down to 1 gives about 3.3 loops.",
+  "explain_math_md": "$$E = \\sum_{k=1}^{100} \\frac{1}{2k-1} \\approx 3.28$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic, via BrainStellar (MIT)"
+}

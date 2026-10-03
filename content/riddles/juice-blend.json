@@ -1,0 +1,20 @@
+{
+  "id": "juice-blend",
+  "tier": "trap",
+  "category": "percentages",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "You mix 1 litre of drink that is 10% fruit juice with 3 litres of drink that is 50% fruit juice. What percent of the mixture is fruit juice?",
+  "prompt_short": "1 L of 10% juice plus 3 L of 50% juice. Percent juice?",
+  "answer_value": 40,
+  "trap_value": 30,
+  "closeness_cap": 20,
+  "unit_label": "%",
+  "answer_display": "40%",
+  "hint_md": "Count litres of juice, not percentages.",
+  "explain_intuition_md": "Averaging 10% and 50% gives 30%, but there's three times as much of the strong drink. It drags the mix most of the way toward 50%.",
+  "explain_math_md": "$$\\frac{0.1 \\times 1 + 0.5 \\times 3}{4} = \\frac{1.6}{4} = 40\\%$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}

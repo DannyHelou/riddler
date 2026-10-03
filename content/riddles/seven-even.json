@@ -1,0 +1,26 @@
+{
+  "id": "seven-even",
+  "tier": "warmup",
+  "category": "wordplay",
+  "answer_type": "word",
+  "prompt_md": "Which odd number becomes even when you take away one of its letters?",
+  "prompt_short": "Which odd number becomes even when you take away one of its letters?",
+  "answer_display": "seven (s-even)",
+  "accepted_answers": [
+    "seven",
+    "7",
+    "number seven",
+    "number 7"
+  ],
+  "trap_answers": [
+    "eleven",
+    "11",
+    "number eleven"
+  ],
+  "hint_md": "Look for a hidden word, not a hidden sum.",
+  "explain_intuition_md": "Eleven looks promising because \"even\" is hiding inside it, but you would have to drop two letters. Drop the S from \"seven\" and you are left with \"even\".",
+  "explain_math_md": "Not arithmetic: $\\text{seven} - \\text{s} = \\text{even}$.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

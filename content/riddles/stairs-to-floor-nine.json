@@ -1,0 +1,20 @@
+{
+  "id": "stairs-to-floor-nine",
+  "tier": "warmup",
+  "category": "counting",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Walking up the stairs from floor 1 to floor 3 takes you 20 seconds. At the same pace, how many seconds does it take to walk from floor 1 to floor 9?",
+  "prompt_short": "Floor 1 to 3 takes 20 s. How long from floor 1 to floor 9?",
+  "answer_value": 80,
+  "trap_value": 60,
+  "closeness_cap": 0.25,
+  "unit_label": "s",
+  "answer_display": "80 seconds",
+  "hint_md": "Count flights of stairs, not floors.",
+  "explain_intuition_md": "Floor 1 to floor 3 is only 2 flights, so each flight takes 10 seconds. Floor 1 to floor 9 is 8 flights. Tripling the 20 seconds counts floors instead of flights.",
+  "explain_math_md": "$$20 \\times \\frac{9-1}{3-1} = 20 \\times 4 = 80$$",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

@@ -11,6 +11,9 @@ import { TIERS, TIER_TIME_LIMIT } from './types';
 
 export type Schedule = Record<string, { warmup: string; trap: string; boss: string }>;
 
+/** A riddle may come back only after this many days (owner decision 2026-10-03; was 180). */
+export const REPEAT_GAP_DAYS = 90;
+
 const REQUIRED_STRINGS = ['id', 'tier', 'category', 'answer_type', 'prompt_md', 'hint_md', 'explain_intuition_md', 'explain_math_md', 'answer_display'] as const;
 
 /** Every $…$ and $$…$$ segment in a Markdown string. */
@@ -113,7 +116,7 @@ export function validateSchedule(schedule: Schedule, riddles: Map<string, Riddle
       if (r.tier !== tier) errs.push(`${date}: "${id}" is a ${r.tier} riddle in the ${tier} slot`);
       if (tier === 'trap' && r.answer_type !== 'number') errs.push(`${date}: the trap slot must be a number riddle ("${id}" is ${r.answer_type})`);
       const prev = lastUsed.get(id);
-      if (prev && daysBetween(prev, date) < 180) errs.push(`${date}: "${id}" repeats within 180 days (last used ${prev})`);
+      if (prev && daysBetween(prev, date) < REPEAT_GAP_DAYS) errs.push(`${date}: "${id}" repeats within ${REPEAT_GAP_DAYS} days (last used ${prev})`);
       lastUsed.set(id, date);
     }
   }

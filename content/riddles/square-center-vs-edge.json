@@ -1,0 +1,20 @@
+{
+  "id": "square-center-vs-edge",
+  "tier": "boss",
+  "category": "probability",
+  "answer_type": "number",
+  "number_format": "percent",
+  "prompt_md": "A point is picked uniformly at random inside a square. What's the chance it is closer to the square's center than to the nearest side?",
+  "prompt_short": "Random point in a square. Chance it is closer to the center than to a side?",
+  "answer_value": 21.9,
+  "trap_value": 25,
+  "closeness_cap": 10,
+  "unit_label": "%",
+  "answer_display": "about 21.9% ((4√2 − 5)/3)",
+  "hint_md": "The boundary of the region is made of parabola arcs.",
+  "explain_intuition_md": "It sounds like 'within halfway to the edge', a square of half the width, which covers a quarter of the area. But toward the corners the center is far away while a side is close, so the true region is a pinched shape bounded by four parabola arcs. It covers a bit less, about 21.9%.",
+  "explain_math_md": "Use the square $[-1,1]^2$. In the slice $0 \\le y \\le x$ the nearest side is $x = 1$, and $\\sqrt{x^2 + y^2} < 1 - x$ means $x < \\tfrac{1 - y^2}{2}$, which needs $y < a = \\sqrt2 - 1$: $$\\frac{\\int_0^{a} \\left(\\tfrac{1 - y^2}{2} - y\\right) dy}{1/2} = \\frac{4\\sqrt2 - 5}{3} \\approx 21.9\\%$$",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (geometric probability)"
+}

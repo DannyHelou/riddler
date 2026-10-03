@@ -1,0 +1,20 @@
+{
+  "id": "ladder-rising-tide",
+  "tier": "warmup",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "A ladder with 10 rungs, 25 cm apart, hangs from a boat; the lowest rung is 10 cm above the water. The tide rises 1 m. How many rungs are now above water?",
+  "prompt_short": "Boat ladder, 10 rungs, tide rises 1 m. Rungs above water?",
+  "answer_value": 10,
+  "trap_value": 6,
+  "closeness_cap": 0.4,
+  "unit_label": "rungs",
+  "answer_display": "all 10 rungs",
+  "hint_md": "What does a boat do when the tide comes in?",
+  "explain_intuition_md": "The boat floats, so it rises with the tide and the ladder rises with it. The lowest rung stays 10 cm above the water. Working out how many rungs the water covers solves the wrong problem.",
+  "explain_math_md": "The ladder moves with the boat, so the gap stays $10$ cm and all $10$ rungs stay dry.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

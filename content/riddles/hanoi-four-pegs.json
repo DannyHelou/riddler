@@ -1,0 +1,20 @@
+{
+  "id": "hanoi-four-pegs",
+  "tier": "boss",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "Move a 4-disc Tower of Hanoi from one peg to another, one disc at a time and never big on small, but with 4 pegs instead of 3. Fewest moves?",
+  "prompt_short": "Tower of Hanoi, 4 discs, 4 pegs. Fewest moves?",
+  "answer_value": 9,
+  "trap_value": 15,
+  "closeness_cap": 0.45,
+  "unit_label": "moves",
+  "answer_display": "9 moves",
+  "hint_md": "Park the two smallest discs on a spare peg of their own.",
+  "explain_intuition_md": "With 3 pegs it takes 15 moves, and it's easy to assume the extra peg changes little. Move the 2 smallest discs to a spare peg (3 moves), move the 2 big ones across using the other 3 pegs (3 moves), then bring the small pair back on top (3 moves).",
+  "explain_math_md": "$$3 + 3 + 3 = 9$$ A full search of all positions confirms nothing shorter exists.",
+  "time_limit_s": 120,
+  "verified": true,
+  "credit": "Classic (Reve's puzzle)"
+}

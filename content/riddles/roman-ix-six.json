@@ -1,0 +1,33 @@
+{
+  "id": "roman-ix-six",
+  "tier": "warmup",
+  "category": "wordplay",
+  "answer_type": "word",
+  "prompt_md": "IX is nine in Roman numerals. Add a single letter to IX to make it six. Which letter do you add?",
+  "prompt_short": "Add one letter to IX to make six. Which letter?",
+  "answer_display": "S, to make SIX",
+  "accepted_answers": [
+    "s",
+    "letter s",
+    "the letter s",
+    "an s",
+    "s to make six",
+    "s six",
+    "an s to make six"
+  ],
+  "trap_answers": [
+    "v",
+    "i",
+    "vi",
+    "letter v",
+    "letter i",
+    "the letter v",
+    "the letter i"
+  ],
+  "hint_md": "Six does not have to be written in Roman numerals.",
+  "explain_intuition_md": "Roman thinking points to V or I, and neither works without moving letters. Put an S in front and IX spells SIX.",
+  "explain_math_md": "No math here: the trick is in the wording.",
+  "time_limit_s": 30,
+  "verified": true,
+  "credit": "Classic"
+}

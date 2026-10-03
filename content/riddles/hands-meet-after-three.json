@@ -1,0 +1,20 @@
+{
+  "id": "hands-meet-after-three",
+  "tier": "trap",
+  "category": "logic",
+  "answer_type": "number",
+  "number_format": "quantity",
+  "prompt_md": "It's exactly 3:00. How many minutes until a clock's hour and minute hands next point the same way? Give two decimal places.",
+  "prompt_short": "From 3:00, minutes until the clock hands next overlap?",
+  "answer_value": 16.36,
+  "trap_value": 15,
+  "closeness_cap": 0.08,
+  "unit_label": "min",
+  "answer_display": "about 16.36 minutes (3:16:22)",
+  "hint_md": "The hour hand keeps moving while the minute hand chases it.",
+  "explain_intuition_md": "At 3:15 the minute hand reaches the 3, but by then the hour hand has crept a quarter of the way toward the 4. The minute hand starts 90 degrees behind and gains only 5.5 degrees a minute.",
+  "explain_math_md": "$$\\frac{90^\\circ}{6^\\circ - 0.5^\\circ \\text{ per minute}} = \\frac{180}{11} \\approx 16.36$$",
+  "time_limit_s": 60,
+  "verified": true,
+  "credit": "Classic"
+}
