@@ -59,21 +59,33 @@ export async function computeEmbeddings(riddle: Riddle, embed: EmbedFn): Promise
   ];
 }
 
+/** Retry a write that is safe to repeat (network blips while seeding a remote store). */
+async function withRetry<T>(fn: () => Promise<T>, attempts = 4): Promise<T> {
+  for (let i = 1; ; i++) {
+    try {
+      return await fn();
+    } catch (e) {
+      if (i >= attempts) throw e;
+      await new Promise((r) => setTimeout(r, 500 * 2 ** i));
+    }
+  }
+}
+
 /** Validate and load content/ into a store. Throws with every problem listed if content is invalid. */
 export async function seedStore(store: Store, embed: EmbedFn, log: (s: string) => void = () => {}) {
   const content = loadContent();
   const { errors, byId } = validateContent(content);
   if (errors.length) throw new Error(`Content is invalid:\n  ${errors.join('\n  ')}`);
   const riddles = [...byId.values()];
-  await store.upsertRiddles(riddles);
+  await withRetry(() => store.upsertRiddles(riddles));
   log(`Upserted ${riddles.length} riddles`);
   const sets = scheduleToSets(content.schedule);
-  await store.upsertDailySets(sets);
+  await withRetry(() => store.upsertDailySets(sets));
   log(`Upserted ${sets.length} daily sets`);
   for (const r of riddles) {
     if (r.answer_type !== 'word') continue;
     const rows = await computeEmbeddings(r, embed);
-    await store.replaceAnswerEmbeddings(r.id, rows);
+    await withRetry(() => store.replaceAnswerEmbeddings(r.id, rows));
     log(`Embedded ${rows.length} answers for ${r.id}`);
   }
   return { riddles: riddles.length, sets: sets.length };
