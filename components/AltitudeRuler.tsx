@@ -124,7 +124,7 @@ export const AltitudeRuler = forwardRef<RulerHandle, { g: RulerGeometry; segment
   const tickLen = g.full ? 4 : 3;
 
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[5]">
+    <div aria-hidden="true" className="climb-hud pointer-events-none absolute inset-0 z-[5]">
       {/* Beyond today's reach, listed over the top of the scale. */}
       {g.full &&
         WORLD.beyond.map((b, i) => (

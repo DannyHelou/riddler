@@ -229,10 +229,15 @@ export function Climb() {
   useEffect(() => {
     const vv = window.visualViewport;
     if (!vv) return;
+    let open = false;
     const onChange = () => {
       const covered = window.innerHeight - vv.height;
       const zoomed = Math.abs(vv.scale - 1) > 0.01; // pinch-zoom shrinks the visible area too
-      setKeyboard(covered > 120 && !zoomed ? { top: Math.round(vv.offsetTop), height: Math.round(vv.height) } : null);
+      const nowOpen = covered > 120 && !zoomed;
+      // iOS scrolls the page to reveal the focused input; undo it so nothing drifts or overlaps.
+      if (nowOpen !== open && window.scrollY) window.scrollTo(0, 0);
+      open = nowOpen;
+      setKeyboard(nowOpen ? { top: Math.round(vv.offsetTop), height: Math.round(vv.height) } : null);
     };
     vv.addEventListener('resize', onChange);
     vv.addEventListener('scroll', onChange);
@@ -240,6 +245,27 @@ export function Climb() {
     return () => {
       vv.removeEventListener('resize', onChange);
       vv.removeEventListener('scroll', onChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+    const prev = { html: html.style.cssText, body: body.style.cssText };
+    html.style.overflow = 'hidden';
+    body.style.overflow = 'hidden';
+    html.style.overscrollBehavior = 'none';
+    body.style.overscrollBehavior = 'none';
+    const onTouchMove = (e: TouchEvent) => {
+      const scroller = (e.target as Element | null)?.closest?.('[data-scrollable]');
+      if (scroller && scroller.scrollHeight > scroller.clientHeight) return;
+      e.preventDefault();
+    };
+    document.addEventListener('touchmove', onTouchMove, { passive: false });
+    return () => {
+      document.removeEventListener('touchmove', onTouchMove);
+      html.style.cssText = prev.html;
+      body.style.cssText = prev.body;
     };
   }, []);
 
@@ -694,7 +720,7 @@ export function Climb() {
   const finalSlot = (served.current?.slot ?? 1) >= 3;
 
   return (
-    <div className="night-scope fixed inset-0 overflow-hidden" style={{ background: '#03050d' }}>
+    <div className="night-scope fixed inset-0 overflow-hidden" data-keyboard={keyboard ? '' : undefined} style={{ background: '#03050d', touchAction: 'manipulation' }}>
       <div ref={stage} className="absolute inset-0 overflow-hidden" style={{ background: '#24457A' }}>
         <div ref={starsEl} className="absolute inset-0" aria-hidden="true" style={{ opacity: 0 }}>
           {stars.map((s, i) => (
@@ -817,7 +843,7 @@ export function Climb() {
       <button
         type="button"
         onClick={() => setConfirmLeave(true)}
-        className="pixel absolute cursor-pointer border-0 bg-transparent p-0 text-[#9097B4] hover:text-[#ECE6D6]"
+        className="climb-hud pixel absolute cursor-pointer border-0 bg-transparent p-0 text-[#9097B4] hover:text-[#ECE6D6]"
         style={{ left: phone ? 16 : 32, top: phone ? 24 : 32, fontSize: 10, lineHeight: 1 }}
       >
         Riddler
@@ -825,7 +851,7 @@ export function Climb() {
       <div
         role="img"
         aria-label={`Riddle ${Math.min(currentSlot, 3)} of 3`}
-        className="absolute flex gap-[6px]"
+        className="climb-hud absolute flex gap-[6px]"
         style={phone ? { right: 60, top: 24 } : { left: 32, top: 52 }}
       >
         {[1, 2, 3].map((k) => {
@@ -834,13 +860,13 @@ export function Climb() {
           return <div key={k} style={{ width: 10, height: 10, background: bg }} />;
         })}
       </div>
-      <MuteButton className="absolute" style={phone ? { right: 8, top: 8 } : { right: 20, top: 16 }} />
+      <MuteButton className="climb-hud absolute" style={phone ? { right: 8, top: 8 } : { right: 20, top: 16 }} />
       <AltitudeRuler ref={ruler} g={rg} segments={segments} startAlt={anim.current.alt} />
       {caption !== null && (
         <div
           key={caption}
           role="status"
-          className="panel fade-in absolute z-[6] box-border flex flex-col gap-2"
+          className="climb-hud panel fade-in absolute z-[6] box-border flex flex-col gap-2"
           style={{
             ...(rg.full
               ? { right: W - rg.lineX + 158, width: 168, top: Math.min(H - 150, Math.max(90, captionY - 30)) }
@@ -854,7 +880,7 @@ export function Climb() {
           <div className="text-[18px] leading-[1.2] text-[#9097B4]">{WORLD.checkpoints[caption].fact}</div>
         </div>
       )}
-      <div className="absolute flex flex-col gap-[6px]" style={phone ? { left: 16, top: 44, color: '#ECE6D6' } : { left: 32, bottom: 28, color: '#ECE6D6' }}>
+      <div className="climb-hud absolute flex flex-col gap-[6px]" style={phone ? { left: 16, top: 44, color: '#ECE6D6' } : { left: 32, bottom: 28, color: '#ECE6D6' }}>
         <div className={phone ? 'sr-only' : 'text-[18px] leading-none text-[#9097B4]'}>Altitude</div>
         <div ref={altText} className="pixel text-[11px] leading-none">
           {fmtAlt(anim.current.alt)}

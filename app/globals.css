@@ -487,6 +487,15 @@ a:hover {
   animation-timing-function: ease-in-out;
 }
 
+/* Phone keyboard open on the climb: only the question and the answer bar stay (Climb.tsx). */
+.climb-hud {
+  transition: opacity 150ms ease-out, visibility 150ms;
+}
+[data-keyboard] .climb-hud {
+  opacity: 0;
+  visibility: hidden;
+}
+
 /* Keyboard hints on buttons: hidden on touch screens. */
 .kbd-hint {
   margin-left: 10px;

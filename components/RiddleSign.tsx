@@ -126,7 +126,7 @@ export function RiddleSign({ riddle, remaining, phone, active, igniteIn, error, 
   return (
     <>
       {/* The question, near the top of the screen. */}
-      <section className="panel pointer-events-auto absolute box-border flex flex-col gap-3" style={{ ...box, top: layout.qTop, maxHeight: qMax, overflowY: qMax ? 'auto' : undefined }} aria-label="The riddle">
+      <section className="panel pointer-events-auto absolute box-border flex flex-col gap-3" style={{ ...box, top: layout.qTop, maxHeight: qMax, overflowY: qMax ? 'auto' : undefined, overscrollBehavior: 'contain' }} data-scrollable="" aria-label="The riddle">
         <div className="eyebrow flex items-center gap-3">
           <span>Riddle {riddle.slot} of 3</span>
           <span aria-hidden="true" className="h-[6px] w-[6px]" style={{ background: TIER_COLOR[riddle.tier] }} />
