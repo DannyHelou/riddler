@@ -4,6 +4,7 @@ You are building **Riddler**, a daily math-riddle website. Everything you need i
 
 ## 1. Read in this order
 
+0. **`docs/HANDOFF.md` first.** Riddler is live at https://riddlerr.com: it covers production, deploying, what's left, and owner decisions that override parts of this file and the brief.
 1. `docs/design-brief.md` — the full spec. **It is the source of truth.**
 2. `design/reference/climb-prototype.html` — open it in a browser (toggle desktop/phone, top right) and play all three riddles. This is exactly how the climb should look, feel, and time.
 3. `lib/scoring.ts`, `lib/burner.ts`, `lib/scoring.test.ts` — reference math for scoring (§4) and the burner reaction and camera (§5.3–5.4).
