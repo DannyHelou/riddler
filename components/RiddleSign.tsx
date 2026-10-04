@@ -59,7 +59,16 @@ export interface SignProps {
   onInvalid: (reason: string) => void;
   onEdit: () => void;
   /** Where the two panels sit: the question near the top, the answer bar near the bottom (§5.3). */
-  layout: { width: number; left: number; qTop: number; aBottom: number; promptPx: number; pad: string };
+  layout: {
+    width: number;
+    left: number;
+    qTop: number;
+    aBottom: number;
+    promptPx: number;
+    pad: string;
+    /** Height of the visible area while the phone keyboard is open; the question shrinks to fit above the answer bar. */
+    available?: number;
+  };
 }
 
 export function RiddleSign({ riddle, remaining, phone, active, igniteIn, error, onFire, onInvalid, onEdit, layout }: SignProps) {
@@ -102,10 +111,22 @@ export function RiddleSign({ riddle, remaining, phone, active, igniteIn, error, 
 
   const box = { left: layout.left, width: layout.width, padding: layout.pad };
 
+  // With the keyboard open, the question gets whatever height is left above the answer bar (and scrolls).
+  const form = useRef<HTMLFormElement>(null);
+  const [formH, setFormH] = useState(0);
+  useEffect(() => {
+    const el = form.current;
+    if (!el || typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(() => setFormH(el.offsetHeight));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const qMax = layout.available ? Math.max(64, layout.available - layout.qTop - layout.aBottom - formH - 12) : undefined;
+
   return (
     <>
       {/* The question, near the top of the screen. */}
-      <section className="panel pointer-events-auto absolute box-border flex flex-col gap-3" style={{ ...box, top: layout.qTop }} aria-label="The riddle">
+      <section className="panel pointer-events-auto absolute box-border flex flex-col gap-3" style={{ ...box, top: layout.qTop, maxHeight: qMax, overflowY: qMax ? 'auto' : undefined }} aria-label="The riddle">
         <div className="eyebrow flex items-center gap-3">
           <span>Riddle {riddle.slot} of 3</span>
           <span aria-hidden="true" className="h-[6px] w-[6px]" style={{ background: TIER_COLOR[riddle.tier] }} />
@@ -118,6 +139,7 @@ export function RiddleSign({ riddle, remaining, phone, active, igniteIn, error, 
       </section>
 
     <form
+      ref={form}
       className="panel pointer-events-auto absolute box-border flex flex-col gap-3"
       style={{ ...box, bottom: layout.aBottom }}
       onSubmit={(e) => {

@@ -221,6 +221,28 @@ export function Climb() {
     return () => window.removeEventListener('resize', measure);
   }, []);
 
+  /*
+   * The phone keyboard: the scene above ignores it on purpose, but the riddle panels follow the
+   * visible area (visualViewport) so the answer bar sits right above the keys instead of under them.
+   */
+  const [keyboard, setKeyboard] = useState<{ top: number; height: number } | null>(null);
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const onChange = () => {
+      const covered = window.innerHeight - vv.height;
+      const zoomed = Math.abs(vv.scale - 1) > 0.01; // pinch-zoom shrinks the visible area too
+      setKeyboard(covered > 120 && !zoomed ? { top: Math.round(vv.offsetTop), height: Math.round(vv.height) } : null);
+    };
+    vv.addEventListener('resize', onChange);
+    vv.addEventListener('scroll', onChange);
+    onChange();
+    return () => {
+      vv.removeEventListener('resize', onChange);
+      vv.removeEventListener('scroll', onChange);
+    };
+  }, []);
+
   /* ---------- Frame: everything the scene draws, from anim state ---------- */
   const frame = useCallback(
     (now: number) => {
@@ -725,7 +747,11 @@ export function Climb() {
       </div>
 
       {/* The riddle: question panel near the top, answer bar near the bottom, the balloon between. Never shakes. */}
-      <div ref={sign} className="pointer-events-none absolute inset-0 z-[4]" style={{ color: '#ECE6D6', visibility: 'hidden' }}>
+      <div
+        ref={sign}
+        className="pointer-events-none absolute inset-0 z-[4]"
+        style={{ color: '#ECE6D6', visibility: 'hidden', ...(keyboard ? { top: keyboard.top, height: keyboard.height, bottom: 'auto' } : null) }}
+      >
         {riddle && (
           <RiddleSign
             riddle={riddle}
@@ -746,7 +772,15 @@ export function Climb() {
               track('input_rejected', { slot: riddle.slot, reason });
             }}
             onEdit={() => signError && setSignError(null)}
-            layout={{ width: geo.signW, left: Math.round((W - geo.signW) / 2), qTop: phone ? 76 : 72, aBottom: phone ? 20 : 40, promptPx: geo.promptPx, pad: geo.pad }}
+            layout={{
+              width: geo.signW,
+              left: Math.round((W - geo.signW) / 2),
+              qTop: keyboard ? 12 : phone ? 76 : 72,
+              aBottom: keyboard ? 8 : phone ? 20 : 40,
+              promptPx: geo.promptPx,
+              pad: geo.pad,
+              available: keyboard?.height,
+            }}
           />
         )}
       </div>
