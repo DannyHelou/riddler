@@ -55,7 +55,7 @@ npm run e2e          # Playwright happy path
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=
 SUPABASE_SERVICE_ROLE_KEY=      # server only
-ANTHROPIC_API_KEY=              # server only, word judge (Claude Haiku 4.5)
-VOYAGE_API_KEY=                 # server only, embeddings
-LAUNCH_DATE=2026-10-01          # puzzle #1, America/Toronto
+TYPESAFE_API_KEY=               # server only, word judge (Jev by TypeSafe AI)
+ANTHROPIC_API_KEY=              # server only, fallback word judge (Claude Haiku 4.5)
+LAUNCH_DATE=2026-10-04          # puzzle #1, America/Toronto
 ```

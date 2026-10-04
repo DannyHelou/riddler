@@ -54,7 +54,7 @@ export function nextResetAt(now: Date, tz = PUZZLE_TZ): Date {
 }
 
 export function launchDate(): string {
-  return process.env.LAUNCH_DATE || '2026-10-01';
+  return process.env.LAUNCH_DATE || '2026-10-04';
 }
 
 /** Today's puzzle date. PUZZLE_DATE_OVERRIDE exists for local testing only. */

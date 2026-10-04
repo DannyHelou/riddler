@@ -10,6 +10,9 @@
  * TODO: past ~50k plays/day, maintain a per-day histogram table instead.
  */
 import type { Answer, AnswerEmbedding, DailySet, Play, Riddle, VerdictReport, WordVerdictRow } from './types';
+import { assertServer } from './secrets';
+
+assertServer('lib/db');
 
 export interface CrowdAnswerRow {
   parsed_value: number | null;
@@ -66,6 +69,10 @@ export function supabaseConfigured(): boolean {
 
 export async function getStore(): Promise<Store> {
   if (cached) return cached;
+  // Vercel's filesystem is read-only: without Supabase every request would fail with a vague 500.
+  if (!supabaseConfigured() && process.env.NODE_ENV === 'production' && !process.env.BURNER_DATA_FILE) {
+    throw new Error('Supabase is not configured: set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY');
+  }
   if (supabaseConfigured()) {
     const { SupabaseStore } = await import('./store/supabase');
     cached = new SupabaseStore(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);

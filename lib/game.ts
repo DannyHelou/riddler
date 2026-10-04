@@ -13,7 +13,7 @@ import {
 import { parseNumber, formatNumber } from './parseNumber';
 import { judgeWord, EmptyAnswerError, MAX_WORD_INPUT } from './wordJudge';
 import { defaultEmbedder } from './embed';
-import { claudeJudge } from './judge';
+import { defaultJudge } from './judge';
 import { addDays, daysBetween, launchDate, nextResetAt, puzzleNumber, todayPuzzleDate } from './dates';
 import { seedStore } from './contentLoader';
 import { shareText } from './share';
@@ -271,7 +271,7 @@ export async function submitAnswer(deviceId: string, slot: Slot, input: string |
           putCached: (v) => store.putWordVerdict(v),
           getAnswerEmbeddings: (r) => store.getAnswerEmbeddings(r),
           embed: defaultEmbedder().embed,
-          judge: claudeJudge,
+          judge: defaultJudge,
         });
       } catch (e) {
         if (e instanceof EmptyAnswerError) throw new GameError(400, e.message, { reason: e.message });
@@ -436,7 +436,7 @@ export async function getResults(deviceId: string): Promise<ResultsPayload> {
     coldStart,
     histogram: coldStart ? null : rqHistogram(scores),
     perRiddle,
-    shareText: shareText({ puzzleNumber: set.puzzle_number, rq, rows: perRiddle, domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'riddler.example' }),
+    shareText: shareText({ puzzleNumber: set.puzzle_number, rq, rows: perRiddle, domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'riddlerr.com' }),
     debrief,
   };
 }

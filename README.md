@@ -18,12 +18,28 @@ With no Supabase variables set, the app uses a local JSON store at `.data/burner
 | `npm test` | Vitest: scoring, burner, parser, word judge, content validation, game service |
 | `npm run seed` | Validate `content/` (§8.3) and load riddles, schedule, embeddings into the configured store (`-- --check` validates only) |
 | `npm run verify` | Monte Carlo check of every probability riddle (`-- --only id1,id2` for a subset) |
+| `npm run check-secrets` | Fail if an API key could reach the browser or git (also runs after `npm run build`) |
 | `npm run schedule` | Rebuild `content/schedule.json` from the riddle pool: each tier rotates, a riddle returns after 90+ days, published days are kept |
-| `npm run tune-judge` | Word-judge accuracy report per stage (needs `ANTHROPIC_API_KEY` for close calls) |
+| `npm run tune-judge` | Word-judge accuracy report per stage (needs `TYPESAFE_API_KEY` for Jev, or `ANTHROPIC_API_KEY`, for close calls) |
 | `npm run e2e` | Playwright happy path on desktop (1280×800) and phone (390×844) |
 | `npx tsx scripts/simulate-crowd.ts 40` | Dev only: 40 simulated players so Results shows RQ and crowd stats |
 
-**Production:** create a Supabase project, run `supabase/migrations/0001_init.sql`, set `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `VOYAGE_API_KEY`, `ANTHROPIC_API_KEY`, `LAUNCH_DATE`, then `npm run seed` and deploy to Vercel.
+**Production:** create a Supabase project, run `supabase/migrations/0001_init.sql`, set `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `TYPESAFE_API_KEY`, `LAUNCH_DATE`, `NEXT_PUBLIC_SITE_DOMAIN`, then `npm run seed` and deploy to Vercel.
+
+### Keeping the API keys secret
+
+The keys (`SUPABASE_SERVICE_ROLE_KEY`, `TYPESAFE_API_KEY`, `ANTHROPIC_API_KEY`, and the Postgres/JWT secrets Vercel's Supabase integration adds) are server-only:
+
+- They are read only in `lib/judge.ts`, `lib/db.ts` and `lib/store/supabase.ts`, which call `assertServer()` (`lib/secrets.ts`) and refuse to run in a browser.
+- **`npm run build` ends with `npm run check-secrets`**: it fails the build (and so the Vercel deploy) if a key's value or name shows up in the browser bundle or prerendered pages, if a key is put in a `NEXT_PUBLIC_` variable (those are sent to every browser), or if a key's value is in a git-tracked file.
+- `.gitignore` blocks every `.env*` file except the empty `.env.example`, and `.vercel/`.
+- API errors return only game messages or "Something went wrong"; details stay in the server log, which never prints keys.
+- Every response carries security headers (`next.config.ts`): no framing, no MIME sniffing, HSTS, a strict referrer policy.
+
+Owner settings, outside the code:
+- In Vercel, add the keys as **Sensitive** environment variables (Production and Preview), never with a `NEXT_PUBLIC_` prefix.
+- In GitHub → Settings → Code security, turn on **secret scanning and push protection**.
+- If a key is ever exposed, **rotate it** at the provider (Supabase, TypeSafe, Anthropic), then update Vercel.
 
 ### Where things live
 
@@ -102,5 +118,5 @@ These are listed in brief §12. Decide them up front if you can, so the agent do
 - **Name and domain.** The name is "Riddler" (the owner switched back from "Riddler" on 2026-09-29). It still needs a trademark check, and the domain is open.
 - **Daily reset time zone.** Default America/Toronto.
 - **Launch date.** Sets puzzle #1.
-- **Providers.** Supabase, Vercel, Voyage AI (embeddings), Claude Haiku 4.5 (word judge), PostHog or Plausible.
+- **Providers.** Supabase, Vercel, Jev by TypeSafe AI (word judge, owner decision 2026-10-03; Claude Haiku 4.5 as fallback), PostHog or Plausible.
 - **Content.** Done for year one: 272 riddles and a 365-day schedule (owner review pending).

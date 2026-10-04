@@ -1,8 +1,11 @@
 node_modules/
 .next/
 .data/
+# Secrets: never commit env files (only the empty example).
 .env
-.env.local
+.env.*
+!.env.example
+.vercel/
 next-env.d.ts
 *.tsbuildinfo
 test-results/

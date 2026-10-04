@@ -4,7 +4,7 @@ const PORT = 3200;
 
 /**
  * npm run e2e: happy path against a dev server with a throwaway local store,
- * pinned to 2026-10-01 (a word warm-up, a percent trap, a quantity boss).
+ * pinned to 2026-10-04 (launch day) (a word warm-up, a percent trap, a quantity boss).
  */
 export default defineConfig({
   testDir: 'e2e',
@@ -26,13 +26,13 @@ export default defineConfig({
     timeout: 180_000,
     reuseExistingServer: false,
     env: {
-      PUZZLE_DATE_OVERRIDE: '2026-10-01',
-      LAUNCH_DATE: '2026-10-01',
+      PUZZLE_DATE_OVERRIDE: '2026-10-04',
+      LAUNCH_DATE: '2026-10-04',
       BURNER_DATA_FILE: `.data/e2e-${Date.now()}.json`,
       NEXT_PUBLIC_SUPABASE_URL: '',
       SUPABASE_SERVICE_ROLE_KEY: '',
       ANTHROPIC_API_KEY: '',
-      VOYAGE_API_KEY: '',
+      TYPESAFE_API_KEY: '',
     },
   },
 });

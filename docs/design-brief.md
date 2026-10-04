@@ -943,6 +943,7 @@ Never send the device ID or raw answer text to third-party analytics.
 | Daily reset time zone | America/Toronto | UTC is more neutral globally |
 | Launch date | `LAUNCH_DATE` env var | Sets puzzle #1 |
 | Cold-start threshold | 30 plays | Tune after launch |
+| Judge provider | Jev by TypeSafe AI (decided 2026-10-03; Claude Haiku 4.5 as fallback) | `lib/judge.ts` |
 | Embedding provider | Voyage AI | Any provider works behind `embed()` |
 | Judge thresholds | 0.88 / 0.60 / 0.05 margin | Must be tuned with `tune-judge.ts` |
 | Analytics provider | PostHog | Plausible is lighter |

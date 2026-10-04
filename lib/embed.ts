@@ -1,12 +1,10 @@
 /**
  * Embeddings behind one `embed()` interface (§7.5 step 4). Server only.
  *
- * - Voyage AI `voyage-3-lite` (512-d) when VOYAGE_API_KEY is set (production).
- * - Otherwise a local, deterministic hashed character n-gram embedding (512-d),
- *   so development and tests work offline. The judge thresholds are tuned for
- *   Voyage; the local fallback is only a stand-in.
+ * A local, deterministic hashed character n-gram embedding (512-d). Owner decision 2026-10-03:
+ * no embedding provider. Live tests scored 99.7% with this plus Jev for close calls, and one
+ * embedder everywhere means seeded and live vectors always match.
  */
-
 export const EMBED_DIM = 512;
 export type EmbedFn = (texts: string[]) => Promise<number[][]>;
 
@@ -49,18 +47,6 @@ export function localEmbed(text: string): number[] {
 
 export const localEmbedder: EmbedFn = async (texts) => texts.map(localEmbed);
 
-export const voyageEmbedder: EmbedFn = async (texts) => {
-  const res = await fetch('https://api.voyageai.com/v1/embeddings', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json', authorization: `Bearer ${process.env.VOYAGE_API_KEY}` },
-    body: JSON.stringify({ model: 'voyage-3-lite', input: texts, input_type: 'document' }),
-    signal: AbortSignal.timeout(3000),
-  });
-  if (!res.ok) throw new Error(`Voyage embeddings failed: ${res.status}`);
-  const json = (await res.json()) as { data: { embedding: number[]; index: number }[] };
-  return json.data.sort((a, b) => a.index - b.index).map((d) => d.embedding);
-};
-
 export function defaultEmbedder(): { embed: EmbedFn; name: string } {
-  return process.env.VOYAGE_API_KEY ? { embed: voyageEmbedder, name: 'voyage-3-lite' } : { embed: localEmbedder, name: 'local-ngram' };
+  return { embed: localEmbedder, name: 'local-ngram' };
 }

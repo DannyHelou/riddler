@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { Press_Start_2P, VT323 } from 'next/font/google';
 import '../design/tokens.css';
 import 'katex/dist/katex.min.css';
 import './globals.css';
@@ -16,18 +17,17 @@ export const viewport: Viewport = {
   themeColor: '#0D1122',
 };
 
+// Served from our own domain (next/font downloads them at build), so no request goes to Google.
+const pixel = Press_Start_2P({ weight: '400', subsets: ['latin'], display: 'swap', variable: '--font-pixel-face' });
+const body = VT323({ weight: '400', subsets: ['latin'], display: 'swap', variable: '--font-body-face' });
+
 // Applies the saved theme before paint so there is no flash.
 const themeScript = `try{var t=localStorage.getItem('burner_theme');if(t==='light')document.documentElement.dataset.theme='light'}catch(e){}`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={`${pixel.variable} ${body.variable}`} suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        {/* tokens.css @imports these too, but bundling inlines that file so the @import is dropped. */}
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>{children}</body>

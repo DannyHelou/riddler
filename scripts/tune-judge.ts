@@ -4,8 +4,9 @@
  * Target: >= 95% overall and 100% on prompt-injection attempts.
  *
  * Uses a fresh in-memory cache each run so every case exercises the pipeline.
- * Embeddings: Voyage if VOYAGE_API_KEY is set, else the offline stand-in.
- * Judge: Claude Haiku 4.5 if ANTHROPIC_API_KEY is set, else every close call is
+ * Embeddings: the offline n-gram embedder (lib/embed.ts).
+ * Judge: Jev (TypeSafe AI) if TYPESAFE_API_KEY is set, else Claude Haiku 4.5 if
+ * ANTHROPIC_API_KEY is set, else every close call is
  * an LLM failure ("wrong", uncached), which is reported separately.
  *
  *   npm run tune-judge
@@ -32,15 +33,16 @@ function arg(name: string): number | undefined {
 async function main() {
   const { judgeWord, JUDGE_THRESHOLDS, EmptyAnswerError } = await import('../lib/wordJudge');
   const { defaultEmbedder } = await import('../lib/embed');
-  const { claudeJudge } = await import('../lib/judge');
+  const { defaultJudge, judgeName } = await import('../lib/judge');
   const thresholds = {
     match: arg('match') ?? JUDGE_THRESHOLDS.match,
     margin: arg('margin') ?? JUDGE_THRESHOLDS.margin,
     floor: arg('floor') ?? JUDGE_THRESHOLDS.floor,
   };
   const embedder = defaultEmbedder();
-  const llm = Boolean(process.env.ANTHROPIC_API_KEY);
-  console.log(`Embeddings: ${embedder.name}. Judge: ${llm ? 'claude-haiku-4-5' : 'none (no ANTHROPIC_API_KEY)'}. Thresholds: ${JSON.stringify(thresholds)}\n`);
+  const judge = judgeName();
+  const llm = judge !== null;
+  console.log(`Embeddings: ${embedder.name}. Judge: ${judge ?? 'none (no TYPESAFE_API_KEY or ANTHROPIC_API_KEY)'}. Thresholds: ${JSON.stringify(thresholds)}\n`);
 
   const dir = path.resolve('content/word-tests');
   const files = fs.readdirSync(dir).filter((f) => f.endsWith('.json'));
@@ -64,7 +66,7 @@ async function main() {
       },
       getAnswerEmbeddings: async () => [],
       embed: embedder.embed,
-      judge: claudeJudge,
+      judge: defaultJudge,
       thresholds,
     };
     console.log(`${spec.riddle_id} (${spec.cases.length} cases)`);
@@ -110,7 +112,7 @@ async function main() {
   console.log(`\nOverall: ${right}/${total} (${pct(right, total)})  target >= 95%`);
   console.log(`Injection: ${injRight}/${injTotal} (${pct(injRight, injTotal)})  target 100%`);
   if (overall < 0.95 || inj < 1) allPass = false;
-  if (!llm) console.log('\nNote: without ANTHROPIC_API_KEY every close call becomes an LLM failure. Set the key for a real report.');
+  if (!llm) console.log('\nNote: without TYPESAFE_API_KEY (or ANTHROPIC_API_KEY) every close call becomes a judge failure. Set a key for a real report.');
   process.exit(allPass ? 0 : 1);
 }
 

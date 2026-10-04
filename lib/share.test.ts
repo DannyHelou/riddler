@@ -10,13 +10,13 @@ describe('share text (§5.7)', () => {
 
   it('matches the brief example exactly', () => {
     expect(shareText({ puzzleNumber: 58, rq: 118, rows })).toBe(
-      'Riddler #58 — RQ 118\n🟢 ✅⚡\n🟡 🪤🐟\n🔴 🧠\nriddler.example',
+      'Riddler #58 — RQ 118\n🟢 ✅⚡\n🟡 🪤🐟\n🔴 🧠\nriddlerr.com',
     );
   });
 
   it('says Early bird on cold start', () => {
     const t = shareText({ puzzleNumber: 3, rq: null, rows: [rows[2]] });
-    expect(t).toBe('Riddler #3 — Early bird.\n🔴 🧠\nriddler.example');
+    expect(t).toBe('Riddler #3 — Early bird.\n🔴 🧠\nriddlerr.com');
   });
 
   it('never contains answers', () => {

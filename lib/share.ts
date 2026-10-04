@@ -32,5 +32,5 @@ export function shareLine(r: ShareRow): string {
 
 export function shareText(opts: { puzzleNumber: number; rq: number | null; rows: ShareRow[]; domain?: string }): string {
   const head = `Riddler #${opts.puzzleNumber} — ${opts.rq === null ? 'Early bird.' : `RQ ${opts.rq}`}`;
-  return [head, ...opts.rows.map(shareLine), opts.domain ?? 'riddler.example'].join('\n');
+  return [head, ...opts.rows.map(shareLine), opts.domain ?? 'riddlerr.com'].join('\n');
 }

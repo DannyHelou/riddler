@@ -32,7 +32,7 @@ create table if not exists answer_embeddings (
   riddle_id  text not null references riddles(id),
   kind       text not null check (kind in ('accepted','trap')),
   text       text not null,
-  embedding  vector(512) not null,          -- voyage-3-lite is 512-d
+  embedding  vector(512) not null,          -- local n-gram embedder (lib/embed.ts), 512-d
   primary key (riddle_id, kind, text)
 );
 

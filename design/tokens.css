@@ -1,5 +1,4 @@
 /* Riddler design tokens (design brief §6). A calm night: soft contrast, warm text, one quiet accent. */
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 
 :root {
   /* Surfaces */
@@ -45,8 +44,8 @@
   --zone-goldfish: #1B5873;
 
   /* Type */
-  --font-pixel: 'Press Start 2P', ui-monospace, monospace; /* wordmark, levels, numbers, buttons: small and sparing */
-  --font-body: 'VT323', ui-monospace, monospace;           /* prompts, body, labels (never < 18px) */
+  --font-pixel: var(--font-pixel-face, 'Press Start 2P'), ui-monospace, monospace; /* wordmark, levels, numbers, buttons: small and sparing */
+  --font-body: var(--font-body-face, 'VT323'), ui-monospace, monospace;           /* prompts, body, labels (never < 18px) */
 
   /* Pixel grid */
   --px: 2px;

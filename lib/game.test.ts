@@ -29,10 +29,10 @@ async function playDay(device: string, inputs: [string | null, string | null, st
 
 describe('game service (§7.7, §10)', () => {
   beforeEach(() => {
-    vi.stubEnv('PUZZLE_DATE_OVERRIDE', '2026-10-01'); // keys-no-locks, bayes-disease-test, coin-two-heads
+    vi.stubEnv('PUZZLE_DATE_OVERRIDE', '2026-10-04'); // keys-no-locks, bayes-disease-test, coin-two-heads
     vi.stubEnv('NODE_ENV', 'test');
     vi.stubEnv('ANTHROPIC_API_KEY', '');
-    vi.stubEnv('VOYAGE_API_KEY', '');
+    vi.stubEnv('TYPESAFE_API_KEY', '');
     setStore(new LocalStore(':memory:'));
     vi.useFakeTimers({ toFake: ['Date'] });
     vi.setSystemTime(new Date());
@@ -163,7 +163,7 @@ describe('game service (§7.7, §10)', () => {
   it('computes personal stats and streaks', async () => {
     const d = randomUUID();
     await playDay(d, ['piano', '99', '6']);
-    vi.stubEnv('PUZZLE_DATE_OVERRIDE', '2026-10-02');
+    vi.stubEnv('PUZZLE_DATE_OVERRIDE', '2026-10-05');
     await playDay(d, ['5', '50', '16']);
     const s = await game.getStats(d);
     expect(s).toMatchObject({ gamesPlayed: 2, currentStreak: 2, maxStreak: 2, bestLevel: 'Oracle' });

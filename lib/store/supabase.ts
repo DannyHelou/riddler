@@ -5,6 +5,9 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import type { Store, CrowdAnswerRow } from '../db';
 import type { Answer, AnswerEmbedding, DailySet, Play, Riddle, VerdictReport, WordVerdictRow } from '../types';
+import { assertServer } from '../secrets';
+
+assertServer('lib/store/supabase');
 
 function check<T>(res: { data: T; error: { message: string } | null }, what: string): T {
   if (res.error) throw new Error(`${what}: ${res.error.message}`);
