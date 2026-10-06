@@ -185,8 +185,10 @@ export interface ResultsPayload {
   totalScore: number;
   maxScore: number;
   altitude: number;
-  percentile: number | null;
-  rq: number | null;
+  percentile: number;
+  rq: number;
+  /** True while today has fewer than 30 finished plays: the RQ blends in a baseline (lib/earlyRq.ts). */
+  rqEstimated: boolean;
   n: number;
   coldStart: boolean;
   histogram: number[] | null;

@@ -122,6 +122,13 @@ export class LocalStore implements Store {
   async finishedScores(date: string) {
     return this.load().plays.filter((p) => p.puzzle_date === date && p.finished_at && p.total_score !== null).map((p) => p.total_score!);
   }
+  async recentFinishedScores(fromDate: string, beforeDate: string, limit: number) {
+    return this.load()
+      .plays.filter((p) => p.puzzle_date >= fromDate && p.puzzle_date < beforeDate && p.finished_at && p.total_score !== null)
+      .sort((a, b) => b.puzzle_date.localeCompare(a.puzzle_date))
+      .slice(0, limit)
+      .map((p) => p.total_score!);
+  }
 
   async getAnswers(playId: string) {
     return clone(this.load().answers.filter((a) => a.play_id === playId)).sort((a, b) => a.slot - b.slot);

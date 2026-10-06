@@ -39,6 +39,8 @@ export interface Store {
   listPlays(deviceId: string): Promise<Play[]>;
   /** total_score of every finished play on `date`. */
   finishedScores(date: string): Promise<number[]>;
+  /** total_score of finished plays with fromDate <= puzzle_date < beforeDate, newest days first, at most `limit`. */
+  recentFinishedScores(fromDate: string, beforeDate: string, limit: number): Promise<number[]>;
 
   getAnswers(playId: string): Promise<Answer[]>;
   /** Idempotent: inserts the served row, or returns the existing one (keeps the original served_at). */

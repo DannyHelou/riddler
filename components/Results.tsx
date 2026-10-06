@@ -153,20 +153,7 @@ export function Results() {
         </div>
         <div className="relative z-10 mx-auto grid w-full max-w-[1240px] flex-1 grid-cols-1 content-center items-center gap-3 px-4 pt-2 pb-2 md:gap-8 md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] md:gap-x-20 md:gap-y-4 md:px-12 md:pt-4">
           <div>
-            {r.coldStart ? (
-              <div className="flex flex-col gap-3 md:gap-5">
-                <div className="eyebrow eyebrow-fit">{puzzleLabel} · Your riddle quotient</div>
-                <h1 className="panel-title m-0 text-[40px] leading-none font-normal md:text-[72px]">Early bird</h1>
-                <div className="flex flex-col gap-2 md:gap-3">
-                  <p className="m-0 max-w-[34ch] text-[20px] leading-[1.3] md:text-[26px]">
-                    You&apos;re one of the first {r.n} {r.n === 1 ? 'player' : 'players'} today. Your RQ appears once 30 people have played.
-                  </p>
-                  <p className="m-0 hidden max-w-[40ch] text-[18px] leading-[1.3] text-haze md:block">Come back later today: this page updates as more people land.</p>
-                </div>
-              </div>
-            ) : (
-              <BellCurveReveal rq={r.rq!} percentile={r.percentile!} puzzleLabel={puzzleLabel} phone={phone} />
-            )}
+            <BellCurveReveal rq={r.rq} percentile={r.percentile} estimated={r.rqEstimated} puzzleLabel={puzzleLabel} phone={phone} />
           </div>
           <div className="flex flex-col justify-center gap-3 md:gap-4">
             <ScoreCard r={r} />

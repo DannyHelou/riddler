@@ -17,7 +17,7 @@ Riddler is a daily math-riddle web game: three riddles a day (warm-up, trap, bos
 
 - **Live in production** on Vercel with Supabase. A full play through the live API was verified on launch day (saving, scoring, results, share text, the Jev word judge, no answers sent before answering).
 - **Content:** 272 riddles and a 365-day schedule, 2026-10-04 → 2027-10-03.
-- **Tests:** `npx tsc --noEmit` clean, **85 unit tests** (vitest) green. **Playwright e2e has not been re-run** since the launch-day changes (the start transition, the keyboard handling, the Oct 4 date); run it before larger changes (see gotchas).
+- **Tests:** `npx tsc --noEmit` clean, **90 unit tests** (vitest) green. **Playwright e2e: 8/8 green** (re-run 2026-10-05; run it before larger changes, see gotchas).
 - **Git:** `main` deploys to production. `riddle-bank-year-one` is the working branch and is level with `main`. Commit attribution lines are in your system instructions. Ask the owner before pushing to `main` (it ships immediately).
 
 ## Production
@@ -102,7 +102,7 @@ From the pre-launch audit (full report was in a scratch file; the items are all 
 ```bash
 npm install
 npm run dev          # http://localhost:3000; local JSON store in .data/ (no Supabase vars in .env.local)
-npm test             # vitest, 85 tests
+npm test             # vitest, 90 tests
 npx tsc --noEmit
 npm run e2e          # Playwright; use NEXT_DIST_DIR=.next-e2e (see gotchas)
 npm run seed -- --check
@@ -166,6 +166,7 @@ npx tsx scripts/shots.ts <baseUrl> <outDir>   # screenshots a full play at both 
 - **Repeat gap 90 days** (was 180).
 - **No hints.** Removed from UI, API, share text and How to play. The scoring hint term is always 0; `hint_md` and `hint_used` are unused leftovers (`hint_md` is still required by the validator).
 - **Colors per closeness level** grey → red; **smooth shake**; **panels** instead of notched boxes (buttons keep notched frames); **pixel texture, fluid motion**; **a fairground, not a sea**, with the balloon as the focus. The camera no longer pans during the climb.
+- **Early RQ** (2026-10-05): under 30 players a day, Results shows an RQ estimate blended with the last 14 days' real scores (or a fixed normal curve, mean 180 / SD 80, when those are thin), labelled "Early estimate · updates as people play" and "Early RQ" in the share text. Never stored, never shown as players; crowd stats still wait for 30 real players. `lib/earlyRq.ts`, brief §4.7. The owner first asked for fake players to pad the crowd; this honest version was chosen instead, so don't add fake players.
 - **No analytics at launch** (PostHog is wired but has no key; the privacy page says there is no analytics, so update it if that changes).
 
 ## How the owner works

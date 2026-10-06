@@ -14,9 +14,9 @@ describe('share text (§5.7)', () => {
     );
   });
 
-  it('says Early bird on cold start', () => {
-    const t = shareText({ puzzleNumber: 3, rq: null, rows: [rows[2]] });
-    expect(t).toBe('Riddler #3 — Early bird.\n🔴 🧠\nriddlerr.com');
+  it('says Early RQ while the RQ is an estimate', () => {
+    const t = shareText({ puzzleNumber: 3, rq: 112, rqEstimated: true, rows: [rows[2]] });
+    expect(t).toBe('Riddler #3 — Early RQ 112\n🔴 🧠\nriddlerr.com');
   });
 
   it('never contains answers', () => {

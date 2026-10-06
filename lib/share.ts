@@ -30,7 +30,7 @@ export function shareLine(r: ShareRow): string {
   return `${TIER_EMOJI[r.tier]} ${mark}${r.timeBonus >= 25 ? '⚡' : ''}`;
 }
 
-export function shareText(opts: { puzzleNumber: number; rq: number | null; rows: ShareRow[]; domain?: string }): string {
-  const head = `Riddler #${opts.puzzleNumber} — ${opts.rq === null ? 'Early bird.' : `RQ ${opts.rq}`}`;
+export function shareText(opts: { puzzleNumber: number; rq: number; rqEstimated?: boolean; rows: ShareRow[]; domain?: string }): string {
+  const head = `Riddler #${opts.puzzleNumber} — ${opts.rqEstimated ? 'Early RQ' : 'RQ'} ${opts.rq}`;
   return [head, ...opts.rows.map(shareLine), opts.domain ?? 'riddlerr.com'].join('\n');
 }

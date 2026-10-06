@@ -18,6 +18,7 @@ import { addDays, daysBetween, launchDate, nextResetAt, puzzleNumber, todayPuzzl
 import { seedStore } from './contentLoader';
 import { shareText } from './share';
 import { normalizeWord } from './normalize';
+import { BASELINE_DAYS, BASELINE_MAX_SCORES, blendedPercentile } from './earlyRq';
 import { FUEL_GRACE_MS } from './timing';
 import type {
   Answer, AnswerResult, CrowdHistogram, DailySet, DebriefEntry, Play, ResultsPayload, Riddle, ServedRiddle, StatsPayload, Tier, TodayState,
@@ -372,9 +373,11 @@ export async function getResults(deviceId: string): Promise<ResultsPayload> {
   const n = scores.length;
   const coldStart = n < COLD_START_MIN_PLAYS;
   const total = play.total_score ?? 0;
-  // Live: re-computed every time Results opens (§4.7).
-  const pct = coldStart ? null : percentileOf(total, scores);
-  const rq = pct === null ? null : rqOf(pct);
+  // Live: re-computed every time Results opens (§4.7). Under 30 players it is an early
+  // estimate blended with recent days (lib/earlyRq.ts) and is never stored.
+  const past = coldStart ? await store.recentFinishedScores(addDays(date, -BASELINE_DAYS), date, BASELINE_MAX_SCORES) : [];
+  const { percentile: pct, estimated: rqEstimated } = blendedPercentile(total, scores, past);
+  const rq = rqOf(pct);
 
   const perRiddle: ResultsPayload['perRiddle'] = [];
   const debrief: DebriefEntry[] = [];
@@ -432,11 +435,12 @@ export async function getResults(deviceId: string): Promise<ResultsPayload> {
     altitude: altitudeOf(answers),
     percentile: pct,
     rq,
+    rqEstimated,
     n,
     coldStart,
     histogram: coldStart ? null : rqHistogram(scores),
     perRiddle,
-    shareText: shareText({ puzzleNumber: set.puzzle_number, rq, rows: perRiddle, domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'riddlerr.com' }),
+    shareText: shareText({ puzzleNumber: set.puzzle_number, rq, rqEstimated, rows: perRiddle, domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'riddlerr.com' }),
     debrief,
   };
 }

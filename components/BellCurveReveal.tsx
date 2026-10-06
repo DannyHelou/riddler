@@ -21,7 +21,21 @@ function blocks(i: number) {
  * RQ reveal (§5.5): the pixel bell curve builds column by column (~1 s), a small
  * balloon drops onto the player's column, and the RQ counts up.
  */
-export function BellCurveReveal({ rq, percentile, puzzleLabel, phone }: { rq: number; percentile: number; puzzleLabel: string; phone: boolean }) {
+export function BellCurveReveal({
+  rq,
+  percentile,
+  estimated,
+  puzzleLabel,
+  phone,
+}: {
+  rq: number;
+  percentile: number;
+  /** Fewer than 30 players today: the RQ is an early estimate (lib/earlyRq.ts), so no "% of players" claim. */
+  estimated: boolean;
+  puzzleLabel: string;
+  phone: boolean;
+}) {
+  const caption = estimated ? 'Early estimate · updates as people play' : `Higher than ${Math.round(percentile)}% of players today`;
   const you = rqColumn(rq);
   const [built, setBuilt] = useState(0);
   const [drop, setDrop] = useState(0); // 0..1
@@ -66,16 +80,16 @@ export function BellCurveReveal({ rq, percentile, puzzleLabel, phone }: { rq: nu
           RQ {shown}
         </div>
         <div className="text-[20px] leading-none md:text-[26px]" style={{ visibility: done ? 'visible' : 'hidden' }} aria-hidden="true">
-          Higher than {Math.round(percentile)}% of players today
+          {caption}
         </div>
         <p className="sr-only" aria-live="polite">
-          {done ? `RQ ${rq}. Higher than ${Math.round(percentile)}% of players today.` : ''}
+          {done ? `RQ ${rq}. ${estimated ? 'Early estimate, updates as people play' : caption}.` : ''}
         </p>
       </div>
       <div className="card flex flex-col gap-2 px-4 pt-3 pb-3 md:px-5 md:pt-5 md:pb-4">
         <div
           role="img"
-          aria-label={`Bell curve of today's players with your position at RQ ${rq}`}
+          aria-label={estimated ? `Bell curve with your estimated position at RQ ${rq}` : `Bell curve of today's players with your position at RQ ${rq}`}
           className="flex items-end gap-[2px] md:gap-[3px]"
           style={{ height: maxH + (phone ? 24 : 56), borderBottom: '2px solid var(--line)' }}
         >

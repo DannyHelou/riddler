@@ -93,6 +93,27 @@ export class SupabaseStore implements Store {
     }
     return out;
   }
+  async recentFinishedScores(fromDate: string, beforeDate: string, limit: number) {
+    const out: number[] = [];
+    const page = 1000;
+    for (let from = 0; from < limit; from += page) {
+      const rows = check(
+        await this.db
+          .from('plays')
+          .select('total_score')
+          .gte('puzzle_date', fromDate)
+          .lt('puzzle_date', beforeDate)
+          .not('finished_at', 'is', null)
+          .order('puzzle_date', { ascending: false })
+          .order('id')
+          .range(from, Math.min(from + page, limit) - 1),
+        'recentFinishedScores',
+      ) as { total_score: number | null }[];
+      for (const r of rows) if (r.total_score !== null) out.push(r.total_score);
+      if (rows.length < page) break;
+    }
+    return out;
+  }
 
   async getAnswers(playId: string) {
     return check(await this.db.from('answers').select('*').eq('play_id', playId).order('slot'), 'getAnswers') as Answer[];

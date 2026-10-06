@@ -137,17 +137,22 @@ describe('game service (§7.7, §10)', () => {
     expect(r).toMatchObject({ timedOut: true, points: 0, closeness: 0, verdict: 'timeout' });
   });
 
-  it('shows the cold-start message under 30 players, then percentile and RQ (§4.7)', async () => {
+  it('gives an early RQ estimate under 30 players, then the real percentile and RQ (§4.7)', async () => {
     const me = randomUUID();
     await playDay(me, ['piano', '9', '6']);
     const cold = await game.getResults(me);
-    expect(cold).toMatchObject({ coldStart: true, percentile: null, rq: null, n: 1, histogram: null });
+    expect(cold).toMatchObject({ coldStart: true, rqEstimated: true, n: 1, histogram: null });
+    expect(cold.rq).toBeGreaterThanOrEqual(70);
     expect(cold.debrief.every((x) => x.crowd === null && x.trapRate === null && x.topAnswers === null)).toBe(true);
-    expect(cold.shareText).toMatch(/Early bird\./);
+    expect(cold.shareText).toMatch(new RegExp(`Early RQ ${cold.rq}\\n`));
+    // The estimate is shown live, never stored as the final RQ.
+    expect((await game.getStats(me)).lastRqs.at(-1)?.rq).toBeNull();
 
     for (let i = 0; i < 30; i++) await playDay(randomUUID(), [i % 2 ? 'piano' : 'keychain', i % 3 ? '99' : '10', String(3 + (i % 6))]);
     const warm = await game.getResults(me);
     expect(warm.coldStart).toBe(false);
+    expect(warm.rqEstimated).toBe(false);
+    expect(warm.shareText).toMatch(new RegExp(`— RQ ${warm.rq}\\n`));
     expect(warm.n).toBe(31);
     expect(warm.percentile).toBeGreaterThan(50);
     expect(warm.rq).toBeGreaterThan(100);

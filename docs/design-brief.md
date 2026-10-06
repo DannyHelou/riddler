@@ -239,8 +239,10 @@ Then clamp RQ to $[70, 145]$.
 
 - Implement $\Phi^{-1}$ with a standard rational approximation (e.g. Acklam's algorithm) in `lib/scoring.ts`, with unit tests against known values.
 - **Never call it IQ** in copy. It's "RQ" everywhere.
-- **Cold start:** if $N < 30$, don't show a percentile or RQ. Show "You're one of the first N players today. Your RQ appears once 30 people have played."
-- Percentile and RQ are **live** and re-fetched each time Results opens. The value at finish is stored for personal stats.
+- **Cold start (early RQ, owner decision 2026-10-05):** if $N < 30$, the percentile blends today's players with a baseline $B$ and the RQ is labelled an estimate ("Early estimate · updates as people play" instead of "Higher than N% of players today"):
+  $$P = \frac{N \cdot P_{\text{today}}(s) + (30 - N) \cdot P_B(s)}{30}$$
+  $B$ is the finished scores from the previous 14 days (at most 2,000, newest first); if that holds fewer than 30 scores, $P_B(s) = 100\,\Phi\!\big((s - 180)/80\big)$. Code: `lib/earlyRq.ts`. From $N \ge 30$ it is the plain percentile above. The baseline is never shown or counted as players; per-riddle crowd stats still wait for 30 real players.
+- Percentile and RQ are **live** and re-fetched each time Results opens. The value at finish is stored for personal stats only when $N \ge 30$ at finish (early estimates are never stored).
 
 ### 4.8 Personal stats
 
@@ -437,7 +439,7 @@ With `prefers-reduced-motion`, cut between camera shots instead of panning, and 
 - "[N]% of players fell for the trap."
 - **Why:** the intuitive explanation, plus an expandable "Show the math" (KaTeX).
 
-With cold start, keep the explanations but replace the crowd and RQ parts with the cold-start message (§4.7).
+With cold start, the RQ reveal shows the early estimate (§4.7); keep the explanations but replace the crowd parts with "How everyone else answered appears once 30 people have played."
 
 ### 5.7 Share text format
 
@@ -452,7 +454,7 @@ riddler.example
 - Each line: tier emoji, then the level emoji (numbers) or ✅ / 🪤 / ❌ (words).
 - Add 🪤 before the level emoji if a number answer was trapped.
 - Add ⚡ if `timeBonus ≥ 25`.
-- If cold start applies, replace "RQ 118" with "Early bird."
+- If cold start applies, write "Early RQ 118" instead of "RQ 118".
 - **Never** include answers or riddle text.
 
 ### 5.8 How-to-play modal
@@ -738,7 +740,7 @@ create index on answers (riddle_id, trapped);
 | `POST /api/play/start` | Creates the play (idempotent) | `playId` |
 | `POST /api/riddle/serve` `{ slot }` | Sets `served_at` to now + `FUEL_GRACE_MS` if unset; returns the riddle **without** answer, trap, or accepted lists | `promptMd`, `answerType`, `numberFormat`, `unitLabel`, `timeLimitS`, `servedAt` |
 | `POST /api/riddle/answer` `{ slot, input \| null }` | Parses or judges, scores, stores | See below |
-| `GET /api/results` | For a finished play | `totalScore`, `percentile`, `rq` (nulls on cold start), `n`, `histogram`, `perRiddle`, `shareText` |
+| `GET /api/results` | For a finished play | `totalScore`, `percentile`, `rq` (early estimates on cold start), `rqEstimated`, `n`, `histogram`, `perRiddle`, `shareText` |
 | `GET /api/stats` | Personal stats | Stats from §4.8 + last 14 RQs |
 | `POST /api/report` `{ slot }` | Logs a wrong-verdict report | `ok` |
 
@@ -907,7 +909,7 @@ Never send the device ID or raw answer text to third-party analytics.
 5. The parser handles every example in §7.4 identically on client and server (unit-tested).
 6. Closeness, ladder level, trap detection, points, percentile (with ties), and RQ (including clamps and $\Phi^{-1}$ accuracy to ±0.001) are unit-tested.
 7. The burner reaction matches §5.4 for $c = 0$, $0.5$, and $1$ (flame height, burn time, flash color, shake amplitude, extras), and announces the result via `aria-live`.
-8. No comparative data (crowd, trap rate, percentile, RQ) is requested or rendered before the play is finished; the bell-curve reveal places the balloon at the correct percentile, and cold start shows the message instead.
+8. No comparative data (crowd, trap rate, percentile, RQ) is requested or rendered before the play is finished; the bell-curve reveal places the balloon at the correct percentile, and cold start labels the RQ as an early estimate.
 9. `tune-judge.ts` reaches ≥ 95% accuracy overall and 100% on injection attempts for all seed word riddles.
 10. Identical word inputs always receive identical verdicts (cache test).
 11. LLM judge failures return `wrong` and are not cached.
