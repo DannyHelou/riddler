@@ -5,38 +5,39 @@ import { Sprite } from './Sprite';
 import { api } from '@/lib/client';
 import { LEVEL_SPRITE } from '@/lib/sprites';
 import type { StatsPayload } from '@/lib/types';
+import { topPercent } from '@/lib/earlyEstimate';
 
-function RqChart({ points }: { points: StatsPayload['lastRqs'] }) {
+function PercentileChart({ points }: { points: StatsPayload['lastPercentiles'] }) {
   const W = 560;
   const H = 180;
   const pad = { l: 44, r: 12, t: 12, b: 28 };
-  const lo = 70;
-  const hi = 145;
+  const lo = 0;
+  const hi = 100;
   const n = Math.max(points.length, 2);
   const x = (i: number) => Math.round(pad.l + (i * (W - pad.l - pad.r)) / (n - 1));
   const y = (v: number) => Math.round(pad.t + ((hi - v) * (H - pad.t - pad.b)) / (hi - lo));
-  // Break the line at cold-start days (null RQ).
+  // Break the line at days with fewer than 30 players (no stored percentile).
   const segments: { i: number; v: number }[][] = [];
   let cur: { i: number; v: number }[] = [];
   points.forEach((p, i) => {
-    if (p.rq === null) {
+    if (p.percentile === null) {
       if (cur.length) segments.push(cur);
       cur = [];
-    } else cur.push({ i, v: p.rq });
+    } else cur.push({ i, v: p.percentile });
   });
   if (cur.length) segments.push(cur);
   const label = points.length
-    ? `Your last ${points.length} RQs: ${points.map((p) => (p.rq === null ? 'no RQ' : p.rq)).join(', ')}`
-    : 'No RQs yet';
+    ? `Share of players you beat, last ${points.length} days: ${points.map((p) => (p.percentile === null ? 'none' : `${p.percentile}%`)).join(', ')}`
+    : 'No results yet';
 
   return (
     <div className="overflow-x-auto">
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label={label} shapeRendering="crispEdges" style={{ minWidth: 320 }}>
-        {[70, 100, 130].map((v) => (
+        {[0, 50, 100].map((v) => (
           <g key={v}>
             <line x1={pad.l} x2={W - pad.r} y1={y(v)} y2={y(v)} stroke="var(--divider)" strokeWidth={2} strokeDasharray="4 4" />
             <text x={pad.l - 8} y={y(v) + 6} textAnchor="end" fill="var(--haze)" style={{ font: '18px var(--font-body)' }}>
-              {v}
+              {v}%
             </text>
           </g>
         ))}
@@ -44,10 +45,10 @@ function RqChart({ points }: { points: StatsPayload['lastRqs'] }) {
           <polyline key={k} fill="none" stroke="var(--accent-text)" strokeWidth={2} points={s.map((p) => `${x(p.i)},${y(p.v)}`).join(' ')} />
         ))}
         {points.map((p, i) =>
-          p.rq === null ? (
+          p.percentile === null ? (
             <rect key={i} x={x(i) - 3} y={H - pad.b - 6} width={6} height={6} fill="var(--divider)" />
           ) : (
-            <rect key={i} x={x(i) - 4} y={y(p.rq) - 4} width={8} height={8} fill="var(--accent-text)" />
+            <rect key={i} x={x(i) - 4} y={y(p.percentile) - 4} width={8} height={8} fill="var(--accent-text)" />
           ),
         )}
       </svg>
@@ -68,7 +69,7 @@ export function StatsModal({ onClose }: { onClose: () => void }) {
         ['Current streak', String(stats.currentStreak)],
         ['Max streak', String(stats.maxStreak)],
         ['Trap resistance', stats.trapResistance === null ? '–' : `${Math.round(stats.trapResistance * 100)}%`],
-        ['Average RQ', stats.averageRq === null ? '–' : String(stats.averageRq)],
+        ['Average result', stats.averagePercentile === null ? '–' : `Top ${topPercent(stats.averagePercentile)}%`],
       ]
     : [];
 
@@ -94,9 +95,9 @@ export function StatsModal({ onClose }: { onClose: () => void }) {
             </div>
           </dl>
           <div>
-            <h3 className="m-0 mb-2 text-[20px] font-normal">Your last 14 RQs</h3>
-            {stats.lastRqs.length ? <RqChart points={stats.lastRqs} /> : <p className="m-0 text-haze">Finish a climb to start your chart.</p>}
-            <p className="mt-2 mb-0 text-[18px] leading-[1.3] text-haze">Gaps are days with fewer than 30 players, when no RQ is given.</p>
+            <h3 className="m-0 mb-2 text-[20px] font-normal">Players you beat, last 14 days</h3>
+            {stats.lastPercentiles.length ? <PercentileChart points={stats.lastPercentiles} /> : <p className="m-0 text-haze">Finish a climb to start your chart.</p>}
+            <p className="mt-2 mb-0 text-[18px] leading-[1.3] text-haze">Gaps are days with fewer than 30 players when you finished.</p>
           </div>
         </div>
       )}

@@ -22,7 +22,7 @@ With no Supabase variables set, the app uses a local JSON store at `.data/burner
 | `npm run schedule` | Rebuild `content/schedule.json` from the riddle pool: each tier rotates, a riddle returns after 90+ days, published days are kept |
 | `npm run tune-judge` | Word-judge accuracy report per stage (needs `TYPESAFE_API_KEY` for Jev, or `ANTHROPIC_API_KEY`, for close calls) |
 | `npm run e2e` | Playwright happy path on desktop (1280×800) and phone (390×844) |
-| `npx tsx scripts/simulate-crowd.ts 40` | Dev only: 40 simulated players so Results shows RQ and crowd stats |
+| `npx tsx scripts/simulate-crowd.ts 40` | Dev only: 40 simulated players so Results shows real percentiles and crowd stats |
 
 **Production:** create a Supabase project, run `supabase/migrations/0001_init.sql`, set `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `TYPESAFE_API_KEY`, `LAUNCH_DATE`, `NEXT_PUBLIC_SITE_DOMAIN`, then `npm run seed` and deploy to Vercel.
 

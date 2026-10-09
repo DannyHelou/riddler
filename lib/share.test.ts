@@ -9,18 +9,18 @@ describe('share text (§5.7)', () => {
   ];
 
   it('matches the brief example exactly', () => {
-    expect(shareText({ puzzleNumber: 58, rq: 118, rows })).toBe(
-      'Riddler #58 — RQ 118\n🟢 ✅⚡\n🟡 🪤🐟\n🔴 🧠\nriddlerr.com',
+    expect(shareText({ puzzleNumber: 58, top: 12, rows })).toBe(
+      'Riddler #58 — Top 12%\n🟢 ✅⚡\n🟡 🪤🐟\n🔴 🧠\nriddlerr.com',
     );
   });
 
-  it('says Early RQ while the RQ is an estimate', () => {
-    const t = shareText({ puzzleNumber: 3, rq: 112, rqEstimated: true, rows: [rows[2]] });
-    expect(t).toBe('Riddler #3 — Early RQ 112\n🔴 🧠\nriddlerr.com');
+  it('marks an early estimate', () => {
+    const t = shareText({ puzzleNumber: 3, top: 20, estimated: true, rows: [rows[2]] });
+    expect(t).toBe('Riddler #3 — Top 20% (early)\n🔴 🧠\nriddlerr.com');
   });
 
   it('never contains answers', () => {
-    const t = shareText({ puzzleNumber: 58, rq: 118, rows });
-    expect(t).not.toMatch(/piano|9%|flips/i);
+    const t = shareText({ puzzleNumber: 58, top: 12, rows });
+    expect(t).not.toMatch(/piano|about 9%|flips/i);
   });
 });

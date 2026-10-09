@@ -18,7 +18,7 @@ import { addDays, daysBetween, launchDate, nextResetAt, puzzleNumber, todayPuzzl
 import { seedStore } from './contentLoader';
 import { shareText } from './share';
 import { normalizeWord } from './normalize';
-import { BASELINE_DAYS, BASELINE_MAX_SCORES, blendedPercentile } from './earlyRq';
+import { BASELINE_DAYS, BASELINE_MAX_SCORES, blendedPercentile, scoreCurve, topPercent } from './earlyEstimate';
 import { FUEL_GRACE_MS } from './timing';
 import type {
   Answer, AnswerResult, CrowdHistogram, DailySet, DebriefEntry, Play, ResultsPayload, Riddle, ServedRiddle, StatsPayload, Tier, TodayState,
@@ -319,25 +319,6 @@ async function finishPlay(store: Store, play: Play, answers: Answer[], date: str
 
 /* ---------------- Results (only after finishing) ---------------- */
 
-const BELL_MIN = 55;
-const BELL_MAX = 145;
-export const BELL_COLUMNS = 40;
-
-function rqHistogram(scores: number[]): number[] {
-  const counts = new Array<number>(BELL_COLUMNS).fill(0);
-  const sorted = [...scores].sort((a, b) => a - b);
-  let i = 0;
-  while (i < sorted.length) {
-    let j = i;
-    while (j < sorted.length && sorted[j] === sorted[i]) j++;
-    const pct = ((i + 0.5 * (j - i)) / sorted.length) * 100;
-    const col = Math.min(BELL_COLUMNS - 1, Math.max(0, Math.floor(((rqOf(pct) - BELL_MIN) / (BELL_MAX - BELL_MIN)) * BELL_COLUMNS)));
-    counts[col] += j - i;
-    i = j;
-  }
-  return counts;
-}
-
 function crowdHistogram(riddle: Riddle, values: number[], you: number | null): CrowdHistogram {
   const B = 25;
   const ans = riddle.answer_value!;
@@ -374,10 +355,9 @@ export async function getResults(deviceId: string): Promise<ResultsPayload> {
   const coldStart = n < COLD_START_MIN_PLAYS;
   const total = play.total_score ?? 0;
   // Live: re-computed every time Results opens (§4.7). Under 30 players it is an early
-  // estimate blended with recent days (lib/earlyRq.ts) and is never stored.
+  // estimate blended with recent days (lib/earlyEstimate.ts) and is never stored.
   const past = coldStart ? await store.recentFinishedScores(addDays(date, -BASELINE_DAYS), date, BASELINE_MAX_SCORES) : [];
-  const { percentile: pct, estimated: rqEstimated } = blendedPercentile(total, scores, past);
-  const rq = rqOf(pct);
+  const { percentile: pct, estimated } = blendedPercentile(total, scores, past);
 
   const perRiddle: ResultsPayload['perRiddle'] = [];
   const debrief: DebriefEntry[] = [];
@@ -434,13 +414,12 @@ export async function getResults(deviceId: string): Promise<ResultsPayload> {
     maxScore: MAX_SCORE,
     altitude: altitudeOf(answers),
     percentile: pct,
-    rq,
-    rqEstimated,
+    estimated,
     n,
     coldStart,
-    histogram: coldStart ? null : rqHistogram(scores),
+    curve: scoreCurve(scores, past),
     perRiddle,
-    shareText: shareText({ puzzleNumber: set.puzzle_number, rq, rqEstimated, rows: perRiddle, domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'riddlerr.com' }),
+    shareText: shareText({ puzzleNumber: set.puzzle_number, top: topPercent(pct), estimated, rows: perRiddle, domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'riddlerr.com' }),
     debrief,
   };
 }
@@ -466,7 +445,7 @@ export async function getStats(deviceId: string): Promise<StatsPayload> {
   const answers = await store.deviceAnswers(deviceId);
   const finishedIds = new Set(plays.map((p) => p.id));
   const trapTier = answers.filter((a) => a.slot === 2 && a.answered_at && a.verdict !== 'timeout' && finishedIds.has(a.play_id));
-  const rqs = plays.map((p) => p.final_rq).filter((v): v is number => v !== null);
+  const pcts = plays.map((p) => p.final_percentile).filter((v): v is number => v !== null);
   const best = answers.reduce((b, a) => {
     const i = a.ladder_level ? LEVELS.indexOf(a.ladder_level as (typeof LEVELS)[number]) : -1;
     return Math.max(b, i);
@@ -477,9 +456,9 @@ export async function getStats(deviceId: string): Promise<StatsPayload> {
     currentStreak: current,
     maxStreak: max,
     trapResistance: trapTier.length ? 1 - trapTier.filter((a) => a.trapped).length / trapTier.length : null,
-    averageRq: rqs.length ? Math.round(rqs.reduce((a, b) => a + b, 0) / rqs.length) : null,
+    averagePercentile: pcts.length ? Math.round(pcts.reduce((a, b) => a + b, 0) / pcts.length) : null,
     bestLevel: best >= 0 ? LEVELS[best] : null,
-    lastRqs: plays.slice(-14).map((p) => ({ puzzleDate: p.puzzle_date, rq: p.final_rq })),
+    lastPercentiles: plays.slice(-14).map((p) => ({ puzzleDate: p.puzzle_date, percentile: p.final_percentile })),
   };
 }
 

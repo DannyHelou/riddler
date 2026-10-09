@@ -1,7 +1,7 @@
 'use client';
 /**
  * Results and debrief (§5.5): the only place comparative stats appear.
- * Percentile and RQ are live: re-fetched every time this page opens (§4.7).
+ * The percentile is live: re-fetched every time this page opens (§4.7).
  */
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -10,7 +10,7 @@ import { takeResults } from '@/lib/resultsCache';
 import { track } from '@/lib/track';
 import { fmtAlt } from '@/lib/format';
 import { LEVEL_SPRITE, SPRITES } from '@/lib/sprites';
-import { BellCurveReveal } from './BellCurveReveal';
+import { ScoreCurveReveal } from './ScoreCurveReveal';
 import { Countdown } from './Countdown';
 import { DebriefCard } from './Debrief';
 import { Sprite } from './Sprite';
@@ -106,7 +106,7 @@ export function Results() {
           const k = `burner_finished_${res.puzzleDate}`;
           if (!sessionStorage.getItem(k) && !localStorage.getItem(k)) {
             localStorage.setItem(k, '1');
-            track('play_finished', { totalScore: res.totalScore, percentile: res.percentile === null ? null : Math.round(res.percentile), rq: res.rq });
+            track('play_finished', { totalScore: res.totalScore, percentile: Math.round(res.percentile) });
           }
         } catch {
           /* ignore */
@@ -153,7 +153,7 @@ export function Results() {
         </div>
         <div className="relative z-10 mx-auto grid w-full max-w-[1240px] flex-1 grid-cols-1 content-center items-center gap-3 px-4 pt-2 pb-2 md:gap-8 md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] md:gap-x-20 md:gap-y-4 md:px-12 md:pt-4">
           <div>
-            <BellCurveReveal rq={r.rq} percentile={r.percentile} estimated={r.rqEstimated} puzzleLabel={puzzleLabel} phone={phone} />
+            <ScoreCurveReveal curve={r.curve} score={r.totalScore} percentile={r.percentile} estimated={r.estimated} puzzleLabel={puzzleLabel} phone={phone} />
           </div>
           <div className="flex flex-col justify-center gap-3 md:gap-4">
             <ScoreCard r={r} />

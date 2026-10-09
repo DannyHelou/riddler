@@ -137,32 +137,33 @@ describe('game service (§7.7, §10)', () => {
     expect(r).toMatchObject({ timedOut: true, points: 0, closeness: 0, verdict: 'timeout' });
   });
 
-  it('gives an early RQ estimate under 30 players, then the real percentile and RQ (§4.7)', async () => {
+  it('gives an early estimate under 30 players, then the real percentile (§4.7)', async () => {
     const me = randomUUID();
     await playDay(me, ['piano', '9', '6']);
     const cold = await game.getResults(me);
-    expect(cold).toMatchObject({ coldStart: true, rqEstimated: true, n: 1, histogram: null });
-    expect(cold.rq).toBeGreaterThanOrEqual(70);
+    expect(cold).toMatchObject({ coldStart: true, estimated: true, n: 1 });
+    expect(cold.curve).toHaveLength(45);
+    expect(cold.percentile).toBeGreaterThan(0);
     expect(cold.debrief.every((x) => x.crowd === null && x.trapRate === null && x.topAnswers === null)).toBe(true);
-    expect(cold.shareText).toMatch(new RegExp(`Early RQ ${cold.rq}\\n`));
-    // The estimate is shown live, never stored as the final RQ.
-    expect((await game.getStats(me)).lastRqs.at(-1)?.rq).toBeNull();
+    expect(cold.shareText).toMatch(/— Top \d+% \(early\)\n/);
+    // The estimate is shown live, never stored as the final percentile.
+    expect((await game.getStats(me)).lastPercentiles.at(-1)?.percentile).toBeNull();
 
     for (let i = 0; i < 30; i++) await playDay(randomUUID(), [i % 2 ? 'piano' : 'keychain', i % 3 ? '99' : '10', String(3 + (i % 6))]);
     const warm = await game.getResults(me);
     expect(warm.coldStart).toBe(false);
-    expect(warm.rqEstimated).toBe(false);
-    expect(warm.shareText).toMatch(new RegExp(`— RQ ${warm.rq}\\n`));
+    expect(warm.estimated).toBe(false);
+    expect(warm.shareText).toMatch(/— Top \d+%\n/);
     expect(warm.n).toBe(31);
     expect(warm.percentile).toBeGreaterThan(50);
-    expect(warm.rq).toBeGreaterThan(100);
+    expect(Math.max(...warm.curve)).toBe(1);
     const trap = warm.debrief[1];
     expect(trap.crowd?.counts.reduce((a, b) => a + b, 0)).toBe(31);
     expect(trap.trapRate).toBeGreaterThan(0.5);
     const words = warm.debrief[0].topAnswers!;
     expect(words.find((w) => w.text === 'piano')).toMatchObject({ isCorrect: true, isYou: true });
     expect(words.find((w) => w.text === 'keychain')).toMatchObject({ isTrap: true });
-    expect(warm.shareText).not.toMatch(/piano|9%/);
+    expect(warm.shareText).not.toMatch(/piano|about 9%/);
   });
 
   it('computes personal stats and streaks', async () => {

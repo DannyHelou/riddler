@@ -217,6 +217,8 @@ $$
 
 ### 4.7 Percentile and RQ
 
+> **Owner decision 2026-10-09: players see the percentile, not the RQ.** Results leads with "Top N%" ($N = \max(1,\ 100 - \operatorname{round}(P))$) and "Better than P% of players today"; share text and personal stats use it too. The chart is a smoothed curve of the day's scores on a 0–450 axis with the player's balloon at their score (§5.5). `rq()` stays in `lib/scoring.ts` and `final_rq` is still stored, but nothing shows it. Where this section or later ones say RQ, read percentile.
+
 **Percentile**, among the $N$ finished plays today, with mid-rank tie handling:
 
 $$
@@ -239,9 +241,9 @@ Then clamp RQ to $[70, 145]$.
 
 - Implement $\Phi^{-1}$ with a standard rational approximation (e.g. Acklam's algorithm) in `lib/scoring.ts`, with unit tests against known values.
 - **Never call it IQ** in copy. It's "RQ" everywhere.
-- **Cold start (early RQ, owner decision 2026-10-05):** if $N < 30$, the percentile blends today's players with a baseline $B$ and the RQ is labelled an estimate ("Early estimate · updates as people play" instead of "Higher than N% of players today"):
+- **Cold start (early estimate, owner decision 2026-10-05):** if $N < 30$, the percentile blends today's players with a baseline $B$ and is labelled an estimate ("Early estimate · updates as people play" instead of "Better than P% of players today"):
   $$P = \frac{N \cdot P_{\text{today}}(s) + (30 - N) \cdot P_B(s)}{30}$$
-  $B$ is the finished scores from the previous 14 days (at most 2,000, newest first); if that holds fewer than 30 scores, $P_B(s) = 100\,\Phi\!\big((s - 180)/80\big)$. Code: `lib/earlyRq.ts`. From $N \ge 30$ it is the plain percentile above. The baseline is never shown or counted as players; per-riddle crowd stats still wait for 30 real players.
+  $B$ is the finished scores from the previous 14 days (at most 2,000, newest first); if that holds fewer than 30 scores, $P_B(s) = 100\,\Phi\!\big((s - 180)/80\big)$. The score curve blends the same way: a Gaussian-smoothed density of today's scores weighted $N/30$, plus the baseline's density weighted $(30-N)/30$. Code: `lib/earlyEstimate.ts`. From $N \ge 30$ both come from today's players alone. The baseline is never shown or counted as players; per-riddle crowd stats still wait for 30 real players.
 - Percentile and RQ are **live** and re-fetched each time Results opens. The value at finish is stored for personal stats only when $N \ge 30$ at finish (early estimates are never stored).
 
 ### 4.8 Personal stats
@@ -251,7 +253,7 @@ Then clamp RQ to $[70, 145]$.
 | Games played | Count of finished plays |
 | Current / max streak | Consecutive puzzle days finished |
 | Trap resistance | $1 - \dfrac{\#\text{trapped}}{\#\text{Trap-tier riddles answered}}$, as a % |
-| Average RQ | Mean of stored final RQs (only days where $N \ge 30$) |
+| Average result | Mean of stored final percentiles (only days where $N \ge 30$), shown as "Top N%" |
 | Best ladder level | Highest level ever reached |
 
 ### 4.9 Altitude
@@ -429,7 +431,7 @@ With `prefers-reduced-motion`, cut between camera shots instead of panning, and 
 ### 5.5 Results and debrief (the only place for stats)
 
 **First screen** (with the normal site header): the start page's dusk, full bleed: the same sky bands, moon (desktop), clouds and stars, with your result in the sky and a smaller fairground along the bottom where your balloon has landed on its pad. The result and the landing fit on one screen on desktop **and on phones** (390 × 844): on phones the sizes tighten (score rows put their detail beside the name, a flatter bell curve, the "come back later" note hidden) so the parked balloon shows without scrolling; the riddle-by-riddle section is a scroll away. A "▼ See how everyone did, and why ▼" button under the countdown scrolls to the riddle-by-riddle section; scrolling works too.
-1. **RQ reveal:** a pixel bell curve builds column by column (≈1 s), a small balloon drops onto the player's column, and the RQ counts up: "RQ 118." Then "Higher than 88% of players today."
+1. **Result reveal** (owner decision 2026-10-09): a pixel curve of the day's scores on a 0–450 axis ("Score for the day"; 45 columns of 10 points) builds column by column (≈1 s), a small balloon drops onto the player's score, and "Top N%" counts down from 100%: "Top 12%." Then "Better than 88% of players today", or "Early estimate · updates as people play" under 30 players (§4.7). `components/ScoreCurveReveal.tsx`.
 2. **Score card:** total out of 450, with one row per riddle (sprite, level or verdict, detail such as "speed bonus", points).
 3. **Share result** and the countdown.
 
@@ -439,22 +441,22 @@ With `prefers-reduced-motion`, cut between camera shots instead of panning, and 
 - "[N]% of players fell for the trap."
 - **Why:** the intuitive explanation, plus an expandable "Show the math" (KaTeX).
 
-With cold start, the RQ reveal shows the early estimate (§4.7); keep the explanations but replace the crowd parts with "How everyone else answered appears once 30 people have played."
+With cold start, the result reveal shows the early estimate (§4.7); keep the explanations but replace the crowd parts with "How everyone else answered appears once 30 people have played."
 
 ### 5.7 Share text format
 
 ```
-Riddler #58 — RQ 118
+Riddler #58 — Top 12%
 🟢 ✅⚡
 🟡 🪤🐟
 🔴 🧠
-riddler.example
+riddlerr.com
 ```
 
 - Each line: tier emoji, then the level emoji (numbers) or ✅ / 🪤 / ❌ (words).
 - Add 🪤 before the level emoji if a number answer was trapped.
 - Add ⚡ if `timeBonus ≥ 25`.
-- If cold start applies, write "Early RQ 118" instead of "RQ 118".
+- If cold start applies, add " (early)": "Top 12% (early)".
 - **Never** include answers or riddle text.
 
 ### 5.8 How-to-play modal
@@ -463,11 +465,11 @@ riddler.example
 2. Each one has a trap: an answer that feels right but isn't.
 3. For number answers, the closer you get, the higher you climb, from Goldfish (grey) to Oracle (red).
 4. Fast, close answers score more.
-5. At the end, see your RQ against everyone who played today.
+5. At the end, see how your score compares with everyone who played today.
 
 ### 5.9 Stats modal
 
-The stats in §4.8, plus a line chart of the player's last 14 RQs (gaps for cold-start days).
+The stats in §4.8, plus a line chart of the share of players beaten over the last 14 days, 0–100% (gaps for days with fewer than 30 players at finish).
 
 ---
 

@@ -185,13 +185,14 @@ export interface ResultsPayload {
   totalScore: number;
   maxScore: number;
   altitude: number;
+  /** 0–100, mid-rank among today's finished plays (§4.7). Shown as "Top N%". */
   percentile: number;
-  rq: number;
-  /** True while today has fewer than 30 finished plays: the RQ blends in a baseline (lib/earlyRq.ts). */
-  rqEstimated: boolean;
+  /** True while today has fewer than 30 finished plays: percentile and curve blend in a baseline (lib/earlyEstimate.ts). */
+  estimated: boolean;
   n: number;
   coldStart: boolean;
-  histogram: number[] | null;
+  /** How today's scores spread over 0–450: CURVE_COLUMNS heights, tallest = 1. */
+  curve: number[];
   perRiddle: {
     slot: number;
     tier: Tier;
@@ -212,7 +213,8 @@ export interface StatsPayload {
   currentStreak: number;
   maxStreak: number;
   trapResistance: number | null;
-  averageRq: number | null;
+  /** Mean stored final percentile (days with 30+ players at finish). */
+  averagePercentile: number | null;
   bestLevel: string | null;
-  lastRqs: { puzzleDate: string; rq: number | null }[];
+  lastPercentiles: { puzzleDate: string; percentile: number | null }[];
 }

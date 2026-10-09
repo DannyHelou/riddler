@@ -2,7 +2,7 @@
 
 *Rewritten 2026-10-04, launch day. Riddler is **live at https://riddlerr.com**; puzzle #1 was 2026-10-04.*
 
-Riddler is a daily math-riddle web game: three riddles a day (warm-up, trap, boss), the same for everyone. You fly a pixel hot-air balloon up from a fairground. The closer your answer, the bigger the burner flame and the higher you climb. At the end you land back at the fair and see your score, your RQ (riddle quotient, compared with today's players), and explanations.
+Riddler is a daily math-riddle web game: three riddles a day (warm-up, trap, boss), the same for everyone. You fly a pixel hot-air balloon up from a fairground. The closer your answer, the bigger the burner flame and the higher you climb. At the end you land back at the fair and see your score, where it ranks among today's players ("Top 12%", on a curve of the day's scores), and explanations.
 
 ## Read first
 
@@ -17,7 +17,7 @@ Riddler is a daily math-riddle web game: three riddles a day (warm-up, trap, bos
 
 - **Live in production** on Vercel with Supabase. A full play through the live API was verified on launch day (saving, scoring, results, share text, the Jev word judge, no answers sent before answering).
 - **Content:** 272 riddles and a 365-day schedule, 2026-10-04 → 2027-10-03.
-- **Tests:** `npx tsc --noEmit` clean, **90 unit tests** (vitest) green. **Playwright e2e: 8/8 green** (re-run 2026-10-05; run it before larger changes, see gotchas).
+- **Tests:** `npx tsc --noEmit` clean, **94 unit tests** (vitest) green. **Playwright e2e: 8/8 green** (re-run 2026-10-05; run it before larger changes, see gotchas).
 - **Git:** `main` deploys to production. `riddle-bank-year-one` is the working branch and is level with `main`. Commit attribution lines are in your system instructions. Ask the owner before pushing to `main` (it ships immediately).
 
 ## Production
@@ -76,7 +76,7 @@ Riddles and the schedule live in `content/`; production reads them from Supabase
 From the pre-launch audit (full report was in a scratch file; the items are all here):
 
 **Should fix soon**
-1. **Rate limiting**: none. Anyone can mint device IDs and spam answers, skewing percentile/RQ, running up Jev costs, and pushing junk into the public "top answers" (`lib/game.ts` crowd answers).
+1. **Rate limiting**: none. Anyone can mint device IDs and spam answers, skewing percentiles, running up Jev costs, and pushing junk into the public "top answers" (`lib/game.ts` crowd answers).
 2. **Midnight rollover**: a climb in progress at midnight Toronto fails (the next request resolves to the new day → 409 "Start the climb first" → generic error). Pin requests to the play's own date.
 3. **Crowd stats above 1,000 players/day**: `finishedScores` and `crowdAnswers` page without `ORDER BY`, and `deviceAnswers` has no paging (Supabase caps at 1,000 rows) in `lib/store/supabase.ts`.
 4. **Schedule-end alert**: a daily check that tomorrow's set exists (e.g. a Vercel cron route), well before 2027-10-03.
@@ -102,7 +102,7 @@ From the pre-launch audit (full report was in a scratch file; the items are all 
 ```bash
 npm install
 npm run dev          # http://localhost:3000; local JSON store in .data/ (no Supabase vars in .env.local)
-npm test             # vitest, 90 tests
+npm test             # vitest, 94 tests
 npx tsc --noEmit
 npm run e2e          # Playwright; use NEXT_DIST_DIR=.next-e2e (see gotchas)
 npm run seed -- --check
@@ -110,7 +110,7 @@ npm run verify       # Monte Carlo check of every probability riddle (-- --only 
 npm run schedule     # rebuild content/schedule.json (keeps published days; --rebuild, --start, --days, --dry-run)
 npm run tune-judge   # word-judge accuracy; uses Jev when TYPESAFE_API_KEY is set (-- --match 2 --floor -1 sends every non-exact case to Jev)
 npm run check-secrets
-npx tsx scripts/simulate-crowd.ts 40   # dev: fake players so Results shows RQ and crowd stats
+npx tsx scripts/simulate-crowd.ts 40   # dev: simulated players so Results shows real percentiles and crowd stats
 npx tsx scripts/shots.ts <baseUrl> <outDir>   # screenshots a full play at both sizes; types day 1's answers, so run with PUZZLE_DATE_OVERRIDE=2026-10-04
 ```
 
@@ -166,7 +166,8 @@ npx tsx scripts/shots.ts <baseUrl> <outDir>   # screenshots a full play at both 
 - **Repeat gap 90 days** (was 180).
 - **No hints.** Removed from UI, API, share text and How to play. The scoring hint term is always 0; `hint_md` and `hint_used` are unused leftovers (`hint_md` is still required by the validator).
 - **Colors per closeness level** grey → red; **smooth shake**; **panels** instead of notched boxes (buttons keep notched frames); **pixel texture, fluid motion**; **a fairground, not a sea**, with the balloon as the focus. The camera no longer pans during the climb.
-- **Early RQ** (2026-10-05): under 30 players a day, Results shows an RQ estimate blended with the last 14 days' real scores (or a fixed normal curve, mean 180 / SD 80, when those are thin), labelled "Early estimate · updates as people play" and "Early RQ" in the share text. Never stored, never shown as players; crowd stats still wait for 30 real players. `lib/earlyRq.ts`, brief §4.7. The owner first asked for fake players to pad the crowd; this honest version was chosen instead, so don't add fake players.
+- **Percentile, not RQ** (2026-10-09): Results leads with "Top N%" and a smoothed curve of the day's scores on a 0–450 axis with your balloon at your score (`components/ScoreCurveReveal.tsx`). Share text is "Riddler #6 — Top 12%"; stats show average result and the last 14 days' percentiles. `rq()` and `final_rq` remain but are never shown. Brief §4.7 / §5.5.
+- **Early estimate** (2026-10-05): under 30 players a day, the percentile and the curve blend today's players with the last 14 days' real scores (or a fixed normal curve, mean 180 / SD 80, when those are thin), labelled "Early estimate · updates as people play" and "(early)" in the share text. Never stored, never shown as players; crowd stats still wait for 30 real players. `lib/earlyEstimate.ts`, brief §4.7. The owner first asked for fake players to pad the crowd; this honest version was chosen instead, so don't add fake players.
 - **No analytics at launch** (PostHog is wired but has no key; the privacy page says there is no analytics, so update it if that changes).
 
 ## How the owner works

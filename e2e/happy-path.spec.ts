@@ -70,7 +70,7 @@ test('homepage → the climb → results and debrief → share', async ({ page, 
   await expect(page.getByText('Climb complete', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'See your results' }).click();
 
-  // Results: early RQ estimate (only this player), explanations, share
+  // Results: early estimate (only this player), explanations, share
   // The caption appears once the bell-curve reveal ends (slow under a dev server with tracing).
   await expect(page.getByText('Early estimate · updates as people play')).toBeVisible({ timeout: 20_000 });
   await expect(page.getByRole('heading', { name: 'Riddle by riddle' })).toBeVisible();
@@ -83,7 +83,7 @@ test('homepage → the climb → results and debrief → share', async ({ page, 
   if (info.project.name === 'desktop') {
     // The Windows clipboard stores CRLF.
     const text = (await page.evaluate(() => navigator.clipboard.readText())).replace(/\r\n/g, '\n');
-    expect(text).toMatch(/^Riddler #1 — Early RQ \d+\n🟢 ✅(⚡)?\n🟡 🔮(⚡)?\n🔴 🪤?📈(⚡)?\nriddlerr\.com$/u);
+    expect(text).toMatch(/^Riddler #1 — Top \d+% \(early\)\n🟢 ✅(⚡)?\n🟡 🔮(⚡)?\n🔴 🪤?📈(⚡)?\nriddlerr\.com$/u);
   }
 
   expect(leaks).toEqual([]);

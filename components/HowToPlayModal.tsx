@@ -8,7 +8,7 @@ const STEPS = [
   "Each one has a trap: an answer that feels right but isn't.",
   'For number answers, the closer you get, the higher you climb, from Goldfish (grey) to Oracle (red).',
   'Fast, close answers score more.',
-  'At the end, see your RQ against everyone who played today.',
+  'At the end, see how your score compares with everyone who played today.',
 ];
 
 export function HowToPlayModal({ onClose }: { onClose: () => void }) {
@@ -28,7 +28,7 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
         ))}
         <span>Goldfish, Guesser, Analyst, Quant, Genius, Oracle</span>
       </div>
-      <p className="mt-3 mb-0 text-[18px] leading-[1.3] text-haze">Type your answer and press Enter to fire the burner. Your RQ (riddle quotient) compares you with today&apos;s players only.</p>
+      <p className="mt-3 mb-0 text-[18px] leading-[1.3] text-haze">Type your answer and press Enter to fire the burner. Your result compares you with today&apos;s players only.</p>
       <div className="mt-6 flex justify-end">
         <button type="button" className="btn-primary" onClick={onClose}>Got it</button>
       </div>
