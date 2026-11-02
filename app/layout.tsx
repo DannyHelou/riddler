@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Press_Start_2P, VT323 } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import '../design/tokens.css';
 import 'katex/dist/katex.min.css';
 import './globals.css';
@@ -30,7 +31,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
