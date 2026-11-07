@@ -6,9 +6,11 @@ import bayes from '../content/riddles/bayes-disease-test.json';
 import keys from '../content/riddles/keys-no-locks.json';
 import widget from '../content/riddles/widget-machines.json';
 import coin from '../content/riddles/coin-two-heads.json';
+import buckledRail from '../content/riddles/buckled-rail.json';
 
 const num = bayes as unknown as Riddle;
 const word = keys as unknown as Riddle;
+const rail = buckledRail as unknown as Riddle;
 const sims = new Set(['bayes-disease-test', 'birthday-23', 'coin-two-heads']);
 const errs = (r: Partial<Riddle>, base: Riddle = num) => validateRiddle({ ...base, ...r } as Riddle, { simIds: sims });
 
@@ -38,6 +40,15 @@ describe('seed validation (§8.3)', () => {
     expect(errs({ trap_value: 12 }).join()).toMatch(/trap is too close/);
     // The coin riddle needs its tight 0.5-decade cap: with the default 2 it would fail.
     expect(errs({ closeness_cap: 2 }, coin as unknown as Riddle).join()).toMatch(/trap is too close/);
+  });
+
+  it('rejects number riddles whose answer or trap a player could not type', () => {
+    // 0.5 on a percent riddle reads as a fraction (50%), so neither the answer nor the trap types in as itself.
+    expect(errs({ answer_value: 0.5 }).join()).toMatch(/answer typed as "0.5" reads as 50/);
+    expect(errs({ trap_value: 0.5 }).join()).toMatch(/trap typed as "0.5" doesn't read as the trap/);
+    // The results page must not show the answer in a unit that types in as something else.
+    expect(errs({ answer_display: 'about 1 km' }, rail).join()).toMatch(/answer_display "about 1 km" typed in reads as 100000/);
+    expect(errs({}, rail)).toEqual([]);
   });
 
   it('rejects word riddles without accepted or trap answers, or with overlap', () => {

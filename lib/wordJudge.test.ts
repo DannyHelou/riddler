@@ -44,6 +44,15 @@ describe('judgeWord (§7.5)', () => {
     expect(judge).not.toHaveBeenCalled();
   });
 
+  it('never treats a different number as a typo', async () => {
+    const stamps = { ...riddle, id: 'dozen-stamps', accepted_answers: ['12', '12 stamps'], trap_answers: ['6', '24 stamps'] } as Riddle;
+    const judge = vi.fn(async () => 'wrong' as const);
+    const { d } = deps(judge);
+    expect(await judgeWord(stamps, '12 stammps', d)).toMatchObject({ verdict: 'correct', source: 'typo' });
+    expect((await judgeWord(stamps, '13 stamps', d)).source).not.toBe('typo');
+    expect((await judgeWord(stamps, '18 stamps', d)).verdict).not.toBe('correct');
+  });
+
   it('rejects empty input', async () => {
     const { d } = deps(vi.fn());
     await expect(judgeWord(riddle, '  the ', d)).rejects.toBeInstanceOf(EmptyAnswerError);

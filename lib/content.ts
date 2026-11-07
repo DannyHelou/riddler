@@ -3,7 +3,8 @@
  * riddles, the schedule, and the ids that have a Monte Carlo sim.
  */
 import katex from 'katex';
-import { closeness, level } from './scoring';
+import { closeness, isTrapped, level } from './scoring';
+import { parseNumber } from './parseNumber';
 import { normalizeWord } from './normalize';
 import { daysBetween } from './dates';
 import type { Riddle, Tier } from './types';
@@ -33,6 +34,33 @@ export function katexErrors(md: string): string[] {
     } catch (e) {
       errs.push((e as Error).message);
     }
+  }
+  return errs;
+}
+
+/**
+ * A player who knows the answer must be able to type it (§7.4): bare, with the unit the box shows
+ * (spaced or attached), or as the results page shows it. The trap, typed bare, must read as the trap.
+ */
+function answerEntryErrors(r: Riddle): string[] {
+  const errs: string[] = [];
+  const fmt = r.number_format!;
+  const ans = r.answer_value!;
+  const unit = fmt === 'quantity' && r.unit_label ? r.unit_label : null;
+  const forms = [String(ans), ...(unit ? [`${ans} ${unit}`, `${ans}${unit}`] : [])];
+  for (const f of forms) {
+    const p = parseNumber(f, fmt, r.unit_label);
+    if (!p.ok) errs.push(`the answer typed as "${f}" is rejected: ${p.reason}`);
+    else if (Math.abs(p.value - ans) > 1e-9 * Math.max(1, Math.abs(ans))) errs.push(`the answer typed as "${f}" reads as ${p.value}, not ${ans}`);
+  }
+  const t = parseNumber(String(r.trap_value), fmt, r.unit_label);
+  if (!t.ok || !isTrapped(fmt, t.value, ans, r.trap_value!, r.closeness_cap!)) errs.push(`the trap typed as "${r.trap_value}" doesn't read as the trap`);
+  // The answer as the results page shows it, minus any explanation in brackets.
+  const shown = r.answer_display.split(' (')[0];
+  const d = parseNumber(shown, fmt, r.unit_label);
+  if (d.ok) {
+    const c = closeness(fmt, d.value, ans, r.closeness_cap!);
+    if (c < 0.8) errs.push(`answer_display "${shown}" typed in reads as ${d.value} (${level(c)}), not the answer ${ans}`);
   }
   return errs;
 }
@@ -68,6 +96,7 @@ export function validateRiddle(r: Riddle, opts: { simIds?: Set<string>; fileId?:
     if (fmtOk && typeof r.answer_value === 'number' && typeof r.trap_value === 'number' && typeof r.closeness_cap === 'number' && r.closeness_cap > 0) {
       const cTrap = closeness(r.number_format!, r.trap_value, r.answer_value, r.closeness_cap);
       if (!(cTrap < 0.8)) errs.push(`trap is too close to the answer: c(trap) = ${cTrap.toFixed(3)} would score ${level(cTrap)}; needs < 0.8`);
+      errs.push(...answerEntryErrors(r));
     }
   } else if (r.answer_type === 'word') {
     const acc = r.accepted_answers ?? [];

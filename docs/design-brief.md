@@ -599,8 +599,12 @@ Deterministic, no AI. Must accept:
 | `25000000`, `25,000,000`, `25 000 000` | 25,000,000 |
 | `25m`, `25 million`, `2.5k`, `3bn`, `1.2 billion` | Expanded |
 | `2.5e7` | 25,000,000 |
+| `80`, `80s`, `80 sec`, `80 seconds`, `day 8`, `$5` | The unit is optional: words before or after the number are ignored (a bare number always works) |
+| `1 m` on a cm riddle, `2 hours` on a minutes riddle | Converted within length, time and mass, with "Reads as 100 cm" in the live preview; on a time riddle `17m` is minutes |
+| `e`, `1 in e`, `2/π` | The constants e and π |
 
 - Returns `{ ok: true, value } | { ok: false, reason }`.
+- `npm run seed -- --check` (and `npm test`) fails any number riddle whose answer, typed bare or with its unit, doesn't read as the answer; whose trap doesn't read as the trap; or whose `answer_display` reads as something else.
 - The same parser runs on the client (for the live preview) and the server (for scoring). The server result is authoritative.
 
 ### 7.5 Word-matching pipeline (`lib/wordJudge.ts`)
@@ -611,7 +615,7 @@ Deterministic, no AI. Must accept:
 
 1. **Normalize:** lowercase, trim, collapse whitespace, strip punctuation, remove leading articles (`a`, `an`, `the`), naive singularization (`pianos` → `piano`). Reject empty input.
 2. **Cache lookup** on `(riddle_id, normalized_input)`. If found, return the stored verdict.
-3. **Exact match** against the normalized `accepted_answers` → `correct`; against `trap_answers` → `trapped`. Also accept edit distance ≤ 1 for inputs of 5+ characters (typos).
+3. **Exact match** against the normalized `accepted_answers` → `correct`; against `trap_answers` → `trapped`. Also accept edit distance ≤ 1 for inputs of 5+ characters (typos), but only when the digits match: `13 stamps` is not a typo of `12 stamps`.
 4. **Embedding similarity.** Embed the input; compare with pre-computed embeddings of every accepted and trap answer (cosine similarity).
    - Let $s_a$ = best similarity to an accepted answer and $s_t$ = best similarity to a trap answer.
    - If $s_a \ge 0.88$ and $s_a - s_t \ge 0.05$ → `correct`.

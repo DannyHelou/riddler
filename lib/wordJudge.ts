@@ -45,11 +45,17 @@ export class EmptyAnswerError extends Error {
   }
 }
 
+const digitsOf = (s: string) => s.replace(/\D/g, '');
+
 /** Exact or one-typo match against a list; returns the matched original answer. */
 function listMatch(norm: string, list: string[]): { hit: string; typo: boolean } | null {
   for (const a of list) if (normalizeWord(a) === norm) return { hit: a, typo: false };
   if (norm.length >= 5) {
-    for (const a of list) if (editDistance(normalizeWord(a), norm, 1) <= 1) return { hit: a, typo: true };
+    // A different digit is a different answer ("13 stamps" is not a typo of "12 stamps").
+    for (const a of list) {
+      const n = normalizeWord(a);
+      if (digitsOf(n) === digitsOf(norm) && editDistance(n, norm, 1) <= 1) return { hit: a, typo: true };
+    }
   }
   return null;
 }
