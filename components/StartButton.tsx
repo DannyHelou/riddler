@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { api } from '@/lib/client';
 import { crossFadeToClimb } from '@/lib/launch';
 import { sfx, unlockAudio } from '@/lib/sfx';
+import { markLaunch } from '@/lib/track';
 
 const HANDOFF_MS = 700;
 
@@ -38,6 +39,7 @@ export function StartButton({ href, text, className, children }: { href: string;
         if (!toClimb || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
         e.preventDefault();
         if (launching) return;
+        markLaunch();
         void api('/api/play/start', {}).catch(() => {
           /* the climb retries on boot */
         });

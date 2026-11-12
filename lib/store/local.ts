@@ -6,7 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
-import type { Store, CrowdAnswerRow } from '../db';
+import type { Store, CrowdAnswerRow, AnswerWithPlay, EventQuery, EventRow, NewEvent } from '../db';
 import type { Answer, AnswerEmbedding, DailySet, Play, Riddle, VerdictReport, WordVerdictRow } from '../types';
 
 interface Data {
@@ -17,9 +17,10 @@ interface Data {
   word_verdicts: WordVerdictRow[];
   answer_embeddings: AnswerEmbedding[];
   verdict_reports: (VerdictReport & { id: string; created_at: string })[];
+  events: EventRow[];
 }
 
-const empty = (): Data => ({ riddles: {}, daily_sets: {}, plays: [], answers: [], word_verdicts: [], answer_embeddings: [], verdict_reports: [] });
+const empty = (): Data => ({ riddles: {}, daily_sets: {}, plays: [], answers: [], word_verdicts: [], answer_embeddings: [], verdict_reports: [], events: [] });
 const clone = <T>(v: T): T => (v === null || v === undefined ? v : JSON.parse(JSON.stringify(v)));
 
 export class LocalStore implements Store {
@@ -190,5 +191,37 @@ export class LocalStore implements Store {
   }
   async hasReport(riddleId: string, deviceId: string) {
     return this.load().verdict_reports.some((r) => r.riddle_id === riddleId && r.device_id === deviceId);
+  }
+
+  async insertEvents(rows: NewEvent[]) {
+    const d = this.load();
+    let id = d.events.reduce((m, e) => Math.max(m, e.id), 0);
+    const now = new Date().toISOString();
+    for (const r of rows) d.events.push({ ...clone(r), id: ++id, ts: r.ts ?? now });
+    this.save();
+  }
+  async listEvents(q: EventQuery) {
+    return clone(
+      this.load().events.filter(
+        (e) => e.ts >= q.from && e.ts < q.to && (!q.names?.length || q.names.includes(e.name)) && (!q.deviceId || e.device_id === q.deviceId),
+      ),
+    ).sort((a, b) => a.id - b.id);
+  }
+  async deleteEventsBefore(beforeIso: string) {
+    const d = this.load();
+    const before = d.events.length;
+    d.events = d.events.filter((e) => e.ts >= beforeIso);
+    if (d.events.length !== before) this.save();
+    return before - d.events.length;
+  }
+  async playsBetween(fromDate: string, toDate: string) {
+    return clone(this.load().plays.filter((p) => p.puzzle_date >= fromDate && p.puzzle_date <= toDate));
+  }
+  async answersBetween(fromDate: string, toDate: string): Promise<AnswerWithPlay[]> {
+    const d = this.load();
+    const plays = new Map(d.plays.filter((p) => p.puzzle_date >= fromDate && p.puzzle_date <= toDate).map((p) => [p.id, p]));
+    return clone(
+      d.answers.filter((a) => plays.has(a.play_id)).map((a) => ({ ...a, puzzle_date: plays.get(a.play_id)!.puzzle_date, device_id: plays.get(a.play_id)!.device_id })),
+    );
   }
 }

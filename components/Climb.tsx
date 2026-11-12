@@ -19,7 +19,7 @@ import {
 } from '@/lib/burner';
 import { LEVELS, level } from '@/lib/scoring';
 import { api, ApiError } from '@/lib/client';
-import { track } from '@/lib/track';
+import { flush, takeLaunch, track } from '@/lib/track';
 import { fmtAlt, spokenAlt } from '@/lib/format';
 import { shadowOf, SPRITES, WORLD, PALETTE, FLYER_SPRITE } from '@/lib/sprites';
 import {
@@ -449,6 +449,39 @@ export function Climb() {
     window.dispatchEvent(new Event(CLIMB_READY));
   }, [geo, frame]);
 
+  // Analytics: the tab leaving the screen while a riddle's clock runs, and the page closing mid-climb.
+  useEffect(() => {
+    let hiddenAt: number | null = null;
+    let hiddenSlot: number | null = null;
+    const onVisibility = () => {
+      const r = served.current;
+      if (document.visibilityState === 'hidden') {
+        if (r && phaseRef.current === 'ask') {
+          hiddenAt = Date.now();
+          hiddenSlot = r.slot;
+          track('tab_hidden', { slot: r.slot, phase: phaseRef.current });
+          flush();
+        }
+      } else if (hiddenAt !== null) {
+        track('tab_returned', { slot: hiddenSlot, phase: phaseRef.current, hiddenMs: Date.now() - hiddenAt });
+        hiddenAt = null;
+      }
+    };
+    const onPageHide = () => {
+      const r = served.current;
+      const p = phaseRef.current;
+      if (!r || p === 'loading' || p === 'error' || p === 'leaving' || (p === 'reveal' && r.slot === 3)) return;
+      track('page_left', { slot: r.slot, phase: p, elapsedMs: Math.round(Date.now() + clockOffset.current - Date.parse(r.servedAt)) });
+      flush();
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+    addEventListener('pagehide', onPageHide);
+    return () => {
+      document.removeEventListener('visibilitychange', onVisibility);
+      removeEventListener('pagehide', onPageHide);
+    };
+  }, []);
+
   /* ---------- Server calls ---------- */
   const fail = (e: unknown) => {
     setFatal(e instanceof Error ? e.message : 'Something went wrong');
@@ -500,10 +533,10 @@ export function Climb() {
           router.replace('/results');
           return;
         }
-        if (today.status === 'not_started') {
-          track('play_start', { puzzleNumber: today.puzzleNumber });
-          await api('/api/play/start', {});
-        }
+        const launched = takeLaunch();
+        if (today.status === 'not_started' || launched) track('play_start', { puzzleNumber: today.puzzleNumber });
+        else track('play_resumed', { slot: today.currentSlot ?? null });
+        if (today.status === 'not_started') await api('/api/play/start', {});
         anim.current.alt = today.altitude;
         setProgress(today.progress);
         await serve(today.currentSlot ?? 1);

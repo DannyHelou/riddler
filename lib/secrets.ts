@@ -10,7 +10,10 @@ export const SERVER_SECRETS = [
   'SUPABASE_SERVICE_ROLE_KEY',
   'TYPESAFE_API_KEY',
   'ANTHROPIC_API_KEY',
-  // Added by Vercel's Supabase integration; the app doesn't read them, but they must stay private too.
+  'ADMIN_PASSWORD_HASH',
+  'ADMIN_SESSION_SECRET',
+  'CRON_SECRET',
+  // Added by Vercel's Supabase integration; only the build's migrate step reads a Postgres URL, but all must stay private.
   'SUPABASE_JWT_SECRET',
   'SUPABASE_SECRET_KEY',
   'POSTGRES_PASSWORD',

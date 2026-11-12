@@ -21,6 +21,33 @@ export interface CrowdAnswerRow {
   trapped: boolean;
 }
 
+/** One stored analytics event (supabase/migrations/0002_events.sql). */
+export interface EventRow {
+  id: number;
+  ts: string;
+  client_ts: string | null;
+  device_id: string | null;
+  session_id: string;
+  play_id: string | null;
+  name: string;
+  props: Record<string, string | number | boolean | null>;
+  path: string | null;
+  country: string | null;
+  device_kind: string | null;
+}
+export type NewEvent = Omit<EventRow, 'id' | 'ts'> & { ts?: string };
+
+export interface EventQuery {
+  /** ISO instants, from <= ts < to. */
+  from: string;
+  to: string;
+  names?: string[];
+  deviceId?: string;
+}
+
+/** An answer row with its play's date and device (admin dashboard). */
+export type AnswerWithPlay = Answer & { puzzle_date: string; device_id: string };
+
 export interface Store {
   readonly kind: 'supabase' | 'local';
 
@@ -61,6 +88,17 @@ export interface Store {
 
   insertReport(r: VerdictReport): Promise<void>;
   hasReport(riddleId: string, deviceId: string): Promise<boolean>;
+
+  // Analytics (admin only; never on the game's request path except insertEvents).
+  insertEvents(rows: NewEvent[]): Promise<void>;
+  /** Events in a time range, oldest first. */
+  listEvents(q: EventQuery): Promise<EventRow[]>;
+  /** Deletes events older than `beforeIso`; returns how many. */
+  deleteEventsBefore(beforeIso: string): Promise<number>;
+  /** Plays with fromDate <= puzzle_date <= toDate (all devices). */
+  playsBetween(fromDate: string, toDate: string): Promise<Play[]>;
+  /** Answer rows for plays with fromDate <= puzzle_date <= toDate. */
+  answersBetween(fromDate: string, toDate: string): Promise<AnswerWithPlay[]>;
 }
 
 let cached: Store | null = null;

@@ -3,7 +3,7 @@
  * only ever be imported on the server.
  */
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
-import type { Store, CrowdAnswerRow } from '../db';
+import type { Store, CrowdAnswerRow, AnswerWithPlay, EventQuery, EventRow, NewEvent } from '../db';
 import type { Answer, AnswerEmbedding, DailySet, Play, Riddle, VerdictReport, WordVerdictRow } from '../types';
 import { assertServer } from '../secrets';
 
@@ -15,6 +15,17 @@ function check<T>(res: { data: T; error: { message: string } | null }, what: str
 }
 
 const PG_UNIQUE_VIOLATION = '23505';
+const PAGE = 1000;
+
+/** Reads every page of a query (Supabase returns at most 1,000 rows per request). */
+async function all<T>(query: (from: number, to: number) => PromiseLike<{ data: T[] | null; error: { message: string } | null }>, what: string): Promise<T[]> {
+  const out: T[] = [];
+  for (let from = 0; ; from += PAGE) {
+    const rows = check(await query(from, from + PAGE - 1), what) ?? [];
+    out.push(...rows);
+    if (rows.length < PAGE) return out;
+  }
+}
 
 /** pgvector comes back as "[0.1,0.2,...]". */
 function parseVector(v: unknown): number[] {
@@ -193,5 +204,43 @@ export class SupabaseStore implements Store {
   async hasReport(riddleId: string, deviceId: string) {
     const res = await this.db.from('verdict_reports').select('id', { count: 'exact', head: true }).eq('riddle_id', riddleId).eq('device_id', deviceId);
     return (res.count ?? 0) > 0;
+  }
+
+  async insertEvents(rows: NewEvent[]) {
+    if (rows.length) check(await this.db.from('events').insert(rows), 'insertEvents');
+  }
+  async listEvents(q: EventQuery) {
+    return all<EventRow>((from, to) => {
+      let b = this.db.from('events').select('*').gte('ts', q.from).lt('ts', q.to);
+      if (q.names?.length) b = b.in('name', q.names);
+      if (q.deviceId) b = b.eq('device_id', q.deviceId);
+      return b.order('id').range(from, to);
+    }, 'listEvents');
+  }
+  async deleteEventsBefore(beforeIso: string) {
+    const res = await this.db.from('events').delete({ count: 'exact' }).lt('ts', beforeIso);
+    if (res.error) throw new Error(`deleteEventsBefore: ${res.error.message}`);
+    return res.count ?? 0;
+  }
+  async playsBetween(fromDate: string, toDate: string) {
+    return all<Play>(
+      (from, to) => this.db.from('plays').select('*').gte('puzzle_date', fromDate).lte('puzzle_date', toDate).order('id').range(from, to),
+      'playsBetween',
+    );
+  }
+  async answersBetween(fromDate: string, toDate: string): Promise<AnswerWithPlay[]> {
+    const rows = await all<Answer & { plays: { puzzle_date: string; device_id: string } }>(
+      (from, to) =>
+        this.db
+          .from('answers')
+          .select('*, plays!inner(puzzle_date, device_id)')
+          .gte('plays.puzzle_date', fromDate)
+          .lte('plays.puzzle_date', toDate)
+          .order('play_id')
+          .order('slot')
+          .range(from, to) as unknown as PromiseLike<{ data: (Answer & { plays: { puzzle_date: string; device_id: string } })[] | null; error: { message: string } | null }>,
+      'answersBetween',
+    );
+    return rows.map(({ plays, ...a }) => ({ ...(a as Answer), puzzle_date: plays.puzzle_date, device_id: plays.device_id }));
   }
 }
