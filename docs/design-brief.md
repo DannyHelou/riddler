@@ -901,8 +901,12 @@ $$
 | `verdict_reported` | `slot` |
 | `play_finished` | `totalScore`, `percentile`, `rq` |
 | `share_clicked` | `method` |
+| `tab_hidden` | `slot`, `phase` (the tab left the screen while a riddle's clock ran) |
+| `tab_returned` | `slot`, `phase`, `hiddenMs` |
+| `page_left` | `slot`, `phase`, `elapsedMs` (the page closed mid-climb) |
+| `play_resumed` | `slot` (the climb reopened an unfinished play) |
 
-Never send the device ID or raw answer text to third-party analytics.
+**First-party since 2026-11-12** (docs/superpowers/specs/2026-11-07-analytics-design.md): `lib/track.ts` batches events to `POST /api/events`, which validates them (`lib/events.ts`), takes the device ID from the cookie (never the body), and stores them in the `events` table next to `plays`/`answers`. The endpoint always returns 204, so analytics can never break the game. Event times are mapped onto the server clock with the batch's send time. Events are deleted after 180 days (`/api/cron/cleanup`). Raw answer text is never sent as an event (the server already stores it in `answers`). No third-party analytics. The password-protected owner dashboard at `/admin` shows player counts, a funnel, per-riddle stats, tab-away time, and per-device timelines.
 
 ---
 

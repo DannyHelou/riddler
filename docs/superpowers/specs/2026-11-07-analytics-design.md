@@ -1,6 +1,8 @@
 # Analytics and owner dashboard — design
 
-*Brainstormed 2026-11-07. Status: approved design, not yet implemented. Next step: `superpowers:writing-plans`.*
+*Brainstormed 2026-11-07. Status: **implemented 2026-11-12** (see docs/HANDOFF.md "Analytics and the dashboard").*
+
+**How the open questions were settled:** retention 180 days (`EVENTS_RETENTION_DAYS`); the PostHog path was removed from `lib/track.ts`; the privacy paragraph is in `app/(site)/privacy/page.tsx`; `/admin` covers player analytics only. **Deviations:** the password hash is scrypt (Node built-in) rather than bcrypt, to avoid a dependency; the `events.ts` column is the event's time on the server clock (client time shifted by the batch's clock offset, else arrival time) rather than raw arrival time, because batching delayed arrival by up to 1.5 s and misordered timelines.
 
 ## Context
 

@@ -17,7 +17,7 @@ Riddler is a daily math-riddle web game: three riddles a day (warm-up, trap, bos
 
 - **Live in production** on Vercel with Supabase. A full play through the live API was verified on launch day (saving, scoring, results, share text, the Jev word judge, no answers sent before answering).
 - **Content:** 272 riddles and a 365-day schedule, 2026-10-04 → 2027-10-03.
-- **Tests:** `npx tsc --noEmit` clean, **94 unit tests** (vitest) green. **Playwright e2e: 8/8 green** (re-run 2026-10-05; run it before larger changes, see gotchas).
+- **Tests:** `npx tsc --noEmit` clean, **122 unit tests** (vitest) green. **Playwright e2e: 8/8 green** (re-run 2026-10-05; run it before larger changes, see gotchas).
 - **Git:** `main` deploys to production. `riddle-bank-year-one` is the working branch and is level with `main`. Commit attribution lines are in your system instructions. Ask the owner before pushing to `main` (it ships immediately).
 
 ## Production
@@ -97,12 +97,20 @@ From the pre-launch audit (full report was in a scratch file; the items are all 
 
 **Not checked by a human yet:** the sound effects; a < 5 min playthrough on a real phone; the keyboard behaviour on a real iPhone and Android (it was verified with a simulated keyboard only).
 
+## Analytics and the dashboard
+
+- **Dashboard:** https://riddlerr.com/admin (password-protected; one shared password). Overview with players today / yesterday / 7 / 28 days / all time, players per day, a funnel (visited → started → riddle 1/2/3 → finished), plays by hour (Toronto), per-riddle stats (closeness, correct, trapped, timed out, left mid-riddle, median time), returning players and streaks, tab-away time, phone vs desktop. `/admin/plays/<date>` lists every play that day; each links to `/admin/player/<deviceId>?date=` with a merged timeline of browser events and the server's play/answer rows. Player counts come from `plays`, so they cover every day since launch; event-based numbers (visits, tab-away, devices) start on 2026-11-12.
+- **Pipeline:** `lib/track.ts` (browser, batched, `sendBeacon`) → `POST /api/events` (`app/api/events/route.ts`; validation and rate cap in `lib/events.ts`; always 204) → `events` table (`supabase/migrations/0002_events.sql`). Aggregation is pure and unit-tested (`lib/analytics.ts`); loaders in `lib/adminData.ts`; UI in `app/admin/*` and `components/admin/AdminUI.tsx`.
+- **Migrations now run on deploy:** `npm run build` starts with `scripts/migrate.ts`, which applies any `supabase/migrations/*.sql` not yet in `schema_migrations`, using Vercel's `POSTGRES_URL_NON_POOLING`. It does nothing locally and fails soft (a warning in the build log) so a DB blip can't block a deploy. Add schema changes as new numbered files.
+- **Env vars (Vercel, Production, Sensitive):** `ADMIN_PASSWORD_HASH` (make one with `npm run hash-password -- "<password>"`; the env var holds the hash, never the password), `ADMIN_SESSION_SECRET` (any long random string; signs the login cookie, and changing it logs everyone out), `CRON_SECRET` (Vercel sends it to the daily `/api/cron/cleanup`, `vercel.json`). Optional `EVENTS_RETENTION_DAYS` (default 180, minimum 30). Without `ADMIN_PASSWORD_HASH` the dashboard can't be logged into; events are still collected.
+- **Locally:** put an `ADMIN_PASSWORD_HASH` in `.env.local` and open http://localhost:3000/admin; events go to the local JSON store.
+
 ## Run it locally
 
 ```bash
 npm install
 npm run dev          # http://localhost:3000; local JSON store in .data/ (no Supabase vars in .env.local)
-npm test             # vitest, 94 tests
+npm test             # vitest, 122 tests
 npx tsc --noEmit
 npm run e2e          # Playwright; use NEXT_DIST_DIR=.next-e2e (see gotchas)
 npm run seed -- --check
@@ -168,7 +176,7 @@ npx tsx scripts/shots.ts <baseUrl> <outDir>   # screenshots a full play at both 
 - **Colors per closeness level** grey → red; **smooth shake**; **panels** instead of notched boxes (buttons keep notched frames); **pixel texture, fluid motion**; **a fairground, not a sea**, with the balloon as the focus. The camera no longer pans during the climb.
 - **Percentile, not RQ** (2026-10-09): Results leads with "Top N%" and a smoothed curve of the day's scores on a 0–450 axis with your balloon at your score (`components/ScoreCurveReveal.tsx`). Share text is "Riddler #6 — Top 12%"; stats show average result and the last 14 days' percentiles. `rq()` and `final_rq` remain but are never shown. Brief §4.7 / §5.5.
 - **Early estimate** (2026-10-05): under 30 players a day, the percentile and the curve blend today's players with the last 14 days' real scores (or a fixed normal curve, mean 180 / SD 80, when those are thin), labelled "Early estimate · updates as people play" and "(early)" in the share text. Never stored, never shown as players; crowd stats still wait for 30 real players. `lib/earlyEstimate.ts`, brief §4.7. The owner first asked for fake players to pad the crowd; this honest version was chosen instead, so don't add fake players.
-- **No analytics at launch** (PostHog is wired but has no key; the privacy page says there is no analytics, so update it if that changes).
+- **First-party analytics + owner dashboard** (2026-11-12, replaces "no analytics at launch"): events go to our own `events` table, never a third party; PostHog was removed from `lib/track.ts`. The privacy page has a "Game analytics" paragraph; keep it accurate if the event set changes. See "Analytics and the dashboard" below.
 
 ## How the owner works
 
