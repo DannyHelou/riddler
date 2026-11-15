@@ -50,8 +50,9 @@ describe('analytics aggregations', () => {
       answer(a, 2, { trapped: true }),
     ];
     const [s1, s2] = riddleStats(rows);
-    expect(s1).toMatchObject({ slot: 1, served: 3, answered: 2, abandoned: 1, avgCloseness: 0.5, correctRate: 0.5, timeoutRate: 0.5, medianTimeMs: 10_000 });
-    expect(s2).toMatchObject({ slot: 2, trapRate: 1 });
+    expect(s1).toMatchObject({ slot: 1, served: 3, answered: 2, abandoned: 1, avgCloseness: 0.5, correctRate: 1, timeoutRate: 0.5, medianTimeMs: 10_000 });
+    // Number riddles (no verdict) have no correct rate rather than 0%.
+    expect(s2).toMatchObject({ slot: 2, trapRate: 1, correctRate: null });
   });
 
   it('computes streaks and returning players', () => {

@@ -103,7 +103,8 @@ export function riddleStats(answers: Pick<Answer, 'slot' | 'riddle_id' | 'answer
         answered: done.length,
         abandoned: rows.length - done.length,
         avgCloseness: closeness.length ? closeness.reduce((s, c) => s + c, 0) / closeness.length : null,
-        correctRate: rate(done.filter((a) => a.verdict === 'correct').length, done.length),
+        // Only word riddles get a correct/wrong verdict; number riddles are graded by closeness alone.
+        correctRate: rate(done.filter((a) => a.verdict === 'correct').length, done.filter((a) => a.verdict && a.verdict !== 'timeout').length),
         trapRate: rate(done.filter((a) => a.trapped).length, done.length),
         timeoutRate: rate(done.filter((a) => a.verdict === 'timeout').length, done.length),
         medianTimeMs: median(times),
