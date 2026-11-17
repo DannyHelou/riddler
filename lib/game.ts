@@ -14,7 +14,7 @@ import { parseNumber, formatNumber } from './parseNumber';
 import { judgeWord, EmptyAnswerError, MAX_WORD_INPUT } from './wordJudge';
 import { defaultEmbedder } from './embed';
 import { defaultJudge } from './judge';
-import { addDays, daysBetween, launchDate, nextResetAt, puzzleNumber, todayPuzzleDate } from './dates';
+import { addDays, daysBetween, launchDate, midnightInZone, nextResetAt, puzzleNumber, todayPuzzleDate } from './dates';
 import { seedStore } from './contentLoader';
 import { shareText } from './share';
 import { normalizeWord } from './normalize';
@@ -79,6 +79,36 @@ async function ctx(now = new Date()) {
   return { store, date, set, now };
 }
 
+/** A climb that crosses midnight keeps going on yesterday's play for this long after the reset. */
+export const MIDNIGHT_GRACE_MIN = 45;
+
+/**
+ * The date a device's requests belong to. Normally today; but inside the grace window after
+ * midnight, with no play today yet, an unfinished play from yesterday is still the active one
+ * (so a climb in progress at 00:00 doesn't break). With `finishedToo`, a play finished within
+ * the window also counts (so its results can be shown). Starting today's play ends the window.
+ */
+async function activeCtx(deviceId: string, opts: { finishedToo?: boolean } = {}, now = new Date()) {
+  const store = await getStore();
+  await ensureContent(store);
+  const today = todayPuzzleDate(now);
+  let date = today;
+  let play = await store.getPlay(deviceId, today);
+  if (!play) {
+    const sinceMidnight = now.getTime() - midnightInZone(today).getTime();
+    if (sinceMidnight >= 0 && sinceMidnight <= MIDNIGHT_GRACE_MIN * 60_000) {
+      const prev = await store.getPlay(deviceId, addDays(today, -1));
+      const recent = prev?.finished_at ? now.getTime() - Date.parse(prev.finished_at) <= MIDNIGHT_GRACE_MIN * 60_000 : false;
+      if (prev && (!prev.finished_at || (opts.finishedToo && recent))) {
+        date = prev.puzzle_date;
+        play = prev;
+      }
+    }
+  }
+  const set = await resolveSet(store, date);
+  return { store, date, set, now, play };
+}
+
 function riddleIdFor(set: DailySet, slot: Slot) {
   return slot === 1 ? set.warmup_id : slot === 2 ? set.trap_id : set.boss_id;
 }
@@ -129,8 +159,7 @@ export async function currentStreak(deviceId: string | null): Promise<number> {
 /* ---------------- Today ---------------- */
 
 export async function getToday(deviceId: string): Promise<TodayState> {
-  const { store, date, set, now } = await ctx();
-  const play = await store.getPlay(deviceId, date);
+  const { store, date, set, now, play } = await activeCtx(deviceId);
   const answers = play ? await store.getAnswers(play.id) : [];
   const answered = answers.filter((a) => a.answered_at);
   const status = !play ? 'not_started' : play.finished_at ? 'finished' : 'in_progress';
@@ -155,8 +184,7 @@ export async function startPlay(deviceId: string) {
   return { playId: play.id };
 }
 
-async function requirePlay(store: Store, deviceId: string, date: string): Promise<Play> {
-  const play = await store.getPlay(deviceId, date);
+function requirePlay(play: Play | null): Play {
   if (!play) throw new GameError(409, 'Start the climb first');
   return play;
 }
@@ -164,8 +192,8 @@ async function requirePlay(store: Store, deviceId: string, date: string): Promis
 /* ---------------- Serve ---------------- */
 
 export async function serveRiddle(deviceId: string, slot: Slot): Promise<ServedRiddle> {
-  const { store, date, set, now } = await ctx();
-  const play = await requirePlay(store, deviceId, date);
+  const { store, set, now, play: found } = await activeCtx(deviceId);
+  const play = requirePlay(found);
   const answers = await store.getAnswers(play.id);
   if (slot > 1 && !answers.find((a) => a.slot === slot - 1 && a.answered_at)) {
     throw new GameError(409, `Answer riddle ${slot - 1} first`);
@@ -232,8 +260,8 @@ function toResult(riddle: Riddle, a: Answer, all: Answer[], finished: boolean): 
 }
 
 export async function submitAnswer(deviceId: string, slot: Slot, input: string | null): Promise<AnswerResult> {
-  const { store, date, set } = await ctx();
-  const play = await requirePlay(store, deviceId, date);
+  const { store, date, set, play: found } = await activeCtx(deviceId);
+  const play = requirePlay(found);
   let answers = await store.getAnswers(play.id);
   const row = answers.find((a) => a.slot === slot);
   if (!row) throw new GameError(409, 'That riddle has not been served yet');
@@ -346,8 +374,8 @@ function crowdHistogram(riddle: Riddle, values: number[], you: number | null): C
 }
 
 export async function getResults(deviceId: string): Promise<ResultsPayload> {
-  const { store, date, set, now } = await ctx();
-  const play = await requirePlay(store, deviceId, date);
+  const { store, date, set, now, play: found } = await activeCtx(deviceId, { finishedToo: true });
+  const play = requirePlay(found);
   if (!play.finished_at) throw new GameError(403, 'Finish the climb to see results');
   const answers = await store.getAnswers(play.id);
   const scores = await store.finishedScores(date);
@@ -427,8 +455,8 @@ export async function getResults(deviceId: string): Promise<ResultsPayload> {
 /* ---------------- Reports and stats ---------------- */
 
 export async function reportVerdict(deviceId: string, slot: Slot) {
-  const { store, date } = await ctx();
-  const play = await requirePlay(store, deviceId, date);
+  const { store, play: found } = await activeCtx(deviceId, { finishedToo: true });
+  const play = requirePlay(found);
   if (!play.finished_at) throw new GameError(403, 'Finish the climb first');
   const a = (await store.getAnswers(play.id)).find((x) => x.slot === slot);
   if (!a?.normalized_input) throw new GameError(400, 'Only word answers can be reported');

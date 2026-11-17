@@ -175,4 +175,40 @@ describe('game service (§7.7, §10)', () => {
     expect(s).toMatchObject({ gamesPlayed: 2, currentStreak: 2, maxStreak: 2, bestLevel: 'Oracle' });
     expect(s.trapResistance).toBe(0.5);
   });
+
+  it('keeps a climb going across midnight, then lets the new day start', async () => {
+    const d = randomUUID();
+    // 2026-10-04 23:59 Toronto (EDT = UTC-4)
+    vi.setSystemTime(Date.parse('2026-10-05T03:59:00Z'));
+    await game.startPlay(d);
+    await serve(d, 1);
+    await game.submitAnswer(d, 1, 'piano');
+    await serve(d, 2);
+    // Midnight passes mid-riddle 2.
+    vi.stubEnv('PUZZLE_DATE_OVERRIDE', '2026-10-05');
+    vi.setSystemTime(Date.parse('2026-10-05T04:00:30Z'));
+    const today = await game.getToday(d);
+    expect(today).toMatchObject({ status: 'in_progress', puzzleDate: '2026-10-04', currentSlot: 2 });
+    await game.submitAnswer(d, 2, '9');
+    await serve(d, 3);
+    const r = await game.submitAnswer(d, 3, '9');
+    expect(r.finished).toBe(true);
+    // Results for the finished cross-midnight play still load...
+    expect((await game.getResults(d)).puzzleDate).toBe('2026-10-04');
+    // ...and the device can start today's play right away.
+    expect((await game.getToday(d)).status).toBe('not_started');
+    await game.startPlay(d);
+    expect((await game.getToday(d)).puzzleDate).toBe('2026-10-05');
+  });
+
+  it('does not resume yesterday once the grace window has passed', async () => {
+    const d = randomUUID();
+    vi.setSystemTime(Date.parse('2026-10-05T03:59:00Z'));
+    await game.startPlay(d);
+    await serve(d, 1);
+    vi.stubEnv('PUZZLE_DATE_OVERRIDE', '2026-10-05');
+    vi.setSystemTime(Date.parse('2026-10-05T04:00:00Z') + (game.MIDNIGHT_GRACE_MIN + 1) * 60_000);
+    expect((await game.getToday(d)).status).toBe('not_started');
+    await expect(game.serveRiddle(d, 1)).rejects.toMatchObject({ status: 409 });
+  });
 });
