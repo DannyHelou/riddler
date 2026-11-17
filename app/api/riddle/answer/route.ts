@@ -1,10 +1,12 @@
 import { submitAnswer, GameError, isSlot } from '@/lib/game';
+import { rateLimit } from '@/lib/ratelimit';
 import { handle, readJson, requireDevice } from '@/lib/api';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(req: Request) {
   return handle(async () => {
+    await rateLimit('answer');
     const { slot, input } = await readJson(req);
     if (!isSlot(slot)) throw new GameError(400, 'Bad slot');
     if (input !== null && typeof input !== 'string') throw new GameError(400, 'Bad input');
