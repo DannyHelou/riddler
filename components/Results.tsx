@@ -4,9 +4,10 @@
  * The percentile is live: re-fetched every time this page opens (§4.7).
  */
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ApiError } from '@/lib/client';
-import { takeResults } from '@/lib/resultsCache';
+import { clearResults, peekResults, takeResults } from '@/lib/resultsCache';
+import { RESULTS_READY } from '@/lib/launch';
 import { track } from '@/lib/track';
 import { fmtAlt } from '@/lib/format';
 import { LEVEL_SPRITE, SPRITES } from '@/lib/sprites';
@@ -92,29 +93,47 @@ function ScoreCard({ r }: { r: ResultsPayload }) {
   );
 }
 
+function trackFinished(res: ResultsPayload) {
+  try {
+    const k = `burner_finished_${res.puzzleDate}`;
+    if (!sessionStorage.getItem(k) && !localStorage.getItem(k)) {
+      localStorage.setItem(k, '1');
+      track('play_finished', { totalScore: res.totalScore, percentile: Math.round(res.percentile) });
+    }
+  } catch {
+    /* ignore */
+  }
+}
+
 export function Results() {
-  const [r, setR] = useState<ResultsPayload | null>(null);
+  // Coming from the climb, the results were prefetched while the balloon landed: render them on
+  // the very first frame so the climb's cross-fade lands on them (no empty or dark frame between).
+  const [r, setR] = useState<ResultsPayload | null>(() => (typeof window === 'undefined' ? null : peekResults()));
+  const instant = useRef(r !== null);
   const [error, setError] = useState<{ status: number; message: string } | null>(null);
-  const [phone, setPhone] = useState(false);
+  const [phone, setPhone] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
 
   useEffect(() => {
     setPhone(window.innerWidth < 768);
+    if (r) {
+      clearResults();
+      trackFinished(r);
+      return;
+    }
     takeResults().then(
       (res) => {
         setR(res);
-        try {
-          const k = `burner_finished_${res.puzzleDate}`;
-          if (!sessionStorage.getItem(k) && !localStorage.getItem(k)) {
-            localStorage.setItem(k, '1');
-            track('play_finished', { totalScore: res.totalScore, percentile: Math.round(res.percentile) });
-          }
-        } catch {
-          /* ignore */
-        }
+        trackFinished(res);
       },
       (e) => setError({ status: e instanceof ApiError ? e.status : 500, message: e instanceof Error ? e.message : 'Something went wrong' }),
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Tell the climb's cross-fade the result is on screen (or that it never will be).
+  useEffect(() => {
+    if (r || error) window.dispatchEvent(new Event(RESULTS_READY));
+  }, [r, error]);
 
   if (error) {
     return (
@@ -127,15 +146,7 @@ export function Results() {
       </div>
     );
   }
-  // While the results load, hold the climb's closing dusk (no text) so the landing fades straight in.
-  if (!r)
-    return (
-      <div className="min-h-[calc(100dvh-56px)] md:min-h-[calc(100dvh-64px)]" style={{ background: '#070B1C' }} aria-busy="true">
-        <span className="sr-only">Landing…</span>
-      </div>
-    );
-
-  const puzzleLabel = r.puzzleNumber >= 1 ? `Puzzle ${r.puzzleNumber}` : 'Preview';
+  const puzzleLabel = r && r.puzzleNumber >= 1 ? `Puzzle ${r.puzzleNumber}` : 'Preview';
 
   const toExplanations = () => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -145,42 +156,51 @@ export function Results() {
   return (
     <div>
       {/* You've landed: your result fills the first screen under the start page's dusk sky, with the
-          fairground along the bottom and your balloon back on its pad. The explanations wait below (§5.5). */}
-      <section className="night-scope landed-in relative flex min-h-[calc(100dvh-56px)] flex-col overflow-hidden md:min-h-[calc(100dvh-64px)]" style={{ background: '#070B1C' }} aria-label="Your result">
+          fairground along the bottom and your balloon back on its pad. The explanations wait below (§5.5).
+          The scene is drawn even while the result loads, so the page never opens on black. */}
+      <section className="night-scope relative flex min-h-[calc(100dvh-56px)] flex-col overflow-hidden md:min-h-[calc(100dvh-64px)]" style={{ background: '#070B1C' }} aria-label="Your result" aria-busy={!r}>
         <DuskSky moonClass="hidden md:block" />
         <div className="landed-strip pointer-events-none absolute right-0 bottom-0 left-0">
           <LandedScene />
         </div>
-        <div className="relative z-10 mx-auto grid w-full max-w-[1240px] flex-1 grid-cols-1 content-center items-center gap-3 px-4 pt-2 pb-2 md:gap-8 md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] md:gap-x-20 md:gap-y-4 md:px-12 md:pt-4">
-          <div>
-            <ScoreCurveReveal curve={r.curve} score={r.totalScore} percentile={r.percentile} estimated={r.estimated} puzzleLabel={puzzleLabel} phone={phone} />
+        {!r && <span className="sr-only">Landing…</span>}
+        {r && (
+          <div
+            className={`relative z-10 mx-auto grid w-full max-w-[1240px] flex-1 grid-cols-1 content-center items-center gap-3 px-4 pt-2 pb-2 md:gap-8 md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] md:gap-x-20 md:gap-y-4 md:px-12 md:pt-4${instant.current ? '' : ' fade-in'}`}
+          >
+            <div>
+              <ScoreCurveReveal curve={r.curve} score={r.totalScore} percentile={r.percentile} estimated={r.estimated} puzzleLabel={puzzleLabel} phone={phone} />
+            </div>
+            <div className="flex flex-col justify-center gap-3 md:gap-4">
+              <ScoreCard r={r} />
+              <ShareButton text={r.shareText} />
+              <Countdown to={r.nextResetAt} label="Next climb in" className="text-center text-[18px] leading-none text-haze" />
+              <button type="button" onClick={toExplanations} className="panel-note link-button cursor-pointer self-center px-4 hover:text-moonlight" style={{ textDecoration: 'none', color: '#C9D3FF', minHeight: 32 }}>
+                ▼ See how everyone did, and why ▼
+              </button>
+            </div>
           </div>
-          <div className="flex flex-col justify-center gap-3 md:gap-4">
-            <ScoreCard r={r} />
-            <ShareButton text={r.shareText} />
-            <Countdown to={r.nextResetAt} label="Next climb in" className="text-center text-[18px] leading-none text-haze" />
-            <button type="button" onClick={toExplanations} className="panel-note link-button cursor-pointer self-center px-4 hover:text-moonlight" style={{ textDecoration: 'none', color: '#C9D3FF', minHeight: 32 }}>
-              ▼ See how everyone did, and why ▼
-            </button>
-          </div>
-        </div>
+        )}
+        {!r && <div className="flex-1" />}
         {/* Room for the fairground and the parked balloon. */}
         <div className="landed-spacer relative" aria-hidden="true" />
       </section>
 
-      <section aria-labelledby="riddle-by-riddle">
-        <div className="mx-auto flex max-w-[1240px] scroll-mt-4 flex-col gap-5 px-4 pt-10 pb-10 md:gap-6 md:px-12 md:pb-14">
-          <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
-            <h2 id="riddle-by-riddle" className="panel-title m-0 scroll-mt-6 text-[30px] leading-none font-normal md:text-[36px]">Riddle by riddle</h2>
-            <div className="hidden text-[18px] leading-none text-haze md:block">How everyone else answered, and why</div>
+      {r && (
+        <section aria-labelledby="riddle-by-riddle">
+          <div className="mx-auto flex max-w-[1240px] scroll-mt-4 flex-col gap-5 px-4 pt-10 pb-10 md:gap-6 md:px-12 md:pb-14">
+            <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+              <h2 id="riddle-by-riddle" className="panel-title m-0 scroll-mt-6 text-[30px] leading-none font-normal md:text-[36px]">Riddle by riddle</h2>
+              <div className="hidden text-[18px] leading-none text-haze md:block">How everyone else answered, and why</div>
+            </div>
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
+              {r.debrief.map((d) => (
+                <DebriefCard key={d.slot} d={d} coldStart={r.coldStart} />
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
-            {r.debrief.map((d) => (
-              <DebriefCard key={d.slot} d={d} coldStart={r.coldStart} />
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   );
 }

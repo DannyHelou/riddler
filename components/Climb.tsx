@@ -26,8 +26,8 @@ import {
   balloonBob, pilotColor, cloudX, starOpacity, flyerKind, flyerX, type FlyerKind,
 } from '@/lib/idle';
 import { sfx, unlockAudio } from '@/lib/sfx';
-import { prefetchResults } from '@/lib/resultsCache';
-import { CLIMB_READY } from '@/lib/launch';
+import { prefetchResults, resultsSettled } from '@/lib/resultsCache';
+import { CLIMB_READY, RESULTS_READY, crossFadeTo } from '@/lib/launch';
 import { RiddleSign } from './RiddleSign';
 import { ResultReveal } from './ResultReveal';
 import { MuteButton } from './MuteButton';
@@ -59,10 +59,9 @@ interface Geo {
 }
 
 // After riddle 3 the balloon flies back down to the fairground and lands on its pad (§5.3),
-// then the screen fades to the results.
+// then the scene cross-fades into the results, where the balloon sits on the same pad.
 const LAND_MS = 2000;
 const SETTLE_MS = 350;
-const FADE_MS = 350;
 const easeInOut = (x: number) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
 const FLYER_SCALE = 4;
 const FAIR_ABOVE = 420; // room above the ground line for the ferris wheel and tent
@@ -191,7 +190,6 @@ export function Climb() {
   const fx = useRef<HTMLDivElement>(null);
   const sign = useRef<HTMLDivElement>(null);
   const flash = useRef<HTMLDivElement>(null);
-  const curtain = useRef<HTMLDivElement>(null);
   const altText = useRef<HTMLDivElement>(null);
 
   const later = (fn: () => void, ms: number) => {
@@ -293,7 +291,6 @@ export function Climb() {
       // altitude, which the square-root scale would turn into a slam at the end), then a fade.
       const landing = p === 'leaving';
       const landT = landing ? Math.min(1, (now - a.leaveAt) / LAND_MS) : 0;
-      const fadeT = landing ? Math.min(1, Math.max(0, (now - a.leaveAt - LAND_MS - SETTLE_MS) / FADE_MS)) : 0;
       const burning = p === 'firing' && t >= 0;
       const cur = burning
         ? a.fromAlt + (a.toAlt - a.fromAlt) * climbProgress(t)
@@ -320,7 +317,6 @@ export function Climb() {
         scene.current.style.transformOrigin = `${W / 2}px ${BASE}px`;
         scene.current.style.transform = `translate3d(${shake.x}px, ${cameraOffsetY(panK, travel) + shake.y + drop}px, 0)${k !== 1 ? ` scale(${k})` : ''}`;
       }
-      if (curtain.current) curtain.current.style.opacity = String(fadeT);
 
       WORLD.clouds.forEach((cl, i) => {
         const e = cloudEls.current[i];
@@ -559,7 +555,6 @@ export function Climb() {
       const ms = Date.parse(riddle.servedAt) - serverNow();
       if (ms <= 0) {
         setIgniteIn(null);
-        sfx.ignite();
         setPhase('ask');
         return;
       }
@@ -672,7 +667,10 @@ export function Climb() {
     anim.current.leaveAt = performance.now();
     ruler.current?.clearTiers();
     setPhase('leaving');
-    later(() => router.push('/results'), LAND_MS + SETTLE_MS + FADE_MS + 40);
+    // Once landed (and the prefetched results are in), cross-fade straight into the results page.
+    later(() => {
+      void resultsSettled().then(() => crossFadeTo(() => router.push('/results'), RESULTS_READY));
+    }, LAND_MS + SETTLE_MS);
   };
 
   const next = async () => {
@@ -923,9 +921,6 @@ export function Climb() {
       <div className="sr-only" aria-live="polite" aria-atomic="true">
         {announce}
       </div>
-
-      {/* Landed: the screen fades to the results' dusk. */}
-      <div ref={curtain} aria-hidden="true" className="pointer-events-none absolute inset-0 z-10" style={{ background: '#070B1C', opacity: 0 }} />
 
       {(phase === 'error' || confirmLeave) && (
         <div className="absolute inset-0 z-20 flex items-center justify-center bg-[rgba(3,5,13,0.8)] p-4">

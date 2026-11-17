@@ -297,7 +297,7 @@ export function Fairground({ groundAt, walkDepth = 26, active, artScale }: Props
     let last = performance.now();
     let t = 0;
     let raf = 0;
-    const frame = (now: number) => {
+    const draw = (now: number) => {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
       const isActive = opts.current.active;
@@ -317,8 +317,14 @@ export function Fairground({ groundAt, walkDepth = 26, active, artScale }: Props
         people.forEach((p) => update(p, dt));
         [...people].sort((a, b) => a.y - b.y).forEach((p) => person(p, t));
       }
+    };
+    const frame = (now: number) => {
+      draw(now);
       if (!reduced) raf = requestAnimationFrame(frame);
     };
+    // Draw the first frame now, not on the next rAF: view transitions pause rAF, and their
+    // snapshot of the new page should show the fair, not an empty canvas.
+    draw(last);
     raf = requestAnimationFrame(frame);
 
     return () => {

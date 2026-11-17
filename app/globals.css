@@ -614,19 +614,6 @@ a:hover {
     height: 200px;
   }
 }
-/* Arriving from the climb's landing: fade up from the same dusk the climb faded out to. */
-@keyframes landed-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-.landed-in {
-  animation: landed-in 450ms ease-out both;
-}
-@media (prefers-reduced-motion: reduce) {
-  .landed-in {
-    animation: none;
-  }
-}
 /* Grass 56 px above the bottom; pad top 9 art px (18 px) below it; basket 2 art px (4 px) into the pad. */
 .landed-balloon {
   bottom: 34px;

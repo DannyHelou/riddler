@@ -139,8 +139,4 @@ export const sfx = {
   landmark() {
     tone(880, 60, { type: 'triangle', gain: 0.04, to: 1320 });
   },
-  /** The fuel lights after the ignite countdown. */
-  ignite() {
-    noise(160, { gain: 0.05, freq: 900 });
-  },
 };
