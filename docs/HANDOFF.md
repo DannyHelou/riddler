@@ -17,7 +17,7 @@ Riddler is a daily math-riddle web game: three riddles a day (warm-up, trap, bos
 
 - **Live in production** on Vercel with Supabase. A full play through the live API was verified on launch day (saving, scoring, results, share text, the Jev word judge, no answers sent before answering).
 - **Content:** 272 riddles and a 365-day schedule, 2026-10-04 → 2027-10-03.
-- **Tests:** `npx tsc --noEmit` clean, **122 unit tests** (vitest) green. **Playwright e2e: 8/8 green** (re-run 2026-10-05; run it before larger changes, see gotchas).
+- **Tests:** `npx tsc --noEmit` clean, **129 unit tests** (vitest) green. **Playwright e2e: 8/8 green** (re-run 2026-10-05; run it before larger changes, see gotchas).
 - **Git:** `main` deploys to production. `riddle-bank-year-one` is the working branch and is level with `main`. Commit attribution lines are in your system instructions. Ask the owner before pushing to `main` (it ships immediately).
 
 ## Production
@@ -76,11 +76,11 @@ Riddles and the schedule live in `content/`; production reads them from Supabase
 From the pre-launch audit (full report was in a scratch file; the items are all here):
 
 **Should fix soon**
-1. **Rate limiting**: none. Anyone can mint device IDs and spam answers, skewing percentiles, running up Jev costs, and pushing junk into the public "top answers" (`lib/game.ts` crowd answers).
-2. **Midnight rollover**: a climb in progress at midnight Toronto fails (the next request resolves to the new day → 409 "Start the climb first" → generic error). Pin requests to the play's own date.
+1. **Rate limiting**: in-app only (2026-11-16, `lib/ratelimit.ts`): per device per route per 10 min, and 300/min per IP, in memory per server instance, so it stops runaway clients but is not airtight. Anyone can still mint device IDs and skew percentiles or push junk into the public "top answers" (`lib/game.ts` crowd answers). A Vercel WAF rule (Pro) would make it airtight.
+2. ~~Midnight rollover~~ fixed 2026-11-16: `activeCtx` in `lib/game.ts` keeps serving yesterday's unfinished play for `MIDNIGHT_GRACE_MIN` (45) minutes after midnight, and its results for the same window; starting today's play ends the window.
 3. **Crowd stats above 1,000 players/day**: `finishedScores` and `crowdAnswers` page without `ORDER BY`, and `deviceAnswers` has no paging (Supabase caps at 1,000 rows) in `lib/store/supabase.ts`.
-4. **Schedule-end alert**: a daily check that tomorrow's set exists (e.g. a Vercel cron route), well before 2027-10-03.
-5. **Error monitoring / alerting**: none (Vercel logs only).
+4. ~~Schedule-end alert~~ done 2026-11-16: the daily cron (`/api/cron/cleanup`) checks tomorrow's set exists and warns under 30 days left, via `lib/alerts.ts`.
+5. **Error monitoring / alerting**: partial (2026-11-16). Every 500 from `handle()` and every cron failure is recorded as a `server_error` event (shown in the dashboard's Errors panel) and posted to `ALERT_WEBHOOK_URL` if set (Slack/Discord-style JSON). **The webhook is a placeholder: nothing pushes to the owner until they set it.**
 6. **Content-Security-Policy**: not set (KaTeX, inline theme script and next/font need care).
 7. **Riddle credits**: each riddle has a `credit` field (BrainStellar MIT, crawsome/riddles Unlicense, classics) that is never shown; add it to the debrief or an About/credits page.
 8. **WCAG AA contrast audit**: not done (light theme, text over the fairground).
@@ -103,6 +103,7 @@ From the pre-launch audit (full report was in a scratch file; the items are all 
 - **Pipeline:** `lib/track.ts` (browser, batched, `sendBeacon`) → `POST /api/events` (`app/api/events/route.ts`; validation and rate cap in `lib/events.ts`; always 204) → `events` table (`supabase/migrations/0002_events.sql`). Aggregation is pure and unit-tested (`lib/analytics.ts`); loaders in `lib/adminData.ts`; UI in `app/admin/*` and `components/admin/AdminUI.tsx`.
 - **Migrations now run on deploy:** `npm run build` starts with `scripts/migrate.ts`, which applies any `supabase/migrations/*.sql` not yet in `schema_migrations`, using Vercel's `POSTGRES_URL_NON_POOLING`. It does nothing locally and fails soft (a warning in the build log) so a DB blip can't block a deploy. Add schema changes as new numbered files.
 - **Env vars (Vercel, Production, Sensitive):** `ADMIN_PASSWORD_HASH` (make one with `npm run hash-password -- "<password>"`; the env var holds the hash, never the password), `ADMIN_SESSION_SECRET` (any long random string; signs the login cookie, and changing it logs everyone out), `CRON_SECRET` (Vercel sends it to the daily `/api/cron/cleanup`, `vercel.json`). Optional `EVENTS_RETENTION_DAYS` (default 180, minimum 30). Without `ADMIN_PASSWORD_HASH` the dashboard can't be logged into; events are still collected.
+- **Also on the overview** (2026-11-16): "Where they come from" (referring host or `utm_source` of homepage visits, `lib/source.ts`; add `?utm_source=…` to links you post to tell channels apart) and "Errors" (recent `server_error` rows, schedule days left).
 - **Locally:** put an `ADMIN_PASSWORD_HASH` in `.env.local` and open http://localhost:3000/admin; events go to the local JSON store.
 
 ## Run it locally
@@ -110,7 +111,7 @@ From the pre-launch audit (full report was in a scratch file; the items are all 
 ```bash
 npm install
 npm run dev          # http://localhost:3000; local JSON store in .data/ (no Supabase vars in .env.local)
-npm test             # vitest, 122 tests
+npm test             # vitest, 129 tests
 npx tsc --noEmit
 npm run e2e          # Playwright; use NEXT_DIST_DIR=.next-e2e (see gotchas)
 npm run seed -- --check
