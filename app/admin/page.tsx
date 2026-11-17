@@ -8,6 +8,7 @@ import { AdminHeader, Bars, Empty, HBars, Panel, RangeTabs, Stat, Table, pct } f
 export const dynamic = 'force-dynamic';
 
 const SLOT = ['', 'Warm-up', 'Trap', 'Boss'];
+const fmtTime = (iso: string) => new Date(iso).toLocaleString('en-CA', { timeZone: 'America/Toronto', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
 
 export default async function AdminOverview({ searchParams }: { searchParams: Promise<{ range?: string }> }) {
   await requireAdmin();
@@ -75,6 +76,29 @@ export default async function AdminOverview({ searchParams }: { searchParams: Pr
           <Empty>No riddles served in this range.</Empty>
         )}
       </Panel>
+
+      <div className="grid gap-4 md:grid-cols-2">
+        <Panel title="Where they come from" note="Devices per source · from homepage visits in range">
+          {d.sources.length ? <HBars data={d.sources} color="var(--lvl-guesser)" share="total" /> : <Empty>No homepage visits recorded in this range.</Empty>}
+        </Panel>
+        <Panel title="Errors" note={d.errors.count ? `${d.errors.count} in range` : 'None in range'}>
+          {d.errors.recent.length ? (
+            <ul className="m-0 flex list-none flex-col gap-2 p-0 text-[18px] leading-tight">
+              {d.errors.recent.map((e, i) => (
+                <li key={i} className="text-[var(--flare)]">
+                  <span className="text-[var(--haze)]">{fmtTime(e.ts)} · {e.where} · </span>
+                  {e.message}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <Empty>No server errors.</Empty>
+          )}
+          <p className={`panel-note m-0 text-[16px] ${d.schedule.daysLeft < 30 ? 'text-[var(--flare)]' : ''}`}>
+            Riddle schedule ends {d.schedule.endsOn ?? '—'} · {d.schedule.daysLeft} days left
+          </p>
+        </Panel>
+      </div>
 
       <div className="grid gap-4 md:grid-cols-3">
         <Panel title="Coming back" note={`${d.retention.players} players`}>

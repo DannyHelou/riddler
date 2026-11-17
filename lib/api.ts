@@ -2,6 +2,7 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { GameError } from './game';
+import { reportError } from './alerts';
 
 const DEVICE_COOKIE = 'burner_device';
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -31,7 +32,7 @@ export async function handle<T>(fn: () => Promise<T>) {
     return NextResponse.json(await fn(), { headers: { 'cache-control': 'no-store' } });
   } catch (e) {
     if (e instanceof GameError) return NextResponse.json({ error: e.message, ...e.extra }, { status: e.status, headers: { 'cache-control': 'no-store' } });
-    console.error(e);
+    await reportError('api', e);
     return NextResponse.json({ error: 'Something went wrong' }, { status: 500 });
   }
 }

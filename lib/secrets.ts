@@ -13,6 +13,7 @@ export const SERVER_SECRETS = [
   'ADMIN_PASSWORD_HASH',
   'ADMIN_SESSION_SECRET',
   'CRON_SECRET',
+  'ALERT_WEBHOOK_URL',
   // Added by Vercel's Supabase integration; only the build's migrate step reads a Postgres URL, but all must stay private.
   'SUPABASE_JWT_SECRET',
   'SUPABASE_SECRET_KEY',
